@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWC Grower Edition</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(ellipse at 20% 0%, #0d1b35 0%, #0a0f1e 45%, #0f172a 100%);
+            color: #e0e0e0;
+            padding: 15px;
+            margin: 0;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: auto; }
+
+        /* 2-column layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: start;
+        }
+        .dash-col { display: flex; flex-direction: column; min-width: 0; }
+
+        /* Bottom row: full width with 2 sub-columns */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Tablet ≤900px → 1 column */
+        @media (max-width: 900px) {
+            .dashboard-grid { grid-template-columns: 1fr; gap: 12px; }
+            .bottom-row { grid-template-columns: 1fr; gap: 12px; }
+            .sensor-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .result-grid { grid-template-columns: 1fr 1fr; }
+            h2 { font-size: 1.05em; padding: 10px 14px; }
+        }
+
+        /* Smartphone ≤500px */
+        @media (max-width: 500px) {
+            body { padding: 10px; }
+            .sensor-grid { grid-template-columns: 1fr 1fr; }
+            .result-grid { grid-template-columns: 1fr 1fr; }
+            #gemini-chat { max-height: 200px; }
+        }
+
+        h2, h3 { color: #00ff88; margin-top: 0; display: flex; align-items: center; justify-content: space-between; }
+
+        /* Header */
+        h2 {
+            background: linear-gradient(135deg, rgba(13,27,53,0.95), rgba(10,15,30,0.98));
+            border: 1px solid #1e3a5f;
+            border-radius: 18px;
+            padding: 14px 22px;
+            margin-bottom: 18px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+            font-size: 1.25em;
+            letter-spacing: -0.3px;
+        }
+
+        /* Cards */
+        .card {
+            background: linear-gradient(145deg, rgba(20,30,50,0.95) 0%, rgba(12,18,35,0.98) 100%);
+            border: 1px solid #1e3a5f;
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.03);
+            min-width: 0;
+            overflow: hidden;
+        }
+        .card[style*="border-top: 3px solid #00ff88"] {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(0,255,136,0.06), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+        .card[style*="border-top: 3px solid #4285f4"] {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(66,133,244,0.07), inset 0 1px 0 rgba(255,255,255,0.03);
+        }
+
+        label { display: block; margin: 10px 0 4px; font-size: 0.75em; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+        input, select, textarea {
+            width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #334155;
+            background: #1e293b; color: white; font-size: 15px;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: #00ff88;
+            box-shadow: 0 0 0 3px rgba(0,255,136,0.1) !important;
+        }
+        textarea {
+            font-family: sans-serif; resize: vertical; min-height: 70px;
+            border-left: 4px solid #00ff88;
+            background: linear-gradient(145deg, #0d1b35, #1a2744) !important;
+            border-color: #2d3f5f !important;
+            border-left-color: #00ff88 !important;
+        }
+        textarea:focus { box-shadow: 0 0 0 3px rgba(0,255,136,0.08); }
+
+        /* Sensor Grid */
+        .sensor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+        .sensor-box {
+            background: #1e293b;
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid #334155;
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .sensor-box label { margin: 0 0 4px; }
+        .sensor-label {
+            font-size: 0.68em;
+            letter-spacing: 0.12em;
+            color: #64748b;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+        .sensor-box input {
+            padding: 4px 6px;
+            font-size: clamp(1.4em, 3vw, 2em);
+            font-weight: 800;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: #00ff88;
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        .sensor-box input:focus { background: #0f172a; }
+        .sensor-unit {
+            position: absolute;
+            right: 8px;
+            bottom: 10px;
+            font-size: 0.65em;
+            color: #475569;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Color-coded sensor boxes */
+        .sensor-grid > .sensor-box:nth-child(1) {
+            border-color: #00ff8840;
+            background: linear-gradient(145deg, #071a10, #111f30);
+        }
+        .sensor-grid > .sensor-box:nth-child(2) {
+            border-color: #00d4ff40;
+            background: linear-gradient(145deg, #071320, #111f30);
+        }
+        .sensor-grid > .sensor-box:nth-child(3) {
+            border-color: #f59e0b40;
+            background: linear-gradient(145deg, #1a1107, #111f30);
+        }
+        .sensor-grid > .sensor-box:nth-child(4) {
+            border-color: #a78bfa40;
+            background: linear-gradient(145deg, #100a20, #111f30);
+        }
+        .sensor-grid > .sensor-box:nth-child(1) input { color: #00ff88 !important; }
+        .sensor-grid > .sensor-box:nth-child(2) input { color: #00d4ff !important; }
+        .sensor-grid > .sensor-box:nth-child(3) input { color: #f59e0b !important; }
+        .sensor-grid > .sensor-box:nth-child(4) input { color: #a78bfa !important; }
+        .sensor-grid > .sensor-box:nth-child(1) .sensor-unit { color: #00ff8870; }
+        .sensor-grid > .sensor-box:nth-child(2) .sensor-unit { color: #00d4ff70; }
+        .sensor-grid > .sensor-box:nth-child(3) .sensor-unit { color: #f59e0b70; }
+        .sensor-grid > .sensor-box:nth-child(4) .sensor-unit { color: #a78bfa70; }
+
+        /* Advice */
+        .advice { margin-top: 12px; padding: 10px 14px; border-radius: 10px; font-size: 0.88em; line-height: 1.6; }
+        .warn {
+            background: linear-gradient(135deg, #2d0a0a, #3b1a1a) !important;
+            color: #fca5a5;
+            border: 1px solid #7f1d1d !important;
+            animation: pulse 2s infinite;
+        }
+        .ok {
+            background: linear-gradient(135deg, #041a0e, #052e16) !important;
+            color: #86efac;
+            border: 1px solid #14532d;
+        }
+        .info { background: #1e293b; color: #64748b; border: 1px solid #334155; font-size: 0.82em; }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.75; } }
+
+        /* Temp Warning Banner */
+        #temp-warn-banner { display: none; margin-top: 8px; }
+        #temp-warn-banner.visible {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2d0a0a, #3b1a1a);
+            color: #fca5a5;
+            border: 1px solid #7f1d1d;
+            font-weight: bold;
+            font-size: 0.88em;
+            animation: pulse 2s infinite;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block; padding: 8px 14px; border-radius: 9px !important; border: none;
+            font-size: 0.8em; font-weight: bold; cursor: pointer; margin-top: 8px; margin-right: 6px;
+            letter-spacing: 0.02em; transition: filter 0.15s, transform 0.1s !important;
+        }
+        .btn-green { background: linear-gradient(135deg, #15803d, #22c55e) !important; color: white; box-shadow: 0 4px 14px rgba(34,197,94,0.3); }
+        .btn-gray  { background: linear-gradient(135deg, #1e293b, #334155) !important; color: #94a3b8; }
+        .btn:hover { filter: brightness(1.15) !important; transform: translateY(-1px) !important; }
+        .btn:active { transform: translateY(0) !important; filter: brightness(0.95) !important; }
+
+        /* Dosierung */
+        .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .res-item {
+            background: linear-gradient(145deg, #121f38, #1a2744) !important;
+            padding: 12px;
+            border-left: 4px solid #00d4ff;
+            border-radius: 10px !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .res-item:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.4); }
+        .res-label { font-size: 0.72em; color: #475569; letter-spacing: 0.05em; }
+        .res-val { font-size: 1.3em !important; font-weight: bold; color: #e2e8f0 !important; margin-top: 3px; }
+        .vol-input {
+            width: 52px; padding: 2px 4px; font-size: 16px !important; font-weight: 800 !important;
+            background: none; border: none; border-bottom: 1px solid #00d4ff;
+            color: #00d4ff !important; text-align: center; border-bottom-color: #00d4ff !important;
+        }
+
+        /* Phase/Woche select */
+        #phase, #week {
+            background: linear-gradient(145deg, #0d1b35, #1a2744) !important;
+            border-color: #2d3f5f !important;
+            font-weight: 600;
+        }
+        #phase:focus, #week:focus { border-color: #00ff88 !important; box-shadow: 0 0 0 3px rgba(0,255,136,0.1); }
+
+        /* Harvest countdown */
+        #harvest-countdown {
+            margin-top: 10px; padding: 8px 12px;
+            background: linear-gradient(135deg, #071a10, #0a2418) !important;
+            border: 1px solid #14532d !important;
+            border-radius: 12px !important;
+            color: #86efac !important;
+            font-size: 0.85em; font-weight: 600; text-align: center;
+        }
+
+        /* EC Refill info */
+        #ec-refill-info {
+            margin-top: 10px; padding: 8px 12px;
+            background: linear-gradient(145deg, #0a1420, #1a2744) !important;
+            border: 1px solid #2d3f5f !important;
+            border-radius: 10px !important;
+            font-size: 0.85em;
+            color: #94a3b8;
+        }
+
+        /* Wechselwasser */
+        .water-progress { width: 100%; height: 12px; background: #1e293b; border-radius: 6px; margin: 10px 0; overflow: hidden; }
+        .water-bar { height: 100%; border-radius: 6px; transition: width 0.5s, background 0.5s; }
+        .water-info { display: flex; justify-content: space-between; font-size: 0.8em; color: #94a3b8; margin-top: 4px; }
+        .water-days { font-size: 2em; font-weight: bold; text-align: center; margin: 8px 0; }
+
+        /* Notizen */
+        .notes-list { margin-top: 10px; }
+        .note-item {
+            background: linear-gradient(145deg, #121f38, #1a2744) !important;
+            border-radius: 8px; padding: 10px 12px; margin-bottom: 8px;
+            border-left: 3px solid #00ff8880;
+            position: relative;
+        }
+        .note-date { font-size: 0.7em; color: #475569; margin-bottom: 4px; }
+        .note-text { font-size: 0.88em; line-height: 1.5; }
+        .note-delete { position: absolute; top: 8px; right: 8px; background: none; border: none; color: #475569; cursor: pointer; font-size: 1.1em; }
+        .note-delete:hover { color: #ef4444; }
+
+        /* Gemini Chat */
+        .gmsg-user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb) !important;
+            box-shadow: 0 2px 10px rgba(29,78,216,0.35);
+            color: white; padding: 8px 12px; border-radius: 12px 12px 2px 12px;
+            font-size: 0.85em; max-width: 85%; line-height: 1.5;
+        }
+        .gmsg-bot {
+            align-self: flex-start;
+            background: linear-gradient(145deg, #121f38, #1a2744) !important;
+            border-color: #2d3f5f !important;
+            color: #e2e8f0; padding: 8px 12px; border-radius: 2px 12px 12px 12px;
+            font-size: 0.85em; max-width: 92%; line-height: 1.6; border: 1px solid #334155;
+        }
+        .gmsg-bot b, .gmsg-bot strong { color: #00d4ff; }
+        .gmsg-bot code { background: #0f172a; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; color: #a78bfa; }
+        .gmsg-err { align-self: flex-start; background: #3b1a1a; color: #fca5a5; padding: 8px 12px; border-radius: 8px; font-size: 0.82em; max-width: 92%; }
+        .gmsg-thinking { align-self: flex-start; color: #475569; font-size: 0.8em; font-style: italic; padding: 4px 8px; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .gmsg-thinking span { animation: blink 1.2s infinite; }
+
+        #gemini-send-btn {
+            background: linear-gradient(135deg, #1d4ed8, #4285f4) !important;
+            box-shadow: 0 4px 14px rgba(66,133,244,0.35);
+            border-radius: 10px !important;
+        }
+
+        /* h3 card titles */
+        h3 { font-size: 0.92em; font-weight: 700; letter-spacing: 0.02em; }
+
+        /* Section titles */
+        .section-title {
+            font-size: 0.68em !important;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: #475569 !important;
+            padding-bottom: 7px;
+            border-bottom: 1px solid #1e3a5f;
+            margin-bottom: 10px !important;
+            text-transform: uppercase;
+        }
+
+        /* Version badge */
+        .version {
+            font-size: 0.45em; background: #1e293b; border: 1px solid #334155;
+            padding: 3px 7px; border-radius: 6px; color: #64748b;
+        }
+
+        /* Header subtitle */
+        .header-subtitle {
+            font-size: 0.42em; color: #475569; font-weight: normal;
+            letter-spacing: 0.04em; margin-left: 10px;
+        }
+
+        /* Header buttons */
+        .header-btns { display: flex; align-items: center; gap: 8px; }
+        .header-btn {
+            background: linear-gradient(135deg, #121f38, #1e293b) !important;
+            border: 1px solid #2d3f5f !important;
+            color: #94a3b8;
+            border-radius: 10px !important;
+            padding: 7px 13px !important;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+        .header-btn:hover { border-color: #00ff88 !important; color: #00ff88 !important; box-shadow: 0 0 12px rgba(0,255,136,0.15); }
+
+        /* Light Mode */
+        body.light-mode { background: #f1f5f9; color: #1e293b; }
+        body.light-mode .card { background: rgba(255,255,255,0.92); border-color: #cbd5e1; color: #1e293b; }
+        body.light-mode .sensor-box { background: #f8fafc; border-color: #cbd5e1; }
+        body.light-mode .sensor-box input { color: #0f172a; }
+        body.light-mode input, body.light-mode select, body.light-mode textarea { background: #f8fafc; color: #1e293b; border-color: #cbd5e1; }
+        body.light-mode .res-item { background: #f8fafc; }
+        body.light-mode .note-item { background: #f8fafc; }
+        body.light-mode h2, body.light-mode h3 { color: #16a34a; }
+        body.light-mode .section-title { color: #475569; }
+        body.light-mode .advice.ok { background: #dcfce7; color: #15803d; border-color: #86efac; }
+        body.light-mode .advice.warn { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+        body.light-mode .advice.info { background: #f8fafc; color: #475569; border-color: #e2e8f0; }
+        body.light-mode .header-btn { background: #f8fafc; border-color: #cbd5e1; color: #475569; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: #080d1a; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: #2d3f5f; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3d5275; }
+
+        code { background: #1e293b; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+        a { color: #38bdf8; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h2>🌱 DWC Grower Edition
+        <span class="version">v1.0</span>
+        <span class="header-subtitle">Universeller Hydroponik-Rechner</span>
+        <span class="header-btns">
+            <button class="header-btn" onclick="toggleFullscreen()" title="Vollbild">⛶</button>
+            <button class="header-btn" id="dark-light-btn" onclick="toggleDarkLight()" title="Dark/Light Mode">🌙</button>
+        </span>
+    </h2>
+
+    <div class="dashboard-grid">
+
+        <!-- LINKE SPALTE: Manuelle Sensoren + Status -->
+        <div class="dash-col">
+
+            <!-- MANUELLE SENSOR-EINGABE -->
+            <div class="card" style="border-top: 3px solid #00ff88;">
+                <h3>🌡️ Sensor-Werte (manuell)</h3>
+                <div class="sensor-grid">
+                    <div class="sensor-box">
+                        <div class="sensor-label">PH</div>
+                        <input type="number" id="ph_input" step="0.01" min="4" max="8" placeholder="5.8" oninput="update()">
+                        <span class="sensor-unit">pH</span>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">EC</div>
+                        <input type="number" id="ec_input" step="0.01" min="0" max="5" placeholder="1.5" oninput="update()">
+                        <span class="sensor-unit">MS/CM</span>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">TEMPERATUR</div>
+                        <input type="number" id="temp_input" step="0.1" min="10" max="35" placeholder="20.0" oninput="update()">
+                        <span class="sensor-unit">°C</span>
+                    </div>
+                    <div class="sensor-box">
+                        <div class="sensor-label">ORP</div>
+                        <input type="number" id="orp_input" step="1" min="0" max="800" placeholder="300" oninput="update()">
+                        <span class="sensor-unit">MV</span>
+                    </div>
+                </div>
+                <div id="temp-warn-banner">🔥 WASSER ZU WARM! Wurzelfäule-Gefahr</div>
+                <div id="status_advice" class="advice info">ℹ️ Werte eingeben für Empfehlungen...</div>
+            </div>
+
+            <!-- WECHSELWASSER ERINNERUNG -->
+            <div class="card">
+                <h3>💧 Wechselwasser-Erinnerung</h3>
+                <div id="water-status" class="water-days" style="color:#00ff88;">–</div>
+                <div class="water-progress">
+                    <div class="water-bar" id="water-bar" style="width:0%;background:#00ff88;"></div>
+                </div>
+                <div class="water-info">
+                    <span id="water-last">Letzter Wechsel: –</span>
+                    <span id="water-next">Nächster: –</span>
+                </div>
+                <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                    <button class="btn btn-green" onclick="doWaterChange()">✅ Wechsel jetzt durchgeführt</button>
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <span style="font-size:0.8em;color:#94a3b8;">Intervall:</span>
+                        <select id="water-interval" onchange="saveWaterSettings()" style="width:auto;padding:6px 10px;font-size:0.85em;">
+                            <option value="7">7 Tage</option>
+                            <option value="10" selected>10 Tage</option>
+                            <option value="14">14 Tage</option>
+                            <option value="21">21 Tage</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RECHTE SPALTE: Phase + Dosierung -->
+        <div class="dash-col">
+
+            <!-- PHASE & WOCHE -->
+            <div class="card">
+                <div style="display:flex;gap:10px;">
+                    <div style="flex:2;">
+                        <label>Phase</label>
+                        <select id="phase" onchange="update()">
+                            <option value="wuchs">🌱 Vegetativ (Wuchs)</option>
+                            <option value="bluete">🌸 Blütephase</option>
+                        </select>
+                    </div>
+                    <div style="flex:1;">
+                        <label>Woche</label>
+                        <input type="number" id="week" value="1" min="1" max="12" oninput="update()">
+                    </div>
+                </div>
+                <div id="harvest-countdown"></div>
+            </div>
+
+            <!-- DOSIERUNG -->
+            <div class="card">
+                <h3>
+                    🧪 <span id="brand-label">Hesi</span> Dosierung
+                    <span style="font-size:0.6em;font-weight:normal;color:#94a3b8;">
+                        <input type="number" id="vol" value="40" class="vol-input" oninput="update()"> Liter
+                    </span>
+                </h3>
+                <select id="brand-select" onchange="update()" style="width:100%;padding:8px 10px;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;font-size:0.85em;margin-bottom:10px;">
+                    <option value="hesi">🌿 Hesi</option>
+                    <option value="canna">🌺 Canna Aqua</option>
+                    <option value="plagron">🌱 Plagron Hydro</option>
+                    <option value="ghe">🧪 GHE Flora Series</option>
+                    <option value="advanced">⚡ Advanced Nutrients</option>
+                    <option value="biobizz">🍃 Biobizz (Organisch)</option>
+                    <option value="aptus">💎 Aptus</option>
+                    <option value="house">🏡 House &amp; Garden</option>
+                    <option value="atami">🌊 Atami B'cuzz</option>
+                </select>
+                <div class="result-grid" id="results"></div>
+                <div id="ec-refill-info" style="display:none;"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- UNTERE REIHE: Notizen + Gemini -->
+    <div class="bottom-row">
+
+        <!-- NOTIZEN / GROW DIARY -->
+        <div class="card" style="margin-bottom:0;">
+            <h3>📝 Notizen &amp; Grow Diary</h3>
+            <textarea id="new-note" placeholder="Beobachtung, Maßnahme, Wurzelzustand, pH-Korrektur..."></textarea>
+            <button class="btn btn-green" onclick="addNote()" style="margin-top:8px;">➕ Notiz speichern</button>
+            <div class="notes-list" id="notes-list"></div>
+        </div>
+
+        <!-- GEMINI AGENT -->
+        <div class="card" style="border-top: 3px solid #4285f4; margin-bottom:0;">
+            <h3>🤖 Gemini Agent
+                <button onclick="toggleGeminiKey()" class="btn btn-gray" style="margin:0;padding:4px 8px;font-size:0.65em;">⚙️ API Key</button>
+            </h3>
+            <div id="gemini-key-row" style="display:none;margin-bottom:10px;">
+                <input type="password" id="gemini-api-key" placeholder="Google Gemini API Key..." style="font-size:0.85em;">
+                <button class="btn btn-gray" onclick="saveGeminiKey()" style="margin-top:6px;padding:5px 10px;">💾 Speichern</button>
+                <div style="font-size:0.72em;color:#475569;margin-top:6px;">
+                    Kostenlosen Key bekommst du unter: <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a>
+                </div>
+            </div>
+            <div id="gemini-chat" style="max-height:280px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;"></div>
+            <div style="display:flex;gap:6px;align-items:flex-end;">
+                <textarea id="gemini-input" placeholder="Frage stellen... z.B. Was tun bei zu hohem pH?" style="min-height:50px;flex:1;margin:0;resize:none;" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askGemini();}"></textarea>
+                <button class="btn" onclick="askGemini()" id="gemini-send-btn" style="background:#4285f4;color:white;margin:0;padding:10px 14px;height:50px;">➤</button>
+            </div>
+            <div style="font-size:0.65em;color:#475569;margin-top:4px;">Enter = Senden &nbsp;|&nbsp; Shift+Enter = Zeilenumbruch</div>
+        </div>
+
+    </div>
+
+    <div style="text-align:center; padding: 20px; color: #475569; font-size: 0.8em;">
+        DWC Grower Edition — Freie Software für Hydroponik-Grower 🌱<br>
+        Kein Login, keine Cloud, keine Daten werden gesendet. Alles läuft lokal im Browser.
+    </div>
+
+</div>
+
+<script>
+// ============================================================
+// MULTI-BRAND DOSIERUNGS-DATEN
+// ============================================================
+const BRANDS_DATA = {
+    hesi: {
+        name: "Hesi",
+        ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.0] },
+        refillProduct: { wuchs: "Hydro Wuchs", bluete: "Hydro Blüte" },
+        wuchs: [
+            { name: "Hydro Wuchs",  mlL: 5,    color: "#00d4ff" },
+            { name: "Wurzel",       mlL: 5,    color: "#00ff88" },
+            { name: "PowerZyme",    mlL: 2,    color: "#a78bfa" },
+            { name: "SuperVit",     drops: true, dropsPerL: 1/4.5, color: "#ef4444" }
+        ],
+        bluete: [
+            { name: "Hydro Blüte",  mlL: 5,    color: "#00d4ff" },
+            { name: "Wurzel",       mlL: 2.5,  color: "#00ff88" },
+            { name: "PowerZyme",    mlL: 2,    color: "#a78bfa" },
+            { name: "Boost",        mlL: 2,    color: "#f472b6" },
+            { name: "PK 13/14",     weekMap: {4:0.25, 5:0.5, 6:0.75, 7:1.5}, color: "#f97316" },
+            { name: "SuperVit",     drops: true, dropsPerL: 1/4.5, color: "#ef4444" }
+        ]
+    },
+    canna: {
+        name: "Canna Aqua",
+        ecRange: { wuchs: [1.0, 1.6], bluete: [1.4, 2.2] },
+        refillProduct: { wuchs: "Aqua Vega A+B", bluete: "Aqua Flores A+B" },
+        wuchs: [
+            { name: "Aqua Vega A",    mlL: 4,    color: "#00d4ff" },
+            { name: "Aqua Vega B",    mlL: 4,    color: "#38bdf8" },
+            { name: "Rhizotonic",     mlL: 4,    color: "#00ff88" },
+            { name: "Cannazym",       mlL: 2.5,  color: "#a78bfa" },
+            { name: "Cal-Mag Agent",  mlL: 1,    color: "#fbbf24" }
+        ],
+        bluete: [
+            { name: "Aqua Flores A",  mlL: 4,    color: "#00d4ff" },
+            { name: "Aqua Flores B",  mlL: 4,    color: "#38bdf8" },
+            { name: "Cannazym",       mlL: 2.5,  color: "#a78bfa" },
+            { name: "Cannaboost",     mlL: 2,    weekMin: 3, color: "#f472b6" },
+            { name: "PK 13/14",       mlL: 1.5,  weekMin: 5, weekMax: 6, color: "#f97316" }
+        ]
+    },
+    plagron: {
+        name: "Plagron Hydro",
+        ecRange: { wuchs: [0.8, 1.6], bluete: [1.4, 2.2] },
+        refillProduct: { wuchs: "Hydro A+B", bluete: "Hydro A+B" },
+        wuchs: [
+            { name: "Hydro A",        mlL: 4,    color: "#00d4ff" },
+            { name: "Hydro B",        mlL: 4,    color: "#38bdf8" },
+            { name: "Power Roots",    mlL: 1,    color: "#00ff88" },
+            { name: "Pure Zym",       mlL: 1,    color: "#a78bfa" }
+        ],
+        bluete: [
+            { name: "Hydro A",          mlL: 4,    color: "#00d4ff" },
+            { name: "Hydro B",          mlL: 4,    color: "#38bdf8" },
+            { name: "Pure Zym",         mlL: 1,    color: "#a78bfa" },
+            { name: "Green Sensation",  mlL: 1,    weekMin: 4, color: "#f472b6" }
+        ]
+    },
+    ghe: {
+        name: "GHE Flora Series",
+        ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.0] },
+        refillProduct: { wuchs: "FloraGro", bluete: "FloraBloom" },
+        wuchs: [
+            { name: "FloraMicro",     mlL: 1.5,  color: "#00d4ff" },
+            { name: "FloraGro",       mlL: 3,    color: "#00ff88" },
+            { name: "FloraBloom",     mlL: 1,    color: "#f472b6" },
+            { name: "Diamond Nectar", mlL: 1,    color: "#a78bfa" },
+            { name: "BioRoot",        mlL: 2,    color: "#fbbf24" }
+        ],
+        bluete: [
+            { name: "FloraMicro",     mlL: 1.5,  color: "#00d4ff" },
+            { name: "FloraGro",       mlL: 0.5,  color: "#00ff88" },
+            { name: "FloraBloom",     mlL: 3,    color: "#f472b6" },
+            { name: "Diamond Nectar", mlL: 1,    color: "#a78bfa" },
+            { name: "Ripen",          mlL: 1.5,  weekMin: 7, color: "#f97316" }
+        ]
+    },
+    advanced: {
+        name: "Advanced Nutrients",
+        ecRange: { wuchs: [1.0, 1.6], bluete: [1.4, 2.4] },
+        refillProduct: { wuchs: "Sensi Grow A+B", bluete: "Sensi Bloom A+B" },
+        wuchs: [
+            { name: "Sensi Grow A",   mlL: 4,    color: "#00d4ff" },
+            { name: "Sensi Grow B",   mlL: 4,    color: "#38bdf8" },
+            { name: "Voodoo Juice",   mlL: 2,    weekMax: 2, color: "#00ff88" },
+            { name: "B-52",           mlL: 1,    color: "#fbbf24" }
+        ],
+        bluete: [
+            { name: "Sensi Bloom A",  mlL: 4,    color: "#00d4ff" },
+            { name: "Sensi Bloom B",  mlL: 4,    color: "#38bdf8" },
+            { name: "B-52",           mlL: 1,    color: "#fbbf24" },
+            { name: "Bud Candy",      mlL: 2,    color: "#f472b6" },
+            { name: "Big Bud",        mlL: 2,    weekMin: 3, weekMax: 6, color: "#f97316" },
+            { name: "Overdrive",      mlL: 2,    weekMin: 6, color: "#a78bfa" }
+        ]
+    },
+    biobizz: {
+        name: "Biobizz",
+        ecRange: { wuchs: [0.6, 1.2], bluete: [1.0, 1.8] },
+        refillProduct: { wuchs: "Bio·Grow", bluete: "Bio·Bloom" },
+        wuchs: [
+            { name: "Bio·Grow",       mlL: 3,    color: "#00d4ff" },
+            { name: "Root·Juice",     mlL: 2,    color: "#00ff88" },
+            { name: "Alg·A·Mic",      mlL: 1,    color: "#a78bfa" }
+        ],
+        bluete: [
+            { name: "Bio·Bloom",      mlL: 3,    color: "#00d4ff" },
+            { name: "Top·Max",        mlL: 2,    color: "#f472b6" },
+            { name: "Alg·A·Mic",      mlL: 1,    color: "#a78bfa" },
+            { name: "Bio·Heaven",     mlL: 2,    color: "#fbbf24" }
+        ]
+    },
+    aptus: {
+        name: "Aptus",
+        ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.2] },
+        refillProduct: { wuchs: "All-In-One", bluete: "All-In-One" },
+        wuchs: [
+            { name: "All-In-One",     mlL: 1.5,  color: "#00d4ff" },
+            { name: "Start Booster",  mlL: 1.0,  color: "#00ff88" },
+            { name: "Fasilitor",      mlL: 0.3,  color: "#a78bfa" },
+            { name: "CaMg-Boost",     mlL: 1.0,  color: "#fbbf24" }
+        ],
+        bluete: [
+            { name: "All-In-One",     mlL: 1.5,  color: "#00d4ff" },
+            { name: "Topbooster",     mlL: 0.5,  color: "#f472b6" },
+            { name: "Fasilitor",      mlL: 0.3,  color: "#a78bfa" },
+            { name: "CaMg-Boost",     mlL: 1.0,  color: "#fbbf24" },
+            { name: "Regulator",      mlL: 0.5,  color: "#00ff88" }
+        ]
+    },
+    house: {
+        name: "House & Garden",
+        ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.0] },
+        refillProduct: { wuchs: "Aqua Flakes A+B", bluete: "Aqua Flakes A+B" },
+        wuchs: [
+            { name: "Aqua Flakes A",      mlL: 1.5,  color: "#00d4ff" },
+            { name: "Aqua Flakes B",      mlL: 1.5,  color: "#38bdf8" },
+            { name: "Roots Excelurator",  mlL: 0.3,  color: "#00ff88" },
+            { name: "Amino Treatment",    mlL: 1.0,  color: "#a78bfa" }
+        ],
+        bluete: [
+            { name: "Aqua Flakes A",      mlL: 2.5,  color: "#00d4ff" },
+            { name: "Aqua Flakes B",      mlL: 2.5,  color: "#38bdf8" },
+            { name: "Amino Treatment",    mlL: 1.0,  color: "#a78bfa" },
+            { name: "Top Shooter",        mlL: 1.0,  weekMin: 4, weekMax: 6, color: "#f472b6" },
+            { name: "Algen Extract",      mlL: 1.0,  color: "#fbbf24" }
+        ]
+    },
+    atami: {
+        name: "Atami B'cuzz",
+        ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.0] },
+        refillProduct: { wuchs: "Hydro A+B", bluete: "Hydro A+B" },
+        wuchs: [
+            { name: "Hydro A",                mlL: 2,    color: "#00d4ff" },
+            { name: "Hydro B",                mlL: 2,    color: "#38bdf8" },
+            { name: "B'cuzz Root",            mlL: 1,    color: "#00ff88" },
+            { name: "Atazyme",                mlL: 1,    color: "#a78bfa" }
+        ],
+        bluete: [
+            { name: "Hydro A",                mlL: 2.5,  color: "#00d4ff" },
+            { name: "Hydro B",                mlL: 2.5,  color: "#38bdf8" },
+            { name: "Atazyme",                mlL: 1,    color: "#a78bfa" },
+            { name: "B'cuzz Bloom Stim.",     mlL: 1,    color: "#f472b6" },
+            { name: "PK Booster Atami",       mlL: 0.75, weekMin: 5, color: "#f97316" }
+        ]
+    }
+};
+
+// ============================================================
+// HAUPTLOGIK / DOSIERUNG
+// ============================================================
+function update() {
+    const vol   = parseFloat(document.getElementById('vol').value) || 0;
+    const phase = document.getElementById('phase').value;
+    const week  = parseInt(document.getElementById('week').value);
+
+    // Werte in localStorage speichern
+    localStorage.setItem('dwc_phase', phase);
+    localStorage.setItem('dwc_week', week);
+    localStorage.setItem('dwc_vol', vol);
+
+    const ph   = parseFloat(document.getElementById('ph_input').value);
+    const ec   = parseFloat(document.getElementById('ec_input').value);
+    const temp = parseFloat(document.getElementById('temp_input').value);
+    const orp  = parseFloat(document.getElementById('orp_input').value);
+
+    // Brand & Dosierungsschema
+    const brandKey = document.getElementById('brand-select').value;
+    const brand = BRANDS_DATA[brandKey] || BRANDS_DATA.hesi;
+    localStorage.setItem('dwc_brand', brandKey);
+    document.getElementById('brand-label').textContent = brand.name;
+
+    const resDiv = document.getElementById('results');
+    resDiv.innerHTML = '';
+    const products = brand[phase] || [];
+    for (const p of products) {
+        if (p.weekMin && week < p.weekMin) continue;
+        if (p.weekMax && week > p.weekMax) continue;
+        let valStr;
+        if (p.drops) {
+            valStr = Math.ceil(vol * p.dropsPerL) + " Tropfen";
+        } else if (p.weekMap) {
+            const dose = p.weekMap[week];
+            if (!dose) continue;
+            valStr = (dose * vol).toFixed(1) + " ml";
+        } else {
+            valStr = (p.mlL * vol).toFixed(1) + " ml";
+        }
+        addResult(p.name, valStr, `border-left-color:${p.color};`);
+    }
+
+    // EC-Bereich aus Marken-Daten
+    const ecMin = brand.ecRange[phase][0];
+    const ecMax = brand.ecRange[phase][1];
+    let warn = [];
+
+    if (!isNaN(ph)) {
+        if      (ph > 6.2) warn.push("⚠️ pH ZU HOCH (" + ph + ") → Senken auf 5.8");
+        else if (ph < 5.5) warn.push("⚠️ pH ZU NIEDRIG (" + ph + ") → Anheben auf 5.8");
+    }
+    if (!isNaN(ec)) {
+        if      (ec > ecMax) warn.push(`⚠️ EC ZU HOCH (${ec} mS) → Wasser nachfüllen`);
+        else if (ec < ecMin) warn.push(`⚠️ EC ZU NIEDRIG (${ec} mS) → Nährstoffe nachfüllen`);
+    }
+    if (!isNaN(temp) && temp > 22) warn.push(`🔥 WASSER ZU WARM (${temp}°C) → Wurzelfäule!`);
+    if (!isNaN(orp)) {
+        if      (orp < 200) warn.push(`⚠️ ORP ZU NIEDRIG (${orp} mV) → Anaerob / Wurzelfäule!`);
+        else if (orp > 600) warn.push(`⚠️ ORP ZU HOCH (${orp} mV)`);
+    }
+
+    const adv = document.getElementById('status_advice');
+    if (warn.length > 0) {
+        adv.className = "advice warn";
+        adv.innerHTML = warn.join("<br>");
+    } else if (!isNaN(ph) && !isNaN(ec) && !isNaN(temp)) {
+        adv.className = "advice ok";
+        const orpStr = !isNaN(orp) ? ` | ORP ${orp} mV` : '';
+        adv.innerHTML = `✅ Alle Werte im DWC-Idealbereich<br><small style="opacity:0.75;font-weight:normal">pH ${ph} | EC ${ec} mS | ${temp}°C${orpStr}</small>`;
+    } else {
+        adv.className = "advice info";
+        adv.innerHTML = "ℹ️ Werte eingeben für Empfehlungen...";
+    }
+
+    // Temp Warning Banner
+    const tempBanner = document.getElementById('temp-warn-banner');
+    if (!isNaN(temp) && temp > 22) {
+        tempBanner.classList.add('visible');
+    } else {
+        tempBanner.classList.remove('visible');
+    }
+
+    // Harvest Countdown
+    updateHarvestCountdown(phase, week);
+
+    // EC Refill Calculator
+    updateEcRefill(phase, vol, ec, ecMin, ecMax, brand);
+}
+
+function addResult(name, val, style = "") {
+    document.getElementById('results').innerHTML +=
+        `<div class="res-item" style="${style}"><div class="res-label">${name}</div><div class="res-val">${val}</div></div>`;
+}
+
+// ============================================================
+// EC NACHFÜLL-RECHNER
+// ============================================================
+function updateEcRefill(phase, vol, ec, ecMin, ecMax, brand) {
+    const box = document.getElementById('ec-refill-info');
+    if (!box) return;
+    if (isNaN(ec) || isNaN(vol) || vol <= 0) {
+        box.style.display = 'none';
+        return;
+    }
+    if (ec >= ecMin && ec <= ecMax) {
+        box.style.display = 'none';
+        return;
+    }
+    if (ec < ecMin) {
+        const diff = ecMin - ec;
+        const mlPerLPerEC = 5;
+        const ml = (diff * vol * mlPerLPerEC).toFixed(1);
+        const product = (brand && brand.refillProduct) ? brand.refillProduct[phase] : (phase === 'wuchs' ? 'Hydro Wuchs' : 'Hydro Blüte');
+        box.style.display = 'block';
+        box.style.background = '#1a3a2a';
+        box.style.borderColor = '#16a34a';
+        box.style.color = '#86efac';
+        box.innerHTML = `💧 EC-Nachfüll-Rechner: <b>${ml} ml ${product}</b> nachfüllen<br><span style="font-size:0.85em;opacity:0.8;">Ziel: ${ecMin} mS | Ist: ${ec} mS | Vol: ${vol} L</span>`;
+    } else {
+        box.style.display = 'block';
+        box.style.background = '#3b1a1a';
+        box.style.borderColor = '#dc2626';
+        box.style.color = '#fca5a5';
+        box.innerHTML = `⚠️ EC zu hoch (${ec} mS) → Frischwasser nachfüllen`;
+    }
+}
+
+// ============================================================
+// ERNTE-COUNTDOWN
+// ============================================================
+function updateHarvestCountdown(phase, week) {
+    const box = document.getElementById('harvest-countdown');
+    if (!box) return;
+    const totalWeeks = phase === 'wuchs' ? 8 : 9;
+    const daysLeft = (totalWeeks - week) * 7;
+    let bg, color, border;
+    if (daysLeft > 28) { bg = '#052e16'; color = '#86efac'; border = '#14532d'; }
+    else if (daysLeft > 14) { bg = '#1c1a05'; color = '#fde68a'; border = '#713f12'; }
+    else { bg = '#3b1a1a'; color = '#fca5a5'; border = '#7f1d1d'; }
+    if (daysLeft <= 0) {
+        box.style.cssText = `background:${bg};color:${color};border:1px solid ${border};`;
+        box.innerHTML = '🌿 <b>Erntezeit!</b> Woche ' + week + ' / ' + totalWeeks;
+    } else {
+        box.style.cssText = `background:${bg};color:${color};border:1px solid ${border};`;
+        box.innerHTML = `⏳ Noch <b>${daysLeft} Tage</b> bis Ernte (Woche ${week}/${totalWeeks})`;
+    }
+}
+
+// ============================================================
+// WECHSELWASSER
+// ============================================================
+function loadWaterData() {
+    try { return JSON.parse(localStorage.getItem('dwc_water') || '{}'); }
+    catch(e) { return {}; }
+}
+
+function saveWaterSettings() {
+    const d = loadWaterData();
+    d.interval = parseInt(document.getElementById('water-interval').value);
+    localStorage.setItem('dwc_water', JSON.stringify(d));
+    updateWaterDisplay();
+}
+
+function doWaterChange() {
+    const d = loadWaterData();
+    d.lastChange = new Date().toISOString();
+    d.interval = parseInt(document.getElementById('water-interval').value);
+    localStorage.setItem('dwc_water', JSON.stringify(d));
+    updateWaterDisplay();
+    // Automatisch Notiz hinzufügen
+    const textarea = document.getElementById('new-note');
+    const old = textarea.value;
+    textarea.value = '💧 Wasserwechsel durchgeführt';
+    addNote();
+    textarea.value = old;
+}
+
+function updateWaterDisplay() {
+    const d = loadWaterData();
+    const interval = d.interval || 10;
+    document.getElementById('water-interval').value = interval;
+
+    if (!d.lastChange) {
+        document.getElementById('water-status').innerHTML = '<span style="font-size:0.5em;color:#64748b;">Noch kein Wechsel eingetragen</span>';
+        document.getElementById('water-bar').style.width = '0%';
+        document.getElementById('water-last').textContent = 'Letzter Wechsel: –';
+        document.getElementById('water-next').textContent = 'Nächster: –';
+        return;
+    }
+
+    const last = new Date(d.lastChange);
+    const now = new Date();
+    const daysSince = Math.floor((now - last) / (1000 * 60 * 60 * 24));
+    const daysLeft = interval - daysSince;
+    const pct = Math.min(100, (daysSince / interval) * 100);
+
+    let color = '#00ff88';
+    let statusText = daysLeft + ' Tage';
+    let statusLabel = 'noch bis Wechsel';
+    if (daysLeft <= 0) {
+        color = '#ef4444';
+        statusText = Math.abs(daysLeft) + ' Tage';
+        statusLabel = '⚠️ ÜBERFÄLLIG!';
+    } else if (daysLeft <= 2) {
+        color = '#f59e0b';
+        statusLabel = 'noch – bald wechseln!';
+    }
+
+    document.getElementById('water-status').innerHTML =
+        `<span style="color:${color}">${statusText}</span><br><span style="font-size:0.4em;color:#64748b;">${statusLabel}</span>`;
+    document.getElementById('water-bar').style.width = pct + '%';
+    document.getElementById('water-bar').style.background = color;
+
+    document.getElementById('water-last').textContent =
+        'Letzter: ' + last.toLocaleDateString('de-DE');
+    const nextDate = new Date(last);
+    nextDate.setDate(nextDate.getDate() + interval);
+    document.getElementById('water-next').textContent =
+        'Nächster: ' + nextDate.toLocaleDateString('de-DE');
+}
+
+// ============================================================
+// NOTIZEN / GROW DIARY
+// ============================================================
+function loadNotes() {
+    try { return JSON.parse(localStorage.getItem('dwc_notes_v2') || '[]'); }
+    catch(e) { return []; }
+}
+
+function saveNotes(notes) {
+    localStorage.setItem('dwc_notes_v2', JSON.stringify(notes));
+}
+
+function addNote() {
+    const text = document.getElementById('new-note').value.trim();
+    if (!text) return;
+    const notes = loadNotes();
+    notes.unshift({
+        id: Date.now(),
+        text,
+        date: new Date().toLocaleString('de-DE'),
+        ph: parseFloat(document.getElementById('ph_input').value) || null,
+        ec: parseFloat(document.getElementById('ec_input').value) || null
+    });
+    saveNotes(notes);
+    document.getElementById('new-note').value = '';
+    renderNotes();
+}
+
+function deleteNote(id) {
+    const notes = loadNotes().filter(n => n.id !== id);
+    saveNotes(notes);
+    renderNotes();
+}
+
+function renderNotes() {
+    const notes = loadNotes();
+    const list = document.getElementById('notes-list');
+    if (notes.length === 0) {
+        list.innerHTML = '<div style="font-size:0.82em;color:#475569;text-align:center;padding:12px;">Noch keine Notizen</div>';
+        return;
+    }
+    list.innerHTML = notes.map(n => `
+        <div class="note-item">
+            <button class="note-delete" onclick="deleteNote(${n.id})">🗑</button>
+            <div class="note-date">
+                ${n.date}
+                ${n.ph ? `<span style="color:#00ff88;margin-left:8px;">pH ${n.ph}</span>` : ''}
+                ${n.ec ? `<span style="color:#00d4ff;margin-left:6px;">EC ${n.ec}</span>` : ''}
+            </div>
+            <div class="note-text">${n.text.replace(/\n/g, '<br>')}</div>
+        </div>
+    `).join('');
+}
+
+// ============================================================
+// VOLLBILD-MODUS
+// ============================================================
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(e => console.warn('Fullscreen error:', e));
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+// ============================================================
+// DARK/LIGHT MODE
+// ============================================================
+function toggleDarkLight() {
+    const body = document.body;
+    const btn = document.getElementById('dark-light-btn');
+    if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        btn.textContent = '🌙';
+        localStorage.setItem('dwc_light_mode', '0');
+    } else {
+        body.classList.add('light-mode');
+        btn.textContent = '☀️';
+        localStorage.setItem('dwc_light_mode', '1');
+    }
+}
+
+// ============================================================
+// GEMINI AGENT
+// ============================================================
+const GEMINI_SYSTEM = `Du bist ein hilfreicher Assistent für einen DWC (Deep Water Culture) Hydroponiksystem-Besitzer.
+Du kennst dich aus mit: pH-Werten (Idealbereich 5.5-6.2), EC-Werten (Wuchs: 0.8-1.4 mS/cm, Blüte: 1.2-2.0 mS/cm),
+Wassertemperatur (ideal unter 22°C), ORP-Werten (200-600 mV), Hydroponik-Nährstoffen verschiedener Hersteller (Hesi, Canna, Plagron, GHE, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami).
+Antworte immer auf Deutsch, kurz und präzise. Nutze Emojis sparsam.`;
+
+function toggleGeminiKey() {
+    const row = document.getElementById('gemini-key-row');
+    const key = localStorage.getItem('dwc_gemini_key');
+    if (row.style.display === 'none') {
+        row.style.display = 'block';
+        if (key) document.getElementById('gemini-api-key').value = key;
+    } else {
+        row.style.display = 'none';
+    }
+}
+
+function saveGeminiKey() {
+    const key = document.getElementById('gemini-api-key').value.trim();
+    if (key) {
+        localStorage.setItem('dwc_gemini_key', key);
+        document.getElementById('gemini-key-row').style.display = 'none';
+        appendGeminiMsg('bot', '✅ API Key gespeichert! Ich bin bereit.');
+    }
+}
+
+function appendGeminiMsg(type, text) {
+    const chat = document.getElementById('gemini-chat');
+    const div = document.createElement('div');
+    if (type === 'user')     div.className = 'gmsg-user';
+    else if (type === 'bot') div.className = 'gmsg-bot';
+    else if (type === 'err') div.className = 'gmsg-err';
+    else                     div.className = 'gmsg-thinking';
+    div.innerHTML = text
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
+        .replace(/`(.*?)`/g,'<code>$1</code>')
+        .replace(/\n/g,'<br>');
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+    return div;
+}
+
+const geminiHistory = [];
+let geminiModel = null;
+
+async function detectGeminiModel(apiKey) {
+    try {
+        const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+        const d = await r.json();
+        const preferred = ['gemini-2.5-flash','gemini-2.0-flash','gemini-1.5-flash','gemini-1.5-pro'];
+        const available = (d.models || [])
+            .filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes('generateContent'))
+            .map(m => m.name.replace('models/',''));
+        for (const p of preferred) {
+            const match = available.find(a => a.startsWith(p));
+            if (match) { geminiModel = match; return; }
+        }
+        if (available.length > 0) geminiModel = available[0];
+    } catch(e) {}
+}
+
+async function askGemini() {
+    const input = document.getElementById('gemini-input');
+    const question = input.value.trim();
+    if (!question) return;
+
+    const apiKey = localStorage.getItem('dwc_gemini_key');
+    if (!apiKey) {
+        appendGeminiMsg('err', '⚠️ Kein API Key hinterlegt. Bitte oben auf ⚙️ klicken und Key eintragen.\nKostenlosen Key bekommst du unter: aistudio.google.com');
+        return;
+    }
+
+    const ph   = document.getElementById('ph_input')?.value;
+    const ec   = document.getElementById('ec_input')?.value;
+    const temp = document.getElementById('temp_input')?.value;
+    const orp  = document.getElementById('orp_input')?.value;
+    const phase = document.getElementById('phase')?.value;
+    const week  = document.getElementById('week')?.value;
+    let ctx = '';
+    if (ph || ec) {
+        const brandCtx = document.getElementById('brand-select')?.options[document.getElementById('brand-select')?.selectedIndex]?.text || 'Hesi';
+        ctx = `\n[Aktuelle Sensorwerte: pH=${ph||'–'}, EC=${ec||'–'} mS/cm, Temp=${temp||'–'}°C, ORP=${orp||'–'} mV, Phase=${phase==='wuchs'?'Vegetativ':'Blüte'}, Woche=${week}, Düngerhersteller=${brandCtx}]`;
+    }
+
+    input.value = '';
+    appendGeminiMsg('user', question);
+    const thinking = appendGeminiMsg('thinking', '⏳ <span>Denkt nach...</span>');
+
+    const btn = document.getElementById('gemini-send-btn');
+    btn.disabled = true;
+
+    geminiHistory.push({ role: 'user', parts: [{ text: question + ctx }] });
+
+    try {
+        if (!geminiModel) await detectGeminiModel(apiKey);
+        if (!geminiModel) geminiModel = 'gemini-2.5-flash';
+
+        const res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent?key=${apiKey}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    system_instruction: { parts: [{ text: GEMINI_SYSTEM }] },
+                    contents: geminiHistory
+                })
+            }
+        );
+
+        thinking.remove();
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            const msg = err?.error?.message || `HTTP ${res.status}`;
+            appendGeminiMsg('err', `❌ Fehler: ${msg}`);
+            geminiHistory.pop();
+            return;
+        }
+
+        const data = await res.json();
+        const answer = data?.candidates?.[0]?.content?.parts?.[0]?.text || '(Keine Antwort)';
+        appendGeminiMsg('bot', answer);
+
+        geminiHistory.push({ role: 'model', parts: [{ text: answer }] });
+        if (geminiHistory.length > 20) geminiHistory.splice(0, 2);
+
+    } catch(e) {
+        thinking.remove();
+        appendGeminiMsg('err', `❌ Netzwerkfehler: ${e.message}`);
+        geminiHistory.pop();
+    } finally {
+        btn.disabled = false;
+        input.focus();
+    }
+}
+
+// ============================================================
+// INITIALISIERUNG
+// ============================================================
+(function init() {
+    // Gespeicherte Werte laden
+    const phase = localStorage.getItem('dwc_phase');
+    const week  = localStorage.getItem('dwc_week');
+    const vol   = localStorage.getItem('dwc_vol');
+    const brand = localStorage.getItem('dwc_brand');
+    if (phase) document.getElementById('phase').value = phase;
+    if (week)  document.getElementById('week').value  = week;
+    if (vol)   document.getElementById('vol').value   = vol;
+    if (brand) document.getElementById('brand-select').value = brand;
+
+    // Theme laden
+    if (localStorage.getItem('dwc_light_mode') === '1') {
+        document.body.classList.add('light-mode');
+        const btn = document.getElementById('dark-light-btn');
+        if (btn) btn.textContent = '☀️';
+    }
+
+    // Gemini-Status
+    if (localStorage.getItem('dwc_gemini_key')) {
+        appendGeminiMsg('bot', '👋 Bereit! Stelle mir Fragen zu deinem DWC-System, pH/EC-Werten oder Nährstoffen.');
+    } else {
+        appendGeminiMsg('bot', '👋 Hallo! Ich bin dein DWC-Assistent.\n\nBitte zuerst den **Gemini API Key** hinterlegen (⚙️ oben rechts).\n\nKostenlosen Key bekommst du unter: `aistudio.google.com`');
+    }
+
+    updateWaterDisplay();
+    renderNotes();
+    update();
+})();
+</script>
+</body>
+</html>
