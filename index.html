@@ -349,20 +349,94 @@
         }
         .header-btn:hover { border-color: #00ff88 !important; color: #00ff88 !important; box-shadow: 0 0 12px rgba(0,255,136,0.15); }
 
-        /* Light Mode */
-        body.light-mode { background: #f1f5f9; color: #1e293b; }
-        body.light-mode .card { background: rgba(255,255,255,0.92); border-color: #cbd5e1; color: #1e293b; }
-        body.light-mode .sensor-box { background: #f8fafc; border-color: #cbd5e1; }
-        body.light-mode .sensor-box input { color: #0f172a; }
-        body.light-mode input, body.light-mode select, body.light-mode textarea { background: #f8fafc; color: #1e293b; border-color: #cbd5e1; }
-        body.light-mode .res-item { background: #f8fafc; }
-        body.light-mode .note-item { background: #f8fafc; }
-        body.light-mode h2, body.light-mode h3 { color: #16a34a; }
-        body.light-mode .section-title { color: #475569; }
-        body.light-mode .advice.ok { background: #dcfce7; color: #15803d; border-color: #86efac; }
-        body.light-mode .advice.warn { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
-        body.light-mode .advice.info { background: #f8fafc; color: #475569; border-color: #e2e8f0; }
-        body.light-mode .header-btn { background: #f8fafc; border-color: #cbd5e1; color: #475569; }
+        /* ── LIGHT MODE ── */
+        body.light-mode {
+            background: linear-gradient(135deg, #f0fdf4 0%, #f1f5f9 50%, #ecfdf5 100%) !important;
+            color: #1e293b !important;
+        }
+        /* Header */
+        body.light-mode .version { background: #dcfce7; border-color: #86efac; color: #15803d; }
+        body.light-mode .header-btn { background: #ffffff !important; border-color: #d1d5db !important; color: #374151 !important; box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important; }
+        body.light-mode .header-subtitle { color: #94a3b8 !important; }
+        /* Cards */
+        body.light-mode h2, body.light-mode h3 { color: #15803d; }
+        body.light-mode h2 {
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%) !important;
+            border: 1px solid #bbf7d0 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8) !important;
+        }
+        body.light-mode .card {
+            background: #ffffff !important;
+            border-color: #e2e8f0 !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+            color: #1e293b !important;
+        }
+        body.light-mode label { color: #64748b; }
+        body.light-mode .section-title { color: #64748b !important; border-bottom-color: #e2e8f0 !important; }
+        /* Sensor Boxes */
+        body.light-mode .sensor-box {
+            background: #f8fafc !important;
+            border-color: #e2e8f0 !important;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.04) !important;
+        }
+        body.light-mode .sensor-box input { color: #0f172a !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(1) { background: linear-gradient(145deg, #f0fdf4, #f8fafc) !important; border-color: #86efac !important; border-top: 3px solid #00c96e !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(2) { background: linear-gradient(145deg, #f0f9ff, #f8fafc) !important; border-color: #bae6fd !important; border-top: 3px solid #0891b2 !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(3) { background: linear-gradient(145deg, #fff7ed, #f8fafc) !important; border-color: #fed7aa !important; border-top: 3px solid #ea580c !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(4) { background: linear-gradient(145deg, #faf5ff, #f8fafc) !important; border-color: #ddd6fe !important; border-top: 3px solid #7c3aed !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(1) input { color: #16a34a !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(2) input { color: #0369a1 !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(3) input { color: #c2410c !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(4) input { color: #6d28d9 !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(1) .sensor-unit { color: #86efac !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(2) .sensor-unit { color: #7dd3fc !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(3) .sensor-unit { color: #fdba74 !important; }
+        body.light-mode .sensor-grid > .sensor-box:nth-child(4) .sensor-unit { color: #c4b5fd !important; }
+        body.light-mode .sensor-unit { color: #94a3b8; }
+        /* Inputs / Selects / Textareas */
+        body.light-mode input,
+        body.light-mode select,
+        body.light-mode textarea {
+            background: #f8fafc !important;
+            color: #1e293b !important;
+            border-color: #cbd5e1 !important;
+        }
+        body.light-mode input:focus, body.light-mode select:focus, body.light-mode textarea:focus { border-color: #16a34a !important; background: #ffffff !important; box-shadow: 0 0 0 3px rgba(22,163,74,0.1) !important; }
+        body.light-mode textarea { border-left-color: #16a34a !important; }
+        body.light-mode #phase, body.light-mode #week { background: #f8fafc !important; border-color: #cbd5e1 !important; color: #1e293b !important; }
+        body.light-mode .vol-input { color: #15803d !important; border-bottom-color: #16a34a !important; background: transparent !important; }
+        /* Dosierung result items */
+        body.light-mode .res-item { background: #f8fafc !important; border-color: #e2e8f0 !important; box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important; }
+        body.light-mode .res-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; }
+        body.light-mode .res-label { color: #64748b !important; }
+        body.light-mode .res-val { color: #1e293b !important; }
+        body.light-mode #brand-select { background: #f8fafc !important; color: #1e293b !important; border-color: #cbd5e1 !important; }
+        /* Water progress */
+        body.light-mode .water-progress { background: #e2e8f0 !important; }
+        body.light-mode .water-info { color: #64748b !important; }
+        body.light-mode .water-days { color: #15803d !important; }
+        /* Notes */
+        body.light-mode .note-item { background: #f8fafc !important; border-left-color: #16a34a !important; border-color: #e2e8f0 !important; }
+        body.light-mode .note-date { color: #94a3b8 !important; }
+        body.light-mode .note-text { color: #374151 !important; }
+        /* Advice boxes */
+        body.light-mode .advice.ok   { background: #dcfce7 !important; color: #15803d !important; border-color: #86efac !important; }
+        body.light-mode .advice.warn { background: #fee2e2 !important; color: #991b1b !important; border-color: #fca5a5 !important; }
+        body.light-mode .advice.info { background: #f8fafc !important; color: #475569 !important; border-color: #e2e8f0 !important; }
+        /* Harvest & EC */
+        body.light-mode #harvest-countdown { border-color: #bbf7d0 !important; background: #f0fdf4 !important; color: #15803d !important; }
+        body.light-mode #ec-refill-info { background: #f0fdf4 !important; border-color: #86efac !important; color: #15803d !important; }
+        /* Buttons */
+        body.light-mode .btn-gray { background: #e2e8f0 !important; color: #475569 !important; }
+        /* Temp warn banner */
+        body.light-mode #temp-warn-banner.visible { background: #fee2e2 !important; color: #991b1b !important; border-color: #fca5a5 !important; }
+        /* Gemini chat */
+        body.light-mode .gmsg-bot { background: #f0fdf4 !important; border-color: #bbf7d0 !important; color: #1e293b !important; }
+        body.light-mode .gmsg-bot b, body.light-mode .gmsg-bot strong { color: #16a34a !important; }
+        body.light-mode .gmsg-bot code { background: #dcfce7 !important; color: #15803d !important; }
+        body.light-mode .gmsg-user { background: linear-gradient(135deg, #1d4ed8, #2563eb) !important; }
+        body.light-mode .gmsg-err { background: #fee2e2 !important; color: #991b1b !important; }
+        body.light-mode .gmsg-thinking { color: #94a3b8 !important; }
 
         /* Scrollbar */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -378,7 +452,7 @@
 <div class="container">
 
     <h2>🌱 DWC Grower Edition
-        <span class="version">v1.0</span>
+        <span class="version">v1.1</span>
         <span class="header-subtitle">Universeller Hydroponik-Rechner</span>
         <span class="header-btns">
             <button class="header-btn" onclick="toggleFullscreen()" title="Vollbild">⛶</button>
