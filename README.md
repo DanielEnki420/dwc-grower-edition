@@ -2,6 +2,9 @@
 
 > **Multi-Language** · **Multi-Brand** · **100% Local** · **No Cloud**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.2-blue.svg)]()
+
 ![Preview](preview.png)
 
 ---
@@ -179,7 +182,7 @@ Tudo funciona **100% localmente**. Sem login, sem cloud, sem dados enviados.
 | **Dependencies** | None — zero frameworks |
 | **Storage** | `localStorage` only |
 | **AI** | Google Gemini API (optional) |
-| **License** | Free / Open Source |
+| **License** | [MIT](LICENSE) |
 
 ---
 
