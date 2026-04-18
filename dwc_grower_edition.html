@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DWC Grower Edition — Free multilingual hydroponics nutrient calculator. pH/EC/Temp/ORP alerts, 9 brands, grow diary, AI assistant. 100% local.">
+    <meta name="theme-color" content="#0a0f1e">
     <title>DWC Grower Edition</title>
     <style>
         * { box-sizing: border-box; }
@@ -372,22 +374,22 @@
                 <div class="sensor-grid">
                     <div class="sensor-box">
                         <div class="sensor-label">pH</div>
-                        <input type="number" id="ph_input" step="0.01" min="4" max="8" placeholder="5.8" oninput="update()">
+                        <input type="number" id="ph_input" inputmode="decimal" step="0.01" min="4" max="8" placeholder="5.8" oninput="update()">
                         <span class="sensor-unit">pH</span>
                     </div>
                     <div class="sensor-box">
                         <div class="sensor-label">EC</div>
-                        <input type="number" id="ec_input" step="0.01" min="0" max="5" placeholder="1.5" oninput="update()">
+                        <input type="number" id="ec_input" inputmode="decimal" step="0.01" min="0" max="5" placeholder="1.5" oninput="update()">
                         <span class="sensor-unit">mS/cm</span>
                     </div>
                     <div class="sensor-box">
                         <div class="sensor-label" data-i18n="label_temp">TEMPERATUR</div>
-                        <input type="number" id="temp_input" step="0.1" min="10" max="35" placeholder="20.0" oninput="update()">
+                        <input type="number" id="temp_input" inputmode="decimal" step="0.1" min="10" max="35" placeholder="20.0" oninput="update()">
                         <span class="sensor-unit">°C</span>
                     </div>
                     <div class="sensor-box">
                         <div class="sensor-label">ORP</div>
-                        <input type="number" id="orp_input" step="1" min="0" max="800" placeholder="300" oninput="update()">
+                        <input type="number" id="orp_input" inputmode="decimal" step="1" min="0" max="800" placeholder="300" oninput="update()">
                         <span class="sensor-unit">mV</span>
                     </div>
                 </div>
@@ -1085,7 +1087,7 @@ const BRANDS_DATA = {
 function update() {
     const vol   = parseFloat(document.getElementById('vol').value) || 0;
     const phase = document.getElementById('phase').value;
-    const week  = parseInt(document.getElementById('week').value) || 1;
+    const week  = Math.max(1, Math.min(12, parseInt(document.getElementById('week').value) || 1));
 
     localStorage.setItem('dwc_phase', phase);
     localStorage.setItem('dwc_week', week);
@@ -1120,6 +1122,7 @@ function update() {
         addResult(p.name, valStr, `border-left-color:${p.color};`);
     }
 
+    if (!brand.ecRange || !brand.ecRange[phase]) return;
     const ecMin = brand.ecRange[phase][0];
     const ecMax = brand.ecRange[phase][1];
     let warn = [];

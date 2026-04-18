@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DWC Nutrient Library — 13-brand hydroponics dosing calculator. Full weekly schedules for Grow/Bloom/Flush with volume calculator. 100% local.">
+  <meta name="theme-color" content="#0d1117">
   <title>DWC Nutrient Library — Multi-Brand Calculator</title>
   <style>
     :root {
@@ -393,7 +395,7 @@
   <div class="ctrl-group">
     <div class="ctrl-label" id="lbl-volume">Tank Volumen</div>
     <div class="ctrl-row">
-      <input class="volume-input" type="number" id="volumeInput" value="20" min="1" max="500" oninput="render()">
+      <input class="volume-input" type="number" id="volumeInput" inputmode="decimal" value="20" min="1" max="500" oninput="render()">
       <span class="volume-unit" id="lbl-liter">Liter</span>
     </div>
   </div>
@@ -1197,11 +1199,29 @@ function initBrandNav() {
   }
 }
 
+function updateWeekSelect() {
+  const schedule = BRANDS[currentBrand].schedule[currentPhase];
+  const maxWeek  = schedule ? Math.max(...schedule.map(s => s.week)) : 8;
+  const sel      = document.getElementById('weekSelect');
+  const curVal   = parseInt(sel.value) || 1;
+  sel.innerHTML  = '';
+  for (let i = 1; i <= maxWeek; i++) {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = i;
+    sel.appendChild(opt);
+  }
+  // Clamp current week to max
+  sel.value  = Math.min(curVal, maxWeek);
+  currentWeek = parseInt(sel.value);
+}
+
 function setBrand(key) {
   currentBrand = key;
   document.querySelectorAll('.brand-tab').forEach(t => t.classList.toggle('active', t.dataset.brand === key));
   document.getElementById('brandBadge').textContent = BRANDS[key].name;
   localStorage.setItem('nl-brand', key);
+  updateWeekSelect();
   render();
 }
 
@@ -1212,8 +1232,8 @@ function setPhase(phase) {
     btn.className = 'phase-btn';
     if (p === phase) btn.classList.add('active-'+p);
   });
-  currentWeek = parseInt(document.getElementById('weekSelect').value) || 1;
   localStorage.setItem('nl-phase', phase);
+  updateWeekSelect();
   render();
 }
 
@@ -1222,7 +1242,7 @@ function setPhase(phase) {
 // ─────────────────────────────────────────────
 function render() {
   const brand  = BRANDS[currentBrand];
-  const volume = parseFloat(document.getElementById('volumeInput').value) || 10;
+  const volume = Math.max(1, parseFloat(document.getElementById('volumeInput').value) || 10);
   const week   = parseInt(document.getElementById('weekSelect').value) || 1;
   currentWeek  = week;
   localStorage.setItem('nl-week', week);
@@ -1379,22 +1399,20 @@ function typeLabel(type) {
 // ─────────────────────────────────────────────
 // BOOT
 // ─────────────────────────────────────────────
-initBrandNav();
-
-// Restore preferences
+// Restore preferences before first render
 const savedTheme = localStorage.getItem('nl-theme');
 if (savedTheme === 'light') {
   document.body.classList.add('light-mode');
   document.getElementById('theme-btn').textContent = '☀️';
 }
 
-// Restore brand
+// Restore brand BEFORE initBrandNav() — single call, no duplicate
 const savedBrand = localStorage.getItem('nl-brand');
 if (savedBrand && BRANDS[savedBrand]) {
   currentBrand = savedBrand;
-  initBrandNav(); // re-render tabs with correct active state
   document.getElementById('brandBadge').textContent = BRANDS[savedBrand].name;
 }
+initBrandNav(); // single call with correct currentBrand already set
 
 // Restore phase
 const savedPhase = localStorage.getItem('nl-phase');
@@ -1419,6 +1437,15 @@ if (savedWeek) {
 const savedVolume = localStorage.getItem('nl-volume');
 if (savedVolume) {
   document.getElementById('volumeInput').value = savedVolume;
+}
+
+// Update week select to match brand+phase before first render
+updateWeekSelect();
+// Restore week (after updateWeekSelect so options exist)
+if (savedWeek) {
+  const sel2 = document.getElementById('weekSelect');
+  sel2.value  = Math.min(parseInt(savedWeek), parseInt(sel2.options[sel2.options.length-1].value));
+  currentWeek = parseInt(sel2.value);
 }
 
 // Restore language (triggers first render)
