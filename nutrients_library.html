@@ -314,6 +314,21 @@
     }
     .order-arrow { color: var(--border); font-size: 16px; }
 
+    /* Week note — adapts to dark/light */
+    .week-note {
+      background: var(--week-note-bg, #2d2000);
+      border: 1px solid var(--week-note-border, #6e4c00);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--week-note-color, #f0a500);
+    }
+    body.light-mode .week-note {
+      --week-note-bg: #fff8e1;
+      --week-note-border: #f59e0b;
+      --week-note-color: #92400e;
+    }
+
     /* Footer */
     .footer {
       text-align: center; padding: 20px;
@@ -1263,7 +1278,7 @@ function render() {
     </div>`;
 
   if (weekData.note) {
-    html += `<div style="background:#2d2000;border:1px solid #6e4c00;border-radius:8px;padding:10px 14px;font-size:12px;color:#f0a500;">⚠️ ${weekData.note}</div>`;
+    html += `<div class="week-note">⚠️ ${weekData.note}</div>`;
   }
 
   // Dosing table
@@ -1407,7 +1422,7 @@ if (savedVolume) {
 }
 
 // Restore language (triggers first render)
-const savedLang = localStorage.getItem('nl-lang') || localStorage.getItem('dwc-lang') || 'de';
+const savedLang = localStorage.getItem('nl-lang') || localStorage.getItem('dwc_lang') || 'de';
 setLanguage(savedLang);
 </script>
 </body>

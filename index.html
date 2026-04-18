@@ -345,7 +345,7 @@
 
     <h2>🌱 DWC Grower Edition
         <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-            <span class="version">v1.2</span>
+            <span class="version">v1.3</span>
             <span class="header-subtitle" data-i18n="subtitle">Universeller Hydroponik-Rechner</span>
         </span>
         <span class="header-btns">
@@ -905,9 +905,9 @@ function applyTranslations() {
     document.querySelectorAll('#water-interval option[data-days]').forEach(opt => {
         opt.textContent = opt.getAttribute('data-days') + ' ' + T.days_unit;
     });
-    // Temp warn banner static text
+    // Temp warn banner — always update text so language change works even when banner is visible
     const twb = document.getElementById('temp-warn-banner');
-    if (twb && !twb.classList.contains('visible')) twb.textContent = T.temp_warn;
+    if (twb) twb.textContent = T.temp_warn;
 }
 
 // ============================================================
@@ -1085,7 +1085,7 @@ const BRANDS_DATA = {
 function update() {
     const vol   = parseFloat(document.getElementById('vol').value) || 0;
     const phase = document.getElementById('phase').value;
-    const week  = parseInt(document.getElementById('week').value);
+    const week  = parseInt(document.getElementById('week').value) || 1;
 
     localStorage.setItem('dwc_phase', phase);
     localStorage.setItem('dwc_week', week);
@@ -1512,7 +1512,7 @@ async function askGemini() {
     const vol   = localStorage.getItem('dwc_vol');
     const brand = localStorage.getItem('dwc_brand');
     if (phase) document.getElementById('phase').value = phase;
-    if (week)  document.getElementById('week').value  = week;
+    if (week !== null)  document.getElementById('week').value  = week;
     if (vol)   document.getElementById('vol').value   = vol;
     if (brand) document.getElementById('brand-select').value = brand;
 

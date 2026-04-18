@@ -24,7 +24,7 @@
 ### Features
 - 🌍 **6 Sprachen** — Deutsch, Englisch, Italienisch, Französisch, Spanisch, Portugiesisch
 - 🧪 **9 Dünger-Marken** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Nährstoff-Bibliothek** — 10 Marken, vollständige Wochenpläne, Volumen-Kalkulator
+- 📚 **Nährstoff-Bibliothek** — 13 Marken, vollständige Wochenpläne, Volumen-Kalkulator
 - 📊 Automatische Dosierung in ml — nach Phase & Woche
 - ⚠️ pH / EC / Temp / ORP Warnsystem mit Empfehlungen
 - ⏳ Ernte-Countdown + Wechselwasser-Erinnerung
@@ -51,7 +51,7 @@ Alles läuft **100% lokal**. Kein Login, keine Cloud, keine Daten werden gesende
 ### Features
 - 🌍 **6 Languages** — German, English, Italian, French, Spanish, Portuguese
 - 🧪 **9 Nutrient Brands** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Nutrient Library** — 10 brands, full weekly schedules, volume calculator
+- 📚 **Nutrient Library** — 13 brands, full weekly schedules, volume calculator
 - 📊 Automatic dosing in ml — by phase & week
 - ⚠️ pH / EC / Temp / ORP warning system with recommendations
 - ⏳ Harvest countdown + water change reminder
@@ -78,7 +78,7 @@ Everything runs **100% locally**. No login, no cloud, no data is sent.
 ### Funzionalità
 - 🌍 **6 Lingue** — Tedesco, Inglese, Italiano, Francese, Spagnolo, Portoghese
 - 🧪 **9 Marchi di nutrienti** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Libreria Nutrienti** — 10 marchi, piani settimanali completi, calcolatore di volume
+- 📚 **Libreria Nutrienti** — 13 marchi, piani settimanali completi, calcolatore di volume
 - 📊 Dosaggio automatico in ml — per fase e settimana
 - ⚠️ Sistema di allerta pH / EC / Temp / ORP con raccomandazioni
 - ⏳ Conto alla rovescia del raccolto + promemoria cambio acqua
@@ -105,7 +105,7 @@ Tutto funziona **100% localmente**. Nessun login, nessun cloud, nessun dato invi
 ### Fonctionnalités
 - 🌍 **6 Langues** — Allemand, Anglais, Italien, Français, Espagnol, Portugais
 - 🧪 **9 Marques de nutriments** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Bibliothèque de nutriments** — 10 marques, plans hebdomadaires complets, calculateur de volume
+- 📚 **Bibliothèque de nutriments** — 13 marques, plans hebdomadaires complets, calculateur de volume
 - 📊 Dosage automatique en ml — par phase et semaine
 - ⚠️ Système d'alerte pH / EC / Temp / ORP avec recommandations
 - ⏳ Compte à rebours de la récolte + rappel changement d'eau
@@ -132,7 +132,7 @@ Tout fonctionne **100% localement**. Pas de connexion, pas de cloud, aucune donn
 ### Características
 - 🌍 **6 Idiomas** — Alemán, Inglés, Italiano, Francés, Español, Portugués
 - 🧪 **9 Marcas de nutrientes** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Biblioteca de nutrientes** — 10 marcas, planes semanales completos, calculadora de volumen
+- 📚 **Biblioteca de nutrientes** — 13 marcas, planes semanales completos, calculadora de volumen
 - 📊 Dosificación automática en ml — por fase y semana
 - ⚠️ Sistema de alertas pH / EC / Temp / ORP con recomendaciones
 - ⏳ Cuenta regresiva de cosecha + recordatorio de cambio de agua
@@ -159,7 +159,7 @@ Todo funciona **100% localmente**. Sin login, sin nube, sin datos enviados.
 ### Funcionalidades
 - 🌍 **6 Idiomas** — Alemão, Inglês, Italiano, Francês, Espanhol, Português
 - 🧪 **9 Marcas de nutrientes** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Biblioteca de nutrientes** — 10 marcas, planos semanais completos, calculadora de volume
+- 📚 **Biblioteca de nutrientes** — 13 marcas, planos semanais completos, calculadora de volume
 - 📊 Dosagem automática em ml — por fase e semana
 - ⚠️ Sistema de alertas pH / EC / Temp / ORP com recomendações
 - ⏳ Contagem decrescente da colheita + lembrete de troca de água
@@ -188,7 +188,7 @@ Tudo funciona **100% localmente**. Sem login, sem cloud, sem dados enviados.
 | **Dependencies** | None — zero frameworks |
 | **Storage** | `localStorage` only |
 | **AI** | Google Gemini API (optional) |
-| **Nutrient Library** | `nutrients_library.html` — 10 brands, full schedules |
+| **Nutrient Library** | `nutrients_library.html` — 13 brands, full schedules |
 | **License** | [MIT](LICENSE) |
 
 ---
