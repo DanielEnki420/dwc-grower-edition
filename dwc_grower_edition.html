@@ -926,16 +926,16 @@ const BRANDS_DATA = {
         refillProduct: { wuchs: "Hydro Wuchs", bluete: "Hydro Blüte" },
         wuchs: [
             { name: "Hydro Wuchs",  mlL: 5,    color: "#00d4ff" },
-            { name: "Wurzel",       mlL: 5,    color: "#00ff88" },
+            { name: "Wurzel",       mlL: 5,    weekMax: 3, color: "#00ff88" },
             { name: "PowerZyme",    mlL: 2,    color: "#a78bfa" },
             { name: "SuperVit",     drops: true, dropsPerL: 1/4.5, color: "#ef4444" }
         ],
         bluete: [
             { name: "Hydro Blüte",  mlL: 5,    color: "#00d4ff" },
-            { name: "Wurzel",       mlL: 2.5,  color: "#00ff88" },
+            { name: "Wurzel",       mlL: 2.5,  weekMax: 2, color: "#00ff88" },
             { name: "PowerZyme",    mlL: 2,    color: "#a78bfa" },
-            { name: "Boost",        mlL: 2,    color: "#f472b6" },
-            { name: "PK 13/14",     weekMap: {4:0.25, 5:0.5, 6:0.75, 7:1.5}, color: "#f97316" },
+            { name: "Boost",        mlL: 1,    color: "#f472b6" },
+            { name: "PK 13/14",     mlL: 0.5,  weekMin: 5, weekMax: 6, color: "#f97316" },
             { name: "SuperVit",     drops: true, dropsPerL: 1/4.5, color: "#ef4444" }
         ]
     },
@@ -944,18 +944,18 @@ const BRANDS_DATA = {
         ecRange: { wuchs: [1.0, 1.6], bluete: [1.4, 2.2] },
         refillProduct: { wuchs: "Aqua Vega A+B", bluete: "Aqua Flores A+B" },
         wuchs: [
-            { name: "Aqua Vega A",    mlL: 4,   color: "#00d4ff" },
-            { name: "Aqua Vega B",    mlL: 4,   color: "#38bdf8" },
-            { name: "Rhizotonic",     mlL: 4,   color: "#00ff88" },
-            { name: "Cannazym",       mlL: 2.5, color: "#a78bfa" },
-            { name: "Cal-Mag Agent",  mlL: 1,   color: "#fbbf24" }
+            { name: "Aqua Vega A",    mlL: 3,   color: "#00d4ff" },
+            { name: "Aqua Vega B",    mlL: 3,   color: "#38bdf8" },
+            { name: "Rhizotonic",     mlL: 0.4, weekMax: 4, color: "#00ff88" },
+            { name: "Cannazym",       mlL: 0.25,color: "#a78bfa" },
+            { name: "Cal-Mag Agent",  mlL: 0.4, color: "#fbbf24" }
         ],
         bluete: [
-            { name: "Aqua Flores A",  mlL: 4,   color: "#00d4ff" },
-            { name: "Aqua Flores B",  mlL: 4,   color: "#38bdf8" },
-            { name: "Cannazym",       mlL: 2.5, color: "#a78bfa" },
-            { name: "Cannaboost",     mlL: 2,   weekMin: 3, color: "#f472b6" },
-            { name: "PK 13/14",       mlL: 1.5, weekMin: 5, weekMax: 6, color: "#f97316" }
+            { name: "Aqua Flores A",  mlL: 3,   color: "#00d4ff" },
+            { name: "Aqua Flores B",  mlL: 3,   color: "#38bdf8" },
+            { name: "Cannazym",       mlL: 0.25,weekMax: 2, color: "#a78bfa" },
+            { name: "Cannaboost",     mlL: 0.2, color: "#f472b6" },
+            { name: "PK 13/14",       mlL: 0.3, weekMin: 4, weekMax: 6, color: "#f97316" }
         ]
     },
     plagron: {
@@ -963,16 +963,20 @@ const BRANDS_DATA = {
         ecRange: { wuchs: [0.8, 1.6], bluete: [1.4, 2.2] },
         refillProduct: { wuchs: "Hydro A+B", bluete: "Hydro A+B" },
         wuchs: [
-            { name: "Hydro A",        mlL: 4, color: "#00d4ff" },
-            { name: "Hydro B",        mlL: 4, color: "#38bdf8" },
-            { name: "Power Roots",    mlL: 1, color: "#00ff88" },
-            { name: "Pure Zym",       mlL: 1, color: "#a78bfa" }
+            { name: "Hydro A",        mlL: 1.2,  color: "#00d4ff" },
+            { name: "Hydro B",        mlL: 1.2,  color: "#38bdf8" },
+            { name: "Power Roots",    mlL: 0.1,  weekMax: 3, color: "#00ff88" },
+            { name: "Pure Enzym",     mlL: 0.25, color: "#a78bfa" },
+            { name: "Bacto",          mlL: 0.05, weekMax: 1, color: "#fbbf24" }
         ],
         bluete: [
-            { name: "Hydro A",          mlL: 4, color: "#00d4ff" },
-            { name: "Hydro B",          mlL: 4, color: "#38bdf8" },
-            { name: "Pure Zym",         mlL: 1, color: "#a78bfa" },
-            { name: "Green Sensation",  mlL: 1, weekMin: 4, color: "#f472b6" }
+            { name: "Hydro A",        mlL: 1.2,  color: "#00d4ff" },
+            { name: "Hydro B",        mlL: 1.2,  color: "#38bdf8" },
+            { name: "Pure Enzym",     mlL: 0.25, color: "#a78bfa" },
+            { name: "Glucose",        mlL: 0.1,  weekMax: 4, color: "#fbbf24" },
+            { name: "Green Sensation",mlL: 0.1,  color: "#f472b6" },
+            { name: "Sugar Royal",    mlL: 0.2,  weekMin: 2, color: "#f97316" },
+            { name: "PK 13/14",       mlL: 0.1,  weekMin: 5, color: "#ef4444" }
         ]
     },
     ghe: {
@@ -980,18 +984,21 @@ const BRANDS_DATA = {
         ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.0] },
         refillProduct: { wuchs: "FloraGro", bluete: "FloraBloom" },
         wuchs: [
-            { name: "FloraMicro",     mlL: 1.5, color: "#00d4ff" },
-            { name: "FloraGro",       mlL: 3,   color: "#00ff88" },
-            { name: "FloraBloom",     mlL: 1,   color: "#f472b6" },
-            { name: "Diamond Nectar", mlL: 1,   color: "#a78bfa" },
-            { name: "BioRoot",        mlL: 2,   color: "#fbbf24" }
+            { name: "Armor Si",       mlL: 0.05, weekMax: 4, color: "#8b949e" },
+            { name: "FloraMicro",     mlL: 1.0,  color: "#00d4ff" },
+            { name: "FloraGro",       mlL: 1.25, color: "#00ff88" },
+            { name: "FloraBloom",     mlL: 1.0,  color: "#f472b6" },
+            { name: "Rapid Start",    mlL: 0.15, weekMax: 2, color: "#00ff88" },
+            { name: "CALiMAGic",      mlL: 0.4,  weekMax: 4, color: "#fbbf24" },
+            { name: "Floralicious+",  mlL: 0.15, weekMin: 5, color: "#a78bfa" }
         ],
         bluete: [
-            { name: "FloraMicro",     mlL: 1.5, color: "#00d4ff" },
-            { name: "FloraGro",       mlL: 0.5, color: "#00ff88" },
-            { name: "FloraBloom",     mlL: 3,   color: "#f472b6" },
-            { name: "Diamond Nectar", mlL: 1,   color: "#a78bfa" },
-            { name: "Ripen",          mlL: 1.5, weekMin: 7, color: "#f97316" }
+            { name: "Armor Si",         mlL: 0.05, weekMax: 4, color: "#8b949e" },
+            { name: "FloraMicro",       mlL: 1.0,  color: "#00d4ff" },
+            { name: "FloraGro",         mlL: 0.5,  weekMax: 2, color: "#00ff88" },
+            { name: "FloraBloom",       mlL: 1.5,  color: "#f472b6" },
+            { name: "Floralicious+",    mlL: 0.15, weekMax: 2, color: "#a78bfa" },
+            { name: "Liquid KoolBloom", mlL: 0.75, weekMin: 3, color: "#f97316" }
         ]
     },
     advanced: {
@@ -999,18 +1006,22 @@ const BRANDS_DATA = {
         ecRange: { wuchs: [1.0, 1.6], bluete: [1.4, 2.4] },
         refillProduct: { wuchs: "Sensi Grow A+B", bluete: "Sensi Bloom A+B" },
         wuchs: [
-            { name: "Sensi Grow A",   mlL: 4, color: "#00d4ff" },
-            { name: "Sensi Grow B",   mlL: 4, color: "#38bdf8" },
-            { name: "Voodoo Juice",   mlL: 2, weekMax: 2, color: "#00ff88" },
-            { name: "B-52",           mlL: 1, color: "#fbbf24" }
+            { name: "Rhino Skin",     mlL: 0.05, color: "#8b949e" },
+            { name: "Sensi Grow A",   mlL: 4,    color: "#00d4ff" },
+            { name: "Sensi Grow B",   mlL: 4,    color: "#38bdf8" },
+            { name: "Voodoo Juice",   mlL: 0.2,  weekMax: 3, color: "#00ff88" },
+            { name: "Sensizym",       mlL: 0.2,  weekMin: 3, weekMax: 5, color: "#a78bfa" },
+            { name: "B-52",           mlL: 0.2,  color: "#fbbf24" }
         ],
         bluete: [
-            { name: "Sensi Bloom A",  mlL: 4, color: "#00d4ff" },
-            { name: "Sensi Bloom B",  mlL: 4, color: "#38bdf8" },
-            { name: "B-52",           mlL: 1, color: "#fbbf24" },
-            { name: "Bud Candy",      mlL: 2, color: "#f472b6" },
-            { name: "Big Bud",        mlL: 2, weekMin: 3, weekMax: 6, color: "#f97316" },
-            { name: "Overdrive",      mlL: 2, weekMin: 6, color: "#a78bfa" }
+            { name: "Sensi Bloom A",  mlL: 4,    color: "#00d4ff" },
+            { name: "Sensi Bloom B",  mlL: 4,    color: "#38bdf8" },
+            { name: "Bud Ignitor",    mlL: 0.2,  weekMax: 2, color: "#00ff88" },
+            { name: "Sensizym",       mlL: 0.2,  weekMax: 1, color: "#a78bfa" },
+            { name: "B-52",           mlL: 0.2,  color: "#fbbf24" },
+            { name: "Bud Candy",      mlL: 0.2,  color: "#f472b6" },
+            { name: "Big Bud",        mlL: 0.2,  weekMin: 3, weekMax: 4, color: "#f97316" },
+            { name: "Overdrive",      mlL: 0.2,  weekMin: 5, color: "#bc8cff" }
         ]
     },
     biobizz: {
@@ -1018,15 +1029,16 @@ const BRANDS_DATA = {
         ecRange: { wuchs: [0.6, 1.2], bluete: [1.0, 1.8] },
         refillProduct: { wuchs: "Bio·Grow", bluete: "Bio·Bloom" },
         wuchs: [
-            { name: "Bio·Grow",       mlL: 3, color: "#00d4ff" },
-            { name: "Root·Juice",     mlL: 2, color: "#00ff88" },
-            { name: "Alg·A·Mic",      mlL: 1, color: "#a78bfa" }
+            { name: "Bio·Grow",       mlL: 3,   color: "#00d4ff" },
+            { name: "Root·Juice",     mlL: 0.4, weekMax: 4, color: "#00ff88" },
+            { name: "Fish·Mix",       mlL: 0.2, weekMin: 3, color: "#fbbf24" },
+            { name: "Alg·A·Mic",      mlL: 0.1, color: "#a78bfa" }
         ],
         bluete: [
-            { name: "Bio·Bloom",      mlL: 3, color: "#00d4ff" },
-            { name: "Top·Max",        mlL: 2, color: "#f472b6" },
-            { name: "Alg·A·Mic",      mlL: 1, color: "#a78bfa" },
-            { name: "Bio·Heaven",     mlL: 2, color: "#fbbf24" }
+            { name: "Bio·Bloom",      mlL: 1.5, color: "#00d4ff" },
+            { name: "Top·Max",        mlL: 0.6, color: "#f472b6" },
+            { name: "Alg·A·Mic",      mlL: 0.1, color: "#a78bfa" },
+            { name: "Bio·Heaven",     mlL: 0.2, color: "#fbbf24" }
         ]
     },
     aptus: {
@@ -1034,17 +1046,21 @@ const BRANDS_DATA = {
         ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.2] },
         refillProduct: { wuchs: "All-In-One", bluete: "All-In-One" },
         wuchs: [
-            { name: "All-In-One",     mlL: 1.5, color: "#00d4ff" },
-            { name: "Start Booster",  mlL: 1.0, color: "#00ff88" },
-            { name: "Fasilitor",      mlL: 0.3, color: "#a78bfa" },
-            { name: "CaMg-Boost",     mlL: 1.0, color: "#fbbf24" }
+            { name: "Fasilitor",      mlL: 0.25, color: "#8b949e" },
+            { name: "All-In-One",     mlL: 1.0,  color: "#00d4ff" },
+            { name: "BioBoost",       mlL: 0.2,  weekMax: 2, color: "#00ff88" },
+            { name: "N-Booster",      mlL: 0.25, weekMin: 2, weekMax: 5, color: "#fbbf24" },
+            { name: "Regulator",      mlL: 0.25, weekMax: 3, color: "#a78bfa" },
+            { name: "CaMg-Boost",     mlL: 0.3,  color: "#f97316" }
         ],
         bluete: [
-            { name: "All-In-One",     mlL: 1.5, color: "#00d4ff" },
-            { name: "Topbooster",     mlL: 0.5, color: "#f472b6" },
-            { name: "Fasilitor",      mlL: 0.3, color: "#a78bfa" },
-            { name: "CaMg-Boost",     mlL: 1.0, color: "#fbbf24" },
-            { name: "Regulator",      mlL: 0.5, color: "#00ff88" }
+            { name: "Fasilitor",      mlL: 0.25, weekMax: 3, color: "#8b949e" },
+            { name: "All-In-One",     mlL: 1.0,  color: "#00d4ff" },
+            { name: "P-Boost",        mlL: 0.25, weekMax: 3, color: "#f472b6" },
+            { name: "Regulator",      mlL: 0.25, weekMax: 1, color: "#a78bfa" },
+            { name: "K-Boost",        mlL: 0.5,  weekMin: 3, color: "#f97316" },
+            { name: "CaMg-Boost",     mlL: 0.3,  weekMax: 3, color: "#fbbf24" },
+            { name: "Top Booster",    mlL: 0.5,  weekMin: 5, color: "#bc8cff" }
         ]
     },
     house: {
@@ -1052,35 +1068,39 @@ const BRANDS_DATA = {
         ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.0] },
         refillProduct: { wuchs: "Aqua Flakes A+B", bluete: "Aqua Flakes A+B" },
         wuchs: [
-            { name: "Aqua Flakes A",      mlL: 1.5, color: "#00d4ff" },
-            { name: "Aqua Flakes B",      mlL: 1.5, color: "#38bdf8" },
-            { name: "Roots Excelurator",  mlL: 0.3, color: "#00ff88" },
-            { name: "Amino Treatment",    mlL: 1.0, color: "#a78bfa" }
+            { name: "Aqua Flakes A",     mlL: 1.5,  color: "#00d4ff" },
+            { name: "Aqua Flakes B",     mlL: 1.5,  color: "#38bdf8" },
+            { name: "Roots Excelurator", mlL: 0.03, weekMax: 4, color: "#00ff88" },
+            { name: "Algen Extract",     mlL: 0.1,  color: "#fbbf24" },
+            { name: "Multizyme",         mlL: 0.2,  weekMin: 3, color: "#a78bfa" },
+            { name: "Drip Clean",        mlL: 0.04, color: "#8b949e" }
         ],
         bluete: [
-            { name: "Aqua Flakes A",      mlL: 2.5, color: "#00d4ff" },
-            { name: "Aqua Flakes B",      mlL: 2.5, color: "#38bdf8" },
-            { name: "Amino Treatment",    mlL: 1.0, color: "#a78bfa" },
-            { name: "Top Shooter",        mlL: 1.0, weekMin: 4, weekMax: 6, color: "#f472b6" },
-            { name: "Algen Extract",      mlL: 1.0, color: "#fbbf24" }
+            { name: "Aqua Flakes A",     mlL: 2.5,  color: "#00d4ff" },
+            { name: "Aqua Flakes B",     mlL: 2.5,  color: "#38bdf8" },
+            { name: "Bud-XL",            mlL: 0.1,  weekMax: 4, color: "#fbbf24" },
+            { name: "Amino Treatment",   mlL: 0.1,  color: "#a78bfa" },
+            { name: "Top Booster",       mlL: 0.2,  weekMin: 3, weekMax: 4, color: "#f472b6" },
+            { name: "Shooting Powder",   mlL: 0.1,  weekMin: 5, color: "#f97316" },
+            { name: "Drip Clean",        mlL: 0.04, color: "#8b949e" }
         ]
     },
     atami: {
         name: "Atami B'cuzz",
-        ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.0] },
-        refillProduct: { wuchs: "Hydro A+B", bluete: "Hydro A+B" },
+        ecRange: { wuchs: [0.8, 1.4], bluete: [1.2, 2.1] },
+        refillProduct: { wuchs: "B'cuzz Hydro A+B", bluete: "B'cuzz Hydro A+B" },
         wuchs: [
-            { name: "Hydro A",            mlL: 2, color: "#00d4ff" },
-            { name: "Hydro B",            mlL: 2, color: "#38bdf8" },
-            { name: "B'cuzz Root",        mlL: 1, color: "#00ff88" },
-            { name: "Atazyme",            mlL: 1, color: "#a78bfa" }
+            { name: "B'cuzz Hydro A",  mlL: 2,    color: "#00d4ff" },
+            { name: "B'cuzz Hydro B",  mlL: 2,    color: "#38bdf8" },
+            { name: "Root Stimulator", mlL: 0.5,  weekMax: 4, color: "#00ff88" },
+            { name: "Ataraxia",        mlL: 0.25, color: "#a78bfa" }
         ],
         bluete: [
-            { name: "Hydro A",            mlL: 2.5, color: "#00d4ff" },
-            { name: "Hydro B",            mlL: 2.5, color: "#38bdf8" },
-            { name: "Atazyme",            mlL: 1,   color: "#a78bfa" },
-            { name: "B'cuzz Bloom Stim.", mlL: 1,   color: "#f472b6" },
-            { name: "PK Booster Atami",   mlL: 0.75,weekMin: 5, color: "#f97316" }
+            { name: "B'cuzz Hydro A",  mlL: 2.2,  color: "#00d4ff" },
+            { name: "B'cuzz Hydro B",  mlL: 2.2,  color: "#38bdf8" },
+            { name: "Ataraxia",        mlL: 0.25, weekMax: 2, color: "#a78bfa" },
+            { name: "Boosting",        mlL: 0.7,  weekMax: 4, color: "#f472b6" },
+            { name: "Bloombastic",     mlL: 0.7,  weekMin: 4, color: "#f97316" }
         ]
     },
     mills: {
