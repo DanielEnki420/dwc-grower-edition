@@ -1186,6 +1186,7 @@ function setBrand(key) {
   currentBrand = key;
   document.querySelectorAll('.brand-tab').forEach(t => t.classList.toggle('active', t.dataset.brand === key));
   document.getElementById('brandBadge').textContent = BRANDS[key].name;
+  localStorage.setItem('nl-brand', key);
   render();
 }
 
@@ -1197,6 +1198,7 @@ function setPhase(phase) {
     if (p === phase) btn.classList.add('active-'+p);
   });
   currentWeek = parseInt(document.getElementById('weekSelect').value) || 1;
+  localStorage.setItem('nl-phase', phase);
   render();
 }
 
@@ -1208,6 +1210,8 @@ function render() {
   const volume = parseFloat(document.getElementById('volumeInput').value) || 10;
   const week   = parseInt(document.getElementById('weekSelect').value) || 1;
   currentWeek  = week;
+  localStorage.setItem('nl-week', week);
+  localStorage.setItem('nl-volume', volume);
   const main   = document.getElementById('mainContent');
 
   if (currentPhase === 'flush') {
@@ -1368,6 +1372,41 @@ if (savedTheme === 'light') {
   document.body.classList.add('light-mode');
   document.getElementById('theme-btn').textContent = '☀️';
 }
+
+// Restore brand
+const savedBrand = localStorage.getItem('nl-brand');
+if (savedBrand && BRANDS[savedBrand]) {
+  currentBrand = savedBrand;
+  initBrandNav(); // re-render tabs with correct active state
+  document.getElementById('brandBadge').textContent = BRANDS[savedBrand].name;
+}
+
+// Restore phase
+const savedPhase = localStorage.getItem('nl-phase');
+if (savedPhase && ['grow','bloom','flush'].includes(savedPhase)) {
+  currentPhase = savedPhase;
+  ['grow','bloom','flush'].forEach(p => {
+    const btn = document.getElementById('btn-'+p);
+    btn.className = 'phase-btn';
+    if (p === savedPhase) btn.classList.add('active-'+p);
+  });
+}
+
+// Restore week
+const savedWeek = localStorage.getItem('nl-week');
+if (savedWeek) {
+  const sel = document.getElementById('weekSelect');
+  sel.value = savedWeek;
+  currentWeek = parseInt(savedWeek);
+}
+
+// Restore volume
+const savedVolume = localStorage.getItem('nl-volume');
+if (savedVolume) {
+  document.getElementById('volumeInput').value = savedVolume;
+}
+
+// Restore language (triggers first render)
 const savedLang = localStorage.getItem('nl-lang') || localStorage.getItem('dwc-lang') || 'de';
 setLanguage(savedLang);
 </script>
