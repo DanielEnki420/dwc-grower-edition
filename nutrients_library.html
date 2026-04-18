@@ -22,6 +22,23 @@
       --accent: #1f6feb;
     }
 
+    body.light-mode {
+      --bg: #f6f8fa;
+      --surface: #ffffff;
+      --surface2: #f0f3f6;
+      --border: #d0d7de;
+      --text: #1f2328;
+      --muted: #636e7b;
+      --green: #1a7f37;
+      --green-dim: #dafbe1;
+      --blue: #0969da;
+      --orange: #9a6700;
+      --red: #cf222e;
+      --purple: #8250df;
+      --teal: #116329;
+      --accent: #0969da;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -30,32 +47,69 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 14px;
       min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
     }
 
     /* Header */
     .header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 16px 20px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       position: sticky;
       top: 0;
       z-index: 100;
+      flex-wrap: wrap;
     }
-    .header-logo { font-size: 24px; }
-    .header-title { font-size: 18px; font-weight: 700; color: var(--green); }
-    .header-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .header-logo { font-size: 22px; flex-shrink: 0; }
+    .header-info { flex: 1; min-width: 0; }
+    .header-title { font-size: 17px; font-weight: 700; color: var(--green); }
+    .header-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
     .header-badge {
-      margin-left: auto;
       background: var(--green-dim);
       color: var(--green);
       padding: 3px 10px;
       border-radius: 20px;
       font-size: 11px;
       font-weight: 600;
+      white-space: nowrap;
     }
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .ctrl-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .ctrl-btn:hover { border-color: var(--green); color: var(--green); }
+    #lang-select {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 5px 7px;
+      border-radius: 8px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    #lang-select:hover { border-color: var(--green); color: var(--green); }
 
     /* Brand tabs */
     .brand-nav {
@@ -70,7 +124,7 @@
     .brand-nav::-webkit-scrollbar { display: none; }
     .brand-tab {
       flex-shrink: 0;
-      padding: 8px 14px;
+      padding: 8px 13px;
       border-radius: 6px 6px 0 0;
       border: 1px solid transparent;
       border-bottom: none;
@@ -86,15 +140,11 @@
       gap: 5px;
     }
     .brand-tab:hover { color: var(--text); background: var(--surface2); }
-    .brand-tab.active {
-      color: var(--text);
-      background: var(--bg);
-      border-color: var(--border);
-    }
+    .brand-tab.active { color: var(--text); background: var(--bg); border-color: var(--border); }
 
     /* Controls */
     .controls {
-      padding: 14px 16px;
+      padding: 12px 16px;
       background: var(--surface2);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -102,11 +152,7 @@
       gap: 12px;
       align-items: center;
     }
-    .ctrl-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    .ctrl-group { display: flex; flex-direction: column; gap: 4px; }
     .ctrl-label {
       font-size: 10px;
       text-transform: uppercase;
@@ -116,7 +162,7 @@
     }
     .ctrl-row { display: flex; gap: 6px; align-items: center; }
     .phase-btn {
-      padding: 6px 14px;
+      padding: 6px 13px;
       border-radius: 6px;
       border: 1px solid var(--border);
       background: var(--surface);
@@ -130,6 +176,9 @@
     .phase-btn.active-grow { background: #1a3d1f; border-color: var(--green); color: var(--green); }
     .phase-btn.active-bloom { background: #3d1a3d; border-color: var(--purple); color: var(--purple); }
     .phase-btn.active-flush { background: #1a2a3d; border-color: var(--blue); color: var(--blue); }
+    body.light-mode .phase-btn.active-grow { background: #dafbe1; }
+    body.light-mode .phase-btn.active-bloom { background: #fbefff; }
+    body.light-mode .phase-btn.active-flush { background: #ddf4ff; }
 
     .week-select, .volume-input {
       background: var(--surface);
@@ -145,15 +194,11 @@
     /* Main layout */
     .main { padding: 16px; display: flex; flex-direction: column; gap: 16px; }
 
-    /* EC / Status bar */
-    .status-bar {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+    /* Status bar */
+    .status-bar { display: flex; gap: 12px; flex-wrap: wrap; }
     .status-card {
       flex: 1;
-      min-width: 140px;
+      min-width: 130px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -168,12 +213,7 @@
     .val-purple { color: var(--purple); }
 
     /* Dosing table */
-    .section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
+    .section { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
     .section-header {
       padding: 10px 14px;
       background: var(--surface2);
@@ -193,8 +233,9 @@
       padding: 1px 8px;
       border-radius: 20px;
       font-size: 10px;
+      text-transform: none;
+      letter-spacing: 0;
     }
-
     table { width: 100%; border-collapse: collapse; }
     thead th {
       padding: 8px 12px;
@@ -209,72 +250,52 @@
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: var(--surface2); }
     td { padding: 10px 12px; }
-
     .product-name { font-weight: 600; color: var(--text); }
     .product-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
-    .type-badge {
-      display: inline-block;
-      padding: 1px 7px;
-      border-radius: 20px;
-      font-size: 10px;
-      font-weight: 600;
-    }
-    .type-base { background: #1a3d1f; color: var(--green); }
-    .type-root { background: #2d2000; color: #f0a500; }
-    .type-vitamin { background: #1a2a3d; color: var(--blue); }
-    .type-bloom { background: #3d1a3d; color: var(--purple); }
-    .type-pk { background: #3d1a1a; color: var(--red); }
-    .type-enzyme { background: #1a3d3d; color: var(--teal); }
-    .type-silica { background: #2d2d1a; color: #e0e060; }
-    .type-bacteria { background: #1a3d28; color: #60e090; }
-    .type-carbs { background: #3d2d1a; color: #e0a060; }
-    .type-flush { background: #1a2d3d; color: var(--blue); }
-    .type-calmag { background: #2d1a3d; color: #c060e0; }
+    .type-badge { display: inline-block; padding: 1px 7px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+    .type-base     { background:#1a3d1f; color:var(--green); }
+    .type-root     { background:#2d2000; color:#f0a500; }
+    .type-vitamin  { background:#1a2a3d; color:var(--blue); }
+    .type-bloom    { background:#3d1a3d; color:var(--purple); }
+    .type-pk       { background:#3d1a1a; color:var(--red); }
+    .type-enzyme   { background:#1a3d3d; color:var(--teal); }
+    .type-silica   { background:#2d2d1a; color:#e0e060; }
+    .type-bacteria { background:#1a3d28; color:#60e090; }
+    .type-carbs    { background:#3d2d1a; color:#e0a060; }
+    .type-flush    { background:#1a2d3d; color:var(--blue); }
+    .type-calmag   { background:#2d1a3d; color:#c060e0; }
+    body.light-mode .type-base     { background:#dafbe1; color:var(--green); }
+    body.light-mode .type-root     { background:#fff3cd; color:#7d5a00; }
+    body.light-mode .type-vitamin  { background:#ddf4ff; color:var(--blue); }
+    body.light-mode .type-bloom    { background:#fbefff; color:var(--purple); }
+    body.light-mode .type-pk       { background:#ffebe9; color:var(--red); }
+    body.light-mode .type-enzyme   { background:#dcfce7; color:var(--teal); }
+    body.light-mode .type-silica   { background:#fef9c3; color:#5c4a00; }
+    body.light-mode .type-bacteria { background:#d1fae5; color:#065f46; }
+    body.light-mode .type-carbs    { background:#fef3c7; color:#92400e; }
+    body.light-mode .type-flush    { background:#eff6ff; color:var(--blue); }
+    body.light-mode .type-calmag   { background:#f5f3ff; color:var(--purple); }
 
-    .dose-cell {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--green);
-    }
+    .dose-cell { font-size: 16px; font-weight: 700; color: var(--green); }
     .dose-unit { font-size: 11px; color: var(--muted); margin-left: 2px; }
     .dose-base { font-size: 11px; color: var(--muted); }
     .dose-zero { color: var(--border); font-size: 13px; }
 
-    /* Notes section */
-    .notes-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px;
-    }
+    /* Notes / Tips */
+    .notes-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
     .notes-title { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
-    .note-item {
-      display: flex;
-      gap: 8px;
-      padding: 6px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 12px;
-    }
+    .note-item { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
     .note-item:last-child { border-bottom: none; }
     .note-icon { flex-shrink: 0; width: 20px; text-align: center; }
 
     /* Flush overlay */
-    .flush-overlay {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--blue);
-    }
+    .flush-overlay { text-align: center; padding: 40px 20px; color: var(--blue); }
     .flush-overlay .flush-icon { font-size: 48px; margin-bottom: 12px; }
     .flush-overlay .flush-title { font-size: 20px; font-weight: 700; }
     .flush-overlay .flush-sub { color: var(--muted); margin-top: 6px; font-size: 13px; }
 
-    /* Order sequence */
-    .order-sequence {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 12px 14px;
-    }
+    /* Add order */
+    .order-sequence { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 14px; }
     .order-step {
       display: flex;
       align-items: center;
@@ -286,35 +307,27 @@
       font-size: 11px;
     }
     .order-step-num {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: white;
-      font-size: 10px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent); color: white;
+      font-size: 10px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .order-arrow { color: var(--border); font-size: 16px; }
 
     /* Footer */
     .footer {
-      text-align: center;
-      padding: 20px;
-      color: var(--muted);
-      font-size: 11px;
-      border-top: 1px solid var(--border);
-      margin-top: 16px;
+      text-align: center; padding: 20px;
+      color: var(--muted); font-size: 11px;
+      border-top: 1px solid var(--border); margin-top: 16px;
     }
     .footer a { color: var(--blue); text-decoration: none; }
 
-    @media (max-width: 600px) {
+    @media (max-width: 680px) {
       .controls { gap: 8px; }
-      .status-card { min-width: 120px; }
+      .status-card { min-width: 110px; }
       thead th:nth-child(3), td:nth-child(3) { display: none; }
+      .header-controls { gap: 4px; }
+      .ctrl-btn { padding: 4px 7px; }
     }
   </style>
 </head>
@@ -322,12 +335,21 @@
 
 <div class="header">
   <div class="header-logo">🌿</div>
-  <div>
+  <div class="header-info">
     <div class="header-title">DWC Nutrient Library</div>
-    <div class="header-sub">Multi-Brand Dosing Calculator</div>
+    <div class="header-sub" id="headerSub">Multi-Brand Dosing Calculator</div>
   </div>
-  <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
-    <a href="index.html" style="background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:8px;font-size:11px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px;transition:all 0.15s;" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">← DWC Grower</a>
+  <div class="header-controls">
+    <select id="lang-select" onchange="setLanguage(this.value)" title="Language">
+      <option value="de">🇩🇪 DE</option>
+      <option value="en">🇬🇧 EN</option>
+      <option value="it">🇮🇹 IT</option>
+      <option value="fr">🇫🇷 FR</option>
+      <option value="es">🇪🇸 ES</option>
+      <option value="pt">🇵🇹 PT</option>
+    </select>
+    <button class="ctrl-btn" id="theme-btn" onclick="toggleDarkLight()" title="Dark/Light">🌙</button>
+    <a href="index.html" class="ctrl-btn" id="back-btn">← DWC Grower</a>
     <div class="header-badge" id="brandBadge">Hesi</div>
   </div>
 </div>
@@ -336,7 +358,7 @@
 
 <div class="controls">
   <div class="ctrl-group">
-    <div class="ctrl-label">Phase</div>
+    <div class="ctrl-label" id="lbl-phase">Phase</div>
     <div class="ctrl-row">
       <button class="phase-btn active-grow" onclick="setPhase('grow')" id="btn-grow">🌱 Grow</button>
       <button class="phase-btn" onclick="setPhase('bloom')" id="btn-bloom">🌸 Bloom</button>
@@ -344,25 +366,20 @@
     </div>
   </div>
   <div class="ctrl-group">
-    <div class="ctrl-label">Woche</div>
+    <div class="ctrl-label" id="lbl-week">Woche</div>
     <div class="ctrl-row">
       <select class="week-select" id="weekSelect" onchange="render()">
-        <option value="1">Woche 1</option>
-        <option value="2">Woche 2</option>
-        <option value="3">Woche 3</option>
-        <option value="4">Woche 4</option>
-        <option value="5">Woche 5</option>
-        <option value="6">Woche 6</option>
-        <option value="7">Woche 7</option>
-        <option value="8">Woche 8</option>
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+        <option value="7">7</option><option value="8">8</option>
       </select>
     </div>
   </div>
   <div class="ctrl-group">
-    <div class="ctrl-label">Tank Volumen</div>
+    <div class="ctrl-label" id="lbl-volume">Tank Volumen</div>
     <div class="ctrl-row">
       <input class="volume-input" type="number" id="volumeInput" value="20" min="1" max="500" oninput="render()">
-      <span class="volume-unit">Liter</span>
+      <span class="volume-unit" id="lbl-liter">Liter</span>
     </div>
   </div>
 </div>
@@ -370,33 +387,233 @@
 <div class="main" id="mainContent"></div>
 
 <div class="footer">
-  <a href="index.html">← DWC Grower Edition</a> &nbsp;|&nbsp;
-  Nutrient Library v1.0 &nbsp;|&nbsp;
+  <a href="index.html" id="footer-back">← DWC Grower Edition</a> &nbsp;|&nbsp;
+  Nutrient Library v1.1 &nbsp;|&nbsp;
   <a href="https://github.com/DanielEnki420/dwc-grower-edition" target="_blank">GitHub</a>
-  &nbsp;|&nbsp; Alle Dosierungen sind Richtwerte — immer EC prüfen!
+  &nbsp;|&nbsp; <span id="footer-note">Alle Dosierungen sind Richtwerte — immer EC prüfen!</span>
 </div>
 
 <script>
 // ─────────────────────────────────────────────
-// NUTRIENT DATABASE
-// doses: ml per 10 Liter (base value)
+// TRANSLATIONS
+// ─────────────────────────────────────────────
+const LANGS = {
+  de: {
+    header_sub:'Multi-Brand Dosier-Rechner', back_btn:'← DWC Grower',
+    ctrl_phase:'Phase', ctrl_week:'Woche', ctrl_volume:'Tank Volumen', liter:'Liter',
+    ec_target:'EC Ziel', ph_target:'pH Ziel', tank_vol:'Tankvolumen', phase_week:'Phase / Woche',
+    ec_unit:'mS/cm', ph_std:'DWC Standard', veg:'Vegetation', bloom_word:'Blüte',
+    no_data:'Keine Daten für diese Phase/Woche',
+    dosing_header:'💊 Nährstoff-Dosierung', add_order:'📋 Zugabereihenfolge', add_ph:'pH einstellen',
+    tips_title: b => `💡 Tipps — ${b}`,
+    col_product:'Produkt', col_type:'Typ', col_base:'Basis (10L)', col_for: v => `Für ${v}L`,
+    not_this_week:'nicht diese Woche',
+    flush_title:'Flush Phase', flush_sub:'Reines Wasser — keine Nährstoffe',
+    flush_ec:'EC Ziel: 0.3–0.5 mS/cm', flush_ph:'pH: 6.0–6.2',
+    flush_tank: v => `${v}L frisches Wasser + pH-Korrektur auf 6.0–6.2`,
+    flush_ec_check:'Tägliche EC-Kontrolle — soll weiter sinken',
+    flush_change:'Wasserwechsel alle 3–5 Tage mit reinem Wasser',
+    flush_checklist:'🏁 Flush-Checkliste',
+    flush_1:'Alle Nährstoffe stoppen — nur noch reines Wasser',
+    flush_2:'Trichome mit Lupe prüfen: milchig = bald; bernsteinfarben = voll reif',
+    flush_3:'Blätter werden gelb — das ist normal und erwünscht',
+    flush_4:'pH täglich prüfen und auf 6.0–6.2 halten',
+    flush_5:'48h Dunkelheit vor Ernte optional — für Terpen-Boost',
+    biobizz_flush:'🌿 <strong>BioBizz:</strong> 2 Wochen Flush empfohlen — organische Reste brauchen länger',
+    std_flush:'⏱️ Standard Flush: 1–2 Wochen vor der Ernte',
+    footer_note:'Alle Dosierungen sind Richtwerte — immer EC prüfen!',
+    type_base:'Basis', type_root:'Wurzel', type_vitamin:'Vitamin', type_bloom:'Bloom',
+    type_pk:'PK-Boost', type_enzyme:'Enzym', type_silica:'Silika', type_bacteria:'Bakterien',
+    type_carbs:'Carbs', type_flush:'Flush', type_calmag:'CaMag',
+  },
+  en: {
+    header_sub:'Multi-Brand Dosing Calculator', back_btn:'← DWC Grower',
+    ctrl_phase:'Phase', ctrl_week:'Week', ctrl_volume:'Tank Volume', liter:'Litres',
+    ec_target:'EC Target', ph_target:'pH Target', tank_vol:'Tank Volume', phase_week:'Phase / Week',
+    ec_unit:'mS/cm', ph_std:'DWC Standard', veg:'Vegetation', bloom_word:'Bloom',
+    no_data:'No data for this phase/week',
+    dosing_header:'💊 Nutrient Dosing', add_order:'📋 Add Sequence', add_ph:'Adjust pH',
+    tips_title: b => `💡 Tips — ${b}`,
+    col_product:'Product', col_type:'Type', col_base:'Base (10L)', col_for: v => `For ${v}L`,
+    not_this_week:'not this week',
+    flush_title:'Flush Phase', flush_sub:'Pure Water — no nutrients',
+    flush_ec:'EC Target: 0.3–0.5 mS/cm', flush_ph:'pH: 6.0–6.2',
+    flush_tank: v => `${v}L fresh water + pH correction to 6.0–6.2`,
+    flush_ec_check:'Daily EC check — should keep dropping',
+    flush_change:'Water change every 3–5 days with pure water',
+    flush_checklist:'🏁 Flush Checklist',
+    flush_1:'Stop all nutrients — pure water only',
+    flush_2:'Check trichomes with loupe: milky = soon; amber = fully ripe',
+    flush_3:'Leaves turning yellow — this is normal and desired',
+    flush_4:'Check pH daily and keep at 6.0–6.2',
+    flush_5:'48h darkness before harvest optional — for terpene boost',
+    biobizz_flush:'🌿 <strong>BioBizz:</strong> 2-week flush recommended — organic residues take longer',
+    std_flush:'⏱️ Standard flush: 1–2 weeks before harvest',
+    footer_note:'All dosages are guidelines — always check EC!',
+    type_base:'Base', type_root:'Root', type_vitamin:'Vitamin', type_bloom:'Bloom',
+    type_pk:'PK-Boost', type_enzyme:'Enzyme', type_silica:'Silica', type_bacteria:'Bacteria',
+    type_carbs:'Carbs', type_flush:'Flush', type_calmag:'CaMag',
+  },
+  it: {
+    header_sub:'Calcolatore Multi-Marca', back_btn:'← DWC Grower',
+    ctrl_phase:'Fase', ctrl_week:'Settimana', ctrl_volume:'Volume Vasca', liter:'Litri',
+    ec_target:'Obiettivo EC', ph_target:'Obiettivo pH', tank_vol:'Volume Vasca', phase_week:'Fase / Settimana',
+    ec_unit:'mS/cm', ph_std:'Standard DWC', veg:'Vegetativo', bloom_word:'Fioritura',
+    no_data:'Nessun dato per questa fase/settimana',
+    dosing_header:'💊 Dosaggio Nutrienti', add_order:'📋 Sequenza di Aggiunta', add_ph:'Regola pH',
+    tips_title: b => `💡 Consigli — ${b}`,
+    col_product:'Prodotto', col_type:'Tipo', col_base:'Base (10L)', col_for: v => `Per ${v}L`,
+    not_this_week:'non questa settimana',
+    flush_title:'Fase di Flush', flush_sub:'Acqua pura — nessun nutriente',
+    flush_ec:'Obiettivo EC: 0.3–0.5 mS/cm', flush_ph:'pH: 6.0–6.2',
+    flush_tank: v => `${v}L acqua fresca + correzione pH a 6.0–6.2`,
+    flush_ec_check:'Controllo EC giornaliero — deve continuare a scendere',
+    flush_change:'Cambio acqua ogni 3–5 giorni con acqua pura',
+    flush_checklist:'🏁 Checklist Flush',
+    flush_1:'Fermare tutti i nutrienti — solo acqua pura',
+    flush_2:'Controllare tricomi: lattiginosi = presto; ambrati = completamente maturi',
+    flush_3:'Le foglie ingialliscono — è normale e desiderato',
+    flush_4:'Controllare pH giornalmente e mantenere a 6.0–6.2',
+    flush_5:'48h di buio prima della raccolta opzionale — boost di terpeni',
+    biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush di 2 settimane raccomandato',
+    std_flush:'⏱️ Flush standard: 1–2 settimane prima della raccolta',
+    footer_note:'Tutti i dosaggi sono indicativi — verificare sempre EC!',
+    type_base:'Base', type_root:'Radice', type_vitamin:'Vitamina', type_bloom:'Bloom',
+    type_pk:'PK-Boost', type_enzyme:'Enzima', type_silica:'Silicio', type_bacteria:'Batteri',
+    type_carbs:'Carbs', type_flush:'Flush', type_calmag:'CaMag',
+  },
+  fr: {
+    header_sub:'Calculateur Multi-Marques', back_btn:'← DWC Grower',
+    ctrl_phase:'Phase', ctrl_week:'Semaine', ctrl_volume:'Volume Cuve', liter:'Litres',
+    ec_target:'Cible EC', ph_target:'Cible pH', tank_vol:'Volume Cuve', phase_week:'Phase / Semaine',
+    ec_unit:'mS/cm', ph_std:'Standard DWC', veg:'Végétatif', bloom_word:'Floraison',
+    no_data:'Aucune donnée pour cette phase/semaine',
+    dosing_header:"💊 Dosage Nutriments", add_order:"📋 Séquence d'Ajout", add_ph:'Ajuster pH',
+    tips_title: b => `💡 Conseils — ${b}`,
+    col_product:'Produit', col_type:'Type', col_base:'Base (10L)', col_for: v => `Pour ${v}L`,
+    not_this_week:'pas cette semaine',
+    flush_title:'Phase de Flush', flush_sub:'Eau pure — aucun nutriment',
+    flush_ec:'Cible EC: 0.3–0.5 mS/cm', flush_ph:'pH: 6.0–6.2',
+    flush_tank: v => `${v}L d'eau fraîche + correction pH à 6.0–6.2`,
+    flush_ec_check:'Vérification EC quotidienne — doit continuer à baisser',
+    flush_change:"Changement d'eau tous les 3–5 jours avec eau pure",
+    flush_checklist:'🏁 Checklist Flush',
+    flush_1:'Arrêter tous les nutriments — eau pure seulement',
+    flush_2:'Vérifier trichomes: laiteux = bientôt; ambre = pleinement mûr',
+    flush_3:"Les feuilles jaunissent — c'est normal et souhaité",
+    flush_4:'Vérifier pH quotidiennement et maintenir à 6.0–6.2',
+    flush_5:"48h d'obscurité avant la récolte optionnel — boost de terpènes",
+    biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush de 2 semaines recommandé',
+    std_flush:'⏱️ Flush standard: 1–2 semaines avant la récolte',
+    footer_note:'Tous les dosages sont des recommandations — toujours vérifier EC!',
+    type_base:'Base', type_root:'Racine', type_vitamin:'Vitamine', type_bloom:'Bloom',
+    type_pk:'PK-Boost', type_enzyme:'Enzyme', type_silica:'Silice', type_bacteria:'Bactéries',
+    type_carbs:'Carbs', type_flush:'Flush', type_calmag:'CaMag',
+  },
+  es: {
+    header_sub:'Calculadora Multi-Marca', back_btn:'← DWC Grower',
+    ctrl_phase:'Fase', ctrl_week:'Semana', ctrl_volume:'Volumen Depósito', liter:'Litros',
+    ec_target:'Objetivo EC', ph_target:'Objetivo pH', tank_vol:'Volumen Depósito', phase_week:'Fase / Semana',
+    ec_unit:'mS/cm', ph_std:'Estándar DWC', veg:'Vegetativo', bloom_word:'Floración',
+    no_data:'Sin datos para esta fase/semana',
+    dosing_header:'💊 Dosificación Nutrientes', add_order:'📋 Secuencia de Adición', add_ph:'Ajustar pH',
+    tips_title: b => `💡 Consejos — ${b}`,
+    col_product:'Producto', col_type:'Tipo', col_base:'Base (10L)', col_for: v => `Para ${v}L`,
+    not_this_week:'no esta semana',
+    flush_title:'Fase de Flush', flush_sub:'Agua pura — sin nutrientes',
+    flush_ec:'Objetivo EC: 0.3–0.5 mS/cm', flush_ph:'pH: 6.0–6.2',
+    flush_tank: v => `${v}L agua fresca + corrección pH a 6.0–6.2`,
+    flush_ec_check:'Control EC diario — debe seguir bajando',
+    flush_change:'Cambio de agua cada 3–5 días con agua pura',
+    flush_checklist:'🏁 Lista Verificación Flush',
+    flush_1:'Detener todos los nutrientes — solo agua pura',
+    flush_2:'Verificar tricomas: lechosos = pronto; ámbar = completamente maduro',
+    flush_3:'Las hojas se vuelven amarillas — esto es normal y deseado',
+    flush_4:'Revisar pH diariamente y mantener a 6.0–6.2',
+    flush_5:'48h de oscuridad antes de la cosecha opcional — boost de terpenos',
+    biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush de 2 semanas recomendado',
+    std_flush:'⏱️ Flush estándar: 1–2 semanas antes de la cosecha',
+    footer_note:'¡Todas las dosis son orientativas — siempre verificar EC!',
+    type_base:'Base', type_root:'Raíz', type_vitamin:'Vitamina', type_bloom:'Bloom',
+    type_pk:'PK-Boost', type_enzyme:'Enzima', type_silica:'Silicio', type_bacteria:'Bacterias',
+    type_carbs:'Carbs', type_flush:'Flush', type_calmag:'CaMag',
+  },
+  pt: {
+    header_sub:'Calculadora Multi-Marca', back_btn:'← DWC Grower',
+    ctrl_phase:'Fase', ctrl_week:'Semana', ctrl_volume:'Volume do Tanque', liter:'Litros',
+    ec_target:'Meta EC', ph_target:'Meta pH', tank_vol:'Volume Tanque', phase_week:'Fase / Semana',
+    ec_unit:'mS/cm', ph_std:'Padrão DWC', veg:'Vegetativo', bloom_word:'Floração',
+    no_data:'Sem dados para esta fase/semana',
+    dosing_header:'💊 Dosagem de Nutrientes', add_order:'📋 Sequência de Adição', add_ph:'Ajustar pH',
+    tips_title: b => `💡 Dicas — ${b}`,
+    col_product:'Produto', col_type:'Tipo', col_base:'Base (10L)', col_for: v => `Para ${v}L`,
+    not_this_week:'não esta semana',
+    flush_title:'Fase de Flush', flush_sub:'Água pura — sem nutrientes',
+    flush_ec:'Meta EC: 0.3–0.5 mS/cm', flush_ph:'pH: 6.0–6.2',
+    flush_tank: v => `${v}L água fresca + correção pH para 6.0–6.2`,
+    flush_ec_check:'Controlo EC diário — deve continuar a baixar',
+    flush_change:'Troca de água a cada 3–5 dias com água pura',
+    flush_checklist:'🏁 Checklist de Flush',
+    flush_1:'Parar todos os nutrientes — apenas água pura',
+    flush_2:'Verificar tricomas: leitosos = em breve; âmbar = totalmente maduro',
+    flush_3:'Folhas ficando amarelas — isso é normal e desejado',
+    flush_4:'Verificar pH diariamente e manter a 6.0–6.2',
+    flush_5:'48h de escuridão antes da colheita opcional — boost de terpenos',
+    biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush de 2 semanas recomendado',
+    std_flush:'⏱️ Flush padrão: 1–2 semanas antes da colheita',
+    footer_note:'Todas as dosagens são orientativas — verificar sempre EC!',
+    type_base:'Base', type_root:'Raiz', type_vitamin:'Vitamina', type_bloom:'Bloom',
+    type_pk:'PK-Boost', type_enzyme:'Enzima', type_silica:'Silício', type_bacteria:'Bactérias',
+    type_carbs:'Carbs', type_flush:'Flush', type_calmag:'CaMag',
+  },
+};
+
+let T = LANGS.de;
+let currentLang = 'de';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  T = LANGS[lang];
+  localStorage.setItem('nl-lang', lang);
+  document.documentElement.lang = lang;
+  document.getElementById('headerSub').textContent = T.header_sub;
+  document.getElementById('back-btn').textContent = T.back_btn;
+  document.getElementById('footer-back').textContent = T.back_btn;
+  document.getElementById('lbl-phase').textContent = T.ctrl_phase;
+  document.getElementById('lbl-week').textContent = T.ctrl_week;
+  document.getElementById('lbl-volume').textContent = T.ctrl_volume;
+  document.getElementById('lbl-liter').textContent = T.liter;
+  document.getElementById('footer-note').textContent = T.footer_note;
+  document.getElementById('lang-select').value = lang;
+  render();
+}
+
+function toggleDarkLight() {
+  const isLight = document.body.classList.toggle('light-mode');
+  document.getElementById('theme-btn').textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('nl-theme', isLight ? 'light' : 'dark');
+}
+
+// ─────────────────────────────────────────────
+// NUTRIENT DATABASE  — doses: ml per 10 Liter
 // ─────────────────────────────────────────────
 const BRANDS = {
+
   hesi: {
-    name: "Hesi", emoji: "🌿", color: "#3fb950",
-    products: {
-      tnt:       { name: "TNT Complex",   type: "base",    note: "Basis Grow-Dünger" },
-      root:      { name: "Root Complex",  type: "root",    note: "Wurzelstimulator, Grow Wk 1–3" },
-      bloom:     { name: "Bloom Complex", type: "base",    note: "Basis Bloom-Dünger" },
-      boost:     { name: "Boost",         type: "bloom",   note: "Blütestimulator" },
-      pk1314:    { name: "PK 13/14",      type: "pk",      note: "Phosphor-Kalium Boost, Wk 5–6" },
-      supervit:  { name: "SuperVit",      type: "vitamin", note: "Vitamine & Enzyme, ganzer Run" },
-      powerzyme: { name: "Power Zyme",    type: "enzyme",  note: "Enzyme, ganzer Run" },
+    name:"Hesi", emoji:"🌿", color:"#3fb950",
+    products:{
+      tnt:       { name:"TNT Complex",    type:"base",     note:"Basis Grow-Dünger" },
+      root:      { name:"Root Complex",   type:"root",     note:"Wurzelstimulator, Grow Wk 1–3" },
+      bloom:     { name:"Bloom Complex",  type:"base",     note:"Basis Bloom-Dünger" },
+      boost:     { name:"Boost",          type:"bloom",    note:"Blütestimulator" },
+      pk1314:    { name:"PK 13/14",       type:"pk",       note:"Phosphor-Kalium Boost, Wk 5–6" },
+      supervit:  { name:"SuperVit",       type:"vitamin",  note:"Vitamine & Enzyme, ganzer Run" },
+      powerzyme: { name:"Power Zyme",     type:"enzyme",   note:"Enzyme, ganzer Run" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ tnt:5, root:5, supervit:1, powerzyme:2.5 }, ec:1.0 },
-        { week:2, doses:{ tnt:8, root:5, supervit:1, powerzyme:2.5 }, ec:1.2 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ tnt:5,  root:5, supervit:1, powerzyme:2.5 }, ec:1.0 },
+        { week:2, doses:{ tnt:8,  root:5, supervit:1, powerzyme:2.5 }, ec:1.2 },
         { week:3, doses:{ tnt:10, root:5, supervit:1, powerzyme:2.5 }, ec:1.4 },
         { week:4, doses:{ tnt:12, supervit:1, powerzyme:2.5 }, ec:1.6 },
         { week:5, doses:{ tnt:15, supervit:1, powerzyme:2.5 }, ec:1.8 },
@@ -404,20 +621,17 @@ const BRANDS = {
         { week:7, doses:{ tnt:15, supervit:1, powerzyme:2.5 }, ec:1.8 },
         { week:8, doses:{ tnt:15, supervit:1, powerzyme:2.5 }, ec:1.8 },
       ],
-      bloom: [
-        { week:1, doses:{ bloom:10, boost:5, supervit:1, powerzyme:2.5 }, ec:1.6 },
-        { week:2, doses:{ bloom:12, boost:8, supervit:1, powerzyme:2.5 }, ec:1.8 },
+      bloom:[
+        { week:1, doses:{ bloom:10, boost:5,  supervit:1, powerzyme:2.5 }, ec:1.6 },
+        { week:2, doses:{ bloom:12, boost:8,  supervit:1, powerzyme:2.5 }, ec:1.8 },
         { week:3, doses:{ bloom:15, boost:10, supervit:1, powerzyme:2.5 }, ec:2.0 },
         { week:4, doses:{ bloom:15, boost:10, supervit:1, powerzyme:2.5 }, ec:2.0 },
         { week:5, doses:{ bloom:15, boost:10, pk1314:5, supervit:1, powerzyme:2.5 }, ec:2.2 },
         { week:6, doses:{ bloom:15, boost:10, pk1314:5, supervit:1, powerzyme:2.5 }, ec:2.2 },
       ],
     },
-    addOrder: {
-      grow:  ["powerzyme","root","tnt","supervit"],
-      bloom: ["powerzyme","bloom","boost","pk1314","supervit"],
-    },
-    tips: [
+    addOrder:{ grow:["powerzyme","root","tnt","supervit"], bloom:["powerzyme","bloom","boost","pk1314","supervit"] },
+    tips:[
       { icon:"⚠️", text:"Immer erst Wasser, dann Nährstoffe in Reihenfolge zugeben" },
       { icon:"🌡️", text:"Optimale Wassertemperatur: 18–22°C — wärmer = mehr Pythium-Risiko" },
       { icon:"📏", text:"pH Ziel DWC: 5.8–6.2 — erst Nährstoffe, dann pH einstellen" },
@@ -426,23 +640,22 @@ const BRANDS = {
   },
 
   plagron: {
-    name: "Plagron", emoji: "🟡", color: "#d29922",
-    products: {
-      hydroA:    { name: "Hydro A",          type: "base",    note: "Basis A — immer 1:1 mit B" },
-      hydroB:    { name: "Hydro B",          type: "base",    note: "Basis B — immer 1:1 mit A" },
-      enzym:     { name: "Pure Enzym",       type: "enzyme",  note: "Enzyme, ganzer Run" },
-      green:     { name: "Green Sensation",  type: "bloom",   note: "4-in-1 Bloom-Booster, Bloom Wk 1–6" },
-      sugar:     { name: "Sugar Royal",      type: "carbs",   note: "Carbs + Terpene-Boost, Bloom Wk 3–6" },
-      pk:        { name: "PK 13/14",         type: "pk",      note: "Phosphor-Kalium Boost, Bloom Wk 5–6" },
-      leafGreen: { name: "Leaf Green",       type: "vitamin", note: "Mg + Fe — bei Mangelerscheinungen" },
-      bacto:     { name: "Bacto",            type: "bacteria",note: "Beneficial Bacteria, Wk 1–4" },
-      vitaRace:  { name: "Vita Race",        type: "vitamin", note: "Foliarspray — nicht in Tank" },
-      glucose:   { name: "Glucose",          type: "carbs",   note: "Carbs, Bloom Wk 2–6" },
+    name:"Plagron", emoji:"🟡", color:"#d29922",
+    products:{
+      hydroA:   { name:"Hydro A",         type:"base",     note:"Basis A — immer 1:1 mit B" },
+      hydroB:   { name:"Hydro B",         type:"base",     note:"Basis B — immer 1:1 mit A" },
+      enzym:    { name:"Pure Enzym",      type:"enzyme",   note:"Enzyme, ganzer Run" },
+      green:    { name:"Green Sensation", type:"bloom",    note:"4-in-1 Bloom-Booster, Bloom Wk 1–6" },
+      sugar:    { name:"Sugar Royal",     type:"carbs",    note:"Carbs + Terpene-Boost, Bloom Wk 3–6" },
+      pk:       { name:"PK 13/14",        type:"pk",       note:"Phosphor-Kalium Boost, Bloom Wk 5–6" },
+      leafGreen:{ name:"Leaf Green",      type:"vitamin",  note:"Mg + Fe — bei Mangelerscheinungen" },
+      bacto:    { name:"Bacto",           type:"bacteria", note:"Beneficial Bacteria, Wk 1–4" },
+      glucose:  { name:"Glucose",         type:"carbs",    note:"Carbs, Bloom Wk 2–6" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ hydroA:5, hydroB:5, enzym:2.5, bacto:0.5 }, ec:0.9 },
-        { week:2, doses:{ hydroA:8, hydroB:8, enzym:2.5 }, ec:1.2 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ hydroA:5,  hydroB:5,  enzym:2.5, bacto:0.5 }, ec:0.9 },
+        { week:2, doses:{ hydroA:8,  hydroB:8,  enzym:2.5 }, ec:1.2 },
         { week:3, doses:{ hydroA:10, hydroB:10, enzym:2.5 }, ec:1.5 },
         { week:4, doses:{ hydroA:12, hydroB:12, enzym:2.5 }, ec:1.6 },
         { week:5, doses:{ hydroA:12, hydroB:12 }, ec:1.8 },
@@ -450,7 +663,7 @@ const BRANDS = {
         { week:7, doses:{ hydroA:12, hydroB:12 }, ec:1.8 },
         { week:8, doses:{ hydroA:12, hydroB:12 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ hydroA:10, hydroB:10, green:1, glucose:1 }, ec:1.8 },
         { week:2, doses:{ hydroA:12, hydroB:12, green:1, glucose:1, sugar:1 }, ec:2.0 },
         { week:3, doses:{ hydroA:12, hydroB:12, green:1, glucose:1, sugar:2 }, ec:2.0 },
@@ -459,35 +672,30 @@ const BRANDS = {
         { week:6, doses:{ hydroA:12, hydroB:12, green:1, pk:1 }, ec:2.2 },
       ],
     },
-    addOrder: {
-      grow:  ["enzym","bacto","hydroA","hydroB","leafGreen"],
-      bloom: ["enzym","hydroA","hydroB","glucose","sugar","green","pk"],
-    },
-    tips: [
+    addOrder:{ grow:["enzym","bacto","hydroA","hydroB","leafGreen"], bloom:["enzym","hydroA","hydroB","glucose","sugar","green","pk"] },
+    tips:[
       { icon:"⚖️", text:"Hydro A und B immer in gleicher Menge — niemals separat überdosieren" },
       { icon:"🟡", text:"Green Sensation: max 1 ml/10L — ist bereits 4-in-1 (PK + Enzyme + Aroma)" },
       { icon:"🧪", text:"Bacto: Lebendkultur — nie mit heißem Wasser mischen, max 25°C" },
-      { icon:"🌿", text:"Vita Race nur als Foliarspray, nicht in die Nährlösung" },
     ]
   },
 
   canna: {
-    name: "Canna Aqua", emoji: "🔴", color: "#f85149",
-    products: {
-      vegaA:     { name: "Aqua Vega A",   type: "base",    note: "DWC/Recirculating Basis A" },
-      vegaB:     { name: "Aqua Vega B",   type: "base",    note: "DWC/Recirculating Basis B" },
-      floresA:   { name: "Aqua Flores A", type: "base",    note: "DWC/Recirculating Bloom A" },
-      floresB:   { name: "Aqua Flores B", type: "base",    note: "DWC/Recirculating Bloom B" },
-      rhizotonic:{ name: "Rhizotonic",    type: "root",    note: "Wurzel + Vitamine, Grow Wk 1–4" },
-      cannazym:  { name: "CannaZym",      type: "enzyme",  note: "Enzyme, ganzer Run" },
-      boost:     { name: "Cannaboost",    type: "carbs",   note: "Carbs + Bloom-Booster, Bloom Wk 1–6" },
-      pk1314:    { name: "PK 13/14",      type: "pk",      note: "Phosphor-Kalium, Bloom Wk 4–6" },
-      calmag:    { name: "CalMag Agent",  type: "calmag",  note: "Ca/Mg — bei Mangel oder weiches Wasser" },
-      flush:     { name: "CANNA Flush",   type: "flush",   note: "Flush — Ernte-Vorbereitung" },
+    name:"Canna Aqua", emoji:"🔴", color:"#f85149",
+    products:{
+      vegaA:    { name:"Aqua Vega A",    type:"base",    note:"DWC/Recirculating Basis A" },
+      vegaB:    { name:"Aqua Vega B",    type:"base",    note:"DWC/Recirculating Basis B" },
+      floresA:  { name:"Aqua Flores A",  type:"base",    note:"DWC/Recirculating Bloom A" },
+      floresB:  { name:"Aqua Flores B",  type:"base",    note:"DWC/Recirculating Bloom B" },
+      rhizotonic:{ name:"Rhizotonic",   type:"root",    note:"Wurzel + Vitamine, Grow Wk 1–4" },
+      cannazym: { name:"CannaZym",       type:"enzyme",  note:"Enzyme, ganzer Run" },
+      boost:    { name:"Cannaboost",     type:"carbs",   note:"Carbs + Bloom-Booster, Bloom Wk 1–6" },
+      pk1314:   { name:"PK 13/14",       type:"pk",      note:"Phosphor-Kalium, Bloom Wk 4–6" },
+      calmag:   { name:"CalMag Agent",   type:"calmag",  note:"Ca/Mg — bei Mangel oder weiches Wasser" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ vegaA:10, vegaB:10, rhizotonic:4, cannazym:2.5 }, ec:0.9 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ vegaA:15, vegaB:15, rhizotonic:4, cannazym:2.5 }, ec:0.9 },
         { week:2, doses:{ vegaA:20, vegaB:20, rhizotonic:4, cannazym:2.5 }, ec:1.2 },
         { week:3, doses:{ vegaA:25, vegaB:25, rhizotonic:4, cannazym:2.5 }, ec:1.5 },
         { week:4, doses:{ vegaA:25, vegaB:25, cannazym:2.5 }, ec:1.5 },
@@ -496,7 +704,7 @@ const BRANDS = {
         { week:7, doses:{ vegaA:30, vegaB:30 }, ec:1.8 },
         { week:8, doses:{ vegaA:30, vegaB:30 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ floresA:20, floresB:20, boost:2, cannazym:2.5 }, ec:1.6 },
         { week:2, doses:{ floresA:25, floresB:25, boost:2, cannazym:2.5 }, ec:1.8 },
         { week:3, doses:{ floresA:30, floresB:30, boost:2 }, ec:2.0 },
@@ -505,49 +713,43 @@ const BRANDS = {
         { week:6, doses:{ floresA:25, floresB:25, pk1314:3 }, ec:2.2 },
       ],
     },
-    addOrder: {
-      grow:  ["cannazym","vegaA","vegaB","rhizotonic","calmag"],
-      bloom: ["cannazym","floresA","floresB","boost","pk1314","calmag"],
-    },
-    tips: [
+    addOrder:{ grow:["cannazym","vegaA","vegaB","rhizotonic","calmag"], bloom:["cannazym","floresA","floresB","boost","pk1314","calmag"] },
+    tips:[
       { icon:"🔴", text:"Aqua-Linie ist speziell für DWC/NFT/Recirculating — nicht für Coco oder Soil" },
       { icon:"⚖️", text:"Vega/Flores A und B immer im Verhältnis 1:1 — niemals einzeln" },
-      { icon:"💊", text:"Rhizotonic: reich an Vitamin B1 — stärkt die Pflanze in der Startphase" },
       { icon:"🚿", text:"CANNA Flush: 2 Wochen vor Ernte — 100 ml/10L reines Wasser" },
     ]
   },
 
   advanced: {
-    name: "Advanced Nutrients", emoji: "🔵", color: "#58a6ff",
-    products: {
-      sensiGrowA: { name: "Sensi Grow A",    type: "base",    note: "Basis Grow A — pH-stabilisierend" },
-      sensiGrowB: { name: "Sensi Grow B",    type: "base",    note: "Basis Grow B — pH-stabilisierend" },
-      sensiBloomA:{ name: "Sensi Bloom A",   type: "base",    note: "Basis Bloom A" },
-      sensiBloomB:{ name: "Sensi Bloom B",   type: "base",    note: "Basis Bloom B" },
-      b52:        { name: "B-52",            type: "vitamin", note: "Vitamin B1+B2 — Stress-Resistenz, ganzer Run" },
-      voodoo:     { name: "Voodoo Juice",    type: "bacteria",note: "Beneficial Bacteria — Wurzeln, Wk 1–3" },
-      budIgnitor: { name: "Bud Ignitor",     type: "bloom",   note: "Bloom-Einleitung, Bloom Wk 1–2" },
-      bigBud:     { name: "Big Bud",         type: "bloom",   note: "PK + Amino Bloom-Booster, Wk 3–5" },
-      overdrive:  { name: "Overdrive",       type: "bloom",   note: "Late-Bloom Finisher, Bloom Wk 5–6" },
-      budCandy:   { name: "Bud Candy",       type: "carbs",   note: "Carbs + Amino, Bloom Wk 1–6" },
-      rhinoSkin:  { name: "Rhino Skin",      type: "silica",  note: "Silica — Zellwand-Festigkeit" },
-      sensizym:   { name: "Sensizym",        type: "enzyme",  note: "Enzyme, ganzer Run" },
-      piranha:    { name: "Piranha",         type: "bacteria",note: "Mykorrhiza + Trichoderma, Wk 1–3" },
-      flawless:   { name: "Flawless Finish", type: "flush",   note: "Flush — letzte 1-2 Wochen" },
-      revive:     { name: "Revive",          type: "vitamin", note: "Notfall-Recovery — bei Stress" },
+    name:"Advanced Nutrients", emoji:"🔵", color:"#58a6ff",
+    products:{
+      sensiGrowA: { name:"Sensi Grow A",    type:"base",     note:"Basis Grow A — pH-stabilisierend" },
+      sensiGrowB: { name:"Sensi Grow B",    type:"base",     note:"Basis Grow B — pH-stabilisierend" },
+      sensiBloomA:{ name:"Sensi Bloom A",   type:"base",     note:"Basis Bloom A" },
+      sensiBloomB:{ name:"Sensi Bloom B",   type:"base",     note:"Basis Bloom B" },
+      b52:        { name:"B-52",            type:"vitamin",  note:"Vitamin B1+B2 — Stress-Resistenz" },
+      voodoo:     { name:"Voodoo Juice",    type:"bacteria", note:"Beneficial Bacteria, Wk 1–3" },
+      budIgnitor: { name:"Bud Ignitor",     type:"bloom",    note:"Bloom-Einleitung, Bloom Wk 1–2" },
+      bigBud:     { name:"Big Bud",         type:"bloom",    note:"PK + Amino Bloom-Booster, Wk 3–5" },
+      overdrive:  { name:"Overdrive",       type:"bloom",    note:"Late-Bloom Finisher, Bloom Wk 5–6" },
+      budCandy:   { name:"Bud Candy",       type:"carbs",    note:"Carbs + Amino, Bloom Wk 1–6" },
+      rhinoSkin:  { name:"Rhino Skin",      type:"silica",   note:"Silica — Zellwand-Festigkeit" },
+      sensizym:   { name:"Sensizym",        type:"enzyme",   note:"Enzyme, ganzer Run" },
+      flawless:   { name:"Flawless Finish", type:"flush",    note:"Flush — letzte 1–2 Wochen" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ sensiGrowA:4, sensiGrowB:4, b52:2, voodoo:2, piranha:2, rhinoSkin:0.5 }, ec:0.9 },
-        { week:2, doses:{ sensiGrowA:6, sensiGrowB:6, b52:2, voodoo:2, rhinoSkin:0.5 }, ec:1.2 },
-        { week:3, doses:{ sensiGrowA:8, sensiGrowB:8, b52:2, sensizym:2, rhinoSkin:0.5 }, ec:1.5 },
-        { week:4, doses:{ sensiGrowA:8, sensiGrowB:8, b52:2, sensizym:2 }, ec:1.6 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ sensiGrowA:4,  sensiGrowB:4,  b52:2, voodoo:2, rhinoSkin:0.5 }, ec:0.9 },
+        { week:2, doses:{ sensiGrowA:6,  sensiGrowB:6,  b52:2, voodoo:2, rhinoSkin:0.5 }, ec:1.2 },
+        { week:3, doses:{ sensiGrowA:8,  sensiGrowB:8,  b52:2, sensizym:2, rhinoSkin:0.5 }, ec:1.5 },
+        { week:4, doses:{ sensiGrowA:8,  sensiGrowB:8,  b52:2, sensizym:2 }, ec:1.6 },
         { week:5, doses:{ sensiGrowA:10, sensiGrowB:10, b52:2, sensizym:2 }, ec:1.8 },
         { week:6, doses:{ sensiGrowA:10, sensiGrowB:10, b52:2 }, ec:1.8 },
         { week:7, doses:{ sensiGrowA:10, sensiGrowB:10, b52:2 }, ec:1.8 },
         { week:8, doses:{ sensiGrowA:10, sensiGrowB:10 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ sensiBloomA:4, sensiBloomB:4, b52:2, budIgnitor:2, sensizym:2 }, ec:1.6 },
         { week:2, doses:{ sensiBloomA:6, sensiBloomB:6, b52:2, budIgnitor:2, budCandy:2 }, ec:1.8 },
         { week:3, doses:{ sensiBloomA:8, sensiBloomB:8, b52:2, bigBud:2, budCandy:2 }, ec:2.0 },
@@ -556,84 +758,125 @@ const BRANDS = {
         { week:6, doses:{ sensiBloomA:8, sensiBloomB:8, overdrive:2 }, ec:2.2 },
       ],
     },
-    addOrder: {
-      grow:  ["rhinoSkin","sensiGrowA","sensiGrowB","voodoo","piranha","sensizym","b52"],
-      bloom: ["rhinoSkin","sensiBloomA","sensiBloomB","budIgnitor","bigBud","overdrive","budCandy","b52","sensizym"],
+    addOrder:{
+      grow:["rhinoSkin","sensiGrowA","sensiGrowB","voodoo","sensizym","b52"],
+      bloom:["rhinoSkin","sensiBloomA","sensiBloomB","budIgnitor","bigBud","overdrive","budCandy","b52","sensizym"]
     },
-    tips: [
+    tips:[
       { icon:"🔵", text:"Sensi-Linie: pH Perfect Technologie — weniger pH-Korrekturen nötig, trotzdem messen!" },
-      { icon:"🦠", text:"Voodoo Juice + Piranha: Lebendkulturen — bei hoher WW-Frequenz öfter nachdosieren" },
-      { icon:"💊", text:"B-52 kann ganzen Run durchgegeben werden — Pflanzen werden stressresistenter" },
       { icon:"⚠️", text:"Bud Ignitor + Big Bud + Overdrive nie gleichzeitig — sequentiell einsetzen!" },
+      { icon:"💊", text:"B-52 kann ganzen Run durchgegeben werden — Pflanzen werden stressresistenter" },
     ]
   },
 
   gh: {
-    name: "General Hydroponics", emoji: "🟢", color: "#39d353",
-    products: {
-      floraMicro: { name: "FloraMicro",       type: "base",    note: "Basis — immer ZUERST in Wasser!" },
-      floraGro:   { name: "FloraGro",         type: "base",    note: "Stickstoff-Schwerpunkt, Grow" },
-      floraBloom: { name: "FloraBloom",       type: "base",    note: "PK-Schwerpunkt, Bloom" },
-      rapidStart: { name: "Rapid Start",      type: "root",    note: "Wurzelstimulator, Wk 1–3" },
-      armorSi:    { name: "Armor Si",         type: "silica",  note: "Silica — immer vor allem anderen!" },
-      calimagic:  { name: "CALiMAGic",        type: "calmag",  note: "Ca/Mg — bei weiches Wasser" },
-      diamond:    { name: "Diamond Nectar",   type: "carbs",   note: "Humin + Fulvinsäure" },
-      koolbloom:  { name: "Liquid KoolBloom", type: "pk",      note: "PK-Booster, Bloom Wk 3–6" },
-      koolbloomD: { name: "Dry KoolBloom",    type: "pk",      note: "Finisher g/10L, Bloom Wk 5–6" },
-      floralicious:{ name: "Floralicious+",   type: "vitamin", note: "Enzyme + Vitamine + Amino" },
-      floraKleen: { name: "FloraKleen",       type: "flush",   note: "Flush — 5 ml/10L, 1 Woche" },
+    name:"GHE Flora Series", emoji:"🟢", color:"#39d353",
+    products:{
+      floraMicro: { name:"FloraMicro",     type:"base",   note:"Basis — immer ZUERST ins Wasser!" },
+      floraGro:   { name:"FloraGro",       type:"base",   note:"Stickstoff-Schwerpunkt, Grow" },
+      floraBloom: { name:"FloraBloom",     type:"base",   note:"PK-Schwerpunkt, Bloom" },
+      rapidStart: { name:"Rapid Start",    type:"root",   note:"Wurzelstimulator, Wk 1–3" },
+      armorSi:    { name:"Armor Si",       type:"silica", note:"Silica — immer vor allem anderen!" },
+      calimagic:  { name:"CALiMAGic",      type:"calmag", note:"Ca/Mg — bei weichem Wasser" },
+      koolbloom:  { name:"Liquid KoolBloom", type:"pk",   note:"PK-Booster, Bloom Wk 3–6" },
+      koolbloomD: { name:"Dry KoolBloom",  type:"pk",     note:"Finisher g/10L, Bloom Wk 5–6" },
+      floralicious:{ name:"Floralicious+", type:"vitamin",note:"Enzyme + Vitamine + Amino" },
+      floraKleen: { name:"FloraKleen",     type:"flush",  note:"Flush — 5 ml/10L, 1 Woche" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ armorSi:0.5, floraMicro:5, floraGro:12.5, floraBloom:5, rapidStart:1.5, calimagic:3.75 }, ec:1.0 },
-        { week:2, doses:{ armorSi:0.5, floraMicro:7.5, floraGro:15, floraBloom:5, rapidStart:1.5, calimagic:3.75 }, ec:1.3 },
-        { week:3, doses:{ armorSi:0.5, floraMicro:10, floraGro:12.5, floraBloom:10, calimagic:3.75 }, ec:1.6 },
-        { week:4, doses:{ armorSi:0.5, floraMicro:10, floraGro:12.5, floraBloom:10, diamond:2.5 }, ec:1.6 },
-        { week:5, doses:{ armorSi:0.5, floraMicro:10, floraGro:12.5, floraBloom:12.5, floralicious:1.25 }, ec:1.8 },
-        { week:6, doses:{ armorSi:0.5, floraMicro:10, floraGro:12.5, floraBloom:12.5 }, ec:1.8 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ armorSi:0.5, floraMicro:5,   floraGro:12.5, floraBloom:5,    rapidStart:1.5, calimagic:3.75 }, ec:1.0 },
+        { week:2, doses:{ armorSi:0.5, floraMicro:7.5, floraGro:15,   floraBloom:5,    rapidStart:1.5, calimagic:3.75 }, ec:1.3 },
+        { week:3, doses:{ armorSi:0.5, floraMicro:10,  floraGro:12.5, floraBloom:10,   calimagic:3.75 }, ec:1.6 },
+        { week:4, doses:{ armorSi:0.5, floraMicro:10,  floraGro:12.5, floraBloom:10 }, ec:1.6 },
+        { week:5, doses:{ armorSi:0.5, floraMicro:10,  floraGro:12.5, floraBloom:12.5, floralicious:1.25 }, ec:1.8 },
+        { week:6, doses:{ floraMicro:10, floraGro:12.5, floraBloom:12.5 }, ec:1.8 },
         { week:7, doses:{ floraMicro:10, floraGro:12.5, floraBloom:12.5 }, ec:1.8 },
         { week:8, doses:{ floraMicro:10, floraGro:12.5, floraBloom:12.5 }, ec:1.8 },
       ],
-      bloom: [
-        { week:1, doses:{ armorSi:0.5, floraMicro:10, floraGro:5, floraBloom:15, floralicious:1.25 }, ec:1.8 },
-        { week:2, doses:{ armorSi:0.5, floraMicro:10, floraGro:5, floraBloom:15, floralicious:1.25 }, ec:1.8 },
-        { week:3, doses:{ armorSi:0.5, floraMicro:10, floraBloom:15, koolbloom:5 }, ec:2.0 },
-        { week:4, doses:{ armorSi:0.5, floraMicro:10, floraBloom:15, koolbloom:5 }, ec:2.0 },
+      bloom:[
+        { week:1, doses:{ armorSi:0.5, floraMicro:10, floraGro:5,   floraBloom:15, floralicious:1.25 }, ec:1.8 },
+        { week:2, doses:{ armorSi:0.5, floraMicro:10, floraGro:5,   floraBloom:15, floralicious:1.25 }, ec:1.8 },
+        { week:3, doses:{ armorSi:0.5, floraMicro:10,               floraBloom:15, koolbloom:5 }, ec:2.0 },
+        { week:4, doses:{ armorSi:0.5, floraMicro:10,               floraBloom:15, koolbloom:5 }, ec:2.0 },
         { week:5, doses:{ floraMicro:7.5, floraBloom:15, koolbloom:7.5, koolbloomD:1.4 }, ec:2.2 },
         { week:6, doses:{ floraMicro:7.5, floraBloom:12.5, koolbloom:5, koolbloomD:1.4 }, ec:2.2 },
       ],
     },
-    addOrder: {
-      grow:  ["armorSi","floraMicro","floraGro","floraBloom","rapidStart","calimagic","diamond","floralicious"],
-      bloom: ["armorSi","floraMicro","floraGro","floraBloom","koolbloom","koolbloomD","floralicious","diamond"],
+    addOrder:{
+      grow:["armorSi","floraMicro","floraGro","floraBloom","rapidStart","calimagic","floralicious"],
+      bloom:["armorSi","floraMicro","floraGro","floraBloom","koolbloom","koolbloomD","floralicious"]
     },
-    tips: [
+    tips:[
       { icon:"⚠️", text:"FloraMicro IMMER als erstes Nährstoff ins Wasser — nie direkt mit Bloom mischen!" },
       { icon:"🪨", text:"Armor Si (Silica): vor allen anderen zugeben, pH steigt stark danach" },
-      { icon:"📐", text:"GH 3-Part Ratio: Grow:Micro:Bloom = 3:1:2 (Veg) → 1:2:3 (Bloom)" },
-      { icon:"💧", text:"FloraKleen Flush: 5 ml/10L, eine Woche — kein Nährstoffzusatz dabei" },
+      { icon:"📐", text:"GH 3-Part Ratio: Micro:Gro:Bloom = 1:3:2 (Veg) → 2:1:3 (Bloom)" },
+    ]
+  },
+
+  aptus: {
+    name:"Aptus", emoji:"⚡", color:"#f0a500",
+    products:{
+      fasilitor: { name:"Fasilitor",       type:"silica",   note:"Silika + Wurzelstimulator — immer ZUERST!" },
+      allInOne:  { name:"All-in-One Liquid",type:"base",    note:"Komplett-Dünger 1-Komponente" },
+      nBoost:    { name:"N-Booster",        type:"vitamin", note:"Stickstoff-Ergänzung, Grow" },
+      pBoost:    { name:"P-Boost",          type:"pk",      note:"Phosphor-Ergänzung, Bloom Wk 1–3" },
+      kBoost:    { name:"K-Boost",          type:"pk",      note:"Kalium-Ergänzung, Bloom Wk 4–6" },
+      camgBoost: { name:"CaMg-Boost",       type:"calmag",  note:"Calcium-Magnesium Ergänzung" },
+      bioBoost:  { name:"BioBoost",         type:"bacteria",note:"Mykorrhiza + Trichoderma, Wk 1–3" },
+      regulator: { name:"Regulator",        type:"enzyme",  note:"Salzpuffer + Huminsäure" },
+      topBooster:{ name:"Top Booster",      type:"bloom",   note:"Bloom-Finisher, letzte 2 Wochen" },
+    },
+    schedule:{
+      grow:[
+        { week:1, doses:{ fasilitor:2.5, allInOne:5,  bioBoost:2, regulator:2.5 }, ec:0.8 },
+        { week:2, doses:{ fasilitor:2.5, allInOne:7,  bioBoost:2, nBoost:2.5, regulator:2.5 }, ec:1.2 },
+        { week:3, doses:{ fasilitor:2.5, allInOne:8,  nBoost:2.5, regulator:2.5 }, ec:1.5 },
+        { week:4, doses:{ fasilitor:2.5, allInOne:10, nBoost:2.5 }, ec:1.7 },
+        { week:5, doses:{ fasilitor:2.5, allInOne:10 }, ec:1.8 },
+        { week:6, doses:{ fasilitor:2.5, allInOne:10 }, ec:1.8 },
+        { week:7, doses:{ fasilitor:2.5, allInOne:10 }, ec:1.8 },
+        { week:8, doses:{ allInOne:10 }, ec:1.8 },
+      ],
+      bloom:[
+        { week:1, doses:{ fasilitor:2.5, allInOne:10, pBoost:2.5, regulator:2.5 }, ec:1.8 },
+        { week:2, doses:{ fasilitor:2.5, allInOne:10, pBoost:2.5 }, ec:1.9 },
+        { week:3, doses:{ fasilitor:2.5, allInOne:10, pBoost:2.5, kBoost:2.5 }, ec:2.0 },
+        { week:4, doses:{ allInOne:10, kBoost:5 }, ec:2.1 },
+        { week:5, doses:{ allInOne:10, kBoost:5, topBooster:5 }, ec:2.2 },
+        { week:6, doses:{ allInOne:8,  kBoost:5, topBooster:5 }, ec:2.1 },
+      ],
+    },
+    addOrder:{
+      grow:["fasilitor","regulator","allInOne","nBoost","camgBoost","bioBoost"],
+      bloom:["fasilitor","regulator","allInOne","pBoost","kBoost","topBooster","camgBoost"]
+    },
+    tips:[
+      { icon:"⚡", text:"Fasilitor: immer zuerst ins Wasser — Silika reagiert mit anderen Nährstoffen!" },
+      { icon:"🔬", text:"Aptus: Mikrodosierung — sehr konzentriert, genau abmessen!" },
+      { icon:"📉", text:"All-in-One: schrittweise steigern — überdosierung vermeiden" },
+      { icon:"🌡️", text:"Regulator: puffert Salzstress und stabilisiert den pH-Wert" },
     ]
   },
 
   hg: {
-    name: "House & Garden", emoji: "🟤", color: "#a07040",
-    products: {
-      aquaA:    { name: "Aqua Flakes A",      type: "base",    note: "DWC-spezifisch Basis A" },
-      aquaB:    { name: "Aqua Flakes B",      type: "base",    note: "DWC-spezifisch Basis B" },
-      roots:    { name: "Roots Excelurator",  type: "root",    note: "Premium Wurzelbooster, Grow Wk 1–4" },
-      algen:    { name: "Algen Extract",      type: "vitamin", note: "Kelp — Wachstum + Immunsystem" },
-      amino:    { name: "Amino Treatment",    type: "vitamin", note: "Aminosäuren, Bloom" },
-      multizyme:{ name: "Multizyme",          type: "enzyme",  note: "Enzyme, ganzer Run" },
-      topBooster:{ name: "Top Booster",       type: "pk",      note: "PK-Booster, Bloom Wk 3–6" },
-      budXL:    { name: "Bud-XL",            type: "bloom",   note: "Zuckerextraktion aus Blättern, Bloom" },
-      shooting: { name: "Shooting Powder",   type: "bloom",   note: "Explosiver Bloom-Finisher, Bloom Wk 5–6" },
-      dripClean:{ name: "Drip Clean",        type: "flush",   note: "Salzvorbeugung, 0.4 ml/10L ganzer Run" },
-      magicGreen:{ name: "Magic Green",      type: "vitamin", note: "Foliarspray — nicht in Tank" },
+    name:"House & Garden", emoji:"🟤", color:"#a07040",
+    products:{
+      aquaA:    { name:"Aqua Flakes A",     type:"base",   note:"DWC-spezifisch Basis A" },
+      aquaB:    { name:"Aqua Flakes B",     type:"base",   note:"DWC-spezifisch Basis B" },
+      roots:    { name:"Roots Excelurator", type:"root",   note:"Premium Wurzelbooster, Grow Wk 1–4" },
+      algen:    { name:"Algen Extract",     type:"vitamin",note:"Kelp — Wachstum + Immunsystem" },
+      amino:    { name:"Amino Treatment",   type:"vitamin",note:"Aminosäuren, Bloom" },
+      multizyme:{ name:"Multizyme",         type:"enzyme", note:"Enzyme, ganzer Run" },
+      topBooster:{ name:"Top Booster",      type:"pk",     note:"PK-Booster, Bloom Wk 3–6" },
+      budXL:    { name:"Bud-XL",            type:"bloom",  note:"Zuckerextraktion aus Blättern, Bloom" },
+      shooting: { name:"Shooting Powder",   type:"bloom",  note:"Explosiver Finisher, Bloom Wk 5–6" },
+      dripClean:{ name:"Drip Clean",        type:"flush",  note:"Salzvorbeugung, 0.4 ml/10L ganzer Run" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ aquaA:5, aquaB:5, roots:0.3, dripClean:0.4 }, ec:0.9 },
-        { week:2, doses:{ aquaA:8, aquaB:8, roots:0.3, algen:1, dripClean:0.4 }, ec:1.2 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ aquaA:5,  aquaB:5,  roots:0.3, dripClean:0.4 }, ec:0.9 },
+        { week:2, doses:{ aquaA:8,  aquaB:8,  roots:0.3, algen:1, dripClean:0.4 }, ec:1.2 },
         { week:3, doses:{ aquaA:10, aquaB:10, roots:0.3, algen:1, multizyme:2, dripClean:0.4 }, ec:1.5 },
         { week:4, doses:{ aquaA:12, aquaB:12, algen:1, multizyme:2, dripClean:0.4 }, ec:1.6 },
         { week:5, doses:{ aquaA:12, aquaB:12, multizyme:2, dripClean:0.4 }, ec:1.8 },
@@ -641,41 +884,82 @@ const BRANDS = {
         { week:7, doses:{ aquaA:12, aquaB:12, dripClean:0.4 }, ec:1.8 },
         { week:8, doses:{ aquaA:12, aquaB:12, dripClean:0.4 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ aquaA:10, aquaB:10, budXL:1, multizyme:2, dripClean:0.4 }, ec:1.8 },
         { week:2, doses:{ aquaA:12, aquaB:12, budXL:1, amino:1, dripClean:0.4 }, ec:1.9 },
         { week:3, doses:{ aquaA:12, aquaB:12, topBooster:2, budXL:1, amino:1, dripClean:0.4 }, ec:2.0 },
         { week:4, doses:{ aquaA:12, aquaB:12, topBooster:2, budXL:1, dripClean:0.4 }, ec:2.1 },
-        { week:5, doses:{ aquaA:10, aquaB:10, shooting:1, dripClean:0.4 }, ec:2.2, note:"Shooting Powder: 1g auflösen!" },
-        { week:6, doses:{ aquaA:8, aquaB:8, shooting:1, dripClean:0.4 }, ec:2.2, note:"Shooting Powder: 1g auflösen!" },
+        { week:5, doses:{ aquaA:10, aquaB:10, shooting:1, dripClean:0.4 }, ec:2.2, note:"Shooting Powder: 1g separat auflösen!" },
+        { week:6, doses:{ aquaA:8,  aquaB:8,  shooting:1, dripClean:0.4 }, ec:2.2, note:"Shooting Powder: 1g separat auflösen!" },
       ],
     },
-    addOrder: {
-      grow:  ["dripClean","multizyme","roots","aquaA","aquaB","algen","amino"],
-      bloom: ["dripClean","multizyme","aquaA","aquaB","budXL","amino","topBooster","shooting"],
+    addOrder:{
+      grow:["dripClean","multizyme","roots","aquaA","aquaB","algen"],
+      bloom:["dripClean","multizyme","aquaA","aquaB","budXL","amino","topBooster","shooting"]
     },
-    tips: [
-      { icon:"🏆", text:"Roots Excelurator: laut Community der stärkste Wurzelbooster am Markt — sehr wenig reicht!" },
-      { icon:"💣", text:"Shooting Powder: als Pulver aufwiegen und separat in warmem Wasser auflösen vor Zugabe" },
+    tips:[
+      { icon:"🏆", text:"Roots Excelurator: laut Community der stärkste Wurzelbooster — sehr wenig reicht!" },
+      { icon:"💣", text:"Shooting Powder: als Pulver separat in warmem Wasser auflösen vor Zugabe" },
       { icon:"🧂", text:"Drip Clean: ganzen Run hindurch — verhindert Salzakkumulation an Wurzeln" },
-      { icon:"🌿", text:"Magic Green nur als Foliarspray, nicht in Nährlösung — 2 ml/L Wasser" },
+    ]
+  },
+
+  atami: {
+    name:"Atami B'cuzz", emoji:"🌊", color:"#00c8ff",
+    products:{
+      hydroA:  { name:"B'cuzz Hydro A",   type:"base",     note:"Basis DWC/Hydro A — immer 1:1 mit B" },
+      hydroB:  { name:"B'cuzz Hydro B",   type:"base",     note:"Basis DWC/Hydro B — immer 1:1 mit A" },
+      rootStim:{ name:"Root Stimulator",  type:"root",     note:"Wurzelstimulator, Grow Wk 1–4" },
+      ataraxia:{ name:"Ataraxia",         type:"enzyme",   note:"Enzyme + Aminosäuren, ganzer Run" },
+      boosting:{ name:"Boosting",         type:"bloom",    note:"Bloom-Stimulator, Bloom Wk 1–5" },
+      bloombastic:{ name:"Bloombastic",   type:"pk",       note:"PK + Carbs Finisher, Bloom Wk 4–6" },
+      calmag:  { name:"CalMag",           type:"calmag",   note:"Ca/Mg — bei weichem Wasser" },
+    },
+    schedule:{
+      grow:[
+        { week:1, doses:{ hydroA:15, hydroB:15, rootStim:5, ataraxia:2.5 }, ec:0.9 },
+        { week:2, doses:{ hydroA:18, hydroB:18, rootStim:5, ataraxia:2.5 }, ec:1.2 },
+        { week:3, doses:{ hydroA:20, hydroB:20, rootStim:5, ataraxia:2.5 }, ec:1.5 },
+        { week:4, doses:{ hydroA:22, hydroB:22, rootStim:3, ataraxia:2.5 }, ec:1.6 },
+        { week:5, doses:{ hydroA:25, hydroB:25, ataraxia:2.5 }, ec:1.8 },
+        { week:6, doses:{ hydroA:25, hydroB:25 }, ec:1.8 },
+        { week:7, doses:{ hydroA:25, hydroB:25 }, ec:1.8 },
+        { week:8, doses:{ hydroA:25, hydroB:25 }, ec:1.8 },
+      ],
+      bloom:[
+        { week:1, doses:{ hydroA:20, hydroB:20, boosting:5, ataraxia:2.5 }, ec:1.8 },
+        { week:2, doses:{ hydroA:20, hydroB:20, boosting:8, ataraxia:2.5 }, ec:1.9 },
+        { week:3, doses:{ hydroA:22, hydroB:22, boosting:8 }, ec:2.0 },
+        { week:4, doses:{ hydroA:22, hydroB:22, boosting:5, bloombastic:5 }, ec:2.1 },
+        { week:5, doses:{ hydroA:20, hydroB:20, bloombastic:8 }, ec:2.2 },
+        { week:6, doses:{ hydroA:15, hydroB:15, bloombastic:8 }, ec:2.1 },
+      ],
+    },
+    addOrder:{
+      grow:["ataraxia","rootStim","hydroA","hydroB","calmag"],
+      bloom:["ataraxia","hydroA","hydroB","boosting","bloombastic","calmag"]
+    },
+    tips:[
+      { icon:"🌊", text:"B'cuzz Hydro A+B: 1:1 Verhältnis — niemals separat überdosieren" },
+      { icon:"💥", text:"Bloombastic: sehr konzentriert — max 8 ml/10L, nicht übersteigern" },
+      { icon:"🧬", text:"Ataraxia: Enzyme + Amino — schützt vor Salzstress und fördert Aufnahme" },
     ]
   },
 
   mills: {
-    name: "Mills Nutrients", emoji: "⚫", color: "#8b949e",
-    products: {
-      basisA:   { name: "Basis A",        type: "base",    note: "Basis-Dünger A" },
-      basisB:   { name: "Basis B",        type: "base",    note: "Basis-Dünger B" },
-      startR:   { name: "Start-R",        type: "root",    note: "Keimung + Wurzeln, Wk 1–3" },
-      vitalize: { name: "Vitalize",       type: "silica",  note: "Silika — Stressresistenz + Struktur" },
-      c4:       { name: "C4",             type: "carbs",   note: "Carbs + Amino, ganzer Run" },
-      ultimatePK:{ name: "Ultimate PK",  type: "pk",      note: "PK-Booster, Bloom Wk 3–6" },
+    name:"Mills Nutrients", emoji:"⚫", color:"#8b949e",
+    products:{
+      basisA:    { name:"Basis A",       type:"base",   note:"Basis-Dünger A" },
+      basisB:    { name:"Basis B",       type:"base",   note:"Basis-Dünger B" },
+      startR:    { name:"Start-R",       type:"root",   note:"Keimung + Wurzeln, Wk 1–3" },
+      vitalize:  { name:"Vitalize",      type:"silica", note:"Silika — Stressresistenz + Struktur" },
+      c4:        { name:"C4",            type:"carbs",  note:"Carbs + Amino, ganzer Run" },
+      ultimatePK:{ name:"Ultimate PK",  type:"pk",     note:"PK-Booster, Bloom Wk 3–6" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ vitalize:0.3, basisA:5, basisB:5, startR:1, c4:1 }, ec:0.8 },
-        { week:2, doses:{ vitalize:0.3, basisA:8, basisB:8, startR:1, c4:1 }, ec:1.2 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ vitalize:0.3, basisA:5,  basisB:5,  startR:1, c4:1 }, ec:0.8 },
+        { week:2, doses:{ vitalize:0.3, basisA:8,  basisB:8,  startR:1, c4:1 }, ec:1.2 },
         { week:3, doses:{ vitalize:0.3, basisA:10, basisB:10, c4:2 }, ec:1.5 },
         { week:4, doses:{ vitalize:0.3, basisA:12, basisB:12, c4:2 }, ec:1.7 },
         { week:5, doses:{ vitalize:0.3, basisA:12, basisB:12, c4:2 }, ec:1.8 },
@@ -683,20 +967,17 @@ const BRANDS = {
         { week:7, doses:{ basisA:12, basisB:12, c4:2 }, ec:1.8 },
         { week:8, doses:{ basisA:12, basisB:12 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ vitalize:0.3, basisA:10, basisB:10, c4:2 }, ec:1.8 },
         { week:2, doses:{ vitalize:0.3, basisA:10, basisB:10, c4:2, ultimatePK:0.5 }, ec:1.9 },
         { week:3, doses:{ basisA:10, basisB:10, c4:2, ultimatePK:1 }, ec:2.0 },
         { week:4, doses:{ basisA:10, basisB:10, c4:2, ultimatePK:1.5 }, ec:2.1 },
         { week:5, doses:{ basisA:10, basisB:10, ultimatePK:2 }, ec:2.2 },
-        { week:6, doses:{ basisA:8, basisB:8, ultimatePK:2 }, ec:2.2 },
+        { week:6, doses:{ basisA:8,  basisB:8,  ultimatePK:2 }, ec:2.2 },
       ],
     },
-    addOrder: {
-      grow:  ["vitalize","basisA","basisB","startR","c4"],
-      bloom: ["vitalize","basisA","basisB","c4","ultimatePK"],
-    },
-    tips: [
+    addOrder:{ grow:["vitalize","basisA","basisB","startR","c4"], bloom:["vitalize","basisA","basisB","c4","ultimatePK"] },
+    tips:[
       { icon:"⚫", text:"Mills: schlanke Linie — wenige Produkte, aber sehr effektiv und vollständig" },
       { icon:"🪨", text:"Vitalize (Silica): immer vor Basis A+B zugeben, pH steigt danach" },
       { icon:"📈", text:"Ultimate PK: langsam steigern ab Bloom Wk 2 — nicht zu früh voll dosieren" },
@@ -704,19 +985,19 @@ const BRANDS = {
   },
 
   athena: {
-    name: "Athena", emoji: "🩵", color: "#79c0ff",
-    products: {
-      core:   { name: "Athena Core",   type: "base",    note: "Mikronährstoffe — immer zuerst!" },
-      grow:   { name: "Athena Grow",   type: "base",    note: "Basis Grow" },
-      bloom:  { name: "Athena Bloom",  type: "base",    note: "Basis Bloom" },
-      stack:  { name: "Athena Stack",  type: "bloom",   note: "Bloom-Booster + Resinbildung" },
-      silica: { name: "Athena Silica", type: "silica",  note: "Silika — Strukturstärkung" },
-      camg:   { name: "Athena CaMg",   type: "calmag",  note: "Calcium-Magnesium-Supplement" },
-      cleanse:{ name: "Athena Cleanse",type: "flush",   note: "Flush — Ernte-Vorbereitung" },
-      fade:   { name: "Athena Fade",   type: "flush",   note: "Harvest-Prep — letzte 2 Wochen" },
+    name:"Athena", emoji:"🩵", color:"#79c0ff",
+    products:{
+      core:   { name:"Athena Core",    type:"base",   note:"Mikronährstoffe — immer zuerst!" },
+      grow:   { name:"Athena Grow",    type:"base",   note:"Basis Grow" },
+      bloom:  { name:"Athena Bloom",   type:"base",   note:"Basis Bloom" },
+      stack:  { name:"Athena Stack",   type:"bloom",  note:"Bloom-Booster + Resinbildung" },
+      silica: { name:"Athena Silica",  type:"silica", note:"Silika — Strukturstärkung" },
+      camg:   { name:"Athena CaMg",    type:"calmag", note:"Calcium-Magnesium-Supplement" },
+      cleanse:{ name:"Athena Cleanse", type:"flush",  note:"Flush — Ernte-Vorbereitung" },
+      fade:   { name:"Athena Fade",    type:"flush",  note:"Harvest-Prep — letzte 2 Wochen" },
     },
-    schedule: {
-      grow: [
+    schedule:{
+      grow:[
         { week:1, doses:{ silica:0.5, core:4, grow:4, camg:4 }, ec:0.9 },
         { week:2, doses:{ silica:0.5, core:6, grow:6, camg:4 }, ec:1.3 },
         { week:3, doses:{ silica:0.5, core:7, grow:7, camg:4 }, ec:1.6 },
@@ -726,7 +1007,7 @@ const BRANDS = {
         { week:7, doses:{ core:8, grow:8 }, ec:1.8 },
         { week:8, doses:{ core:8, grow:8 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ silica:0.5, core:8, bloom:8, stack:2, camg:2 }, ec:1.8 },
         { week:2, doses:{ silica:0.5, core:8, bloom:8, stack:3, camg:2 }, ec:2.0 },
         { week:3, doses:{ core:8, bloom:8, stack:4, camg:2 }, ec:2.1 },
@@ -735,33 +1016,32 @@ const BRANDS = {
         { week:6, doses:{ core:6, bloom:6, stack:4, fade:5 }, ec:2.0 },
       ],
     },
-    addOrder: {
-      grow:  ["silica","core","grow","camg"],
-      bloom: ["silica","core","bloom","camg","stack","fade"],
+    addOrder:{
+      grow:["silica","core","grow","camg"],
+      bloom:["silica","core","bloom","camg","stack","fade"]
     },
-    tips: [
+    tips:[
       { icon:"🩵", text:"Athena Core: Mikronährstoff-Basis — immer als erstes zugeben!" },
-      { icon:"📊", text:"Athena: wächst schnell in der professionellen & kommerziellen Grow-Community" },
       { icon:"🌸", text:"Stack: schrittweise erhöhen von Bloom Wk 1–5, in Wk 6 reduzieren + Fade einleiten" },
       { icon:"💧", text:"Cleanse: zwischendurch alle 2–3 Wochen — Salze auswaschen" },
     ]
   },
 
   remo: {
-    name: "Remo Nutrients", emoji: "🟠", color: "#e3892a",
-    products: {
-      rGrow:   { name: "Remo Grow",       type: "base",    note: "Basis Grow" },
-      rMicro:  { name: "Remo Micro",      type: "base",    note: "Mikronährstoffe — immer zuerst!" },
-      rBloom:  { name: "Remo Bloom",      type: "base",    note: "Basis Bloom" },
-      veloKelp:{ name: "VeloKelp",        type: "vitamin", note: "Kelp-Extrakt — Wachstum + Immunsystem" },
-      magnifical:{ name: "Magnifical",    type: "calmag",  note: "Ca/Mg + Fe Supplement" },
-      candy:   { name: "Nature's Candy",  type: "carbs",   note: "Carbs + Terpene, ganzer Run" },
-      astro:   { name: "AstroFlower",     type: "bloom",   note: "Bloom-Booster, Bloom Wk 1–5" },
-      honey:   { name: "Honey Chrome",    type: "bloom",   note: "Late-Bloom Finisher, Bloom Wk 5–6" },
+    name:"Remo Nutrients", emoji:"🟠", color:"#e3892a",
+    products:{
+      rGrow:    { name:"Remo Grow",      type:"base",   note:"Basis Grow" },
+      rMicro:   { name:"Remo Micro",     type:"base",   note:"Mikronährstoffe — immer zuerst!" },
+      rBloom:   { name:"Remo Bloom",     type:"base",   note:"Basis Bloom" },
+      veloKelp: { name:"VeloKelp",       type:"vitamin",note:"Kelp-Extrakt — Wachstum + Immunsystem" },
+      magnifical:{ name:"Magnifical",    type:"calmag", note:"Ca/Mg + Fe Supplement" },
+      candy:    { name:"Nature's Candy", type:"carbs",  note:"Carbs + Terpene, ganzer Run" },
+      astro:    { name:"AstroFlower",    type:"bloom",  note:"Bloom-Booster, Bloom Wk 1–5" },
+      honey:    { name:"Honey Chrome",   type:"bloom",  note:"Late-Bloom Finisher, Bloom Wk 5–6" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ rMicro:4, rGrow:8, magnifical:2, veloKelp:1 }, ec:0.9 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ rMicro:4, rGrow:8,  magnifical:2, veloKelp:1 }, ec:0.9 },
         { week:2, doses:{ rMicro:5, rGrow:10, magnifical:2, veloKelp:1, candy:1 }, ec:1.3 },
         { week:3, doses:{ rMicro:6, rGrow:12, magnifical:2, candy:1 }, ec:1.6 },
         { week:4, doses:{ rMicro:6, rGrow:12, magnifical:2, candy:1 }, ec:1.7 },
@@ -770,20 +1050,20 @@ const BRANDS = {
         { week:7, doses:{ rMicro:6, rGrow:12 }, ec:1.8 },
         { week:8, doses:{ rMicro:6, rGrow:12 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ rMicro:5, rBloom:10, magnifical:2, astro:2, candy:1 }, ec:1.8 },
         { week:2, doses:{ rMicro:5, rBloom:10, astro:2, candy:1 }, ec:1.9 },
         { week:3, doses:{ rMicro:5, rBloom:10, astro:2, candy:1 }, ec:2.0 },
         { week:4, doses:{ rMicro:5, rBloom:10, astro:2, candy:1 }, ec:2.0 },
         { week:5, doses:{ rMicro:4, rBloom:10, honey:2, candy:1 }, ec:2.2 },
-        { week:6, doses:{ rMicro:4, rBloom:8, honey:2 }, ec:2.1 },
+        { week:6, doses:{ rMicro:4, rBloom:8,  honey:2 }, ec:2.1 },
       ],
     },
-    addOrder: {
-      grow:  ["rMicro","rGrow","magnifical","veloKelp","candy"],
-      bloom: ["rMicro","rBloom","magnifical","astro","honey","candy"],
+    addOrder:{
+      grow:["rMicro","rGrow","magnifical","veloKelp","candy"],
+      bloom:["rMicro","rBloom","magnifical","astro","honey","candy"]
     },
-    tips: [
+    tips:[
       { icon:"🟠", text:"Remo Micro: immer als erster Nährstoff ins Wasser — Reaktionen vermeiden" },
       { icon:"🍊", text:"Remo: kanadische Craft-Linie — sehr beliebt für terpenreiche Blüten" },
       { icon:"🍯", text:"Honey Chrome: Finisher für mehr Harzproduktion in den letzten 2 Wochen" },
@@ -791,23 +1071,22 @@ const BRANDS = {
   },
 
   cyco: {
-    name: "Cyco Nutrients", emoji: "🟣", color: "#bc8cff",
-    products: {
-      cycoGrowA: { name: "Cyco Grow A",   type: "base",    note: "Basis Grow A" },
-      cycoGrowB: { name: "Cyco Grow B",   type: "base",    note: "Basis Grow B" },
-      cycoBloomA:{ name: "Cyco Bloom A",  type: "base",    note: "Basis Bloom A" },
-      cycoBloomB:{ name: "Cyco Bloom B",  type: "base",    note: "Basis Bloom B" },
-      uptake:    { name: "Uptake",        type: "silica",  note: "Silika — ganzer Run, zuerst!" },
-      b1Boost:   { name: "B1 Boost",      type: "vitamin", note: "Thiamin B1 — Stressvorbeugung" },
-      potash:    { name: "Potash Plus",   type: "pk",      note: "PK-Booster, Bloom Wk 3–6" },
-      xl:        { name: "XL",           type: "bloom",   note: "Bloom-Massenbooster, Wk 2–5" },
-      supaStiky: { name: "Supa Stiky",   type: "bloom",   note: "Harz-Finisher, Bloom Wk 5–6" },
-      kleanse:   { name: "Kleanse",       type: "flush",   note: "Flush-Mittel" },
+    name:"Cyco Nutrients", emoji:"🟣", color:"#bc8cff",
+    products:{
+      cycoGrowA: { name:"Cyco Grow A",   type:"base",   note:"Basis Grow A" },
+      cycoGrowB: { name:"Cyco Grow B",   type:"base",   note:"Basis Grow B" },
+      cycoBloomA:{ name:"Cyco Bloom A",  type:"base",   note:"Basis Bloom A" },
+      cycoBloomB:{ name:"Cyco Bloom B",  type:"base",   note:"Basis Bloom B" },
+      uptake:    { name:"Uptake",        type:"silica", note:"Silika — ganzer Run, zuerst!" },
+      b1Boost:   { name:"B1 Boost",      type:"vitamin",note:"Thiamin B1 — Stressvorbeugung" },
+      potash:    { name:"Potash Plus",   type:"pk",     note:"PK-Booster, Bloom Wk 3–6" },
+      xl:        { name:"XL",            type:"bloom",  note:"Bloom-Massenbooster, Wk 2–5" },
+      supaStiky: { name:"Supa Stiky",    type:"bloom",  note:"Harz-Finisher, Bloom Wk 5–6" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ uptake:0.5, cycoGrowA:5, cycoGrowB:5, b1Boost:1 }, ec:0.9 },
-        { week:2, doses:{ uptake:0.5, cycoGrowA:8, cycoGrowB:8, b1Boost:1 }, ec:1.2 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ uptake:0.5, cycoGrowA:5,  cycoGrowB:5,  b1Boost:1 }, ec:0.9 },
+        { week:2, doses:{ uptake:0.5, cycoGrowA:8,  cycoGrowB:8,  b1Boost:1 }, ec:1.2 },
         { week:3, doses:{ uptake:0.5, cycoGrowA:10, cycoGrowB:10, b1Boost:1 }, ec:1.5 },
         { week:4, doses:{ uptake:0.5, cycoGrowA:10, cycoGrowB:10 }, ec:1.6 },
         { week:5, doses:{ cycoGrowA:10, cycoGrowB:10 }, ec:1.8 },
@@ -815,7 +1094,7 @@ const BRANDS = {
         { week:7, doses:{ cycoGrowA:10, cycoGrowB:10 }, ec:1.8 },
         { week:8, doses:{ cycoGrowA:10, cycoGrowB:10 }, ec:1.8 },
       ],
-      bloom: [
+      bloom:[
         { week:1, doses:{ uptake:0.5, cycoBloomA:8, cycoBloomB:8, b1Boost:1 }, ec:1.8 },
         { week:2, doses:{ uptake:0.5, cycoBloomA:8, cycoBloomB:8, xl:2 }, ec:1.9 },
         { week:3, doses:{ cycoBloomA:8, cycoBloomB:8, xl:2, potash:2 }, ec:2.0 },
@@ -824,11 +1103,11 @@ const BRANDS = {
         { week:6, doses:{ cycoBloomA:6, cycoBloomB:6, supaStiky:2 }, ec:2.0 },
       ],
     },
-    addOrder: {
-      grow:  ["uptake","cycoGrowA","cycoGrowB","b1Boost"],
-      bloom: ["uptake","cycoBloomA","cycoBloomB","b1Boost","xl","potash","supaStiky"],
+    addOrder:{
+      grow:["uptake","cycoGrowA","cycoGrowB","b1Boost"],
+      bloom:["uptake","cycoBloomA","cycoBloomB","b1Boost","xl","potash","supaStiky"]
     },
-    tips: [
+    tips:[
       { icon:"🟣", text:"Cyco: australische Premium-Linie — bekannt für sehr saubere Formeln" },
       { icon:"🪨", text:"Uptake (Silica): immer vor Basis A+B — stabilisiert pH-Wert" },
       { icon:"💊", text:"B1 Boost: besonders wichtig bei Stressperioden (Training, Transplant)" },
@@ -836,21 +1115,20 @@ const BRANDS = {
   },
 
   biobizz: {
-    name: "BioBizz", emoji: "🌿", color: "#56d364",
-    products: {
-      bioGrow:  { name: "Bio·Grow",    type: "base",    note: "NPK Basis — flüssiger Dünger auf Guanobasis" },
-      bioBloom: { name: "Bio·Bloom",   type: "base",    note: "Phosphor-Kalium Bloom-Dünger" },
-      fishMix:  { name: "Fish·Mix",    type: "vitamin", note: "Fischhydrolysat — Mikroleben + N" },
-      topMax:   { name: "Top·Max",     type: "carbs",   note: "Humin + Fulvinsäure + Carbs" },
-      algamic:  { name: "Alg·A·Mic",  type: "vitamin", note: "Seealgenextrakt + Vitamine — ganzer Run" },
-      rootJuice:{ name: "Root·Juice",  type: "root",    note: "Mykorrhiza + Trichoderma, Wk 1–4" },
-      calmag:   { name: "CalMag",      type: "calmag",  note: "Ca/Mg — bei weiches Wasser" },
-      leafCoat: { name: "Leaf·Coat",   type: "vitamin", note: "Schädlingsschutz Foliarspray — nicht in Tank" },
+    name:"BioBizz", emoji:"🌿", color:"#56d364",
+    products:{
+      bioGrow:  { name:"Bio·Grow",   type:"base",     note:"NPK Basis — Guanobasis flüssig" },
+      bioBloom: { name:"Bio·Bloom",  type:"base",     note:"Phosphor-Kalium Bloom-Dünger" },
+      fishMix:  { name:"Fish·Mix",   type:"vitamin",  note:"Fischhydrolysat — Mikroleben + N" },
+      topMax:   { name:"Top·Max",    type:"carbs",    note:"Humin + Fulvinsäure + Carbs" },
+      algamic:  { name:"Alg·A·Mic", type:"vitamin",  note:"Seealgenextrakt + Vitamine — ganzer Run" },
+      rootJuice:{ name:"Root·Juice", type:"root",     note:"Mykorrhiza + Trichoderma, Wk 1–4" },
+      calmag:   { name:"CalMag",     type:"calmag",   note:"Ca/Mg — bei weichem Wasser" },
     },
-    schedule: {
-      grow: [
-        { week:1, doses:{ bioGrow:5, rootJuice:4, algamic:1 }, ec:0.7 },
-        { week:2, doses:{ bioGrow:8, rootJuice:4, algamic:1, calmag:1 }, ec:1.0 },
+    schedule:{
+      grow:[
+        { week:1, doses:{ bioGrow:5,  rootJuice:4, algamic:1 }, ec:0.7 },
+        { week:2, doses:{ bioGrow:8,  rootJuice:4, algamic:1, calmag:1 }, ec:1.0 },
         { week:3, doses:{ bioGrow:10, fishMix:2, rootJuice:2, algamic:1 }, ec:1.3 },
         { week:4, doses:{ bioGrow:12, fishMix:2, algamic:1 }, ec:1.5 },
         { week:5, doses:{ bioGrow:12, fishMix:2, algamic:1 }, ec:1.5 },
@@ -858,8 +1136,8 @@ const BRANDS = {
         { week:7, doses:{ bioGrow:12, fishMix:2 }, ec:1.5 },
         { week:8, doses:{ bioGrow:10, fishMix:1 }, ec:1.4 },
       ],
-      bloom: [
-        { week:1, doses:{ bioGrow:5, bioBloom:10, topMax:4, algamic:1 }, ec:1.5 },
+      bloom:[
+        { week:1, doses:{ bioGrow:5,  bioBloom:10, topMax:4, algamic:1 }, ec:1.5 },
         { week:2, doses:{ bioBloom:12, topMax:4, algamic:1 }, ec:1.7 },
         { week:3, doses:{ bioBloom:15, topMax:6, algamic:1 }, ec:1.8 },
         { week:4, doses:{ bioBloom:15, topMax:6, algamic:1 }, ec:1.9 },
@@ -867,18 +1145,19 @@ const BRANDS = {
         { week:6, doses:{ bioBloom:20, topMax:4 }, ec:2.0 },
       ],
     },
-    addOrder: {
-      grow:  ["rootJuice","bioGrow","fishMix","algamic","calmag"],
-      bloom: ["rootJuice","bioGrow","bioBloom","fishMix","topMax","algamic","calmag"],
+    addOrder:{
+      grow:["rootJuice","bioGrow","fishMix","algamic","calmag"],
+      bloom:["rootJuice","bioGrow","bioBloom","fishMix","topMax","algamic","calmag"]
     },
-    tips: [
+    tips:[
       { icon:"🌿", text:"BioBizz: vollständig organisch — fördert Mikrobenleben im Root-Zone" },
       { icon:"⚠️", text:"Bio-Nährstoffe: EC-Werte niedriger als synthetisch — Pflanzen können weniger aufnehmen" },
       { icon:"🌊", text:"Flush: 2 Wochen bei BioBizz empfohlen — organische Reste brauchen länger" },
       { icon:"🦠", text:"Root·Juice enthält lebende Mikroben — bei <20°C Wassertemperatur zugeben" },
     ]
   },
-};
+
+}; // end BRANDS
 
 // ─────────────────────────────────────────────
 // STATE
@@ -888,10 +1167,11 @@ let currentPhase = 'grow';
 let currentWeek  = 1;
 
 // ─────────────────────────────────────────────
-// INIT BRAND TABS
+// BRAND TABS
 // ─────────────────────────────────────────────
 function initBrandNav() {
   const nav = document.getElementById('brandNav');
+  nav.innerHTML = '';
   for (const [key, brand] of Object.entries(BRANDS)) {
     const tab = document.createElement('button');
     tab.className = 'brand-tab' + (key === currentBrand ? ' active' : '');
@@ -904,28 +1184,19 @@ function initBrandNav() {
 
 function setBrand(key) {
   currentBrand = key;
-  document.querySelectorAll('.brand-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.brand === key);
-  });
+  document.querySelectorAll('.brand-tab').forEach(t => t.classList.toggle('active', t.dataset.brand === key));
   document.getElementById('brandBadge').textContent = BRANDS[key].name;
   render();
 }
 
 function setPhase(phase) {
   currentPhase = phase;
-  const phases = ['grow','bloom','flush'];
-  phases.forEach(p => {
+  ['grow','bloom','flush'].forEach(p => {
     const btn = document.getElementById('btn-'+p);
     btn.className = 'phase-btn';
     if (p === phase) btn.classList.add('active-'+p);
   });
-  // Update week options
-  const sel = document.getElementById('weekSelect');
-  if (phase === 'flush') {
-    currentWeek = 1;
-  } else {
-    currentWeek = parseInt(sel.value) || 1;
-  }
+  currentWeek = parseInt(document.getElementById('weekSelect').value) || 1;
   render();
 }
 
@@ -937,8 +1208,7 @@ function render() {
   const volume = parseFloat(document.getElementById('volumeInput').value) || 10;
   const week   = parseInt(document.getElementById('weekSelect').value) || 1;
   currentWeek  = week;
-
-  const main = document.getElementById('mainContent');
+  const main   = document.getElementById('mainContent');
 
   if (currentPhase === 'flush') {
     main.innerHTML = renderFlush(brand, volume);
@@ -946,68 +1216,63 @@ function render() {
   }
 
   const schedule = brand.schedule[currentPhase] || [];
-  // Find week data — use closest week if exact not found
   let weekData = schedule.find(s => s.week === week);
   if (!weekData) {
-    const available = schedule.filter(s => s.week <= week);
-    weekData = available.length ? available[available.length-1] : schedule[0];
+    const avail = schedule.filter(s => s.week <= week);
+    weekData = avail.length ? avail[avail.length-1] : schedule[0];
   }
-
   if (!weekData) {
-    main.innerHTML = '<div style="padding:40px;text-align:center;color:var(--muted)">Keine Daten für diese Phase/Woche</div>';
+    main.innerHTML = `<div style="padding:40px;text-align:center;color:var(--muted)">${T.no_data}</div>`;
     return;
   }
 
-  const factor = volume / 10;
+  const factor      = volume / 10;
   const allProducts = brand.products;
-  const doses = weekData.doses || {};
-  const addOrder = brand.addOrder[currentPhase] || [];
+  const doses       = weekData.doses || {};
+  const addOrder    = brand.addOrder[currentPhase] || [];
 
   // Status bar
-  let statusHtml = `
+  const phaseEmoji = currentPhase === 'grow' ? '🌱' : '🌸';
+  const phaseWord  = currentPhase === 'grow' ? T.veg : T.bloom_word;
+  let html = `
     <div class="status-bar">
       <div class="status-card">
-        <div class="status-card-label">EC Ziel</div>
+        <div class="status-card-label">${T.ec_target}</div>
         <div class="status-card-value val-green">${weekData.ec}</div>
-        <div class="status-card-sub">mS/cm</div>
+        <div class="status-card-sub">${T.ec_unit}</div>
       </div>
       <div class="status-card">
-        <div class="status-card-label">pH Ziel</div>
+        <div class="status-card-label">${T.ph_target}</div>
         <div class="status-card-value val-blue">5.8–6.2</div>
-        <div class="status-card-sub">DWC Standard</div>
+        <div class="status-card-sub">${T.ph_std}</div>
       </div>
       <div class="status-card">
-        <div class="status-card-label">Tankvolumen</div>
+        <div class="status-card-label">${T.tank_vol}</div>
         <div class="status-card-value val-orange">${volume}</div>
-        <div class="status-card-sub">Liter</div>
+        <div class="status-card-sub">${T.liter}</div>
       </div>
       <div class="status-card">
-        <div class="status-card-label">Phase / Woche</div>
-        <div class="status-card-value val-purple">${currentPhase === 'grow' ? '🌱' : '🌸'} W${week}</div>
-        <div class="status-card-sub">${currentPhase === 'grow' ? 'Vegetation' : 'Blüte'}</div>
+        <div class="status-card-label">${T.phase_week}</div>
+        <div class="status-card-value val-purple">${phaseEmoji} W${week}</div>
+        <div class="status-card-sub">${phaseWord}</div>
       </div>
     </div>`;
 
   if (weekData.note) {
-    statusHtml += `<div style="background:#2d2000;border:1px solid #6e4c00;border-radius:8px;padding:10px 14px;font-size:12px;color:#f0a500;">⚠️ ${weekData.note}</div>`;
+    html += `<div style="background:#2d2000;border:1px solid #6e4c00;border-radius:8px;padding:10px 14px;font-size:12px;color:#f0a500;">⚠️ ${weekData.note}</div>`;
   }
 
   // Dosing table
+  const activeKeys   = Object.keys(doses);
+  const inactiveKeys = Object.keys(allProducts).filter(k => !activeKeys.includes(k));
   let rows = '';
-  // Show active products first, then inactive ones
-  const activeKeys = Object.keys(doses);
-  const allKeys = Object.keys(allProducts);
-  const inactiveKeys = allKeys.filter(k => !activeKeys.includes(k));
-  const sortedKeys = [...activeKeys, ...inactiveKeys];
-
-  for (const key of sortedKeys) {
-    const prod = allProducts[key];
+  for (const key of [...activeKeys, ...inactiveKeys]) {
+    const prod   = allProducts[key];
     if (!prod) continue;
     const baseml = doses[key] || 0;
     const calcml = +(baseml * factor).toFixed(1);
     const isActive = baseml > 0;
-    const unit = prod.type === 'bloom' && key === 'shooting' ? 'g' : 'ml';
-
+    const unit   = (key === 'shooting') ? 'g' : 'ml';
     rows += `
       <tr style="${!isActive ? 'opacity:0.35' : ''}">
         <td>
@@ -1015,124 +1280,96 @@ function render() {
           <div class="product-note">${prod.note}</div>
         </td>
         <td><span class="type-badge type-${prod.type}">${typeLabel(prod.type)}</span></td>
-        <td>
-          ${isActive
-            ? `<span class="dose-base">${baseml} ${unit}/10L</span>`
-            : `<span class="dose-zero">—</span>`}
-        </td>
-        <td>
-          ${isActive
-            ? `<span class="dose-cell">${calcml}<span class="dose-unit">${unit}</span></span>`
-            : `<span class="dose-zero">nicht diese Woche</span>`}
-        </td>
+        <td>${isActive ? `<span class="dose-base">${baseml} ${unit}/10L</span>` : `<span class="dose-zero">—</span>`}</td>
+        <td>${isActive
+          ? `<span class="dose-cell">${calcml}<span class="dose-unit">${unit}</span></span>`
+          : `<span class="dose-zero">${T.not_this_week}</span>`}</td>
       </tr>`;
   }
 
-  const tableHtml = `
+  html += `
     <div class="section">
       <div class="section-header">
-        💊 Nährstoff-Dosierung <span class="pill">${brand.name}</span><span class="pill">${currentPhase === 'grow' ? 'Grow' : 'Bloom'} Wk ${week}</span>
+        ${T.dosing_header}
+        <span class="pill">${brand.name}</span>
+        <span class="pill">${currentPhase === 'grow' ? 'Grow' : 'Bloom'} Wk ${week}</span>
       </div>
       <table>
-        <thead>
-          <tr>
-            <th>Produkt</th>
-            <th>Typ</th>
-            <th>Basis (10L)</th>
-            <th>Für ${volume}L</th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th>${T.col_product}</th><th>${T.col_type}</th>
+          <th>${T.col_base}</th><th>${T.col_for(volume)}</th>
+        </tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
 
   // Add order
-  let orderSteps = '';
   const orderProducts = addOrder.filter(k => doses[k]);
-  if (orderProducts.length > 0) {
+  if (orderProducts.length) {
+    let steps = '';
     orderProducts.forEach((key, i) => {
       const prod = allProducts[key];
       if (!prod) return;
-      orderSteps += `
-        <div class="order-step">
-          <div class="order-step-num">${i+1}</div>
-          ${prod.name}
-        </div>`;
-      if (i < orderProducts.length - 1) {
-        orderSteps += `<div class="order-arrow">→</div>`;
-      }
+      steps += `<div class="order-step"><div class="order-step-num">${i+1}</div>${prod.name}</div>`;
+      if (i < orderProducts.length - 1) steps += `<div class="order-arrow">→</div>`;
     });
-    // pH last
-    orderSteps += `<div class="order-arrow">→</div><div class="order-step"><div class="order-step-num" style="background:#1f6feb">pH</div> pH einstellen</div>`;
+    steps += `<div class="order-arrow">→</div><div class="order-step"><div class="order-step-num" style="background:#1f6feb">pH</div>${T.add_ph}</div>`;
+    html += `<div class="section"><div class="section-header">${T.add_order}</div><div class="order-sequence">${steps}</div></div>`;
   }
-
-  const orderHtml = orderSteps ? `
-    <div class="section">
-      <div class="section-header">📋 Zugabereihenfolge</div>
-      <div class="order-sequence">${orderSteps}</div>
-    </div>` : '';
 
   // Tips
   const tips = brand.tips || [];
-  let tipRows = tips.map(t => `
-    <div class="note-item">
-      <span class="note-icon">${t.icon}</span>
-      <span>${t.text}</span>
-    </div>`).join('');
+  if (tips.length) {
+    const tipRows = tips.map(t => `<div class="note-item"><span class="note-icon">${t.icon}</span><span>${t.text}</span></div>`).join('');
+    html += `<div class="notes-box"><div class="notes-title">${T.tips_title(brand.name)}</div>${tipRows}</div>`;
+  }
 
-  const tipsHtml = tipRows ? `
-    <div class="notes-box">
-      <div class="notes-title">💡 Tipps — ${brand.name}</div>
-      ${tipRows}
-    </div>` : '';
-
-  main.innerHTML = statusHtml + tableHtml + orderHtml + tipsHtml;
+  main.innerHTML = html;
 }
 
 function renderFlush(brand, volume) {
+  const specific = brand.name === 'BioBizz' ? T.biobizz_flush : T.std_flush;
   return `
     <div class="section">
       <div class="flush-overlay">
         <div class="flush-icon">💧</div>
-        <div class="flush-title">Flush Phase</div>
-        <div class="flush-sub">Reines Wasser — keine Nährstoffe<br>
-          EC Ziel: 0.3–0.5 mS/cm &nbsp;|&nbsp; pH: 6.0–6.2</div>
-        <div style="margin-top:20px;color:var(--muted);font-size:13px">
-          ${brand.name === 'BioBizz'
-            ? '🌿 <strong>BioBizz:</strong> 2 Wochen Flush empfohlen — organische Reste brauchen länger'
-            : '⏱️ Standard Flush: 1–2 Wochen vor der Ernte'}
-        </div>
+        <div class="flush-title">${T.flush_title}</div>
+        <div class="flush-sub">${T.flush_sub}<br>${T.flush_ec} &nbsp;|&nbsp; ${T.flush_ph}</div>
+        <div style="margin-top:20px;color:var(--muted);font-size:13px">${specific}</div>
         <div style="margin-top:12px;background:var(--surface2);border-radius:8px;padding:12px;display:inline-block;text-align:left;font-size:12px;color:var(--text)">
-          🪣 <strong>${volume}L Tank:</strong> ${volume}L frisches Wasser + pH-Korrektur auf 6.0–6.2<br>
-          📉 Tägliche EC-Kontrolle — soll weiter sinken<br>
-          🔄 Wasserwechsel alle 3–5 Tage mit reinem Wasser
+          🪣 <strong>${volume}L Tank:</strong> ${T.flush_tank(volume)}<br>
+          📉 ${T.flush_ec_check}<br>
+          🔄 ${T.flush_change}
         </div>
       </div>
     </div>
     <div class="notes-box">
-      <div class="notes-title">🏁 Flush-Checkliste</div>
-      <div class="note-item"><span class="note-icon">1️⃣</span><span>Alle Nährstoffe stoppen — nur noch reines Wasser</span></div>
-      <div class="note-item"><span class="note-icon">2️⃣</span><span>Trichome mit Lupe prüfen: milchig = bald; bernsteinfarben = voll reif</span></div>
-      <div class="note-item"><span class="note-icon">3️⃣</span><span>Blätter werden gelb — das ist normal und erwünscht</span></div>
-      <div class="note-item"><span class="note-icon">4️⃣</span><span>pH täglich prüfen und auf 6.0–6.2 halten</span></div>
-      <div class="note-item"><span class="note-icon">5️⃣</span><span>48h Dunkelheit vor Ernte optional — für Terpen-Boost</span></div>
+      <div class="notes-title">${T.flush_checklist}</div>
+      <div class="note-item"><span class="note-icon">1️⃣</span><span>${T.flush_1}</span></div>
+      <div class="note-item"><span class="note-icon">2️⃣</span><span>${T.flush_2}</span></div>
+      <div class="note-item"><span class="note-icon">3️⃣</span><span>${T.flush_3}</span></div>
+      <div class="note-item"><span class="note-icon">4️⃣</span><span>${T.flush_4}</span></div>
+      <div class="note-item"><span class="note-icon">5️⃣</span><span>${T.flush_5}</span></div>
     </div>`;
 }
 
 function typeLabel(type) {
-  const labels = {
-    base:'Basis', root:'Wurzel', vitamin:'Vitamin', bloom:'Bloom',
-    pk:'PK-Boost', enzyme:'Enzym', silica:'Silika', bacteria:'Bakterien',
-    carbs:'Carbs', flush:'Flush', calmag:'CaMag'
-  };
-  return labels[type] || type;
+  return T['type_'+type] || type;
 }
 
 // ─────────────────────────────────────────────
 // BOOT
 // ─────────────────────────────────────────────
 initBrandNav();
-render();
+
+// Restore preferences
+const savedTheme = localStorage.getItem('nl-theme');
+if (savedTheme === 'light') {
+  document.body.classList.add('light-mode');
+  document.getElementById('theme-btn').textContent = '☀️';
+}
+const savedLang = localStorage.getItem('nl-lang') || localStorage.getItem('dwc-lang') || 'de';
+setLanguage(savedLang);
 </script>
 </body>
 </html>
