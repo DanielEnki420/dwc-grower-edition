@@ -1265,7 +1265,7 @@ function update() {
         tempBanner.classList.remove('visible');
     }
 
-    updateHarvestCountdown(phase, week);
+    updateHarvestCountdown(phase, week, brandKey);
     updateEcRefill(phase, vol, ec, ecMin, ecMax, brand);
 }
 
@@ -1304,10 +1304,12 @@ function updateEcRefill(phase, vol, ec, ecMin, ecMax, brand) {
 // ============================================================
 // ERNTE-COUNTDOWN
 // ============================================================
-function updateHarvestCountdown(phase, week) {
+function updateHarvestCountdown(phase, week, brandKey) {
     const box = document.getElementById('harvest-countdown');
     if (!box) return;
-    const totalWeeks = phase === 'wuchs' ? 8 : 9;
+    // Bloom: 6 weeks nutrient schedule + 2 weeks flush = 8 total for most brands
+    const bloomWeeks = { biobizz: 7 }; // Biobizz: organic = 5 wk nutrients + 2 flush
+    const totalWeeks = phase === 'wuchs' ? 8 : (bloomWeeks[brandKey] || 8);
     const daysLeft = (totalWeeks - week) * 7;
     let bg, color, border;
     if (daysLeft > 28)      { bg = '#052e16'; color = '#86efac'; border = '#14532d'; }

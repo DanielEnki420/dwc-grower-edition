@@ -436,6 +436,7 @@ const LANGS = {
     flush_3:'Blätter werden gelb — das ist normal und erwünscht',
     flush_4:'pH täglich prüfen und auf 6.0–6.2 halten',
     flush_5:'48h Dunkelheit vor Ernte optional — für Terpen-Boost',
+    flush_see_label:'laut Hersteller',
     biobizz_flush:'🌿 <strong>BioBizz:</strong> 2 Wochen Flush empfohlen — organische Reste brauchen länger',
     std_flush:'⏱️ Standard Flush: 1–2 Wochen vor der Ernte',
     footer_note:'Alle Dosierungen sind Richtwerte — immer EC prüfen!',
@@ -464,6 +465,7 @@ const LANGS = {
     flush_3:'Leaves turning yellow — this is normal and desired',
     flush_4:'Check pH daily and keep at 6.0–6.2',
     flush_5:'48h darkness before harvest optional — for terpene boost',
+    flush_see_label:'per manufacturer',
     biobizz_flush:'🌿 <strong>BioBizz:</strong> 2-week flush recommended — organic residues take longer',
     std_flush:'⏱️ Standard flush: 1–2 weeks before harvest',
     footer_note:'All dosages are guidelines — always check EC!',
@@ -492,6 +494,7 @@ const LANGS = {
     flush_3:'Le foglie ingialliscono — è normale e desiderato',
     flush_4:'Controllare pH giornalmente e mantenere a 6.0–6.2',
     flush_5:'48h di buio prima della raccolta opzionale — boost di terpeni',
+    flush_see_label:'secondo produttore',
     biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush di 2 settimane raccomandato',
     std_flush:'⏱️ Flush standard: 1–2 settimane prima della raccolta',
     footer_note:'Tutti i dosaggi sono indicativi — verificare sempre EC!',
@@ -520,6 +523,7 @@ const LANGS = {
     flush_3:"Les feuilles jaunissent — c'est normal et souhaité",
     flush_4:'Vérifier pH quotidiennement et maintenir à 6.0–6.2',
     flush_5:"48h d'obscurité avant la récolte optionnel — boost de terpènes",
+    flush_see_label:'selon fabricant',
     biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush de 2 semaines recommandé',
     std_flush:'⏱️ Flush standard: 1–2 semaines avant la récolte',
     footer_note:'Tous les dosages sont des recommandations — toujours vérifier EC!',
@@ -548,6 +552,7 @@ const LANGS = {
     flush_3:'Las hojas se vuelven amarillas — esto es normal y deseado',
     flush_4:'Revisar pH diariamente y mantener a 6.0–6.2',
     flush_5:'48h de oscuridad antes de la cosecha opcional — boost de terpenos',
+    flush_see_label:'según fabricante',
     biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush de 2 semanas recomendado',
     std_flush:'⏱️ Flush estándar: 1–2 semanas antes de la cosecha',
     footer_note:'¡Todas las dosis son orientativas — siempre verificar EC!',
@@ -576,6 +581,7 @@ const LANGS = {
     flush_3:'Folhas ficando amarelas — isso é normal e desejado',
     flush_4:'Verificar pH diariamente e manter a 6.0–6.2',
     flush_5:'48h de escuridão antes da colheita opcional — boost de terpenos',
+    flush_see_label:'conforme fabricante',
     biobizz_flush:'🌿 <strong>BioBizz:</strong> Flush de 2 semanas recomendado',
     std_flush:'⏱️ Flush padrão: 1–2 semanas antes da colheita',
     footer_note:'Todas as dosagens são orientativas — verificar sempre EC!',
@@ -1368,6 +1374,34 @@ function render() {
 
 function renderFlush(brand, volume) {
   const specific = brand.name === 'BioBizz' ? T.biobizz_flush : T.std_flush;
+
+  // Show brand-specific flush products if available
+  const flushProds = Object.entries(brand.products || {})
+    .filter(([, prod]) => prod.type === 'flush');
+  let flushProdHtml = '';
+  if (flushProds.length > 0) {
+    const rows = flushProds.map(([, prod]) => `
+      <tr>
+        <td>
+          <div class="product-name">${prod.name}</div>
+          <div class="product-note">${prod.note}</div>
+        </td>
+        <td><span class="type-badge type-flush">${typeLabel('flush')}</span></td>
+        <td><span class="dose-base">— ${T.flush_see_label || 'nach Empfehlung'}</span></td>
+      </tr>`).join('');
+    flushProdHtml = `
+      <div class="section" style="margin-top:16px">
+        <table class="dose-table">
+          <thead><tr>
+            <th>${T.col_product}</th>
+            <th>${T.col_type}</th>
+            <th>${T.col_base}</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  }
+
   return `
     <div class="section">
       <div class="flush-overlay">
@@ -1382,6 +1416,7 @@ function renderFlush(brand, volume) {
         </div>
       </div>
     </div>
+    ${flushProdHtml}
     <div class="notes-box">
       <div class="notes-title">${T.flush_checklist}</div>
       <div class="note-item"><span class="note-icon">1️⃣</span><span>${T.flush_1}</span></div>
