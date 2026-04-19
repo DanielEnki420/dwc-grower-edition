@@ -405,7 +405,7 @@
 
 <div class="footer">
   <a href="index.html" id="footer-back">← DWC Grower Edition</a> &nbsp;|&nbsp;
-  Nutrient Library v1.1 &nbsp;|&nbsp;
+  Nutrient Library v1.3 &nbsp;|&nbsp;
   <a href="https://github.com/DanielEnki420/dwc-grower-edition" target="_blank">GitHub</a>
   &nbsp;|&nbsp; <span id="footer-note">Alle Dosierungen sind Richtwerte — immer EC prüfen!</span>
 </div>
@@ -1387,7 +1387,7 @@ function renderFlush(brand, volume) {
           <div class="product-note">${prod.note}</div>
         </td>
         <td><span class="type-badge type-flush">${typeLabel('flush')}</span></td>
-        <td><span class="dose-base">— ${T.flush_see_label || 'nach Empfehlung'}</span></td>
+        <td><span class="dose-base">— ${T.flush_see_label}</span></td>
       </tr>`).join('');
     flushProdHtml = `
       <div class="section" style="margin-top:16px">
@@ -1460,27 +1460,25 @@ if (savedPhase && ['grow','bloom','flush'].includes(savedPhase)) {
   });
 }
 
-// Restore week
+// Restore volume (validated)
+const savedVolume = localStorage.getItem('nl-volume');
+if (savedVolume) {
+  const v = Math.max(1, parseFloat(savedVolume) || 10);
+  document.getElementById('volumeInput').value = v;
+}
+
+// Build week options for the active brand+phase first
+updateWeekSelect();
+
+// Restore week — once, after options exist; updateWeekSelect already clamps if out of range
 const savedWeek = localStorage.getItem('nl-week');
 if (savedWeek) {
   const sel = document.getElementById('weekSelect');
-  sel.value = savedWeek;
-  currentWeek = parseInt(savedWeek);
-}
-
-// Restore volume
-const savedVolume = localStorage.getItem('nl-volume');
-if (savedVolume) {
-  document.getElementById('volumeInput').value = savedVolume;
-}
-
-// Update week select to match brand+phase before first render
-updateWeekSelect();
-// Restore week (after updateWeekSelect so options exist)
-if (savedWeek) {
-  const sel2 = document.getElementById('weekSelect');
-  sel2.value  = Math.min(parseInt(savedWeek), parseInt(sel2.options[sel2.options.length-1].value));
-  currentWeek = parseInt(sel2.value);
+  const lastOpt = sel.options[sel.options.length - 1];
+  const maxWeek = lastOpt ? parseInt(lastOpt.value) : 1;
+  const w = Math.max(1, Math.min(maxWeek, parseInt(savedWeek) || 1));
+  sel.value = w;
+  currentWeek = w;
 }
 
 // Restore language (triggers first render)

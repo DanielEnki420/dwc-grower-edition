@@ -1187,9 +1187,13 @@ const BRANDS_DATA = {
 // HAUPTLOGIK / DOSIERUNG
 // ============================================================
 function update() {
-    const vol   = parseFloat(document.getElementById('vol').value) || 0;
+    const vol   = Math.max(0, parseFloat(document.getElementById('vol').value) || 0);
     const phase = document.getElementById('phase').value;
     const week  = Math.max(1, Math.min(12, parseInt(document.getElementById('week').value) || 1));
+    // Reflect clamped values back into the DOM so user sees the corrected input
+    if (parseInt(document.getElementById('week').value) !== week) {
+        document.getElementById('week').value = week;
+    }
 
     localStorage.setItem('dwc_phase', phase);
     localStorage.setItem('dwc_week', week);
@@ -1281,12 +1285,14 @@ function updateEcRefill(phase, vol, ec, ecMin, ecMax, brand) {
     const box = document.getElementById('ec-refill-info');
     if (!box) return;
     if (isNaN(ec) || isNaN(vol) || vol <= 0) { box.style.display = 'none'; return; }
+    // Guard against missing EC range — without targets we cannot make a recommendation
+    if (isNaN(ecMin) || isNaN(ecMax)) { box.style.display = 'none'; return; }
     if (ec >= ecMin && ec <= ecMax) { box.style.display = 'none'; return; }
 
     if (ec < ecMin) {
         const diff = ecMin - ec;
         const ml = (diff * vol * 5).toFixed(1);
-        const product = (brand && brand.refillProduct) ? brand.refillProduct[phase] : 'Nutrient';
+        const product = (brand && brand.refillProduct && brand.refillProduct[phase]) || 'Nutrient';
         box.style.display = 'block';
         box.style.background = '#1a3a2a';
         box.style.borderColor = '#16a34a';
@@ -1613,15 +1619,25 @@ async function askGemini() {
     document.documentElement.lang = savedLang;
     applyTranslations();
 
-    // Gespeicherte Werte laden
+    // Gespeicherte Werte laden — mit Validierung
     const phase = localStorage.getItem('dwc_phase');
     const week  = localStorage.getItem('dwc_week');
     const vol   = localStorage.getItem('dwc_vol');
     const brand = localStorage.getItem('dwc_brand');
-    if (phase) document.getElementById('phase').value = phase;
-    if (week !== null)  document.getElementById('week').value  = week;
-    if (vol)   document.getElementById('vol').value   = vol;
-    if (brand) document.getElementById('brand-select').value = brand;
+    if (phase && ['wuchs','bluete'].includes(phase)) {
+        document.getElementById('phase').value = phase;
+    }
+    if (week !== null) {
+        const w = Math.max(1, Math.min(12, parseInt(week) || 1));
+        document.getElementById('week').value = w;
+    }
+    if (vol) {
+        const v = Math.max(1, parseFloat(vol) || 10);
+        document.getElementById('vol').value = v;
+    }
+    if (brand && BRANDS_DATA[brand]) {
+        document.getElementById('brand-select').value = brand;
+    }
 
     // Theme laden
     if (localStorage.getItem('dwc_light_mode') === '1') {
