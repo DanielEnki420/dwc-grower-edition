@@ -436,7 +436,20 @@
                     </div>
                     <div style="flex:1;">
                         <label data-i18n="week_label">Woche</label>
-                        <input type="number" id="week" value="1" min="1" max="12" oninput="update()">
+                        <select id="week" onchange="update()">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
                     </div>
                 </div>
                 <div id="harvest-countdown"></div>
@@ -1189,11 +1202,7 @@ const BRANDS_DATA = {
 function update() {
     const vol   = Math.max(0, parseFloat(document.getElementById('vol').value) || 0);
     const phase = document.getElementById('phase').value;
-    const week  = Math.max(1, Math.min(12, parseInt(document.getElementById('week').value) || 1));
-    // Reflect clamped values back into the DOM so user sees the corrected input
-    if (parseInt(document.getElementById('week').value) !== week) {
-        document.getElementById('week').value = week;
-    }
+    const week  = parseInt(document.getElementById('week').value) || 1;
 
     localStorage.setItem('dwc_phase', phase);
     localStorage.setItem('dwc_week', week);
@@ -1629,7 +1638,8 @@ async function askGemini() {
     }
     if (week !== null) {
         const w = Math.max(1, Math.min(12, parseInt(week) || 1));
-        document.getElementById('week').value = w;
+        const sel = document.getElementById('week');
+        if (sel) sel.value = w;
     }
     if (vol) {
         const v = Math.max(1, parseFloat(vol) || 10);
