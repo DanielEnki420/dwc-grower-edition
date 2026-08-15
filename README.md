@@ -40,7 +40,7 @@
 3. Sensorwerte eingeben → Empfehlungen erscheinen sofort
 4. Optional: Gemini API-Key eintragen für KI-Unterstützung
 
-Alles läuft **100% lokal**. Kein Login, keine Cloud, keine Daten werden gesendet.
+Alles läuft **100% lokal**. Kein Login, keine Cloud. Deine Grow-Daten verlassen nie dein Gerät — optional kannst du in der App eine anonyme Nutzungsstatistik aktivieren (standardmäßig aus).
 
 ---
 
@@ -67,7 +67,7 @@ Alles läuft **100% lokal**. Kein Login, keine Cloud, keine Daten werden gesende
 3. Enter sensor values → recommendations appear instantly
 4. Optional: Add your Gemini API key for AI support
 
-Everything runs **100% locally**. No login, no cloud, no data is sent.
+Everything runs **100% locally**. No login, no cloud. Your grow data never leaves your device — you can optionally enable anonymous usage stats in the app (off by default).
 
 ---
 
@@ -94,7 +94,7 @@ Everything runs **100% locally**. No login, no cloud, no data is sent.
 3. Inserisci i valori dei sensori → le raccomandazioni appaiono immediatamente
 4. Opzionale: aggiungi la tua chiave API Gemini per il supporto AI
 
-Tutto funziona **100% localmente**. Nessun login, nessun cloud, nessun dato inviato.
+Tutto funziona **100% localmente**. Nessun login, nessun cloud. I tuoi dati di coltivazione non lasciano mai il tuo dispositivo — puoi attivare facoltativamente statistiche di utilizzo anonime nell'app (disattivato di default).
 
 ---
 
@@ -121,7 +121,7 @@ Tutto funziona **100% localmente**. Nessun login, nessun cloud, nessun dato invi
 3. Saisir les valeurs des capteurs → les recommandations apparaissent immédiatement
 4. Optionnel : ajoutez votre clé API Gemini pour l'assistance IA
 
-Tout fonctionne **100% localement**. Pas de connexion, pas de cloud, aucune donnée envoyée.
+Tout fonctionne **100% localement**. Pas de connexion, pas de cloud. Vos données de culture ne quittent jamais votre appareil — vous pouvez activer en option des statistiques d'utilisation anonymes dans l'application (désactivé par défaut).
 
 ---
 
@@ -148,7 +148,7 @@ Tout fonctionne **100% localement**. Pas de connexion, pas de cloud, aucune donn
 3. Ingresa los valores de los sensores → las recomendaciones aparecen de inmediato
 4. Opcional: agrega tu clave API de Gemini para soporte IA
 
-Todo funciona **100% localmente**. Sin login, sin nube, sin datos enviados.
+Todo funciona **100% localmente**. Sin login, sin nube. Tus datos de cultivo nunca salen de tu dispositivo — puedes activar opcionalmente estadísticas de uso anónimas en la app (desactivado por defecto).
 
 ---
 
@@ -175,7 +175,7 @@ Todo funciona **100% localmente**. Sin login, sin nube, sin datos enviados.
 3. Introduz os valores dos sensores → as recomendações aparecem imediatamente
 4. Opcional: adiciona a tua chave API Gemini para suporte IA
 
-Tudo funciona **100% localmente**. Sem login, sem cloud, sem dados enviados.
+Tudo funciona **100% localmente**. Sem login, sem cloud. Os teus dados de cultivo nunca saem do teu dispositivo — podes ativar opcionalmente estatísticas de utilização anónimas na app (desativado por padrão).
 
 ---
 

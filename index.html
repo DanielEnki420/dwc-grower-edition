@@ -517,7 +517,14 @@
 
     <div style="text-align:center; padding: 20px; color: #475569; font-size: 0.8em;" id="footer-text" data-i18n-html="footer">
         DWC Grower Edition — Freie Software für Hydroponik-Grower 🌱<br>
-        Kein Login, keine Cloud, keine Daten werden gesendet. Alles läuft lokal im Browser.
+        Deine Grow-Daten verlassen nie dein Gerät. Kein Login, keine Cloud.
+    </div>
+
+    <div style="text-align:center; padding: 0 20px 20px; font-size: 0.72em; color: #475569;">
+        <label style="cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+            <input type="checkbox" id="analytics-toggle" onchange="toggleAnalytics(this.checked)" style="width:auto;margin:0;">
+            <span data-i18n="analytics_toggle">📊 Anonyme Nutzungsstatistik helfen (optional, standardmäßig aus)</span>
+        </label>
     </div>
 
 </div>
@@ -567,7 +574,8 @@ const LANGS = {
         gemini_ready: '👋 Bereit! Stelle mir Fragen zu deinem DWC-System, pH/EC-Werten oder Nährstoffen.',
         gemini_welcome: '👋 Hallo! Ich bin dein DWC-Assistent.\n\nBitte zuerst den **Gemini API Key** hinterlegen (⚙️ oben rechts).\n\nKostenlosen Key bekommst du unter: `aistudio.google.com`',
         gemini_system: 'Du bist ein hilfreicher Assistent für einen DWC (Deep Water Culture) Hydroponiksystem-Besitzer. Du kennst dich aus mit: pH-Werten (Idealbereich 5.5-6.2), EC-Werten (Wuchs: 0.8-1.4 mS/cm, Blüte: 1.2-2.0 mS/cm), Wassertemperatur (ideal unter 22°C), ORP-Werten (200-600 mV), Hydroponik-Nährstoffen verschiedener Hersteller. Antworte immer auf Deutsch, kurz und präzise. Nutze Emojis sparsam.',
-        footer: 'DWC Grower Edition — Freie Software für Hydroponik-Grower 🌱<br>Kein Login, keine Cloud, keine Daten werden gesendet. Alles läuft lokal im Browser.',
+        footer: 'DWC Grower Edition — Freie Software für Hydroponik-Grower 🌱<br>Deine Grow-Daten verlassen nie dein Gerät. Kein Login, keine Cloud.',
+        analytics_toggle: '📊 Anonyme Nutzungsstatistik helfen (optional, standardmäßig aus)',
         water_change_note: '💧 Wasserwechsel durchgeführt',
         drops_unit: 'Tropfen',
         phase_veg_short: 'Vegetativ',
@@ -626,7 +634,8 @@ const LANGS = {
         gemini_ready: '👋 Ready! Ask me questions about your DWC system, pH/EC values or nutrients.',
         gemini_welcome: '👋 Hello! I\'m your DWC assistant.\n\nPlease first add your **Gemini API Key** (⚙️ top right).\n\nGet a free key at: `aistudio.google.com`',
         gemini_system: 'You are a helpful assistant for a DWC (Deep Water Culture) hydroponics system owner. You know about: pH values (ideal range 5.5-6.2), EC values (veg: 0.8-1.4 mS/cm, bloom: 1.2-2.0 mS/cm), water temperature (ideal below 22°C), ORP values (200-600 mV), hydroponics nutrients from various brands. Always answer in English, concisely. Use emojis sparingly.',
-        footer: 'DWC Grower Edition — Free software for hydroponics growers 🌱<br>No login, no cloud, no data sent. Everything runs locally in your browser.',
+        footer: 'DWC Grower Edition — Free software for hydroponics growers 🌱<br>Your grow data never leaves your device. No login, no cloud.',
+        analytics_toggle: '📊 Help with anonymous usage stats (optional, off by default)',
         water_change_note: '💧 Water change done',
         drops_unit: 'drops',
         phase_veg_short: 'Vegetative',
@@ -685,7 +694,8 @@ const LANGS = {
         gemini_ready: '👋 Pronto! Fammi domande sul tuo sistema DWC, valori pH/EC o nutrienti.',
         gemini_welcome: '👋 Ciao! Sono il tuo assistente DWC.\n\nPer favore aggiungi prima la tua **chiave API Gemini** (⚙️ in alto a destra).\n\nChiave gratuita su: `aistudio.google.com`',
         gemini_system: 'Sei un assistente utile per un proprietario di sistema DWC idroponico. Conosci: valori pH (range ideale 5.5-6.2), valori EC (vegetativo: 0.8-1.4 mS/cm, fioritura: 1.2-2.0 mS/cm), temperatura acqua (ideale sotto 22°C), valori ORP (200-600 mV), nutrienti idroponici di vari marchi. Rispondi sempre in italiano, in modo conciso. Usa emoji con parsimonia.',
-        footer: 'DWC Grower Edition — Software gratuito per coltivatori idroponici 🌱<br>Nessun login, nessun cloud, nessun dato inviato. Tutto gira localmente nel browser.',
+        footer: 'DWC Grower Edition — Software gratuito per coltivatori idroponici 🌱<br>I tuoi dati di coltivazione non lasciano mai il tuo dispositivo. Nessun login, nessun cloud.',
+        analytics_toggle: '📊 Aiuta con statistiche anonime (opzionale, disattivato di default)',
         water_change_note: '💧 Cambio acqua effettuato',
         drops_unit: 'gocce',
         phase_veg_short: 'Vegetativa',
@@ -744,7 +754,8 @@ const LANGS = {
         gemini_ready: '👋 Prêt ! Posez-moi des questions sur votre système DWC, valeurs pH/EC ou nutriments.',
         gemini_welcome: '👋 Bonjour ! Je suis votre assistant DWC.\n\nVeuillez d\'abord ajouter votre **clé API Gemini** (⚙️ en haut à droite).\n\nClé gratuite sur : `aistudio.google.com`',
         gemini_system: 'Tu es un assistant utile pour un propriétaire de système DWC hydroponique. Tu connais : valeurs pH (plage idéale 5.5-6.2), valeurs EC (végétatif : 0.8-1.4 mS/cm, floraison : 1.2-2.0 mS/cm), température eau (idéale sous 22°C), valeurs ORP (200-600 mV), nutriments hydroponiques de diverses marques. Réponds toujours en français, de façon concise. Utilise les emojis avec parcimonie.',
-        footer: 'DWC Grower Edition — Logiciel gratuit pour cultivateurs hydroponiques 🌱<br>Pas de connexion, pas de cloud, aucune donnée envoyée. Tout fonctionne localement dans votre navigateur.',
+        footer: 'DWC Grower Edition — Logiciel gratuit pour cultivateurs hydroponiques 🌱<br>Vos données de culture ne quittent jamais votre appareil. Pas de connexion, pas de cloud.',
+        analytics_toggle: '📊 Aider avec des statistiques anonymes (optionnel, désactivé par défaut)',
         water_change_note: '💧 Changement d\'eau effectué',
         drops_unit: 'gouttes',
         phase_veg_short: 'Végétatif',
@@ -803,7 +814,8 @@ const LANGS = {
         gemini_ready: '👋 ¡Listo! Hazme preguntas sobre tu sistema DWC, valores pH/EC o nutrientes.',
         gemini_welcome: '👋 ¡Hola! Soy tu asistente DWC.\n\nPor favor, primero agrega tu **clave API de Gemini** (⚙️ arriba a la derecha).\n\nClave gratuita en: `aistudio.google.com`',
         gemini_system: 'Eres un asistente útil para un propietario de sistema DWC hidropónico. Conoces: valores de pH (rango ideal 5.5-6.2), valores de EC (vegetativo: 0.8-1.4 mS/cm, floración: 1.2-2.0 mS/cm), temperatura del agua (ideal bajo 22°C), valores ORP (200-600 mV), nutrientes hidropónicos de varias marcas. Responde siempre en español, de forma concisa. Usa emojis con moderación.',
-        footer: 'DWC Grower Edition — Software gratuito para cultivadores hidropónicos 🌱<br>Sin login, sin nube, sin datos enviados. Todo funciona localmente en tu navegador.',
+        footer: 'DWC Grower Edition — Software gratuito para cultivadores hidropónicos 🌱<br>Tus datos de cultivo nunca salen de tu dispositivo. Sin login, sin nube.',
+        analytics_toggle: '📊 Ayuda con estadísticas anónimas (opcional, desactivado por defecto)',
         water_change_note: '💧 Cambio de agua realizado',
         drops_unit: 'gotas',
         phase_veg_short: 'Vegetativo',
@@ -862,7 +874,8 @@ const LANGS = {
         gemini_ready: '👋 Pronto! Faça-me perguntas sobre o seu sistema DWC, valores pH/EC ou nutrientes.',
         gemini_welcome: '👋 Olá! Sou o seu assistente DWC.\n\nPor favor, adicione primeiro a sua **chave API Gemini** (⚙️ canto superior direito).\n\nChave gratuita em: `aistudio.google.com`',
         gemini_system: 'És um assistente útil para um proprietário de sistema DWC hidropónico. Conheces: valores de pH (intervalo ideal 5.5-6.2), valores de EC (vegetativo: 0.8-1.4 mS/cm, floração: 1.2-2.0 mS/cm), temperatura da água (ideal abaixo de 22°C), valores de ORP (200-600 mV), nutrientes hidropónicos de várias marcas. Responde sempre em português, de forma concisa. Usa emojis com moderação.',
-        footer: 'DWC Grower Edition — Software gratuito para cultivadores hidropónicos 🌱<br>Sem login, sem cloud, sem dados enviados. Tudo funciona localmente no seu navegador.',
+        footer: 'DWC Grower Edition — Software gratuito para cultivadores hidropónicos 🌱<br>Os teus dados de cultivo nunca saem do teu dispositivo. Sem login, sem cloud.',
+        analytics_toggle: '📊 Ajuda com estatísticas anónimas (opcional, desativado por padrão)',
         water_change_note: '💧 Troca de água realizada',
         drops_unit: 'gotas',
         phase_veg_short: 'Vegetativo',
@@ -886,6 +899,41 @@ const LANGS = {
 let currentLang = 'de';
 let T = LANGS.de;
 
+// ============================================================
+// ANALYTICS — privacy-first, opt-in, default AUS.
+// Es werden NIE Sensorwerte, Notizen oder KI-Chats uebertragen,
+// nur die Tatsache, dass eine Funktion benutzt wurde.
+// ============================================================
+const ANALYTICS_KEY = 'dwc_analytics_consent';
+const UMAMI_WEBSITE_ID = '70574ecd-f0f4-4924-894d-5c95459819bb';
+
+function analyticsEnabled() {
+    return localStorage.getItem(ANALYTICS_KEY) === '1';
+}
+
+function loadAnalytics() {
+    if (window.umami || document.getElementById('umami-script')) return;
+    const s = document.createElement('script');
+    s.id = 'umami-script';
+    s.defer = true;
+    s.src = 'https://analytics.oli-vera.eu/script.js';
+    s.setAttribute('data-website-id', UMAMI_WEBSITE_ID);
+    s.setAttribute('data-auto-track', 'false'); // keine automatischen Pageviews/URLs
+    s.setAttribute('data-do-not-track', 'true');
+    s.onload = () => track('app_open');
+    document.head.appendChild(s);
+}
+
+function track(eventName) {
+    if (!analyticsEnabled()) return;
+    if (window.umami && window.umami.track) window.umami.track(eventName);
+}
+
+function toggleAnalytics(enabled) {
+    localStorage.setItem(ANALYTICS_KEY, enabled ? '1' : '0');
+    if (enabled) loadAnalytics();
+}
+
 function setLanguage(lang) {
     if (!LANGS[lang]) return;
     currentLang = lang;
@@ -897,6 +945,7 @@ function setLanguage(lang) {
     update();
     updateWaterDisplay();
     renderNotes();
+    track('language_selected');
 }
 
 function applyTranslations() {
@@ -1352,6 +1401,7 @@ function saveWaterSettings() {
 }
 
 function doWaterChange() {
+    track('water_change');
     const d = loadWaterData();
     d.lastChange = new Date().toISOString();
     d.interval = parseInt(document.getElementById('water-interval').value);
@@ -1420,6 +1470,7 @@ function saveNotes(notes) { localStorage.setItem('dwc_notes_v2', JSON.stringify(
 function addNote() {
     const text = document.getElementById('new-note').value.trim();
     if (!text) return;
+    track('diary_entry');
     const notes = loadNotes();
     notes.unshift({
         id: Date.now(),
@@ -1546,6 +1597,7 @@ async function askGemini() {
     const input    = document.getElementById('gemini-input');
     const question = input.value.trim();
     if (!question) return;
+    track('ai_assistant_used');
 
     const apiKey = localStorage.getItem('dwc_gemini_key');
     if (!apiKey) {
@@ -1628,6 +1680,11 @@ async function askGemini() {
     document.documentElement.lang = savedLang;
     applyTranslations();
 
+    // Analytics: Consent-Status wiederherstellen, ggf. Skript laden. Standard: AUS.
+    const analyticsToggle = document.getElementById('analytics-toggle');
+    if (analyticsToggle) analyticsToggle.checked = analyticsEnabled();
+    if (analyticsEnabled()) loadAnalytics();
+
     // Gespeicherte Werte laden — mit Validierung
     const phase = localStorage.getItem('dwc_phase');
     const week  = localStorage.getItem('dwc_week');
@@ -1674,9 +1731,9 @@ async function askGemini() {
   font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;opacity:.72">
 <summary style="cursor:pointer;letter-spacing:.05em">Datenschutz / Privacy</summary>
 <div style="margin-top:1rem">
-<p><b>Diese Seite läuft vollständig in deinem Browser.</b> Sie setzt keine Cookies, bindet
-keine Analyse- oder Tracking-Dienste ein und lädt beim Aufruf keine externen Ressourcen —
-Schriften und Skripte werden mitgeliefert.</p>
+<p><b>Diese Seite läuft vollständig in deinem Browser.</b> Sie setzt keine Cookies und lädt
+beim Aufruf keine externen Ressourcen — Schriften und Skripte werden mitgeliefert. Optional
+kannst du eine anonyme Nutzungsstatistik aktivieren (Details unten).</p>
 <p><b>Hosting:</b> Die Seite liegt auf GitHub Pages (GitHub Inc., USA). Beim Abruf
 protokolliert GitHub technisch notwendige Zugriffsdaten einschließlich deiner IP-Adresse.
 Darauf hat der Betreiber dieser Seite keinen Einfluss —
@@ -1684,17 +1741,30 @@ Darauf hat der Betreiber dieser Seite keinen Einfluss —
 <p><b>Was lokal bleibt:</b> Deine Eingaben und dein Grow-Tagebuch werden ausschließlich im localStorage deines Browsers gespeichert und niemals an den Betreiber übertragen. Es gibt
 keinen Server hinter dieser Seite.</p>
 <p><b>Was hinausgeht:</b> Nutzt du den KI-Assistenten, geht deine Eingabe direkt von deinem Browser an <b>Google (Gemini, USA)</b> — mit deinem eigenen API-Schlüssel. Ohne Assistenten verlässt nichts deinen Browser.</p>
+<p><b>Optionale Statistik (standardmäßig AUS):</b> Aktivierst du unten den Schalter
+„Anonyme Nutzungsstatistik helfen", lädt die Seite ein kleines Skript von meinem eigenen
+Server (<code>analytics.oli-vera.eu</code>, Hetzner, Deutschland) nach. Übertragen werden
+ausschließlich feste Ereignis-Namen (z. B. „App geöffnet", „Notiz gespeichert") — nie deine
+Sensorwerte, Notizeninhalte oder KI-Chats. Keine Cookies, keine dauerhafte IP-Speicherung.
+Jederzeit über denselben Schalter wieder deaktivierbar.</p>
 <p><b>Verantwortlich / Kontakt:</b>
 <a href="https://github.com/DanielEnki420" target="_blank" rel="noopener">github.com/DanielEnki420</a></p>
 <hr style="border:0;border-top:1px solid currentColor;opacity:.2;margin:1.2rem 0">
-<p><b>This page runs entirely in your browser.</b> No cookies, no analytics, no tracking,
-and no external resources are loaded — fonts and scripts ship with the page.</p>
+<p><b>This page runs entirely in your browser.</b> No cookies, and no external resources
+are loaded by default — fonts and scripts ship with the page. You can optionally enable
+anonymous usage statistics (details below).</p>
 <p><b>Hosting:</b> served from GitHub Pages (GitHub Inc., USA). GitHub logs technically
 necessary access data including your IP address; the operator of this page has no control
 over that — <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub privacy statement</a>.</p>
 <p><b>Stays local:</b> Your entries and grow diary are stored only in your browser's localStorage, and is never transmitted to the operator. There is no
 server behind this page.</p>
 <p><b>Leaves the page:</b> If you use the AI assistant, your input goes directly from your browser to <b>Google (Gemini, USA)</b> using your own API key. Without the assistant, nothing leaves your browser.</p>
+<p><b>Optional analytics (off by default):</b> Turning on the "Help with anonymous usage
+stats" toggle below loads a small script from my own server
+(<code>analytics.oli-vera.eu</code>, Hetzner, Germany). Only fixed event names are sent
+(e.g. "app opened", "diary entry saved") — never your sensor values, note contents, or AI
+chats. No cookies, no persistent IP storage. Can be switched off again at any time via the
+same toggle.</p>
 <p><b>Controller / contact:</b>
 <a href="https://github.com/DanielEnki420" target="_blank" rel="noopener">github.com/DanielEnki420</a></p>
 </div>
