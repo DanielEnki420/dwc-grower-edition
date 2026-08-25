@@ -1050,6 +1050,50 @@ const BRANDS = {
     ]
   },
 
+  athenaBlended: {
+    name:"Athena Blended", emoji:"🧊", color:"#38bdf8",
+    products:{
+      growA:   { name:"Athena Grow A",  type:"base",   note:"Basis Grow A — 2-Teil-System" },
+      growB:   { name:"Athena Grow B",  type:"base",   note:"Basis Grow B — 2-Teil-System" },
+      bloomA:  { name:"Athena Bloom A", type:"base",   note:"Basis Bloom A — 2-Teil-System" },
+      bloomB:  { name:"Athena Bloom B", type:"base",   note:"Basis Bloom B — 2-Teil-System" },
+      camg:    { name:"Athena CaMg",    type:"calmag", note:"Calcium-Magnesium-Supplement" },
+      cleanse: { name:"Athena Cleanse", type:"enzyme", note:"Reservoir-/Wurzelpflege, ganzer Run" },
+      pk:      { name:"Athena PK",      type:"pk",     note:"Phosphor-Kalium Bloom-Booster, ab Wk 3" },
+      fade:    { name:"Athena Fade",    type:"flush",  note:"Finisher, letzte 2 Wochen (optional)" },
+    },
+    schedule:{
+      grow:[
+        { week:1, doses:{ growA:16, growB:16, camg:6.5, cleanse:5 }, ec:1.2 },
+        { week:2, doses:{ growA:16, growB:16, camg:6.5, cleanse:5 }, ec:1.2 },
+        { week:3, doses:{ growA:16, growB:16, camg:6.5, cleanse:5 }, ec:1.2 },
+        { week:4, doses:{ growA:16, growB:16, camg:6.5, cleanse:5 }, ec:1.2 },
+      ],
+      bloom:[
+        { week:1, doses:{ bloomA:24, bloomB:24, camg:6.5, cleanse:5 }, ec:1.8 },
+        { week:2, doses:{ bloomA:24, bloomB:24, camg:6.5, cleanse:5 }, ec:1.8 },
+        { week:3, doses:{ bloomA:24, bloomB:24, camg:6.5, cleanse:5, pk:11 }, ec:2.0 },
+        { week:4, doses:{ bloomA:24, bloomB:24, camg:6.5, cleanse:5, pk:13 }, ec:2.1 },
+        { week:5, doses:{ bloomA:24, bloomB:24, camg:6.5, cleanse:5, pk:24 }, ec:2.2 },
+        { week:6, doses:{ bloomA:21, bloomB:21, camg:6.5, cleanse:5, pk:26 }, ec:2.1 },
+        { week:7, doses:{ bloomA:11, bloomB:11, cleanse:5, pk:32, fade:32 }, ec:1.5 },
+        { week:8, doses:{ bloomA:8,  bloomB:8,  cleanse:5, pk:26, fade:32 }, ec:1.0 },
+      ],
+    },
+    addOrder:{
+      grow:["cleanse","camg","growA","growB"],
+      bloom:["cleanse","camg","bloomA","bloomB","pk","fade"]
+    },
+    tips:[
+      { icon:"📋", text:"Offizieller Athena Blended Feedchart (Normal/Metric): Vegetation 4 Wochen fix, danach Wk4-Rate halten. Blüte offiziell 8 Wochen + Flush." },
+      { icon:"🧪", text:"Balance (pH-Up): kein festes ml-Schema — tropfenweise bis Ziel-pH 5.4–6.0 zugeben. Athena empfiehlt Balance als allerersten Schritt vor allen anderen Produkten." },
+      { icon:"🌸", text:"PK erst ab Blüte Wk 3 zugeben, danach bis Wk 7 steigern, Wk 8 leicht reduzieren." },
+      { icon:"🧊", text:"Fade ist im offiziellen Blended-Feedchart nicht enthalten — optionaler Finisher für die letzten 2 Wochen, ca. 12 ml/gal (≈32 ml/10L), ersetzt keine andere Dosierung." },
+      { icon:"🧼", text:"IPW (Integrated Plant Wash): reines Blattspray zur Schädlingsbekämpfung/Blattreinigung — NICHT ins Reservoir geben! Vorbeugend 60-90 ml/gal, bei Befall 90-120 ml/gal." },
+      { icon:"💧", text:"Cleanse: normal 5 ml/10L jede Bewässerung, in der finalen Flush-Woche auf 26 ml/10L erhöhen." },
+    ]
+  },
+
   remo: {
     name:"Remo Nutrients", emoji:"🟠", color:"#e3892a",
     products:{
