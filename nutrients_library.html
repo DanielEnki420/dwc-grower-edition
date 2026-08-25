@@ -1008,45 +1008,47 @@ const BRANDS = {
   },
 
   athena: {
-    name:"Athena", emoji:"🩵", color:"#79c0ff",
+    name:"Athena Pro", emoji:"🩵", color:"#79c0ff",
     products:{
-      core:   { name:"Athena Core",    type:"base",   note:"Mikronährstoffe — immer zuerst!" },
-      grow:   { name:"Athena Grow",    type:"base",   note:"Basis Grow" },
-      bloom:  { name:"Athena Bloom",   type:"base",   note:"Basis Bloom" },
-      stack:  { name:"Athena Stack",   type:"bloom",  note:"Bloom-Booster + Resinbildung" },
-      silica: { name:"Athena Silica",  type:"silica", note:"Silika — Strukturstärkung" },
-      camg:   { name:"Athena CaMg",    type:"calmag", note:"Calcium-Magnesium-Supplement" },
-      cleanse:{ name:"Athena Cleanse", type:"flush",  note:"Flush — Ernte-Vorbereitung" },
-      fade:   { name:"Athena Fade",    type:"flush",  note:"Harvest-Prep — letzte 2 Wochen" },
+      proCore: { name:"Athena Core",    type:"base",   note:"Basis — immer mit Grow (Wuchs) oder Bloom (Blüte) kombinieren, Pulver in Gramm" },
+      proGrow: { name:"Athena Grow",    type:"base",   note:"Basis Grow, Pulver in Gramm" },
+      proBloom:{ name:"Athena Bloom",   type:"base",   note:"Basis Bloom, Pulver in Gramm" },
+      camg:    { name:"Athena CaMg",    type:"calmag", note:"Optional bei RO-/Umkehrosmosewasser" },
+      cleanse: { name:"Athena Cleanse", type:"enzyme", note:"Reservoir-/Wurzelpflege, ganzer Run" },
+      pk:      { name:"Athena PK",      type:"pk",     note:"Phosphor-Kalium Bloom-Booster, ab Wk 3" },
+      fade:    { name:"Athena Fade",    type:"flush",  note:"Optionaler Finisher, letzte 2 Wochen" },
     },
     schedule:{
       grow:[
-        { week:1, doses:{ silica:0.5, core:4, grow:4, camg:4 }, ec:0.9 },
-        { week:2, doses:{ silica:0.5, core:6, grow:6, camg:4 }, ec:1.3 },
-        { week:3, doses:{ silica:0.5, core:7, grow:7, camg:4 }, ec:1.6 },
-        { week:4, doses:{ silica:0.5, core:8, grow:8, camg:4 }, ec:1.8 },
-        { week:5, doses:{ silica:0.5, core:8, grow:8, camg:2 }, ec:1.8 },
-        { week:6, doses:{ core:8, grow:8, camg:2 }, ec:1.8 },
-        { week:7, doses:{ core:8, grow:8 }, ec:1.8 },
-        { week:8, doses:{ core:8, grow:8 }, ec:1.8 },
+        { week:1, doses:{ proCore:5.5, proGrow:9.2, camg:6.5, cleanse:5 }, ec:1.5 },
+        { week:2, doses:{ proCore:5.5, proGrow:9.2, camg:6.5, cleanse:5 }, ec:1.5 },
+        { week:3, doses:{ proCore:5.5, proGrow:9.2, camg:6.5, cleanse:5 }, ec:1.5 },
+        { week:4, doses:{ proCore:5.5, proGrow:9.2, camg:6.5, cleanse:5 }, ec:1.5 },
       ],
       bloom:[
-        { week:1, doses:{ silica:0.5, core:8, bloom:8, stack:2, camg:2 }, ec:1.8 },
-        { week:2, doses:{ silica:0.5, core:8, bloom:8, stack:3, camg:2 }, ec:2.0 },
-        { week:3, doses:{ core:8, bloom:8, stack:4, camg:2 }, ec:2.1 },
-        { week:4, doses:{ core:8, bloom:8, stack:4 }, ec:2.1 },
-        { week:5, doses:{ core:8, bloom:8, stack:6 }, ec:2.3 },
-        { week:6, doses:{ core:6, bloom:6, stack:4, fade:5 }, ec:2.0 },
+        { week:1, doses:{ proCore:7.9, proBloom:13.2, camg:6.5, cleanse:5 }, ec:2.0 },
+        { week:2, doses:{ proCore:7.9, proBloom:13.2, camg:6.5, cleanse:5 }, ec:2.0 },
+        { week:3, doses:{ proCore:7.9, proBloom:13.2, camg:6.5, cleanse:5, pk:11 }, ec:2.0 },
+        { week:4, doses:{ proCore:7.9, proBloom:13.2, camg:6.5, cleanse:5, pk:13 }, ec:2.0 },
+        { week:5, doses:{ proCore:7.9, proBloom:13.2, camg:6.5, cleanse:5, pk:24 }, ec:2.0 },
+        { week:6, doses:{ proCore:7.9, proBloom:13.2, camg:6.5, cleanse:5, pk:26 }, ec:2.0 },
+        { week:7, doses:{ proCore:7.9, proBloom:13.2, cleanse:5, pk:32, fade:32 }, ec:2.0 },
+        { week:8, doses:{ proCore:4.0, proBloom:6.6,  cleanse:5, pk:26, fade:32 }, ec:1.0 },
       ],
     },
     addOrder:{
-      grow:["silica","core","grow","camg"],
-      bloom:["silica","core","bloom","camg","stack","fade"]
+      grow:["cleanse","camg","proCore","proGrow"],
+      bloom:["cleanse","camg","proCore","proBloom","pk","fade"]
     },
     tips:[
-      { icon:"🩵", text:"Athena Core: Mikronährstoff-Basis — immer als erstes zugeben!" },
-      { icon:"🌸", text:"Stack: schrittweise erhöhen von Bloom Wk 1–5, in Wk 6 reduzieren + Fade einleiten" },
-      { icon:"💧", text:"Cleanse: zwischendurch alle 2–3 Wochen — Salze auswaschen" },
+      { icon:"📋", text:"Offizieller Athena Pro Feedchart (Normal/Metric): Vegetation 4 Wochen fix, danach Wk4-Rate halten. Blüte offiziell 8 Wochen + Flush." },
+      { icon:"🧪", text:"Balance (pH-Up, Kaliumsilikat): kein festes ml-Schema — tropfenweise bis Ziel-pH 5.4–6.0 zugeben. Athena empfiehlt Balance als allerersten Schritt vor allen anderen Produkten." },
+      { icon:"🩵", text:"Core: nie pur verwenden — immer zusammen mit Grow (Wuchs) oder Bloom (Blüte) dosieren." },
+      { icon:"💧", text:"CaMg ist optional — vor allem bei RO-/Umkehrosmosewasser oder in anspruchsvollen Umgebungen sinnvoll." },
+      { icon:"🌸", text:"PK erst ab Blüte Wk 3 zugeben, danach bis Wk 7 steigern." },
+      { icon:"🧊", text:"Fade ersetzt/ergänzt Core in den letzten 2 Wochen laut Hersteller — optionaler Finisher, ca. 12 ml/gal (≈32 ml/10L)." },
+      { icon:"🍃", text:"Stack ist ein reines Blattspray (kein Reservoir-Additiv!): 7 ml/gal (≈18 ml/10L), 2x wöchentlich, Veg ab Wk 2 bis Blüte Wk 3, Licht/Lüfter vorher aus." },
+      { icon:"💧", text:"Cleanse: normal 5 ml/10L jede Bewässerung, in der finalen Flush-Woche auf 26 ml/10L erhöhen." },
     ]
   },
 
@@ -1361,7 +1363,7 @@ function render() {
     const baseml = doses[key] || 0;
     const calcml = +(baseml * factor).toFixed(1);
     const isActive = baseml > 0;
-    const unit   = (key === 'shooting') ? 'g' : 'ml';
+    const unit   = ['shooting','proCore','proGrow','proBloom'].includes(key) ? 'g' : 'ml';
     rows += `
       <tr style="${!isActive ? 'opacity:0.35' : ''}">
         <td>
