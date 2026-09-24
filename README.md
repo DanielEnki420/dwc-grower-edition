@@ -23,8 +23,9 @@
 
 ### Features
 - 🌍 **6 Sprachen** — Deutsch, Englisch, Italienisch, Französisch, Spanisch, Portugiesisch
-- 🧪 **9 Dünger-Marken** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Nährstoff-Bibliothek** — 13 Marken, vollständige Wochenpläne, Volumen-Kalkulator
+- 🧪 **13 Dünger-Marken für DWC** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Aptus, House & Garden, Atami B'cuzz, Mills, Athena Pro, Athena Blended, Remo, Cyco. Biobizz ist sichtbar, aber gesperrt: laut Hersteller darf die Mischung höchstens einen Tag stehen
+- 🔎 **Jede Dosierung mit Herstellerquelle belegt** — nach den offiziellen DWC-/Hydro-Schemata (Stand 24.9.2026)
+- 📚 **Nährstoff-Bibliothek** — 14 Marken, vollständige Wochenpläne, Volumen-Kalkulator
 - 📊 Automatische Dosierung in ml — nach Phase & Woche
 - ⚠️ pH / EC / Temp / ORP Warnsystem mit Empfehlungen
 - ⏳ Ernte-Countdown + Wechselwasser-Erinnerung
@@ -50,8 +51,9 @@ Alles läuft **100% lokal**. Kein Login, keine Cloud. Deine Grow-Daten verlassen
 
 ### Features
 - 🌍 **6 Languages** — German, English, Italian, French, Spanish, Portuguese
-- 🧪 **9 Nutrient Brands** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Nutrient Library** — 13 brands, full weekly schedules, volume calculator
+- 🧪 **13 Nutrient Brands for DWC** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Aptus, House & Garden, Atami B'cuzz, Mills, Athena Pro, Athena Blended, Remo, Cyco. Biobizz is shown but locked: the manufacturer says the mix must not stand longer than one day
+- 🔎 **Every dose backed by a manufacturer source** — following the official DWC/hydro schedules (as of 24 Sep 2026)
+- 📚 **Nutrient Library** — 14 brands, full weekly schedules, volume calculator
 - 📊 Automatic dosing in ml — by phase & week
 - ⚠️ pH / EC / Temp / ORP warning system with recommendations
 - ⏳ Harvest countdown + water change reminder
@@ -77,8 +79,9 @@ Everything runs **100% locally**. No login, no cloud. Your grow data never leave
 
 ### Funzionalità
 - 🌍 **6 Lingue** — Tedesco, Inglese, Italiano, Francese, Spagnolo, Portoghese
-- 🧪 **9 Marchi di nutrienti** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Libreria Nutrienti** — 13 marchi, piani settimanali completi, calcolatore di volume
+- 🧪 **13 Marchi di nutrienti per DWC** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Aptus, House & Garden, Atami B'cuzz, Mills, Athena Pro, Athena Blended, Remo, Cyco. Biobizz è visibile ma bloccato: secondo il produttore la miscela non deve restare più di un giorno
+- 🔎 **Ogni dose con fonte del produttore** — secondo gli schemi ufficiali DWC/idro (al 24/09/2026)
+- 📚 **Libreria Nutrienti** — 14 marchi, piani settimanali completi, calcolatore di volume
 - 📊 Dosaggio automatico in ml — per fase e settimana
 - ⚠️ Sistema di allerta pH / EC / Temp / ORP con raccomandazioni
 - ⏳ Conto alla rovescia del raccolto + promemoria cambio acqua
@@ -104,8 +107,9 @@ Tutto funziona **100% localmente**. Nessun login, nessun cloud. I tuoi dati di c
 
 ### Fonctionnalités
 - 🌍 **6 Langues** — Allemand, Anglais, Italien, Français, Espagnol, Portugais
-- 🧪 **9 Marques de nutriments** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Bibliothèque de nutriments** — 13 marques, plans hebdomadaires complets, calculateur de volume
+- 🧪 **13 Marques de nutriments pour le DWC** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Aptus, House & Garden, Atami B'cuzz, Mills, Athena Pro, Athena Blended, Remo, Cyco. Biobizz est affiché mais verrouillé : selon le fabricant, le mélange ne doit pas reposer plus d'un jour
+- 🔎 **Chaque dose appuyée par une source du fabricant** — selon les tableaux officiels DWC/hydro (au 24/09/2026)
+- 📚 **Bibliothèque de nutriments** — 14 marques, plans hebdomadaires complets, calculateur de volume
 - 📊 Dosage automatique en ml — par phase et semaine
 - ⚠️ Système d'alerte pH / EC / Temp / ORP avec recommandations
 - ⏳ Compte à rebours de la récolte + rappel changement d'eau
@@ -131,8 +135,9 @@ Tout fonctionne **100% localement**. Pas de connexion, pas de cloud. Vos donnée
 
 ### Características
 - 🌍 **6 Idiomas** — Alemán, Inglés, Italiano, Francés, Español, Portugués
-- 🧪 **9 Marcas de nutrientes** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Biblioteca de nutrientes** — 13 marcas, planes semanales completos, calculadora de volumen
+- 🧪 **13 Marcas de nutrientes para DWC** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Aptus, House & Garden, Atami B'cuzz, Mills, Athena Pro, Athena Blended, Remo, Cyco. Biobizz se muestra pero bloqueado: según el fabricante la mezcla no debe reposar más de un día
+- 🔎 **Cada dosis respaldada por una fuente del fabricante** — según las tablas oficiales DWC/hidro (a 24/09/2026)
+- 📚 **Biblioteca de nutrientes** — 14 marcas, planes semanales completos, calculadora de volumen
 - 📊 Dosificación automática en ml — por fase y semana
 - ⚠️ Sistema de alertas pH / EC / Temp / ORP con recomendaciones
 - ⏳ Cuenta regresiva de cosecha + recordatorio de cambio de agua
@@ -158,8 +163,9 @@ Todo funciona **100% localmente**. Sin login, sin nube. Tus datos de cultivo nun
 
 ### Funcionalidades
 - 🌍 **6 Idiomas** — Alemão, Inglês, Italiano, Francês, Espanhol, Português
-- 🧪 **9 Marcas de nutrientes** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Biobizz, Aptus, House & Garden, Atami B'cuzz
-- 📚 **Biblioteca de nutrientes** — 13 marcas, planos semanais completos, calculadora de volume
+- 🧪 **13 Marcas de nutrientes para DWC** — Hesi, Canna Aqua, Plagron Hydro, GHE Flora Series, Advanced Nutrients, Aptus, House & Garden, Atami B'cuzz, Mills, Athena Pro, Athena Blended, Remo, Cyco. Biobizz aparece mas bloqueado: segundo o fabricante a mistura não deve ficar mais de um dia
+- 🔎 **Cada dose com fonte do fabricante** — segundo as tabelas oficiais DWC/hidro (em 24/09/2026)
+- 📚 **Biblioteca de nutrientes** — 14 marcas, planos semanais completos, calculadora de volume
 - 📊 Dosagem automática em ml — por fase e semana
 - ⚠️ Sistema de alertas pH / EC / Temp / ORP com recomendações
 - ⏳ Contagem decrescente da colheita + lembrete de troca de água
@@ -183,12 +189,13 @@ Tudo funciona **100% localmente**. Sem login, sem cloud. Os teus dados de cultiv
 
 | | |
 |---|---|
-| **Version** | v1.3 |
+| **Version** | v1.4 |
 | **Stack** | Pure HTML + CSS + Vanilla JS |
 | **Dependencies** | None — zero frameworks |
 | **Storage** | `localStorage` only |
 | **AI** | Google Gemini API (optional) |
-| **Nutrient Library** | `nutrients_library.html` — 13 brands, full schedules |
+| **Nutrient Library** | `nutrients_library.html` — 14 brands, full schedules |
+| **Nutrient data** | `brands.js` — single source, embedded into every page by `node tools/brands-einbetten.js`; `node tests/brands-belege.js` checks sources, limits and that every page is up to date |
 | **License** | [MIT](LICENSE) |
 
 ---
