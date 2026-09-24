@@ -196,6 +196,7 @@ Tudo funciona **100% localmente**. Sem login, sem cloud. Os teus dados de cultiv
 | **AI** | Google Gemini API (optional) |
 | **Nutrient Library** | `nutrients_library.html` — 14 brands, full schedules |
 | **Nutrient data** | `brands.js` — single source, embedded into every page by `node tools/brands-einbetten.js`; `node tests/brands-belege.js` checks sources, limits and that every page is up to date |
+| **Feedback** | [GitHub Issues](https://github.com/DanielEnki420/dwc-grower-edition/issues) — also linked from the one-time “what's new” notice in the app |
 | **License** | [MIT](LICENSE) |
 
 ---
