@@ -177,6 +177,14 @@
 // eigener Logik: mehr Bewaesserung -> schwaecher; DWC = staendig nass).
 // Das ist unsere Auslegung und steht so im planHinweis. FloraBlend und Dry
 // KoolBloom stehen in keinem GH-Wochenschema und haben keine Wochengabe mehr.
+//
+// ── Hesi-Wochen, Athena CaMg, CalMag vom 25.9.2026 ───────────────────
+// Hesi: die Mengen stimmten, die Wochen nicht. Laut Hydro-Zuchtschema (DE 2017
+// = EN 2022) Boost nur in Bluete 1 und 4-7, Woche 8 "Spuelen mit Wasser" (jetzt
+// wochen.bluete mit 7 Naehrstoffwochen), Wurzel Complex als Starter bis Bluete 1.
+// Athena (beide Linien): CaMg laut Feed Schedule bis Bluete 7, nicht 6.
+// Canna CalMag Agent und Remo Magnifical ohne festen Wochenwert - wie Hesi,
+// Plagron und Atami: der Hersteller dosiert nach Wasserhaerte.
 const MARKEN = {
   "hesi": {
     "name": "Hesi",
@@ -203,10 +211,11 @@ const MARKEN = {
         "note": "",
         "color": "#8b949e",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "0,5 ml/L, einmal pro Woche",
-          "beleg": "hesi.nl/de/Hesilicio"
+          "beleg": "hesi.nl/de/Hesilicio",
+          "hinweis": "Seit 25.9.2026 ohne Woche 8: laut Hesi Hydro Zuchtschema (DE 2017 und EN 2022 gleich), am vergroesserten Bild gelesen ist Bluetewoche 8 \"Spuelen mit Wasser\". Vorher: bluete {\"1\":0.5,\"2\":0.5,\"3\":0.5,\"4\":0.5,\"5\":0.5,\"6\":0.5,\"7\":0.5,\"8\":0.5}."
         }
       },
       "hydrowuchs": {
@@ -227,10 +236,11 @@ const MARKEN = {
         "note": "",
         "color": "#00ff88",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "50 ml/10 L = 5 ml/L, Starter und bei Stress",
-          "beleg": "Hesi Hydro Zuchtschema (Hesi Plantenvoeding BV), DE_Hydro_Duengeschema.pdf"
+          "beleg": "Hesi Hydro Zuchtschema (Hesi Plantenvoeding BV), DE_Hydro_Duengeschema.pdf",
+          "hinweis": "Angeglichen am 25.9.2026: laut Hesi Hydro Zuchtschema (DE 2017 und EN 2022 gleich), am vergroesserten Bild gelesen \"Starter & gegen Stress\" 50 ml/10 L vom Start bis Bluetewoche 1; eine halbe Menge in Bluete 1-2 steht nicht im Schema. Vorher: wuchs {\"1\":5,\"2\":5,\"3\":5}, bluete {\"1\":2.5,\"2\":2.5}."
         }
       },
       "powerzyme": {
@@ -239,10 +249,11 @@ const MARKEN = {
         "note": "",
         "color": "#a78bfa",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "20 ml/10 L = 2 ml/L, 1-2x pro Woche",
-          "beleg": "Hesi Hydro Zuchtschema (Hesi Plantenvoeding BV), DE_Hydro_Duengeschema.pdf"
+          "beleg": "Hesi Hydro Zuchtschema (Hesi Plantenvoeding BV), DE_Hydro_Duengeschema.pdf",
+          "hinweis": "Seit 25.9.2026 ohne Woche 8: laut Hesi Hydro Zuchtschema (DE 2017 und EN 2022 gleich), am vergroesserten Bild gelesen ist Bluetewoche 8 \"Spuelen mit Wasser\". Vorher: bluete {\"1\":2,\"2\":2,\"3\":2,\"4\":2,\"5\":2,\"6\":2,\"7\":2,\"8\":2}."
         }
       },
       "supervit": {
@@ -265,10 +276,11 @@ const MARKEN = {
         "note": "",
         "color": "#00d4ff",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "50 ml/10 L = 5 ml/L",
-          "beleg": "Hesi Hydro Zuchtschema (Hesi Plantenvoeding BV), DE_Hydro_Duengeschema.pdf"
+          "beleg": "Hesi Hydro Zuchtschema (Hesi Plantenvoeding BV), DE_Hydro_Duengeschema.pdf",
+          "hinweis": "Seit 25.9.2026 ohne Woche 8: laut Hesi Hydro Zuchtschema (DE 2017 und EN 2022 gleich), am vergroesserten Bild gelesen ist Bluetewoche 8 \"Spuelen mit Wasser\". Vorher: bluete {\"1\":5,\"2\":5,\"3\":5,\"4\":5,\"5\":5,\"6\":5,\"7\":5,\"8\":5}."
         }
       },
       "boost": {
@@ -277,11 +289,12 @@ const MARKEN = {
         "note": "",
         "color": "#f472b6",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "20 ml/10 L = 2 ml/L",
           "beleg": "Hesi Hydro Zuchtschema (Hesi Plantenvoeding BV), DE_Hydro_Duengeschema.pdf + hesi.nl/de/Boost",
-          "vorher": 1
+          "vorher": 1,
+          "hinweis": "Angeglichen am 25.9.2026: laut Hesi Hydro Zuchtschema (DE 2017 und EN 2022 gleich), am vergroesserten Bild gelesen Boost in Bluetewoche 1 und dann 4-7 (der zweite Balken beginnt wie PK 13/14 in Woche 4), Woche 8 spuelen. Vorher: bluete {\"1\":2,\"2\":2,\"3\":2,\"4\":2,\"5\":2,\"6\":2,\"7\":2,\"8\":2}."
         }
       },
       "pk1314": {
@@ -334,8 +347,7 @@ const MARKEN = {
         },
         "wurzel": {
           "1": 5,
-          "2": 5,
-          "3": 5
+          "2": 5
         },
         "powerzyme": {
           "1": 2,
@@ -356,8 +368,7 @@ const MARKEN = {
           "4": 0.5,
           "5": 0.5,
           "6": 0.5,
-          "7": 0.5,
-          "8": 0.5
+          "7": 0.5
         },
         "hydroblte": {
           "1": 5,
@@ -366,12 +377,10 @@ const MARKEN = {
           "4": 5,
           "5": 5,
           "6": 5,
-          "7": 5,
-          "8": 5
+          "7": 5
         },
         "wurzel": {
-          "1": 2.5,
-          "2": 2.5
+          "1": 5
         },
         "powerzyme": {
           "1": 2,
@@ -380,18 +389,14 @@ const MARKEN = {
           "4": 2,
           "5": 2,
           "6": 2,
-          "7": 2,
-          "8": 2
+          "7": 2
         },
         "boost": {
           "1": 2,
-          "2": 2,
-          "3": 2,
           "4": 2,
           "5": 2,
           "6": 2,
-          "7": 2,
-          "8": 2
+          "7": 2
         },
         "pk1314": {
           "4": 0.25,
@@ -473,7 +478,15 @@ const MARKEN = {
         "text": "PK 13/14 steigt laut Hesi-Schema an: 2,5 / 5,0 / 7,5 / 15 ml auf 10 L in Blütewoche 4 bis 7. In Woche 8 nur noch mit Wasser spülen."
       }
     ],
-    "quelle": "dashboard (Hydro-Linie)"
+    "quelle": "dashboard (Hydro-Linie)",
+    "wochen": {
+      "bluete": {
+        "naehrstoff": 7,
+        "gesamt": 8,
+        "spuelen": "laut Hesi mit klarem Wasser spülen"
+      }
+    },
+    "planHinweis": "Seit 25.9.2026 nach den Wochen des Hesi-Hydro-Zuchtschemas: Boost in Blütewoche 1 und 4–7, PK 13/14 in Woche 4–7, Woche 8 nur Wasser (spülen), Wurzel Complex als Starter vom Start bis Blütewoche 1 und bei Stress. Die Mengen selbst waren schon richtig; vorher lief Boost auch in Woche 2, 3 und 8, und Woche 8 wurde noch gedüngt."
   },
   "canna": {
     "name": "Canna Aqua",
@@ -596,11 +609,11 @@ const MARKEN = {
         "note": "Ca/Mg — bei Mangel oder weiches Wasser",
         "color": "#fbbf24",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "Herstellerangabe: nach Wasserhaerte bzw. Mangelbild dosieren, kein fester Wochenwert",
           "beleg": "Produktangaben des jeweiligen Herstellers",
-          "hinweis": "CalMag ist wasserabhaengig: bei Umkehrosmose- oder sehr weichem Wasser noetig, bei hartem Leitungswasser oft gar nicht. Ein Fixwert waere hier falsche Genauigkeit."
+          "hinweis": "CalMag ist wasserabhaengig: bei Umkehrosmose- oder sehr weichem Wasser noetig, bei hartem Leitungswasser oft gar nicht. Ein Fixwert waere hier falsche Genauigkeit. Seit 25.9.2026 ohne feste Wochengabe - der Hersteller dosiert nach Wasserhaerte bzw. Mangelbild, ein Fixwert waere falsche Genauigkeit. Vorher: wuchs {\"1\":0.4,\"2\":0.4,\"3\":0.4,\"4\":0.4,\"5\":0.4,\"6\":0.4,\"7\":0.4,\"8\":0.4}."
         }
       },
       "flush": {
@@ -651,16 +664,6 @@ const MARKEN = {
           "6": 2.5,
           "7": 2.5,
           "8": 2.5
-        },
-        "calmag": {
-          "1": 0.4,
-          "2": 0.4,
-          "3": 0.4,
-          "4": 0.4,
-          "5": 0.4,
-          "6": 0.4,
-          "7": 0.4,
-          "8": 0.4
         }
       },
       "bluete": {
@@ -733,16 +736,14 @@ const MARKEN = {
         "cannazym",
         "vegaA",
         "vegaB",
-        "rhizotonic",
-        "calmag"
+        "rhizotonic"
       ],
       "bloom": [
         "cannazym",
         "floresA",
         "floresB",
         "boost",
-        "pk1314",
-        "calmag"
+        "pk1314"
       ]
     },
     "tips": [
@@ -3305,10 +3306,11 @@ const MARKEN = {
         "note": "Optional bei RO-/Umkehrosmosewasser",
         "color": "#fbbf24",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "2-3 ml/Gallone = 0,53-0,79 ml/L",
-          "beleg": "Athena Feed Schedule (Normal), Athena-Feed-Schedule-English-All.pdf, ml pro Gallone"
+          "beleg": "Athena Feed Schedule (Normal), Athena-Feed-Schedule-English-All.pdf, ml pro Gallone",
+          "hinweis": "Seit 25.9.2026 auch in Bluetewoche 7: Athena Feed Schedule fuehrt CaMg ueber 4 Wuchs- und 7 Bluetewochen. Vorher: bluete {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65,\"5\":0.65,\"6\":0.65}."
         }
       },
       "cleanse": {
@@ -3401,7 +3403,8 @@ const MARKEN = {
           "3": 0.65,
           "4": 0.65,
           "5": 0.65,
-          "6": 0.65
+          "6": 0.65,
+          "7": 0.65
         },
         "cleanse": {
           "1": 0.5,
@@ -3578,10 +3581,11 @@ const MARKEN = {
         "note": "Calcium-Magnesium-Supplement",
         "color": "#fbbf24",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "2-3 ml/Gallone = 0,53-0,79 ml/L",
-          "beleg": "Athena Feed Schedule (Normal), Athena-Feed-Schedule-English-All.pdf, ml pro Gallone"
+          "beleg": "Athena Feed Schedule (Normal), Athena-Feed-Schedule-English-All.pdf, ml pro Gallone",
+          "hinweis": "Seit 25.9.2026 auch in Bluetewoche 7: Athena Feed Schedule fuehrt CaMg ueber 4 Wuchs- und 7 Bluetewochen. Vorher: bluete {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65,\"5\":0.65,\"6\":0.65}."
         }
       },
       "cleanse": {
@@ -3672,7 +3676,8 @@ const MARKEN = {
           "3": 0.65,
           "4": 0.65,
           "5": 0.65,
-          "6": 0.65
+          "6": 0.65,
+          "7": 0.65
         },
         "cleanse": {
           "1": 0.5,
@@ -3840,11 +3845,11 @@ const MARKEN = {
         "note": "Ca/Mg + Fe Supplement",
         "color": "#fbbf24",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
           "herstellerAngabe": "Herstellerangabe: nach Wasserhaerte bzw. Mangelbild dosieren, kein fester Wochenwert",
           "beleg": "Produktangaben des jeweiligen Herstellers",
-          "hinweis": "CalMag ist wasserabhaengig: bei Umkehrosmose- oder sehr weichem Wasser noetig, bei hartem Leitungswasser oft gar nicht. Ein Fixwert waere hier falsche Genauigkeit."
+          "hinweis": "CalMag ist wasserabhaengig: bei Umkehrosmose- oder sehr weichem Wasser noetig, bei hartem Leitungswasser oft gar nicht. Ein Fixwert waere hier falsche Genauigkeit. Seit 25.9.2026 ohne feste Wochengabe - der Hersteller dosiert nach Wasserhaerte bzw. Mangelbild, ein Fixwert waere falsche Genauigkeit. Vorher: wuchs {\"1\":0.2,\"2\":0.2,\"3\":0.2,\"4\":0.2}, bluete {\"1\":0.2}."
         }
       },
       "candy": {
@@ -3890,12 +3895,6 @@ const MARKEN = {
           "3": 1.85,
           "4": 2.11
         },
-        "magnifical": {
-          "1": 0.2,
-          "2": 0.2,
-          "3": 0.2,
-          "4": 0.2
-        },
         "veloKelp": {
           "1": 1.32,
           "2": 1.59,
@@ -3921,9 +3920,6 @@ const MARKEN = {
           "5": 2.64,
           "6": 2.64,
           "7": 2.64
-        },
-        "magnifical": {
-          "1": 0.2
         },
         "veloKelp": {
           "1": 2.11,
@@ -3966,13 +3962,11 @@ const MARKEN = {
       "grow": [
         "rMicro",
         "rGrow",
-        "magnifical",
         "veloKelp"
       ],
       "bloom": [
         "rMicro",
         "rBloom",
-        "magnifical",
         "veloKelp",
         "astro",
         "candy"

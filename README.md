@@ -189,7 +189,7 @@ Tudo funciona **100% localmente**. Sem login, sem cloud. Os teus dados de cultiv
 
 | | |
 |---|---|
-| **Version** | v1.4 |
+| **Version** | v1.5 |
 | **Stack** | Pure HTML + CSS + Vanilla JS |
 | **Dependencies** | None — zero frameworks |
 | **Storage** | `localStorage` only |

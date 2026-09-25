@@ -109,7 +109,7 @@ for (const [mk, m] of Object.entries(MARKEN)) {
     }
 }
 
-// ── Stichwerte (24.9.2026, Aptus CLEAN und GHE seit 25.9.2026) ─────────
+// ── Stichwerte (24.9.2026; Aptus, GHE, Hesi-Wochen, Athena CaMg, CalMag seit 25.9.) ─
 // Faengt Umrechnungsfehler (Gallone/Liter, je Komponente/zusammen) und
 // versehentliches Zuruecksetzen. undefined = in dieser Woche NICHT dosiert.
 const GOLD = [
@@ -126,6 +126,10 @@ const GOLD = [
     ['aptus',  'bluete', 'allInOne',   3, 2],    ['aptus', 'bluete', 'breakout',   5, 1],
     ['athena', 'bluete', 'fade',       7, 3.2],  ['athena','bluete', 'proCore',    7, undefined],
     ['athenaBlended', 'bluete', 'bloomA', 7, undefined],
+    ['hesi',   'bluete', 'boost',      2, undefined], ['hesi',  'bluete', 'boost',      4, 2],
+    ['hesi',   'bluete', 'hydroblte',  8, undefined], ['hesi',  'bluete', 'wurzel',     2, undefined],
+    ['athenaBlended', 'bluete', 'camg', 7, 0.65],   ['athena', 'bluete', 'camg',      7, 0.65],
+    ['canna',  'wuchs',  'calmag',     1, undefined], ['remo',  'wuchs',  'magnifical', 1, undefined],
 ];
 // ── Sichtbare Texte ohne ae/oe/ue/ss-Ersatz (25.9.2026) ─────────────────
 // planHinweis, Tipps, Wochenhinweise, Spuelwoche und Produktnotizen erscheinen
