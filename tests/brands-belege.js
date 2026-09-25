@@ -148,12 +148,12 @@ const deutsch = (x, wo) => {
     return x.de;
 };
 for (const [mk, m] of Object.entries(MARKEN)) {
-    const texte = [deutsch(m.planHinweis, `${mk} planHinweis`), ...(m.tips || []).map(t => t.text)];
+    const texte = [deutsch(m.planHinweis, `${mk} planHinweis`), ...(m.tips || []).map((t, i) => deutsch(t.text, `${mk} Tipp ${i + 1}`))];
     for (const ph of ['wuchs', 'bluete']) {
         for (const [w, h] of Object.entries((m.hinweis || {})[ph] || {})) texte.push(deutsch(h, `${mk} Hinweis ${ph} ${w}`));
         const wb = (m.wochen || {})[ph]; if (wb) texte.push(deutsch(wb.spuelen, `${mk} Spueltext`));
     }
-    for (const p of Object.values(m.produkte)) texte.push(p.name, p.note);
+    for (const [pk, p] of Object.entries(m.produkte)) texte.push(p.name, deutsch(p.note, `${mk}.${pk} Notiz`));
     for (const t of texte.filter(x => typeof x === 'string')) {
         const x = ERSATZ.exec(t);
         if (x) fehler.push(`${m.name}: sichtbarer Text mit "${x[0]}" statt Umlaut`);

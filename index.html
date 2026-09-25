@@ -1276,6 +1276,16 @@ function applyTranslations() {
 // in der englischen, italienischen, franzoesischen, spanischen und
 // portugiesischen Oberflaeche. Jetzt Objekte mit allen sechs Sprachen; die
 // Seiten zeigen sie ueber planText(x, currentLang).
+//
+// ── Bibliothek mehrsprachig vom 25.9.2026 ──────────────────────────────
+// Tipps (tips[].text) und Produkthinweise (produkte.*.note) ebenfalls als
+// {de, en, it, fr, es, pt}; die Bibliothek zeigt sie ueber planText().
+// Dabei korrigiert, weil sie den Daten widersprachen: entfernt die Tipps zu
+// House & Garden ("Schema weicht ab"), Cyco ("liegt deutlich ueber"), Remo
+// Honey Chrome (Emerald Harvest), Atami "Ataraxia" (gibt es nicht) und Cyco
+// "Uptake (Silica)" (kein Silikat); neu gefasst Athena Pro Gramm, Fade (Pro
+// und Blended: ersetzt Core bzw. Bloom A/B, 32 ml/10 L), Mills Ultimate PK
+// (Bluete 5-9) und Hesi SuperVit (Tropfen statt 1 ml/10 L).
 const MARKEN = {
   "hesi": {
     "name": "Hesi",
@@ -1404,7 +1414,14 @@ const MARKEN = {
       "calmag": {
         "name": "Hesi CalMag",
         "type": "calmag",
-        "note": "Optional bei RO-/weichem Wasser — kein Fixwert, bis EC +0.4-0.5 mS/cm dosieren",
+        "note": {
+          "de": "Optional bei RO-/weichem Wasser — kein Fixwert, bis EC +0.4-0.5 mS/cm dosieren",
+          "en": "Optional with RO/soft water — no fixed dose, add until EC rises by 0.4–0.5 mS/cm",
+          "it": "Facoltativo con acqua osmotica/dolce — nessuna dose fissa, dosare fino a EC +0,4–0,5 mS/cm",
+          "fr": "Facultatif avec eau osmosée/douce — pas de dose fixe, doser jusqu’à EC +0,4–0,5 mS/cm",
+          "es": "Opcional con agua de ósmosis/blanda — sin dosis fija, dosificar hasta EC +0,4–0,5 mS/cm",
+          "pt": "Opcional com água de osmose/macia — sem dose fixa, dosear até EC +0,4–0,5 mS/cm"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -1542,31 +1559,80 @@ const MARKEN = {
     "tips": [
       {
         "icon": "⚠️",
-        "text": "Immer erst Wasser, dann Nährstoffe in Reihenfolge zugeben"
+        "text": {
+          "de": "Immer erst Wasser, dann Nährstoffe in Reihenfolge zugeben",
+          "en": "Always water first, then add the nutrients in order",
+          "it": "Sempre prima l’acqua, poi i nutrienti nell’ordine indicato",
+          "fr": "Toujours l’eau d’abord, puis les nutriments dans l’ordre",
+          "es": "Siempre primero el agua, luego los nutrientes en orden",
+          "pt": "Sempre primeiro a água, depois os nutrientes pela ordem"
+        }
       },
       {
         "icon": "🌡️",
-        "text": "Optimale Wassertemperatur: 18–22°C — wärmer = mehr Pythium-Risiko"
+        "text": {
+          "de": "Optimale Wassertemperatur: 18–22°C — wärmer = mehr Pythium-Risiko",
+          "en": "Ideal water temperature: 18–22 °C — warmer = higher Pythium risk",
+          "it": "Temperatura ideale dell’acqua: 18–22 °C — più calda = più rischio di Pythium",
+          "fr": "Température idéale de l’eau : 18–22 °C — plus chaud = plus de risque de Pythium",
+          "es": "Temperatura ideal del agua: 18–22 °C; más caliente = más riesgo de Pythium",
+          "pt": "Temperatura ideal da água: 18–22 °C — mais quente = mais risco de Pythium"
+        }
       },
       {
         "icon": "📏",
-        "text": "pH Ziel DWC: 5.8–6.2 — erst Nährstoffe, dann pH einstellen"
+        "text": {
+          "de": "pH Ziel DWC: 5.8–6.2 — erst Nährstoffe, dann pH einstellen",
+          "en": "DWC pH target: 5.8–6.2 — nutrients first, then adjust pH",
+          "it": "pH obiettivo DWC: 5,8–6,2 — prima i nutrienti, poi regola il pH",
+          "fr": "pH cible en DWC : 5,8–6,2 — d’abord les nutriments, puis ajuster le pH",
+          "es": "pH objetivo en DWC: 5,8–6,2; primero los nutrientes, luego ajustar el pH",
+          "pt": "pH alvo em DWC: 5,8–6,2 — primeiro os nutrientes, depois ajustar o pH"
+        }
       },
       {
         "icon": "💡",
-        "text": "SuperVit: nur 1 ml/10L — nicht überdosieren"
+        "text": {
+          "de": "SuperVit wird in Tropfen dosiert: 1 Tropfen pro 4,5 L – nicht überdosieren.",
+          "en": "SuperVit is dosed in drops: 1 drop per 4.5 L – don’t overdose.",
+          "it": "SuperVit si dosa a gocce: 1 goccia ogni 4,5 L – non sovradosare.",
+          "fr": "SuperVit se dose en gouttes : 1 goutte pour 4,5 L – ne pas surdoser.",
+          "es": "SuperVit se dosifica en gotas: 1 gota por 4,5 L; no sobredosificar.",
+          "pt": "SuperVit doseia-se em gotas: 1 gota por 4,5 L – não sobredosear."
+        }
       },
       {
         "icon": "🪨",
-        "text": "Hesilicio (Silizium-Booster): 0.5 ml/L = 5 ml/10L, ganzer Run, immer als erstes Produkt zugeben"
+        "text": {
+          "de": "Hesilicio (Silizium-Booster): 0.5 ml/L = 5 ml/10L, ganzer Run, immer als erstes Produkt zugeben",
+          "en": "Hesilicio (silicon booster): 0.5 ml/L = 5 ml/10 L, whole run, always add as the first product",
+          "it": "Hesilicio (booster di silicio): 0,5 ml/L = 5 ml/10 L, tutto il ciclo, sempre come primo prodotto",
+          "fr": "Hesilicio (booster de silicium) : 0,5 ml/L = 5 ml/10 L, tout le cycle, toujours en premier produit",
+          "es": "Hesilicio (potenciador de silicio): 0,5 ml/L = 5 ml/10 L, todo el ciclo, siempre como primer producto",
+          "pt": "Hesilicio (estimulante de silício): 0,5 ml/L = 5 ml/10 L, todo o ciclo, sempre como primeiro produto"
+        }
       },
       {
         "icon": "💧",
-        "text": "Hesi CalMag: nur bei RO-/Umkehrosmosewasser nötig — kein Fixwert, so viel zugeben bis EC um 0.4-0.5 mS/cm steigt (ca. 0.6-0.8 ml/L als Richtwert)"
+        "text": {
+          "de": "Hesi CalMag: nur bei RO-/Umkehrosmosewasser nötig — kein Fixwert, so viel zugeben bis EC um 0.4-0.5 mS/cm steigt (ca. 0.6-0.8 ml/L als Richtwert)",
+          "en": "Hesi CalMag: only needed with RO (reverse-osmosis) water — no fixed dose, add until the EC rises by 0.4–0.5 mS/cm (about 0.6–0.8 ml/L as a guide)",
+          "it": "Hesi CalMag: serve solo con acqua osmotica — nessuna dose fissa, aggiungere finché l’EC sale di 0,4–0,5 mS/cm (circa 0,6–0,8 ml/L come riferimento)",
+          "fr": "Hesi CalMag : nécessaire uniquement avec de l’eau osmosée — pas de dose fixe, ajouter jusqu’à ce que l’EC monte de 0,4–0,5 mS/cm (environ 0,6–0,8 ml/L à titre indicatif)",
+          "es": "Hesi CalMag: solo hace falta con agua de ósmosis inversa; sin dosis fija, añadir hasta que la EC suba 0,4–0,5 mS/cm (unos 0,6–0,8 ml/L como referencia)",
+          "pt": "Hesi CalMag: só é preciso com água de osmose inversa — sem dose fixa, adicionar até o EC subir 0,4–0,5 mS/cm (cerca de 0,6–0,8 ml/L como referência)"
+        }
       },
       {
         "icon": "🧪",
-        "text": "PK 13/14 steigt laut Hesi-Schema an: 2,5 / 5,0 / 7,5 / 15 ml auf 10 L in Blütewoche 4 bis 7. In Woche 8 nur noch mit Wasser spülen."
+        "text": {
+          "de": "PK 13/14 steigt laut Hesi-Schema an: 2,5 / 5,0 / 7,5 / 15 ml auf 10 L in Blütewoche 4 bis 7. In Woche 8 nur noch mit Wasser spülen.",
+          "en": "Per the Hesi schedule, PK 13/14 rises: 2.5 / 5.0 / 7.5 / 15 ml per 10 L in bloom weeks 4 to 7. In week 8, flush with plain water only.",
+          "it": "Secondo lo schema Hesi, PK 13/14 aumenta: 2,5 / 5,0 / 7,5 / 15 ml ogni 10 L nelle settimane di fioritura 4–7. Nella settimana 8 solo lavaggio con acqua.",
+          "fr": "Selon le schéma Hesi, le PK 13/14 augmente : 2,5 / 5,0 / 7,5 / 15 ml pour 10 L en semaines de floraison 4 à 7. En semaine 8, rinçage à l’eau claire uniquement.",
+          "es": "Según el esquema de Hesi, PK 13/14 sube: 2,5 / 5,0 / 7,5 / 15 ml por 10 L en las semanas 4 a 7 de floración. En la semana 8, solo lavado con agua.",
+          "pt": "Segundo o esquema da Hesi, o PK 13/14 sobe: 2,5 / 5,0 / 7,5 / 15 ml por 10 L nas semanas 4 a 7 de floração. Na semana 8, só lavagem com água."
+        }
       }
     ],
     "quelle": "dashboard (Hydro-Linie)",
@@ -1615,7 +1681,14 @@ const MARKEN = {
       "vegaA": {
         "name": "Aqua Vega A",
         "type": "base",
-        "note": "DWC/Recirculating Basis A",
+        "note": {
+          "de": "DWC/Recirculating Basis A",
+          "en": "DWC/recirculating base A",
+          "it": "Base A per DWC/ricircolo",
+          "fr": "Base A DWC/recirculation",
+          "es": "Base A para DWC/recirculación",
+          "pt": "Base A para DWC/recirculação"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1627,7 +1700,14 @@ const MARKEN = {
       "vegaB": {
         "name": "Aqua Vega B",
         "type": "base",
-        "note": "DWC/Recirculating Basis B",
+        "note": {
+          "de": "DWC/Recirculating Basis B",
+          "en": "DWC/recirculating base B",
+          "it": "Base B per DWC/ricircolo",
+          "fr": "Base B DWC/recirculation",
+          "es": "Base B para DWC/recirculación",
+          "pt": "Base B para DWC/recirculação"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1639,7 +1719,14 @@ const MARKEN = {
       "floresA": {
         "name": "Aqua Flores A",
         "type": "base",
-        "note": "DWC/Recirculating Bloom A",
+        "note": {
+          "de": "DWC/Recirculating Bloom A",
+          "en": "DWC/recirculating Bloom A",
+          "it": "Bloom A per DWC/ricircolo",
+          "fr": "Bloom A DWC/recirculation",
+          "es": "Bloom A para DWC/recirculación",
+          "pt": "Bloom A para DWC/recirculação"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1651,7 +1738,14 @@ const MARKEN = {
       "floresB": {
         "name": "Aqua Flores B",
         "type": "base",
-        "note": "DWC/Recirculating Bloom B",
+        "note": {
+          "de": "DWC/Recirculating Bloom B",
+          "en": "DWC/recirculating Bloom B",
+          "it": "Bloom B per DWC/ricircolo",
+          "fr": "Bloom B DWC/recirculation",
+          "es": "Bloom B para DWC/recirculación",
+          "pt": "Bloom B para DWC/recirculação"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1663,7 +1757,14 @@ const MARKEN = {
       "rhizotonic": {
         "name": "Rhizotonic",
         "type": "root",
-        "note": "Wurzel + Vitamine, Grow Wk 1–4",
+        "note": {
+          "de": "Wurzel + Vitamine, Grow Wk 1–4",
+          "en": "Roots + vitamins, grow wk 1–4",
+          "it": "Radici + vitamine, crescita sett. 1–4",
+          "fr": "Racines + vitamines, croissance sem. 1–4",
+          "es": "Raíces + vitaminas, crecimiento sem. 1–4",
+          "pt": "Raízes + vitaminas, crescimento sem. 1–4"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1675,7 +1776,14 @@ const MARKEN = {
       "cannazym": {
         "name": "CannaZym",
         "type": "enzyme",
-        "note": "Enzyme, ganzer Run",
+        "note": {
+          "de": "Enzyme, ganzer Run",
+          "en": "Enzymes, whole run",
+          "it": "Enzimi, tutto il ciclo",
+          "fr": "Enzymes, tout le cycle",
+          "es": "Enzimas, todo el ciclo",
+          "pt": "Enzimas, todo o ciclo"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1687,7 +1795,14 @@ const MARKEN = {
       "boost": {
         "name": "Cannaboost",
         "type": "carbs",
-        "note": "Carbs + Bloom-Booster, Bloom Wk 1–6",
+        "note": {
+          "de": "Carbs + Bloom-Booster, Bloom Wk 1–6",
+          "en": "Carbs + bloom booster, bloom wk 1–6",
+          "it": "Carboidrati + booster di fioritura, fioritura sett. 1–6",
+          "fr": "Glucides + booster de floraison, floraison sem. 1–6",
+          "es": "Carbohidratos + potenciador de floración, floración sem. 1–6",
+          "pt": "Hidratos de carbono + estimulante de floração, floração sem. 1–6"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1699,7 +1814,14 @@ const MARKEN = {
       "pk1314": {
         "name": "PK 13/14",
         "type": "pk",
-        "note": "Phosphor-Kalium, Bloom Wk 4–6",
+        "note": {
+          "de": "Phosphor-Kalium, Bloom Wk 4–6",
+          "en": "Phosphorus-potassium, bloom wk 4–6",
+          "it": "Fosforo-potassio, fioritura sett. 4–6",
+          "fr": "Phosphore-potassium, floraison sem. 4–6",
+          "es": "Fósforo-potasio, floración sem. 4–6",
+          "pt": "Fósforo-potássio, floração sem. 4–6"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1711,7 +1833,14 @@ const MARKEN = {
       "calmag": {
         "name": "CalMag Agent",
         "type": "calmag",
-        "note": "Ca/Mg — bei Mangel oder weiches Wasser",
+        "note": {
+          "de": "Ca/Mg — bei Mangel oder weiches Wasser",
+          "en": "Ca/Mg — for deficiency or soft water",
+          "it": "Ca/Mg — in caso di carenza o acqua dolce",
+          "fr": "Ca/Mg — en cas de carence ou d’eau douce",
+          "es": "Ca/Mg — en caso de carencia o agua blanda",
+          "pt": "Ca/Mg — em caso de carência ou água macia"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -1724,7 +1853,14 @@ const MARKEN = {
       "flush": {
         "name": "CANNA Flush",
         "type": "flush",
-        "note": "Reservoir komplett ersetzen, 24-48h vor Ernte",
+        "note": {
+          "de": "Reservoir komplett ersetzen, 24-48h vor Ernte",
+          "en": "Replace the whole reservoir, 24–48 h before harvest",
+          "it": "Sostituire tutto il serbatoio, 24–48 h prima del raccolto",
+          "fr": "Remplacer tout le réservoir, 24–48 h avant la récolte",
+          "es": "Sustituir todo el depósito, 24–48 h antes de la cosecha",
+          "pt": "Substituir todo o reservatório, 24–48 h antes da colheita"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -1854,23 +1990,58 @@ const MARKEN = {
     "tips": [
       {
         "icon": "🔴",
-        "text": "Aqua-Linie ist speziell für DWC/NFT/Recirculating — nicht für Coco oder Soil"
+        "text": {
+          "de": "Aqua-Linie ist speziell für DWC/NFT/Recirculating — nicht für Coco oder Soil",
+          "en": "The Aqua line is made for DWC/NFT/recirculating systems — not for coco or soil",
+          "it": "La linea Aqua è pensata per DWC/NFT/sistemi a ricircolo — non per cocco o terra",
+          "fr": "La gamme Aqua est conçue pour le DWC/NFT/la recirculation — pas pour le coco ni la terre",
+          "es": "La línea Aqua está pensada para DWC/NFT/sistemas recirculantes, no para coco ni tierra",
+          "pt": "A linha Aqua é feita para DWC/NFT/sistemas de recirculação — não para coco nem terra"
+        }
       },
       {
         "icon": "⚖️",
-        "text": "Vega/Flores A und B immer im Verhältnis 1:1 — niemals einzeln"
+        "text": {
+          "de": "Vega/Flores A und B immer im Verhältnis 1:1 — niemals einzeln",
+          "en": "Vega/Flores A and B always 1:1 — never on their own",
+          "it": "Vega/Flores A e B sempre in rapporto 1:1 — mai da soli",
+          "fr": "Vega/Flores A et B toujours à 1:1 — jamais séparément",
+          "es": "Vega/Flores A y B siempre en proporción 1:1, nunca por separado",
+          "pt": "Vega/Flores A e B sempre na proporção 1:1 — nunca separados"
+        }
       },
       {
         "icon": "🚿",
-        "text": "CANNA Flush: korrigiert — offiziell 1:250 (40 ml/10L), Reservoir 24-48h vor Ernte damit komplett ersetzen, kein normaler Wochen-Zusatz"
+        "text": {
+          "de": "CANNA Flush: korrigiert — offiziell 1:250 (40 ml/10L), Reservoir 24-48h vor Ernte damit komplett ersetzen, kein normaler Wochen-Zusatz",
+          "en": "CANNA Flush: corrected — officially 1:250 (40 ml/10 L); replace the whole reservoir with it 24–48 h before harvest, not a regular weekly additive",
+          "it": "CANNA Flush: corretto — ufficialmente 1:250 (40 ml/10 L); 24–48 h prima del raccolto sostituire con esso tutto il serbatoio, non è un additivo settimanale",
+          "fr": "CANNA Flush : corrigé — officiellement 1:250 (40 ml/10 L) ; 24–48 h avant la récolte, remplacer tout le réservoir par cette solution, pas un additif hebdomadaire",
+          "es": "CANNA Flush: corregido; oficialmente 1:250 (40 ml/10 L). Sustituir con él todo el depósito 24–48 h antes de la cosecha; no es un aditivo semanal",
+          "pt": "CANNA Flush: corrigido — oficialmente 1:250 (40 ml/10 L); 24–48 h antes da colheita substituir todo o reservatório por esta solução, não é um aditivo semanal"
+        }
       },
       {
         "icon": "📋",
-        "text": "Werte korrigiert nach offiziellem CANNA Aqua Grow Schedule (canna.ca): CannaZym, Cannaboost und Rhizotonic waren zuvor ca. 5-10x unterdosiert."
+        "text": {
+          "de": "Werte korrigiert nach offiziellem CANNA Aqua Grow Schedule (canna.ca): CannaZym, Cannaboost und Rhizotonic waren zuvor ca. 5-10x unterdosiert.",
+          "en": "Values corrected to the official CANNA Aqua Grow Schedule (canna.ca): CannaZym, Cannaboost and Rhizotonic were previously underdosed by about 5–10×.",
+          "it": "Valori corretti secondo il CANNA Aqua Grow Schedule ufficiale (canna.ca): CannaZym, Cannaboost e Rhizotonic prima erano sottodosati di circa 5–10 volte.",
+          "fr": "Valeurs corrigées d’après le CANNA Aqua Grow Schedule officiel (canna.ca) : CannaZym, Cannaboost et Rhizotonic étaient auparavant sous-dosés d’environ 5 à 10 fois.",
+          "es": "Valores corregidos según el CANNA Aqua Grow Schedule oficial (canna.ca): CannaZym, Cannaboost y Rhizotonic estaban antes infradosificados unas 5–10 veces.",
+          "pt": "Valores corrigidos segundo o CANNA Aqua Grow Schedule oficial (canna.ca): CannaZym, Cannaboost e Rhizotonic estavam antes subdoseados cerca de 5–10 vezes."
+        }
       },
       {
         "icon": "✅",
-        "text": "Gegen das offizielle CANNA-Aqua-Zuchtschema geprüft (17.9.2026) - Basis, Rhizotonic, CannaZym, Boost und PK stimmen."
+        "text": {
+          "de": "Gegen das offizielle CANNA-Aqua-Zuchtschema geprüft (17.9.2026) - Basis, Rhizotonic, CannaZym, Boost und PK stimmen.",
+          "en": "Checked against the official CANNA Aqua grow schedule (17 Sep 2026) – base, Rhizotonic, CannaZym, Boost and PK are correct.",
+          "it": "Verificato con lo schema di coltivazione ufficiale CANNA Aqua (17/9/2026) – base, Rhizotonic, CannaZym, Boost e PK sono corretti.",
+          "fr": "Vérifié par rapport au schéma de culture officiel CANNA Aqua (17/09/2026) – base, Rhizotonic, CannaZym, Boost et PK sont justes.",
+          "es": "Comprobado con el esquema de cultivo oficial de CANNA Aqua (17/9/2026): base, Rhizotonic, CannaZym, Boost y PK son correctos.",
+          "pt": "Verificado com o esquema de cultivo oficial CANNA Aqua (17/9/2026) – base, Rhizotonic, CannaZym, Boost e PK estão certos."
+        }
       }
     ],
     "quelle": "library"
@@ -1897,7 +2068,14 @@ const MARKEN = {
       "hydroA": {
         "name": "Hydro A",
         "type": "base",
-        "note": "Basis A — immer 1:1 mit B",
+        "note": {
+          "de": "Basis A — immer 1:1 mit B",
+          "en": "Base A — always 1:1 with B",
+          "it": "Base A — sempre 1:1 con B",
+          "fr": "Base A — toujours 1:1 avec B",
+          "es": "Base A — siempre 1:1 con B",
+          "pt": "Base A — sempre 1:1 com B"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1909,7 +2087,14 @@ const MARKEN = {
       "hydroB": {
         "name": "Hydro B",
         "type": "base",
-        "note": "Basis B — immer 1:1 mit A",
+        "note": {
+          "de": "Basis B — immer 1:1 mit A",
+          "en": "Base B — always 1:1 with A",
+          "it": "Base B — sempre 1:1 con A",
+          "fr": "Base B — toujours 1:1 avec A",
+          "es": "Base B — siempre 1:1 con A",
+          "pt": "Base B — sempre 1:1 com A"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1921,7 +2106,14 @@ const MARKEN = {
       "hydroRoots": {
         "name": "Hydro Roots",
         "type": "root",
-        "note": "Hydro-Wurzelbooster, Grow + Blüte Wk 1–3",
+        "note": {
+          "de": "Hydro-Wurzelbooster, Grow + Blüte Wk 1–3",
+          "en": "Hydro root booster, grow + bloom wk 1–3",
+          "it": "Booster radicale idro, crescita + fioritura sett. 1–3",
+          "fr": "Booster racinaire hydro, croissance + floraison sem. 1–3",
+          "es": "Potenciador de raíces hidro, crecimiento + floración sem. 1–3",
+          "pt": "Estimulante de raízes hidro, crescimento + floração sem. 1–3"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1933,7 +2125,14 @@ const MARKEN = {
       "powerBuds": {
         "name": "Power Buds",
         "type": "bloom",
-        "note": "Hydro-Blühstimulator, ganze Blüte",
+        "note": {
+          "de": "Hydro-Blühstimulator, ganze Blüte",
+          "en": "Hydro bloom stimulator, whole bloom",
+          "it": "Stimolatore di fioritura idro, tutta la fioritura",
+          "fr": "Stimulateur de floraison hydro, toute la floraison",
+          "es": "Estimulador de floración hidro, toda la floración",
+          "pt": "Estimulador de floração hidro, toda a floração"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1945,7 +2144,14 @@ const MARKEN = {
       "green": {
         "name": "Green Sensation",
         "type": "bloom",
-        "note": "4-in-1 Bloom-Booster, Bloom Wk 4–6",
+        "note": {
+          "de": "4-in-1 Bloom-Booster, Bloom Wk 4–6",
+          "en": "4-in-1 bloom booster, bloom wk 4–6",
+          "it": "Booster di fioritura 4 in 1, fioritura sett. 4–6",
+          "fr": "Booster de floraison 4 en 1, floraison sem. 4–6",
+          "es": "Potenciador de floración 4 en 1, floración sem. 4–6",
+          "pt": "Estimulante de floração 4 em 1, floração sem. 4–6"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1958,7 +2164,14 @@ const MARKEN = {
       "pk": {
         "name": "PK 13/14",
         "type": "pk",
-        "note": "ALTERNATIVE zu Green Sensation - nicht zusammen geben, beide liefern PK. Max 2 ml/L ab Blütewoche 4.",
+        "note": {
+          "de": "ALTERNATIVE zu Green Sensation - nicht zusammen geben, beide liefern PK. Max 2 ml/L ab Blütewoche 4.",
+          "en": "ALTERNATIVE to Green Sensation – don’t give both, both supply PK. Max 2 ml/L from bloom week 4.",
+          "it": "ALTERNATIVA a Green Sensation – non darli insieme, entrambi forniscono PK. Max 2 ml/L dalla settimana di fioritura 4.",
+          "fr": "ALTERNATIVE à Green Sensation – ne pas donner ensemble, les deux apportent du PK. Max 2 ml/L à partir de la semaine de floraison 4.",
+          "es": "ALTERNATIVA a Green Sensation: no darlos juntos, ambos aportan PK. Máx. 2 ml/L desde la semana 4 de floración.",
+          "pt": "ALTERNATIVA ao Green Sensation – não dar os dois, ambos fornecem PK. Máx. 2 ml/L a partir da semana 4 de floração."
+        },
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1972,7 +2185,14 @@ const MARKEN = {
       "leafGreen": {
         "name": "Leaf Green",
         "type": "vitamin",
-        "note": "Mg + Fe — bei Mangelerscheinungen",
+        "note": {
+          "de": "Mg + Fe — bei Mangelerscheinungen",
+          "en": "Mg + Fe — for deficiency symptoms",
+          "it": "Mg + Fe — in caso di sintomi di carenza",
+          "fr": "Mg + Fe — en cas de symptômes de carence",
+          "es": "Mg + Fe — ante síntomas de carencia",
+          "pt": "Mg + Fe — em caso de sintomas de carência"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "eingestellt",
@@ -1983,7 +2203,14 @@ const MARKEN = {
       "bacto": {
         "name": "Bacto",
         "type": "bacteria",
-        "note": "Beneficial Bacteria, Wk 1–4",
+        "note": {
+          "de": "Beneficial Bacteria, Wk 1–4",
+          "en": "Beneficial bacteria, wk 1–4",
+          "it": "Batteri benefici, sett. 1–4",
+          "fr": "Bactéries bénéfiques, sem. 1–4",
+          "es": "Bacterias beneficiosas, sem. 1–4",
+          "pt": "Bactérias benéficas, sem. 1–4"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -1995,7 +2222,14 @@ const MARKEN = {
       "glucose": {
         "name": "Sugar Royal",
         "type": "carbs",
-        "note": "NICHT für DWC/NFT/Aeroponik - Plagron schließt hydroponische Verfahren ausdrücklich aus (biologischen Ursprungs). Nur Erde und Coco.",
+        "note": {
+          "de": "NICHT für DWC/NFT/Aeroponik - Plagron schließt hydroponische Verfahren ausdrücklich aus (biologischen Ursprungs). Nur Erde und Coco.",
+          "en": "NOT for DWC/NFT/aeroponics – Plagron explicitly excludes hydroponic methods (organic origin). Soil and coco only.",
+          "it": "NON per DWC/NFT/aeroponica – Plagron esclude espressamente i sistemi idroponici (origine biologica). Solo terra e cocco.",
+          "fr": "PAS pour le DWC/NFT/l’aéroponie – Plagron exclut expressément l’hydroponie (origine biologique). Terre et coco uniquement.",
+          "es": "NO para DWC/NFT/aeroponía: Plagron excluye expresamente los sistemas hidropónicos (origen biológico). Solo tierra y coco.",
+          "pt": "NÃO para DWC/NFT/aeroponia – a Plagron exclui expressamente os sistemas hidropónicos (origem biológica). Só terra e coco."
+        },
         "color": "#fbbf24",
         "quelle": {
           "status": "ungeeignet",
@@ -2009,7 +2243,14 @@ const MARKEN = {
       "calmagPro": {
         "name": "CalMag Pro",
         "type": "calmag",
-        "note": "Optional bei RO-/weichem Wasser",
+        "note": {
+          "de": "Optional bei RO-/weichem Wasser",
+          "en": "Optional with RO/soft water",
+          "it": "Facoltativo con acqua osmotica/dolce",
+          "fr": "Facultatif avec eau osmosée/douce",
+          "es": "Opcional con agua de ósmosis/blanda",
+          "pt": "Opcional com água de osmose/macia"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -2132,31 +2373,80 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📋",
-        "text": "Basis-Werte und Hydro Roots/Power Buds korrigiert nach offiziellem Plagron Hydro-Feedchart — Basis war zuvor deutlich unterdosiert."
+        "text": {
+          "de": "Basis-Werte und Hydro Roots/Power Buds korrigiert nach offiziellem Plagron Hydro-Feedchart — Basis war zuvor deutlich unterdosiert.",
+          "en": "Base values and Hydro Roots/Power Buds corrected to the official Plagron hydro feed chart — the base was clearly underdosed before.",
+          "it": "Valori di base e Hydro Roots/Power Buds corretti secondo la tabella ufficiale Plagron Hydro — la base prima era nettamente sottodosata.",
+          "fr": "Valeurs de base et Hydro Roots/Power Buds corrigées d’après le tableau officiel Plagron Hydro — la base était auparavant nettement sous-dosée.",
+          "es": "Valores base y Hydro Roots/Power Buds corregidos según la tabla oficial de Plagron Hydro; la base estaba antes claramente infradosificada.",
+          "pt": "Valores base e Hydro Roots/Power Buds corrigidos segundo a tabela oficial Plagron Hydro — a base estava antes claramente subdoseada."
+        }
       },
       {
         "icon": "⚖️",
-        "text": "Hydro A und B immer in gleicher Menge — niemals separat überdosieren"
+        "text": {
+          "de": "Hydro A und B immer in gleicher Menge — niemals separat überdosieren",
+          "en": "Hydro A and B always in equal amounts — never overdose one of them",
+          "it": "Hydro A e B sempre in quantità uguali — mai sovradosarne uno",
+          "fr": "Hydro A et B toujours en quantités égales — ne jamais surdoser l’un des deux",
+          "es": "Hydro A y B siempre en la misma cantidad; nunca sobredosificar uno por separado",
+          "pt": "Hydro A e B sempre na mesma quantidade — nunca sobredosear um deles"
+        }
       },
       {
         "icon": "🧪",
-        "text": "Bacto: Lebendkultur — nie mit heißem Wasser mischen, max 25°C"
+        "text": {
+          "de": "Bacto: Lebendkultur — nie mit heißem Wasser mischen, max 25°C",
+          "en": "Bacto: live culture — never mix with hot water, max 25 °C",
+          "it": "Bacto: coltura viva — mai mescolare con acqua calda, max 25 °C",
+          "fr": "Bacto : culture vivante — ne jamais mélanger à de l’eau chaude, 25 °C max.",
+          "es": "Bacto: cultivo vivo; nunca mezclar con agua caliente, máx. 25 °C",
+          "pt": "Bacto: cultura viva — nunca misturar com água quente, máx. 25 °C"
+        }
       },
       {
         "icon": "🌱",
-        "text": "Hydro Roots: läuft bis Blüte Wk 3, danach übernimmt Green Sensation. Power Buds: die ganze Blütephase durchgehend."
+        "text": {
+          "de": "Hydro Roots: läuft bis Blüte Wk 3, danach übernimmt Green Sensation. Power Buds: die ganze Blütephase durchgehend.",
+          "en": "Hydro Roots: runs until bloom wk 3, then Green Sensation takes over. Power Buds: throughout the whole bloom phase.",
+          "it": "Hydro Roots: fino alla fioritura sett. 3, poi subentra Green Sensation. Power Buds: per tutta la fase di fioritura.",
+          "fr": "Hydro Roots : jusqu’à la floraison sem. 3, ensuite Green Sensation prend le relais. Power Buds : pendant toute la floraison.",
+          "es": "Hydro Roots: hasta la floración sem. 3, después toma el relevo Green Sensation. Power Buds: durante toda la floración.",
+          "pt": "Hydro Roots: até à floração sem. 3, depois entra o Green Sensation. Power Buds: durante toda a floração."
+        }
       },
       {
         "icon": "⚠️",
-        "text": "Green Sensation ODER PK 13-14 - nicht beide. Green Sensation bringt das PK schon mit."
+        "text": {
+          "de": "Green Sensation ODER PK 13-14 - nicht beide. Green Sensation bringt das PK schon mit.",
+          "en": "Green Sensation OR PK 13-14 – not both. Green Sensation already brings the PK.",
+          "it": "Green Sensation OPPURE PK 13-14 – non entrambi. Green Sensation contiene già il PK.",
+          "fr": "Green Sensation OU PK 13-14 – pas les deux. Green Sensation apporte déjà le PK.",
+          "es": "Green Sensation O PK 13-14, no los dos. Green Sensation ya aporta el PK.",
+          "pt": "Green Sensation OU PK 13-14 – não os dois. O Green Sensation já traz o PK."
+        }
       },
       {
         "icon": "🟡",
-        "text": "Green Sensation: 1 ml pro LITER (10 ml/10 L) laut Plagron - hier stand lange 1 ml/10 L, ein Zehntel davon."
+        "text": {
+          "de": "Green Sensation: 1 ml pro LITER (10 ml/10 L) laut Plagron - hier stand lange 1 ml/10 L, ein Zehntel davon.",
+          "en": "Green Sensation: 1 ml per LITRE (10 ml/10 L) per Plagron – for a long time this said 1 ml/10 L, a tenth of that.",
+          "it": "Green Sensation: 1 ml per LITRO (10 ml/10 L) secondo Plagron – qui per molto tempo c’era 1 ml/10 L, un decimo.",
+          "fr": "Green Sensation : 1 ml par LITRE (10 ml/10 L) selon Plagron – il était longtemps indiqué ici 1 ml/10 L, soit un dixième.",
+          "es": "Green Sensation: 1 ml por LITRO (10 ml/10 L) según Plagron; aquí figuró mucho tiempo 1 ml/10 L, la décima parte.",
+          "pt": "Green Sensation: 1 ml por LITRO (10 ml/10 L) segundo a Plagron – aqui esteve muito tempo 1 ml/10 L, um décimo disso."
+        }
       },
       {
         "icon": "🚫",
-        "text": "Sugar Royal und Pure Zym sind Erde-/Coco-Produkte. Plagron schließt DWC ausdrücklich aus - sie stehen deshalb nicht im Schema."
+        "text": {
+          "de": "Sugar Royal und Pure Zym sind Erde-/Coco-Produkte. Plagron schließt DWC ausdrücklich aus - sie stehen deshalb nicht im Schema.",
+          "en": "Sugar Royal and Pure Zym are soil/coco products. Plagron explicitly excludes DWC – so they are not in the plan.",
+          "it": "Sugar Royal e Pure Zym sono prodotti per terra/cocco. Plagron esclude espressamente il DWC – per questo non sono nel piano.",
+          "fr": "Sugar Royal et Pure Zym sont des produits pour terre/coco. Plagron exclut expressément le DWC – ils ne figurent donc pas dans le plan.",
+          "es": "Sugar Royal y Pure Zym son productos para tierra/coco. Plagron excluye expresamente el DWC; por eso no están en el plan.",
+          "pt": "Sugar Royal e Pure Zym são produtos para terra/coco. A Plagron exclui expressamente o DWC – por isso não estão no plano."
+        }
       }
     ],
     "quelle": "library"
@@ -2183,7 +2473,14 @@ const MARKEN = {
       "floraMicro": {
         "name": "FloraMicro",
         "type": "base",
-        "note": "Basis – als erster der drei Grunddünger ins Wasser",
+        "note": {
+          "de": "Basis – als erster der drei Grunddünger ins Wasser",
+          "en": "Base – the first of the three base nutrients into the water",
+          "it": "Base – il primo dei tre fertilizzanti di base nell’acqua",
+          "fr": "Base – le premier des trois engrais de base dans l’eau",
+          "es": "Base – el primero de los tres abonos base en el agua",
+          "pt": "Base – o primeiro dos três adubos base na água"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2196,7 +2493,14 @@ const MARKEN = {
       "floraGro": {
         "name": "FloraGro",
         "type": "base",
-        "note": "Stickstoff-Schwerpunkt, im Wuchs am höchsten",
+        "note": {
+          "de": "Stickstoff-Schwerpunkt, im Wuchs am höchsten",
+          "en": "Nitrogen-focused, highest in veg",
+          "it": "Prevalenza di azoto, massimo in crescita",
+          "fr": "Dominante azote, au plus haut en croissance",
+          "es": "Predominio de nitrógeno, máximo en crecimiento",
+          "pt": "Predominância de azoto, máximo no crescimento"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2209,7 +2513,14 @@ const MARKEN = {
       "floraBloom": {
         "name": "FloraBloom",
         "type": "base",
-        "note": "PK-Schwerpunkt, in der Blüte am höchsten",
+        "note": {
+          "de": "PK-Schwerpunkt, in der Blüte am höchsten",
+          "en": "PK-focused, highest in bloom",
+          "it": "Prevalenza di PK, massimo in fioritura",
+          "fr": "Dominante PK, au plus haut en floraison",
+          "es": "Predominio de PK, máximo en floración",
+          "pt": "Predominância de PK, máximo na floração"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2222,7 +2533,14 @@ const MARKEN = {
       "rapidStart": {
         "name": "Rapid Start",
         "type": "root",
-        "note": "Wurzelstimulator, Wuchs bis Blüte Wk 2",
+        "note": {
+          "de": "Wurzelstimulator, Wuchs bis Blüte Wk 2",
+          "en": "Root stimulator, veg to bloom wk 2",
+          "it": "Stimolatore radicale, dalla crescita alla fioritura sett. 2",
+          "fr": "Stimulateur racinaire, de la croissance à la floraison sem. 2",
+          "es": "Estimulador de raíces, del crecimiento a la floración sem. 2",
+          "pt": "Estimulador de raízes, do crescimento à floração sem. 2"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2236,7 +2554,14 @@ const MARKEN = {
       "armorSi": {
         "name": "Armor Si",
         "type": "silica",
-        "note": "Silikat – vor allen anderen ins Wasser, pH erst danach",
+        "note": {
+          "de": "Silikat – vor allen anderen ins Wasser, pH erst danach",
+          "en": "Silicate – into the water before everything else, pH afterwards",
+          "it": "Silicato – nell’acqua prima di tutto il resto, il pH dopo",
+          "fr": "Silicate – dans l’eau avant tout le reste, le pH ensuite",
+          "es": "Silicato – al agua antes que todo lo demás, el pH después",
+          "pt": "Silicato – na água antes de tudo o resto, o pH depois"
+        },
         "color": "#8b949e",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2250,7 +2575,14 @@ const MARKEN = {
       "calimagic": {
         "name": "CALiMAGic",
         "type": "calmag",
-        "note": "Ca/Mg – laut GH nach Bedarf, bei hartem Wasser weniger",
+        "note": {
+          "de": "Ca/Mg – laut GH nach Bedarf, bei hartem Wasser weniger",
+          "en": "Ca/Mg – per GH as needed, less with hard water",
+          "it": "Ca/Mg – secondo GH al bisogno, meno con acqua dura",
+          "fr": "Ca/Mg – selon GH selon les besoins, moins avec une eau dure",
+          "es": "Ca/Mg – según GH según necesidad, menos con agua dura",
+          "pt": "Ca/Mg – segundo a GH conforme necessário, menos com água dura"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2264,7 +2596,14 @@ const MARKEN = {
       "koolbloom": {
         "name": "Liquid KoolBloom",
         "type": "pk",
-        "note": "PK-Booster, Blüte Wk 1–6",
+        "note": {
+          "de": "PK-Booster, Blüte Wk 1–6",
+          "en": "PK booster, bloom wk 1–6",
+          "it": "Booster PK, fioritura sett. 1–6",
+          "fr": "Booster PK, floraison sem. 1–6",
+          "es": "Potenciador PK, floración sem. 1–6",
+          "pt": "Estimulante PK, floração sem. 1–6"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2278,7 +2617,14 @@ const MARKEN = {
       "koolbloomD": {
         "name": "Dry KoolBloom",
         "type": "pk",
-        "note": "Nicht im GH-Wochenschema – nur optional nach Produktangabe",
+        "note": {
+          "de": "Nicht im GH-Wochenschema – nur optional nach Produktangabe",
+          "en": "Not in the GH weekly chart – optional only, per product directions",
+          "it": "Non nella tabella settimanale GH – solo facoltativo secondo le indicazioni del prodotto",
+          "fr": "Absent du tableau hebdomadaire GH – facultatif, selon les indications du produit",
+          "es": "No figura en la tabla semanal de GH: solo opcional según las indicaciones del producto",
+          "pt": "Não consta da tabela semanal da GH – só opcional, segundo as indicações do produto"
+        },
         "quelle": {
           "geprueft": "2026-09-24",
           "status": "belegt",
@@ -2292,7 +2638,14 @@ const MARKEN = {
       "floralicious": {
         "name": "Floralicious+",
         "type": "vitamin",
-        "note": "Enzyme, Vitamine, Aminosäuren – Wuchs Wk 2 bis Blüte Wk 7",
+        "note": {
+          "de": "Enzyme, Vitamine, Aminosäuren – Wuchs Wk 2 bis Blüte Wk 7",
+          "en": "Enzymes, vitamins, amino acids – veg wk 2 to bloom wk 7",
+          "it": "Enzimi, vitamine, aminoacidi – dalla crescita sett. 2 alla fioritura sett. 7",
+          "fr": "Enzymes, vitamines, acides aminés – de la croissance sem. 2 à la floraison sem. 7",
+          "es": "Enzimas, vitaminas, aminoácidos – del crecimiento sem. 2 a la floración sem. 7",
+          "pt": "Enzimas, vitaminas, aminoácidos – do crescimento sem. 2 à floração sem. 7"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -2306,7 +2659,14 @@ const MARKEN = {
       "floraBlend": {
         "name": "FloraBlend",
         "type": "vitamin",
-        "note": "Nicht im GH-Wochenschema – nur optional nach Produktangabe",
+        "note": {
+          "de": "Nicht im GH-Wochenschema – nur optional nach Produktangabe",
+          "en": "Not in the GH weekly chart – optional only, per product directions",
+          "it": "Non nella tabella settimanale GH – solo facoltativo secondo le indicazioni del prodotto",
+          "fr": "Absent du tableau hebdomadaire GH – facultatif, selon les indications du produit",
+          "es": "No figura en la tabla semanal de GH: solo opcional según las indicaciones del producto",
+          "pt": "Não consta da tabela semanal da GH – só opcional, segundo as indicações do produto"
+        },
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2319,7 +2679,14 @@ const MARKEN = {
       "floraKleen": {
         "name": "FloraKleen",
         "type": "flush",
-        "note": "Flush – 5 ml pro LITER (nicht pro 10 L), bei starker Salzlast bis 10 ml/L",
+        "note": {
+          "de": "Flush – 5 ml pro LITER (nicht pro 10 L), bei starker Salzlast bis 10 ml/L",
+          "en": "Flush – 5 ml per LITRE (not per 10 L), up to 10 ml/L with heavy salt build-up",
+          "it": "Lavaggio – 5 ml per LITRO (non ogni 10 L), fino a 10 ml/L con forte accumulo di sali",
+          "fr": "Rinçage – 5 ml par LITRE (pas pour 10 L), jusqu’à 10 ml/L en cas de forte charge en sels",
+          "es": "Lavado – 5 ml por LITRO (no por 10 L), hasta 10 ml/L con mucha acumulación de sales",
+          "pt": "Lavagem – 5 ml por LITRO (não por 10 L), até 10 ml/L com forte acumulação de sais"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -2332,7 +2699,14 @@ const MARKEN = {
         "name": "Ripen",
         "type": "bloom",
         "color": "#ef4444",
-        "note": "Reifedünger, Blüte Wk 7–8 – ergänzt die reduzierten Grunddünger, ersetzt sie nicht",
+        "note": {
+          "de": "Reifedünger, Blüte Wk 7–8 – ergänzt die reduzierten Grunddünger, ersetzt sie nicht",
+          "en": "Ripening feed, bloom wk 7–8 – adds to the reduced base nutrients, does not replace them",
+          "it": "Fertilizzante di maturazione, fioritura sett. 7–8 – integra i fertilizzanti di base ridotti, non li sostituisce",
+          "fr": "Engrais de maturation, floraison sem. 7–8 – complète les engrais de base réduits, ne les remplace pas",
+          "es": "Abono de maduración, floración sem. 7–8: complementa los abonos base reducidos, no los sustituye",
+          "pt": "Adubo de maturação, floração sem. 7–8 – complementa os adubos base reduzidos, não os substitui"
+        },
         "quelle": {
           "geprueft": "2026-09-25",
           "status": "belegt",
@@ -2507,23 +2881,58 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📋",
-        "text": "Seit 25.9.2026 nach dem 10-teiligen FloraSeries-Wochenschema von General Hydroponics, leichte Stufe („Light Feed“). GH nennt für DWC keine eigene Stufe – die leichte ist unsere Auslegung, weil die Wurzeln ständig in der Lösung stehen."
+        "text": {
+          "de": "Seit 25.9.2026 nach dem 10-teiligen FloraSeries-Wochenschema von General Hydroponics, leichte Stufe („Light Feed“). GH nennt für DWC keine eigene Stufe – die leichte ist unsere Auslegung, weil die Wurzeln ständig in der Lösung stehen.",
+          "en": "Since 25 Sep 2026 following General Hydroponics’ 10-part FloraSeries weekly chart, light strength (“Light Feed”). GH gives no strength of its own for DWC – the light one is our reading, because the roots sit in the solution all the time.",
+          "it": "Dal 25/9/2026 secondo la tabella settimanale FloraSeries in 10 parti di General Hydroponics, livello leggero («Light Feed»). GH non indica un livello proprio per il DWC – quello leggero è una nostra interpretazione, perché le radici stanno sempre nella soluzione.",
+          "fr": "Depuis le 25/09/2026, selon le tableau hebdomadaire FloraSeries en 10 parties de General Hydroponics, dosage léger (« Light Feed »). GH n’indique pas de niveau propre au DWC – le léger est notre interprétation, car les racines baignent en permanence dans la solution.",
+          "es": "Desde el 25/9/2026 según la tabla semanal FloraSeries en 10 partes de General Hydroponics, dosis ligera («Light Feed»). GH no indica un nivel propio para DWC; el ligero es nuestra interpretación, porque las raíces están siempre en la solución.",
+          "pt": "Desde 25/9/2026 segundo a tabela semanal FloraSeries em 10 partes da General Hydroponics, dosagem leve («Light Feed»). A GH não indica um nível próprio para DWC – o leve é a nossa interpretação, porque as raízes estão sempre na solução."
+        }
       },
       {
         "icon": "🪨",
-        "text": "Armor Si vor allen anderen Produkten ins Wasser, pH erst danach einstellen."
+        "text": {
+          "de": "Armor Si vor allen anderen Produkten ins Wasser, pH erst danach einstellen.",
+          "en": "Armor Si into the water before all other products, adjust pH only afterwards.",
+          "it": "Armor Si nell’acqua prima di tutti gli altri prodotti, regola il pH solo dopo.",
+          "fr": "Armor Si dans l’eau avant tous les autres produits, ajuster le pH ensuite seulement.",
+          "es": "Armor Si al agua antes que todos los demás productos; ajustar el pH después.",
+          "pt": "Armor Si na água antes de todos os outros produtos, ajustar o pH só depois."
+        }
       },
       {
         "icon": "⚠️",
-        "text": "FloraMicro als ersten der drei Grunddünger zugeben – nie unverdünnt mit FloraBloom mischen."
+        "text": {
+          "de": "FloraMicro als ersten der drei Grunddünger zugeben – nie unverdünnt mit FloraBloom mischen.",
+          "en": "Add FloraMicro as the first of the three base nutrients – never mix it undiluted with FloraBloom.",
+          "it": "Aggiungi FloraMicro come primo dei tre fertilizzanti di base – mai mescolarlo non diluito con FloraBloom.",
+          "fr": "Ajouter FloraMicro en premier des trois engrais de base – ne jamais le mélanger pur avec FloraBloom.",
+          "es": "Añadir FloraMicro como el primero de los tres abonos base; nunca mezclarlo sin diluir con FloraBloom.",
+          "pt": "Adicionar FloraMicro como o primeiro dos três adubos base – nunca o misturar sem diluir com FloraBloom."
+        }
       },
       {
         "icon": "💧",
-        "text": "CALiMAGic laut GH nach Bedarf: bei hartem Leitungswasser weniger, sonst landet die EC über dem Ziel. Ob GHs EC-Werte die Grund-EC des Wassers enthalten, sagt GH nicht."
+        "text": {
+          "de": "CALiMAGic laut GH nach Bedarf: bei hartem Leitungswasser weniger, sonst landet die EC über dem Ziel. Ob GHs EC-Werte die Grund-EC des Wassers enthalten, sagt GH nicht.",
+          "en": "CALiMAGic per GH as needed: less with hard tap water, otherwise the EC ends up above target. GH does not say whether its EC values include the base EC of the water.",
+          "it": "CALiMAGic secondo GH al bisogno: meno con acqua di rubinetto dura, altrimenti l’EC supera l’obiettivo. GH non dice se i suoi valori EC includono l’EC di base dell’acqua.",
+          "fr": "CALiMAGic selon GH selon les besoins : moins avec une eau du robinet dure, sinon l’EC dépasse l’objectif. GH ne précise pas si ses valeurs d’EC incluent l’EC de base de l’eau.",
+          "es": "CALiMAGic según GH según necesidad: menos con agua del grifo dura, si no la EC queda por encima del objetivo. GH no dice si sus valores de EC incluyen la EC base del agua.",
+          "pt": "CALiMAGic segundo a GH conforme necessário: menos com água da torneira dura, senão o EC fica acima do objetivo. A GH não diz se os seus valores de EC incluem o EC base da água."
+        }
       },
       {
         "icon": "🍇",
-        "text": "Ripen ergänzt in Blütewoche 7–8 die reduzierten Grunddünger, es ersetzt sie nicht."
+        "text": {
+          "de": "Ripen ergänzt in Blütewoche 7–8 die reduzierten Grunddünger, es ersetzt sie nicht.",
+          "en": "In bloom weeks 7–8, Ripen adds to the reduced base nutrients; it does not replace them.",
+          "it": "Nelle settimane di fioritura 7–8 Ripen integra i fertilizzanti di base ridotti, non li sostituisce.",
+          "fr": "En semaines de floraison 7–8, Ripen complète les engrais de base réduits, il ne les remplace pas.",
+          "es": "En las semanas 7–8 de floración, Ripen complementa los abonos base reducidos; no los sustituye.",
+          "pt": "Nas semanas 7–8 de floração, o Ripen complementa os adubos base reduzidos, não os substitui."
+        }
       }
     ],
     "quelle": "library",
@@ -2572,7 +2981,14 @@ const MARKEN = {
       "sensiGrowA": {
         "name": "Sensi Grow A",
         "type": "base",
-        "note": "Basis Grow A — pH Perfect",
+        "note": {
+          "de": "Basis Grow A — pH Perfect",
+          "en": "Base Grow A — pH Perfect",
+          "it": "Base Grow A — pH Perfect",
+          "fr": "Base Grow A — pH Perfect",
+          "es": "Base Grow A — pH Perfect",
+          "pt": "Base Grow A — pH Perfect"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2584,7 +3000,14 @@ const MARKEN = {
       "sensiGrowB": {
         "name": "Sensi Grow B",
         "type": "base",
-        "note": "Basis Grow B — pH Perfect",
+        "note": {
+          "de": "Basis Grow B — pH Perfect",
+          "en": "Base Grow B — pH Perfect",
+          "it": "Base Grow B — pH Perfect",
+          "fr": "Base Grow B — pH Perfect",
+          "es": "Base Grow B — pH Perfect",
+          "pt": "Base Grow B — pH Perfect"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2596,7 +3019,14 @@ const MARKEN = {
       "sensiBloomA": {
         "name": "Sensi Bloom A",
         "type": "base",
-        "note": "Basis Bloom A — pH Perfect",
+        "note": {
+          "de": "Basis Bloom A — pH Perfect",
+          "en": "Base Bloom A — pH Perfect",
+          "it": "Base Bloom A — pH Perfect",
+          "fr": "Base Bloom A — pH Perfect",
+          "es": "Base Bloom A — pH Perfect",
+          "pt": "Base Bloom A — pH Perfect"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2608,7 +3038,14 @@ const MARKEN = {
       "sensiBloomB": {
         "name": "Sensi Bloom B",
         "type": "base",
-        "note": "Basis Bloom B — pH Perfect",
+        "note": {
+          "de": "Basis Bloom B — pH Perfect",
+          "en": "Base Bloom B — pH Perfect",
+          "it": "Base Bloom B — pH Perfect",
+          "fr": "Base Bloom B — pH Perfect",
+          "es": "Base Bloom B — pH Perfect",
+          "pt": "Base Bloom B — pH Perfect"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2620,7 +3057,14 @@ const MARKEN = {
       "b52": {
         "name": "B-52",
         "type": "vitamin",
-        "note": "Vitamin B1+B2 — Stress-Resistenz",
+        "note": {
+          "de": "Vitamin B1+B2 — Stress-Resistenz",
+          "en": "Vitamin B1+B2 — stress resistance",
+          "it": "Vitamina B1+B2 — resistenza allo stress",
+          "fr": "Vitamine B1+B2 — résistance au stress",
+          "es": "Vitamina B1+B2 — resistencia al estrés",
+          "pt": "Vitamina B1+B2 — resistência ao stress"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2632,7 +3076,14 @@ const MARKEN = {
       "voodoo": {
         "name": "Voodoo Juice",
         "type": "bacteria",
-        "note": "Root-Tribe: Bakterien, Wk 1–2",
+        "note": {
+          "de": "Root-Tribe: Bakterien, Wk 1–2",
+          "en": "Root Tribe: bacteria, wk 1–2",
+          "it": "Root Tribe: batteri, sett. 1–2",
+          "fr": "Root Tribe : bactéries, sem. 1–2",
+          "es": "Root Tribe: bacterias, sem. 1–2",
+          "pt": "Root Tribe: bactérias, sem. 1–2"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2644,7 +3095,14 @@ const MARKEN = {
       "piranha": {
         "name": "Piranha",
         "type": "bacteria",
-        "note": "Root-Tribe: Pilzkultur, Wk 1–2",
+        "note": {
+          "de": "Root-Tribe: Pilzkultur, Wk 1–2",
+          "en": "Root Tribe: fungal culture, wk 1–2",
+          "it": "Root Tribe: coltura fungina, sett. 1–2",
+          "fr": "Root Tribe : culture fongique, sem. 1–2",
+          "es": "Root Tribe: cultivo de hongos, sem. 1–2",
+          "pt": "Root Tribe: cultura de fungos, sem. 1–2"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2657,7 +3115,14 @@ const MARKEN = {
       "tarantula": {
         "name": "Tarantula",
         "type": "bacteria",
-        "note": "Root-Tribe: Bakterien, Wk 1–2",
+        "note": {
+          "de": "Root-Tribe: Bakterien, Wk 1–2",
+          "en": "Root Tribe: bacteria, wk 1–2",
+          "it": "Root Tribe: batteri, sett. 1–2",
+          "fr": "Root Tribe : bactéries, sem. 1–2",
+          "es": "Root Tribe: bacterias, sem. 1–2",
+          "pt": "Root Tribe: bactérias, sem. 1–2"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2670,7 +3135,14 @@ const MARKEN = {
       "budIgnitor": {
         "name": "Bud Ignitor",
         "type": "bloom",
-        "note": "Bloom-Einleitung, Bloom Wk 1–2",
+        "note": {
+          "de": "Bloom-Einleitung, Bloom Wk 1–2",
+          "en": "Bloom initiation, bloom wk 1–2",
+          "it": "Avvio della fioritura, fioritura sett. 1–2",
+          "fr": "Déclenchement de la floraison, floraison sem. 1–2",
+          "es": "Inicio de la floración, floración sem. 1–2",
+          "pt": "Início da floração, floração sem. 1–2"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2682,7 +3154,14 @@ const MARKEN = {
       "bigBud": {
         "name": "Big Bud",
         "type": "bloom",
-        "note": "PK + Amino Bloom-Booster, Wk 2–4",
+        "note": {
+          "de": "PK + Amino Bloom-Booster, Wk 2–4",
+          "en": "PK + amino bloom booster, wk 2–4",
+          "it": "Booster di fioritura PK + aminoacidi, sett. 2–4",
+          "fr": "Booster de floraison PK + acides aminés, sem. 2–4",
+          "es": "Potenciador de floración PK + aminoácidos, sem. 2–4",
+          "pt": "Estimulante de floração PK + aminoácidos, sem. 2–4"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2696,7 +3175,14 @@ const MARKEN = {
       "overdrive": {
         "name": "Overdrive",
         "type": "bloom",
-        "note": "Late-Bloom Finisher, letzte Wochen",
+        "note": {
+          "de": "Late-Bloom Finisher, letzte Wochen",
+          "en": "Late-bloom finisher, final weeks",
+          "it": "Finisher di fine fioritura, ultime settimane",
+          "fr": "Finisher de fin de floraison, dernières semaines",
+          "es": "Finalizador de floración tardía, últimas semanas",
+          "pt": "Finalizador de floração tardia, últimas semanas"
+        },
         "color": "#bc8cff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2708,7 +3194,14 @@ const MARKEN = {
       "budCandy": {
         "name": "Bud Candy",
         "type": "carbs",
-        "note": "Carbs + Amino, ganzer Run",
+        "note": {
+          "de": "Carbs + Amino, ganzer Run",
+          "en": "Carbs + amino, whole run",
+          "it": "Carboidrati + aminoacidi, tutto il ciclo",
+          "fr": "Glucides + acides aminés, tout le cycle",
+          "es": "Carbohidratos + aminoácidos, todo el ciclo",
+          "pt": "Hidratos de carbono + aminoácidos, todo o ciclo"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2720,7 +3213,14 @@ const MARKEN = {
       "rhinoSkin": {
         "name": "Rhino Skin",
         "type": "silica",
-        "note": "Silica — Zellwand-Festigkeit, ganzer Run",
+        "note": {
+          "de": "Silica — Zellwand-Festigkeit, ganzer Run",
+          "en": "Silica — cell-wall strength, whole run",
+          "it": "Silicio — robustezza delle pareti cellulari, tutto il ciclo",
+          "fr": "Silice — solidité des parois cellulaires, tout le cycle",
+          "es": "Sílice — firmeza de la pared celular, todo el ciclo",
+          "pt": "Sílica — firmeza da parede celular, todo o ciclo"
+        },
         "color": "#8b949e",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2732,7 +3232,14 @@ const MARKEN = {
       "sensizym": {
         "name": "Sensizym",
         "type": "enzyme",
-        "note": "Enzyme, ganzer Run",
+        "note": {
+          "de": "Enzyme, ganzer Run",
+          "en": "Enzymes, whole run",
+          "it": "Enzimi, tutto il ciclo",
+          "fr": "Enzymes, tout le cycle",
+          "es": "Enzimas, todo el ciclo",
+          "pt": "Enzimas, todo o ciclo"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -2744,7 +3251,14 @@ const MARKEN = {
       "calmagXtra": {
         "name": "Sensi Cal-Mag Xtra",
         "type": "calmag",
-        "note": "Optional bei RO-/weichem Wasser",
+        "note": {
+          "de": "Optional bei RO-/weichem Wasser",
+          "en": "Optional with RO/soft water",
+          "it": "Facoltativo con acqua osmotica/dolce",
+          "fr": "Facultatif avec eau osmosée/douce",
+          "es": "Opcional con agua de ósmosis/blanda",
+          "pt": "Opcional com água de osmose/macia"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -2755,7 +3269,14 @@ const MARKEN = {
       "flawless": {
         "name": "Flawless Finish",
         "type": "flush",
-        "note": "Flush — letzte 1–2 Wochen",
+        "note": {
+          "de": "Flush — letzte 1–2 Wochen",
+          "en": "Flush — last 1–2 weeks",
+          "it": "Lavaggio — ultime 1–2 settimane",
+          "fr": "Rinçage — 1 à 2 dernières semaines",
+          "es": "Lavado — últimas 1–2 semanas",
+          "pt": "Lavagem — últimas 1–2 semanas"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -2966,35 +3487,91 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📋",
-        "text": "Werte korrigiert nach offiziellem AN pH Perfect Feedchart (advancednutrients.com) — Basis war bis zu 4x, alle Additive ca. 10x unterdosiert (mL/L wurde als mL/10L eingetragen)."
+        "text": {
+          "de": "Werte korrigiert nach offiziellem AN pH Perfect Feedchart (advancednutrients.com) — Basis war bis zu 4x, alle Additive ca. 10x unterdosiert (mL/L wurde als mL/10L eingetragen).",
+          "en": "Values corrected to the official AN pH Perfect feed chart (advancednutrients.com) — the base was underdosed up to 4×, all additives about 10× (ml/L had been entered as ml/10 L).",
+          "it": "Valori corretti secondo la tabella ufficiale AN pH Perfect (advancednutrients.com) — la base era sottodosata fino a 4 volte, tutti gli additivi circa 10 volte (ml/L era stato inserito come ml/10 L).",
+          "fr": "Valeurs corrigées d’après le tableau officiel AN pH Perfect (advancednutrients.com) — la base était sous-dosée jusqu’à 4 fois, tous les additifs environ 10 fois (des ml/L avaient été saisis comme ml/10 L).",
+          "es": "Valores corregidos según la tabla oficial AN pH Perfect (advancednutrients.com): la base estaba infradosificada hasta 4 veces y todos los aditivos unas 10 veces (se había introducido ml/L como ml/10 L).",
+          "pt": "Valores corrigidos segundo a tabela oficial AN pH Perfect (advancednutrients.com) — a base estava subdoseada até 4 vezes, todos os aditivos cerca de 10 vezes (ml/L tinha sido introduzido como ml/10 L)."
+        }
       },
       {
         "icon": "🔵",
-        "text": "Sensi-Linie: pH Perfect Technologie — weniger pH-Korrekturen nötig, trotzdem messen!"
+        "text": {
+          "de": "Sensi-Linie: pH Perfect Technologie — weniger pH-Korrekturen nötig, trotzdem messen!",
+          "en": "Sensi line: pH Perfect technology — fewer pH corrections needed, but still measure!",
+          "it": "Linea Sensi: tecnologia pH Perfect — servono meno correzioni del pH, ma misura comunque!",
+          "fr": "Gamme Sensi : technologie pH Perfect — moins de corrections de pH, mais mesurez quand même !",
+          "es": "Línea Sensi: tecnología pH Perfect; hacen falta menos correcciones de pH, ¡pero mide igualmente!",
+          "pt": "Linha Sensi: tecnologia pH Perfect — menos correções de pH, mas meça na mesma!"
+        }
       },
       {
         "icon": "⚠️",
-        "text": "Bud Ignitor + Big Bud + Overdrive nie gleichzeitig — sequentiell einsetzen!"
+        "text": {
+          "de": "Bud Ignitor + Big Bud + Overdrive nie gleichzeitig — sequentiell einsetzen!",
+          "en": "Never use Bud Ignitor + Big Bud + Overdrive at the same time — use them one after the other!",
+          "it": "Mai Bud Ignitor + Big Bud + Overdrive insieme — usarli uno dopo l’altro!",
+          "fr": "Jamais Bud Ignitor + Big Bud + Overdrive en même temps — les utiliser l’un après l’autre !",
+          "es": "Nunca Bud Ignitor + Big Bud + Overdrive a la vez: ¡usarlos uno tras otro!",
+          "pt": "Nunca Bud Ignitor + Big Bud + Overdrive ao mesmo tempo — usar um depois do outro!"
+        }
       },
       {
         "icon": "💊",
-        "text": "B-52, Rhino Skin, Sensizym, Bud Candy laufen laut offiziellem Chart durchgehend — nicht nur in Einzelwochen"
+        "text": {
+          "de": "B-52, Rhino Skin, Sensizym, Bud Candy laufen laut offiziellem Chart durchgehend — nicht nur in Einzelwochen",
+          "en": "B-52, Rhino Skin, Sensizym and Bud Candy run throughout per the official chart — not just in single weeks",
+          "it": "Secondo la tabella ufficiale B-52, Rhino Skin, Sensizym e Bud Candy si usano per tutto il ciclo — non solo in singole settimane",
+          "fr": "Selon le tableau officiel, B-52, Rhino Skin, Sensizym et Bud Candy s’utilisent en continu — pas seulement certaines semaines",
+          "es": "Según la tabla oficial, B-52, Rhino Skin, Sensizym y Bud Candy se usan de forma continua, no solo en semanas sueltas",
+          "pt": "Segundo a tabela oficial, B-52, Rhino Skin, Sensizym e Bud Candy usam-se continuamente — não só em semanas isoladas"
+        }
       },
       {
         "icon": "🦠",
-        "text": "Voodoo Juice, Piranha, Tarantula: das 'Root Tribe' Trio — nur Wk 1-2, dann absetzen"
+        "text": {
+          "de": "Voodoo Juice, Piranha, Tarantula: das 'Root Tribe' Trio — nur Wk 1-2, dann absetzen",
+          "en": "Voodoo Juice, Piranha, Tarantula: the “Root Tribe” trio — wk 1–2 only, then stop",
+          "it": "Voodoo Juice, Piranha, Tarantula: il trio «Root Tribe» — solo sett. 1–2, poi sospendere",
+          "fr": "Voodoo Juice, Piranha, Tarantula : le trio « Root Tribe » — sem. 1–2 seulement, puis arrêter",
+          "es": "Voodoo Juice, Piranha, Tarantula: el trío «Root Tribe»; solo sem. 1–2, luego dejarlo",
+          "pt": "Voodoo Juice, Piranha, Tarantula: o trio «Root Tribe» — só sem. 1–2, depois parar"
+        }
       },
       {
         "icon": "💧",
-        "text": "Sensi Cal-Mag Xtra: nur bei RO-/Umkehrosmosewasser nötig, 20 ml/10L nach Bedarf"
+        "text": {
+          "de": "Sensi Cal-Mag Xtra: nur bei RO-/Umkehrosmosewasser nötig, 20 ml/10L nach Bedarf",
+          "en": "Sensi Cal-Mag Xtra: only needed with RO (reverse-osmosis) water, 20 ml/10 L as needed",
+          "it": "Sensi Cal-Mag Xtra: serve solo con acqua osmotica, 20 ml/10 L al bisogno",
+          "fr": "Sensi Cal-Mag Xtra : nécessaire uniquement avec de l’eau osmosée, 20 ml/10 L selon les besoins",
+          "es": "Sensi Cal-Mag Xtra: solo hace falta con agua de ósmosis inversa, 20 ml/10 L según necesidad",
+          "pt": "Sensi Cal-Mag Xtra: só é preciso com água de osmose inversa, 20 ml/10 L conforme necessário"
+        }
       },
       {
         "icon": "⏱️",
-        "text": "Offizieller Bloom-Chart läuft eigentlich 7 aktive Wochen + 1 Flush-Woche — bei längerer Blüte Wk 6 Rate halten, dann flushen."
+        "text": {
+          "de": "Offizieller Bloom-Chart läuft eigentlich 7 aktive Wochen + 1 Flush-Woche — bei längerer Blüte Wk 6 Rate halten, dann flushen.",
+          "en": "The official bloom chart actually runs 7 active weeks + 1 flush week — for a longer bloom, hold the week-6 rate, then flush.",
+          "it": "La tabella di fioritura ufficiale prevede 7 settimane attive + 1 di lavaggio — con una fioritura più lunga mantenere la dose della sett. 6, poi lavare.",
+          "fr": "Le tableau de floraison officiel compte 7 semaines actives + 1 semaine de rinçage — pour une floraison plus longue, garder la dose de la sem. 6, puis rincer.",
+          "es": "La tabla oficial de floración tiene 7 semanas activas + 1 de lavado; con una floración más larga, mantener la dosis de la sem. 6 y luego lavar.",
+          "pt": "A tabela oficial de floração tem 7 semanas ativas + 1 de lavagem — com uma floração mais longa, manter a dose da sem. 6 e depois lavar."
+        }
       },
       {
         "icon": "✅",
-        "text": "Alle Zusätze gegen die Herstellerseiten geprüft (17.9.2026): Advanced Nutrients dosiert praktisch alle Additive mit 2 ml/L. Die Werte hier stimmen."
+        "text": {
+          "de": "Alle Zusätze gegen die Herstellerseiten geprüft (17.9.2026): Advanced Nutrients dosiert praktisch alle Additive mit 2 ml/L. Die Werte hier stimmen.",
+          "en": "All additives checked against the manufacturer’s pages (17 Sep 2026): Advanced Nutrients doses practically all additives at 2 ml/L. The values here are correct.",
+          "it": "Tutti gli additivi verificati sulle pagine del produttore (17/9/2026): Advanced Nutrients dosa praticamente tutti gli additivi a 2 ml/L. I valori qui sono corretti.",
+          "fr": "Tous les additifs vérifiés sur les pages du fabricant (17/09/2026) : Advanced Nutrients dose pratiquement tous les additifs à 2 ml/L. Les valeurs ici sont justes.",
+          "es": "Todos los aditivos comprobados en las páginas del fabricante (17/9/2026): Advanced Nutrients dosifica casi todos los aditivos a 2 ml/L. Los valores de aquí son correctos.",
+          "pt": "Todos os aditivos verificados nas páginas do fabricante (17/9/2026): a Advanced Nutrients doseia praticamente todos os aditivos a 2 ml/L. Os valores aqui estão certos."
+        }
       }
     ],
     "quelle": "library"
@@ -3021,7 +3598,14 @@ const MARKEN = {
       "bioGrow": {
         "name": "Bio·Grow",
         "type": "base",
-        "note": "NPK Basis — Guanobasis flüssig",
+        "note": {
+          "de": "NPK Basis — Guanobasis flüssig",
+          "en": "NPK base — liquid, guano-based",
+          "it": "Base NPK — liquida, a base di guano",
+          "fr": "Base NPK — liquide, à base de guano",
+          "es": "Base NPK — líquida, a base de guano",
+          "pt": "Base NPK — líquida, à base de guano"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3034,7 +3618,14 @@ const MARKEN = {
       "bioBloom": {
         "name": "Bio·Bloom",
         "type": "base",
-        "note": "Phosphor-Kalium Bloom-Dünger",
+        "note": {
+          "de": "Phosphor-Kalium Bloom-Dünger",
+          "en": "Phosphorus-potassium bloom feed",
+          "it": "Fertilizzante di fioritura fosforo-potassio",
+          "fr": "Engrais de floraison phosphore-potassium",
+          "es": "Abono de floración fósforo-potasio",
+          "pt": "Adubo de floração fósforo-potássio"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3047,7 +3638,14 @@ const MARKEN = {
       "fishMix": {
         "name": "Fish·Mix",
         "type": "vitamin",
-        "note": "Fischhydrolysat — Mikroleben + N",
+        "note": {
+          "de": "Fischhydrolysat — Mikroleben + N",
+          "en": "Fish hydrolysate — microbial life + N",
+          "it": "Idrolizzato di pesce — vita microbica + N",
+          "fr": "Hydrolysat de poisson — vie microbienne + N",
+          "es": "Hidrolizado de pescado — vida microbiana + N",
+          "pt": "Hidrolisado de peixe — vida microbiana + N"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3060,7 +3658,14 @@ const MARKEN = {
       "topMax": {
         "name": "Top·Max",
         "type": "carbs",
-        "note": "Humin + Fulvinsäure + Carbs",
+        "note": {
+          "de": "Humin + Fulvinsäure + Carbs",
+          "en": "Humic + fulvic acid + carbs",
+          "it": "Acidi umici + fulvici + carboidrati",
+          "fr": "Acides humiques + fulviques + glucides",
+          "es": "Ácidos húmicos + fúlvicos + carbohidratos",
+          "pt": "Ácidos húmicos + fúlvicos + hidratos de carbono"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3073,7 +3678,14 @@ const MARKEN = {
       "algamic": {
         "name": "Alg·A·Mic",
         "type": "vitamin",
-        "note": "Seealgenextrakt + Vitamine — ganzer Run",
+        "note": {
+          "de": "Seealgenextrakt + Vitamine — ganzer Run",
+          "en": "Seaweed extract + vitamins — whole run",
+          "it": "Estratto di alghe + vitamine — tutto il ciclo",
+          "fr": "Extrait d’algues + vitamines — tout le cycle",
+          "es": "Extracto de algas + vitaminas — todo el ciclo",
+          "pt": "Extrato de algas + vitaminas — todo o ciclo"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3086,7 +3698,14 @@ const MARKEN = {
       "rootJuice": {
         "name": "Root·Juice",
         "type": "root",
-        "note": "Mykorrhiza + Trichoderma, Wk 1–4",
+        "note": {
+          "de": "Mykorrhiza + Trichoderma, Wk 1–4",
+          "en": "Mycorrhiza + Trichoderma, wk 1–4",
+          "it": "Micorrize + Trichoderma, sett. 1–4",
+          "fr": "Mycorhizes + Trichoderma, sem. 1–4",
+          "es": "Micorrizas + Trichoderma, sem. 1–4",
+          "pt": "Micorrizas + Trichoderma, sem. 1–4"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3099,7 +3718,14 @@ const MARKEN = {
       "calmag": {
         "name": "CalMag",
         "type": "calmag",
-        "note": "Ca/Mg — bei weichem Wasser",
+        "note": {
+          "de": "Ca/Mg — bei weichem Wasser",
+          "en": "Ca/Mg — with soft water",
+          "it": "Ca/Mg — con acqua dolce",
+          "fr": "Ca/Mg — avec une eau douce",
+          "es": "Ca/Mg — con agua blanda",
+          "pt": "Ca/Mg — com água macia"
+        },
         "quelle": {
           "geprueft": "2026-09-24",
           "status": "ungeeignet",
@@ -3111,7 +3737,14 @@ const MARKEN = {
       "bioHeaven": {
         "name": "Bio·Heaven",
         "type": "carbs",
-        "note": "Amino-/Carb-Booster, ganzer Run",
+        "note": {
+          "de": "Amino-/Carb-Booster, ganzer Run",
+          "en": "Amino/carb booster, whole run",
+          "it": "Booster di aminoacidi/carboidrati, tutto il ciclo",
+          "fr": "Booster acides aminés/glucides, tout le cycle",
+          "es": "Potenciador de aminoácidos/carbohidratos, todo el ciclo",
+          "pt": "Estimulante de aminoácidos/hidratos de carbono, todo o ciclo"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3124,7 +3757,14 @@ const MARKEN = {
       "activera": {
         "name": "Acti·Vera",
         "type": "vitamin",
-        "note": "Aloe-Vera Immun-/Stoffwechselbooster, ganzer Run",
+        "note": {
+          "de": "Aloe-Vera Immun-/Stoffwechselbooster, ganzer Run",
+          "en": "Aloe vera immune/metabolism booster, whole run",
+          "it": "Booster immunitario/metabolico all’aloe vera, tutto il ciclo",
+          "fr": "Booster immunité/métabolisme à l’aloe vera, tout le cycle",
+          "es": "Potenciador inmune/metabólico de aloe vera, todo el ciclo",
+          "pt": "Estimulante imunitário/metabólico de aloé vera, todo o ciclo"
+        },
         "quelle": {
           "geprueft": "2026-09-24",
           "status": "ungeeignet",
@@ -3185,27 +3825,69 @@ const MARKEN = {
     "tips": [
       {
         "icon": "⚠️",
-        "text": "WICHTIG für DWC: BioBizz ist primär für Soil/Coco entwickelt. Bio·Bloom, Top·Max, Root·Juice sind laut Hersteller auch für Hydro freigegeben — Bio·Grow und Fish·Mix nicht offiziell. Dicke organische Flüssigkeit kann in stehendem Reservoirwasser Pumpen/Belüfter verstopfen — häufigere Wasserwechsel als bei mineralischen Linien einplanen."
+        "text": {
+          "de": "WICHTIG für DWC: BioBizz ist primär für Soil/Coco entwickelt. Bio·Bloom, Top·Max, Root·Juice sind laut Hersteller auch für Hydro freigegeben — Bio·Grow und Fish·Mix nicht offiziell. Dicke organische Flüssigkeit kann in stehendem Reservoirwasser Pumpen/Belüfter verstopfen — häufigere Wasserwechsel als bei mineralischen Linien einplanen.",
+          "en": "IMPORTANT for DWC: BioBizz is made mainly for soil/coco. Per the manufacturer, Bio·Bloom, Top·Max and Root·Juice are also approved for hydro — Bio·Grow and Fish·Mix are not officially. Thick organic liquid can clog pumps/air stones in standing reservoir water — plan more frequent water changes than with mineral lines.",
+          "it": "IMPORTANTE per il DWC: BioBizz è pensato soprattutto per terra/cocco. Secondo il produttore Bio·Bloom, Top·Max e Root·Juice sono ammessi anche in idroponica — Bio·Grow e Fish·Mix non ufficialmente. Il liquido organico denso può intasare pompe/aeratori nell’acqua ferma del serbatoio — prevedere cambi d’acqua più frequenti che con le linee minerali.",
+          "fr": "IMPORTANT pour le DWC : BioBizz est conçu surtout pour la terre/le coco. Selon le fabricant, Bio·Bloom, Top·Max et Root·Juice sont aussi autorisés en hydro — Bio·Grow et Fish·Mix ne le sont pas officiellement. Le liquide organique épais peut boucher pompes/diffuseurs dans l’eau stagnante du réservoir — prévoir des changements d’eau plus fréquents qu’avec les gammes minérales.",
+          "es": "IMPORTANTE para DWC: BioBizz está pensado sobre todo para tierra/coco. Según el fabricante, Bio·Bloom, Top·Max y Root·Juice también sirven para hidro; Bio·Grow y Fish·Mix no oficialmente. El líquido orgánico espeso puede atascar bombas/difusores en el agua estancada del depósito: prever cambios de agua más frecuentes que con líneas minerales.",
+          "pt": "IMPORTANTE para DWC: a BioBizz foi feita sobretudo para terra/coco. Segundo o fabricante, Bio·Bloom, Top·Max e Root·Juice também servem para hidro — Bio·Grow e Fish·Mix não oficialmente. O líquido orgânico espesso pode entupir bombas/difusores na água parada do reservatório — prever trocas de água mais frequentes do que com linhas minerais."
+        }
       },
       {
         "icon": "🌿",
-        "text": "BioBizz: vollständig organisch — fördert Mikrobenleben im Root-Zone"
+        "text": {
+          "de": "BioBizz: vollständig organisch — fördert das Mikrobenleben in der Wurzelzone",
+          "en": "BioBizz: fully organic — promotes microbial life in the root zone",
+          "it": "BioBizz: completamente organico — favorisce la vita microbica nella zona radicale",
+          "fr": "BioBizz : entièrement organique — favorise la vie microbienne dans la zone racinaire",
+          "es": "BioBizz: totalmente orgánico; favorece la vida microbiana en la zona de raíces",
+          "pt": "BioBizz: totalmente orgânico — favorece a vida microbiana na zona das raízes"
+        }
       },
       {
         "icon": "⚠️",
-        "text": "Bio-Nährstoffe: EC-Werte niedriger als synthetisch — Pflanzen können weniger aufnehmen"
+        "text": {
+          "de": "Bio-Nährstoffe: EC-Werte niedriger als synthetisch — Pflanzen können weniger aufnehmen",
+          "en": "Organic nutrients: lower EC values than synthetic ones — plants can take up less",
+          "it": "Nutrienti bio: valori EC più bassi rispetto ai sintetici — le piante ne assorbono meno",
+          "fr": "Nutriments bio : valeurs d’EC plus basses que les synthétiques — les plantes en absorbent moins",
+          "es": "Nutrientes ecológicos: valores de EC más bajos que los sintéticos; las plantas absorben menos",
+          "pt": "Nutrientes biológicos: valores de EC mais baixos do que os sintéticos — as plantas absorvem menos"
+        }
       },
       {
         "icon": "🌊",
-        "text": "Flush: 2 Wochen bei BioBizz empfohlen — organische Reste brauchen länger"
+        "text": {
+          "de": "Flush: 2 Wochen bei BioBizz empfohlen — organische Reste brauchen länger",
+          "en": "Flush: 2 weeks recommended with BioBizz — organic residues take longer",
+          "it": "Lavaggio: con BioBizz si consigliano 2 settimane — i residui organici richiedono più tempo",
+          "fr": "Rinçage : 2 semaines recommandées avec BioBizz — les résidus organiques mettent plus de temps",
+          "es": "Lavado: con BioBizz se recomiendan 2 semanas; los restos orgánicos tardan más",
+          "pt": "Lavagem: com a BioBizz recomendam-se 2 semanas — os resíduos orgânicos demoram mais"
+        }
       },
       {
         "icon": "🦠",
-        "text": "Root·Juice enthält lebende Mikroben — bei <20°C Wassertemperatur zugeben"
+        "text": {
+          "de": "Root·Juice enthält lebende Mikroben — bei <20°C Wassertemperatur zugeben",
+          "en": "Root·Juice contains live microbes — add at a water temperature below 20 °C",
+          "it": "Root·Juice contiene microbi vivi — aggiungerlo con acqua sotto i 20 °C",
+          "fr": "Root·Juice contient des microbes vivants — l’ajouter avec une eau à moins de 20 °C",
+          "es": "Root·Juice contiene microbios vivos; añadirlo con el agua por debajo de 20 °C",
+          "pt": "Root·Juice contém micróbios vivos — adicionar com a água abaixo de 20 °C"
+        }
       },
       {
         "icon": "🌵",
-        "text": "Acti·Vera (Aloe Vera Booster) ergänzt: 5 ml/L (50 ml/10L) als Reservoir-Zusatz nach Bedarf, nicht zwingend jede Woche — verbessert Nährstoffaufnahme und Immunsystem."
+        "text": {
+          "de": "Acti·Vera (Aloe Vera Booster) ergänzt: 5 ml/L (50 ml/10L) als Reservoir-Zusatz nach Bedarf, nicht zwingend jede Woche — verbessert Nährstoffaufnahme und Immunsystem.",
+          "en": "Acti·Vera (aloe vera booster) added: 5 ml/L (50 ml/10 L) as a reservoir additive as needed, not necessarily every week — improves nutrient uptake and the immune system.",
+          "it": "Aggiunto Acti·Vera (booster all’aloe vera): 5 ml/L (50 ml/10 L) come additivo del serbatoio al bisogno, non per forza ogni settimana — migliora l’assorbimento dei nutrienti e il sistema immunitario.",
+          "fr": "Acti·Vera (booster à l’aloe vera) ajouté : 5 ml/L (50 ml/10 L) comme additif de réservoir selon les besoins, pas forcément chaque semaine — améliore l’absorption des nutriments et le système immunitaire.",
+          "es": "Añadido Acti·Vera (potenciador de aloe vera): 5 ml/L (50 ml/10 L) como aditivo del depósito según necesidad, no necesariamente cada semana; mejora la absorción de nutrientes y el sistema inmune.",
+          "pt": "Acrescentado Acti·Vera (estimulante de aloé vera): 5 ml/L (50 ml/10 L) como aditivo do reservatório conforme necessário, não obrigatoriamente todas as semanas — melhora a absorção de nutrientes e o sistema imunitário."
+        }
       }
     ],
     "quelle": "library",
@@ -3224,7 +3906,14 @@ const MARKEN = {
       "fasilitor": {
         "name": "Regulator",
         "type": "silica",
-        "note": "Silikat + pH-Puffer, früher „Fasilitor“ – nach dem RO Water Conditioner als Erstes ins Wasser",
+        "note": {
+          "de": "Silikat + pH-Puffer, früher „Fasilitor“ – nach dem RO Water Conditioner als Erstes ins Wasser",
+          "en": "Silicate + pH buffer, formerly “Fasilitor” – into the water first, after the RO Water Conditioner",
+          "it": "Silicato + tampone pH, prima «Fasilitor» – il primo nell’acqua, dopo l’RO Water Conditioner",
+          "fr": "Silicate + tampon pH, anciennement « Fasilitor » – en premier dans l’eau, après le RO Water Conditioner",
+          "es": "Silicato + tampón de pH, antes «Fasilitor»: el primero en el agua, después del RO Water Conditioner",
+          "pt": "Silicato + tampão de pH, antes «Fasilitor» – o primeiro na água, depois do RO Water Conditioner"
+        },
         "color": "#8b949e",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -3238,7 +3927,14 @@ const MARKEN = {
       "allInOne": {
         "name": "All-in-One Liquid",
         "type": "base",
-        "note": "Komplett-Dünger 1-Komponente",
+        "note": {
+          "de": "Komplett-Dünger 1-Komponente",
+          "en": "Complete one-part feed",
+          "it": "Fertilizzante completo monocomponente",
+          "fr": "Engrais complet monocomposant",
+          "es": "Abono completo de un componente",
+          "pt": "Adubo completo de um componente"
+        },
         "quelle": {
           "geprueft": "2026-09-25",
           "status": "belegt",
@@ -3251,7 +3947,14 @@ const MARKEN = {
       "pBoost": {
         "name": "P-Boost",
         "type": "pk",
-        "note": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
+        "note": {
+          "de": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
+          "en": "Part of the PREMIUM program – per Aptus not for DWC",
+          "it": "Fa parte del programma PREMIUM – secondo Aptus non per il DWC",
+          "fr": "Fait partie du programme PREMIUM – selon Aptus, pas pour le DWC",
+          "es": "Forma parte del programa PREMIUM; según Aptus no es para DWC",
+          "pt": "Faz parte do programa PREMIUM – segundo a Aptus, não para DWC"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -3264,7 +3967,14 @@ const MARKEN = {
       "kBoost": {
         "name": "K-Boost",
         "type": "pk",
-        "note": "Kalium-Ergänzung, Blüte Wk 6–8",
+        "note": {
+          "de": "Kalium-Ergänzung, Blüte Wk 6–8",
+          "en": "Potassium supplement, bloom wk 6–8",
+          "it": "Integrazione di potassio, fioritura sett. 6–8",
+          "fr": "Complément de potassium, floraison sem. 6–8",
+          "es": "Suplemento de potasio, floración sem. 6–8",
+          "pt": "Suplemento de potássio, floração sem. 6–8"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -3278,7 +3988,14 @@ const MARKEN = {
       "camgBoost": {
         "name": "CaMg-Boost",
         "type": "calmag",
-        "note": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
+        "note": {
+          "de": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
+          "en": "Part of the PREMIUM program – per Aptus not for DWC",
+          "it": "Fa parte del programma PREMIUM – secondo Aptus non per il DWC",
+          "fr": "Fait partie du programme PREMIUM – selon Aptus, pas pour le DWC",
+          "es": "Forma parte del programa PREMIUM; según Aptus no es para DWC",
+          "pt": "Faz parte do programa PREMIUM – segundo a Aptus, não para DWC"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -3291,7 +4008,14 @@ const MARKEN = {
       "topBooster": {
         "name": "Top Booster",
         "type": "bloom",
-        "note": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
+        "note": {
+          "de": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
+          "en": "Part of the PREMIUM program – per Aptus not for DWC",
+          "it": "Fa parte del programma PREMIUM – secondo Aptus non per il DWC",
+          "fr": "Fait partie du programme PREMIUM – selon Aptus, pas pour le DWC",
+          "es": "Forma parte del programa PREMIUM; según Aptus no es para DWC",
+          "pt": "Faz parte do programa PREMIUM – segundo a Aptus, não para DWC"
+        },
         "color": "#bc8cff",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -3304,7 +4028,14 @@ const MARKEN = {
       "mycorMix": {
         "name": "Mycor Mix",
         "type": "bacteria",
-        "note": "Mykorrhiza — EINMALIG bei Umtopfen/Pflanzung, kein Reservoir-Additiv",
+        "note": {
+          "de": "Mykorrhiza — EINMALIG bei Umtopfen/Pflanzung, kein Reservoir-Additiv",
+          "en": "Mycorrhiza — ONCE when planting/repotting, not a reservoir additive",
+          "it": "Micorrize — UNA SOLA VOLTA al trapianto/rinvaso, non è un additivo per il serbatoio",
+          "fr": "Mycorhizes — UNE SEULE FOIS à la plantation/au rempotage, pas un additif de réservoir",
+          "es": "Micorrizas — UNA SOLA VEZ al plantar/trasplantar, no es un aditivo para el depósito",
+          "pt": "Micorrizas — UMA ÚNICA VEZ ao plantar/transplantar, não é um aditivo para o reservatório"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -3317,7 +4048,14 @@ const MARKEN = {
         "type": "bloom",
         "einheit": "g",
         "color": "#f472b6",
-        "note": "Pulver, gut einrühren – Menge laut Aptus je nach Sorte",
+        "note": {
+          "de": "Pulver, gut einrühren – Menge laut Aptus je nach Sorte",
+          "en": "Powder, stir in well – amount per Aptus depends on the strain",
+          "it": "Polvere, mescolare bene – quantità secondo Aptus a seconda della varietà",
+          "fr": "Poudre, bien mélanger – dose selon Aptus en fonction de la variété",
+          "es": "Polvo, remover bien – cantidad según Aptus en función de la variedad",
+          "pt": "Pó, mexer bem – quantidade segundo a Aptus conforme a variedade"
+        },
         "quelle": {
           "geprueft": "2026-09-25",
           "status": "belegt",
@@ -3329,7 +4067,14 @@ const MARKEN = {
         "name": "RO Water Conditioner",
         "type": "calmag",
         "color": "#fbbf24",
-        "note": "Nur bei Osmosewasser: zuerst ins Wasser, bis EC 0,3 – keine feste Wochengabe",
+        "note": {
+          "de": "Nur bei Osmosewasser: zuerst ins Wasser, bis EC 0,3 – keine feste Wochengabe",
+          "en": "Only with reverse-osmosis water: into the water first, up to EC 0.3 – no fixed weekly dose",
+          "it": "Solo con acqua osmotica: per primo nell’acqua, fino a EC 0,3 – nessuna dose settimanale fissa",
+          "fr": "Uniquement avec de l’eau osmosée : en premier dans l’eau, jusqu’à EC 0,3 – pas de dose hebdomadaire fixe",
+          "es": "Solo con agua de ósmosis: primero en el agua, hasta EC 0,3; sin dosis semanal fija",
+          "pt": "Só com água de osmose: primeiro na água, até EC 0,3 – sem dose semanal fixa"
+        },
         "quelle": {
           "geprueft": "2026-09-25",
           "status": "belegt",
@@ -3341,7 +4086,14 @@ const MARKEN = {
         "name": "System-Clean",
         "type": "flush",
         "color": "#8b949e",
-        "note": "Optional, 0,25 ml/L in Wuchs und Blüte – keine feste Wochengabe",
+        "note": {
+          "de": "Optional, 0,25 ml/L in Wuchs und Blüte – keine feste Wochengabe",
+          "en": "Optional, 0.25 ml/L in veg and bloom – no fixed weekly dose",
+          "it": "Facoltativo, 0,25 ml/L in crescita e fioritura – nessuna dose settimanale fissa",
+          "fr": "Facultatif, 0,25 ml/L en croissance et floraison – pas de dose hebdomadaire fixe",
+          "es": "Opcional, 0,25 ml/L en crecimiento y floración; sin dosis semanal fija",
+          "pt": "Opcional, 0,25 ml/L no crescimento e na floração – sem dose semanal fixa"
+        },
         "quelle": {
           "geprueft": "2026-09-25",
           "status": "belegt",
@@ -3429,35 +4181,91 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📋",
-        "text": "Seit 25.9.2026 nach dem Aptus-Programm CLEAN Mineral 2025 – das Programm, das Aptus für DWC vorsieht. Das vorher verwendete PREMIUM-Programm ist laut Aptus nicht für DWC gedacht."
+        "text": {
+          "de": "Seit 25.9.2026 nach dem Aptus-Programm CLEAN Mineral 2025 – das Programm, das Aptus für DWC vorsieht. Das vorher verwendete PREMIUM-Programm ist laut Aptus nicht für DWC gedacht.",
+          "en": "Since 25 Sep 2026 following the Aptus CLEAN Mineral 2025 program – the program Aptus intends for DWC. The PREMIUM program used before is not meant for DWC, according to Aptus.",
+          "it": "Dal 25/9/2026 secondo il programma Aptus CLEAN Mineral 2025 – il programma che Aptus prevede per il DWC. Il programma PREMIUM usato prima secondo Aptus non è pensato per il DWC.",
+          "fr": "Depuis le 25/09/2026, selon le programme Aptus CLEAN Mineral 2025 – celui qu’Aptus prévoit pour le DWC. Le programme PREMIUM utilisé auparavant n’est pas prévu pour le DWC selon Aptus.",
+          "es": "Desde el 25/9/2026 según el programa Aptus CLEAN Mineral 2025, el que Aptus prevé para DWC. El programa PREMIUM usado antes no está pensado para DWC, según Aptus.",
+          "pt": "Desde 25/9/2026 segundo o programa Aptus CLEAN Mineral 2025 – o programa que a Aptus prevê para DWC. O programa PREMIUM usado antes não se destina a DWC, segundo a Aptus."
+        }
       },
       {
         "icon": "⚡",
-        "text": "Regulator (früher Fasilitor) nach dem RO Water Conditioner als Erstes ins Wasser. In Blütewoche 1–3 bis 0,3 ml/L gegen zu starkes Strecken."
+        "text": {
+          "de": "Regulator (früher Fasilitor) nach dem RO Water Conditioner als Erstes ins Wasser. In Blütewoche 1–3 bis 0,3 ml/L gegen zu starkes Strecken.",
+          "en": "Regulator (formerly Fasilitor) into the water first, after the RO Water Conditioner. In bloom weeks 1–3 up to 0.3 ml/L against excessive stretching.",
+          "it": "Regulator (prima Fasilitor) per primo nell’acqua, dopo l’RO Water Conditioner. Nelle settimane di fioritura 1–3 fino a 0,3 ml/L contro lo stretching eccessivo.",
+          "fr": "Regulator (anciennement Fasilitor) en premier dans l’eau, après le RO Water Conditioner. En semaines de floraison 1–3, jusqu’à 0,3 ml/L contre un étirement trop fort.",
+          "es": "Regulator (antes Fasilitor) el primero en el agua, después del RO Water Conditioner. En las semanas 1–3 de floración, hasta 0,3 ml/L contra un estiramiento excesivo.",
+          "pt": "Regulator (antes Fasilitor) o primeiro na água, depois do RO Water Conditioner. Nas semanas 1–3 de floração, até 0,3 ml/L contra o estiramento excessivo."
+        }
       },
       {
         "icon": "💧",
-        "text": "Aptus sieht jede Woche frisches Wasser vor; die Mischung bleibt laut Aptus bis zu 14 Tage stabil."
+        "text": {
+          "de": "Aptus sieht jede Woche frisches Wasser vor; die Mischung bleibt laut Aptus bis zu 14 Tage stabil.",
+          "en": "Aptus calls for fresh water every week; per Aptus, the mix stays stable for up to 14 days.",
+          "it": "Aptus prevede acqua fresca ogni settimana; secondo Aptus la miscela resta stabile fino a 14 giorni.",
+          "fr": "Aptus prévoit de l’eau fraîche chaque semaine ; selon Aptus, le mélange reste stable jusqu’à 14 jours.",
+          "es": "Aptus prevé agua fresca cada semana; según Aptus, la mezcla se mantiene estable hasta 14 días.",
+          "pt": "A Aptus prevê água fresca todas as semanas; segundo a Aptus, a mistura mantém-se estável até 14 dias."
+        }
       },
       {
         "icon": "🧬",
-        "text": "'BioBoost' gibt es bei Aptus nicht (das ist ein CANNA-Produkt) — richtig heißt es Mycor Mix, wird EINMALIG beim Pflanzen/Umtopfen ins Substrat gegeben, nicht wöchentlich ins Reservoir."
+        "text": {
+          "de": "'BioBoost' gibt es bei Aptus nicht (das ist ein CANNA-Produkt) — richtig heißt es Mycor Mix, wird EINMALIG beim Pflanzen/Umtopfen ins Substrat gegeben, nicht wöchentlich ins Reservoir.",
+          "en": "Aptus has no “BioBoost” (that is a CANNA product) — the right name is Mycor Mix, given ONCE into the substrate when planting/repotting, not weekly into the reservoir.",
+          "it": "Aptus non ha un «BioBoost» (è un prodotto CANNA) — il nome giusto è Mycor Mix, si dà UNA SOLA VOLTA nel substrato al trapianto/rinvaso, non ogni settimana nel serbatoio.",
+          "fr": "« BioBoost » n’existe pas chez Aptus (c’est un produit CANNA) — le bon nom est Mycor Mix, à mettre UNE SEULE FOIS dans le substrat à la plantation/au rempotage, pas chaque semaine dans le réservoir.",
+          "es": "Aptus no tiene «BioBoost» (es un producto de CANNA); el nombre correcto es Mycor Mix, que se añade UNA SOLA VEZ al sustrato al plantar/trasplantar, no cada semana al depósito.",
+          "pt": "A Aptus não tem «BioBoost» (é um produto CANNA) — o nome certo é Mycor Mix, que se põe UMA ÚNICA VEZ no substrato ao plantar/transplantar, não todas as semanas no reservatório."
+        }
       },
       {
         "icon": "🔬",
-        "text": "Aptus: Mikrodosierung — sehr konzentriert, genau abmessen!"
+        "text": {
+          "de": "Aptus: Mikrodosierung — sehr konzentriert, genau abmessen!",
+          "en": "Aptus: micro-dosing — very concentrated, measure precisely!",
+          "it": "Aptus: microdosaggio — molto concentrato, misura con precisione!",
+          "fr": "Aptus : microdosage — très concentré, mesurez précisément !",
+          "es": "Aptus: microdosificación; muy concentrado, ¡mide con precisión!",
+          "pt": "Aptus: microdosagem — muito concentrado, meça com precisão!"
+        }
       },
       {
         "icon": "📉",
-        "text": "All-in-One: schrittweise steigern — überdosierung vermeiden"
+        "text": {
+          "de": "All-in-One: schrittweise steigern — Überdosierung vermeiden",
+          "en": "All-in-One: raise step by step — avoid overdosing",
+          "it": "All-in-One: aumentare gradualmente — evitare il sovradosaggio",
+          "fr": "All-in-One : augmenter progressivement — éviter le surdosage",
+          "es": "All-in-One: subir poco a poco; evitar la sobredosis",
+          "pt": "All-in-One: aumentar gradualmente — evitar a sobredosagem"
+        }
       },
       {
         "icon": "🌡️",
-        "text": "N-Booster ist laut Aptus nur eine optionale Korrektur bei Stickstoffmangel, kein Standard-Wochenprodukt — deshalb hier nicht im festen Schema."
+        "text": {
+          "de": "N-Booster ist laut Aptus nur eine optionale Korrektur bei Stickstoffmangel, kein Standard-Wochenprodukt — deshalb hier nicht im festen Schema.",
+          "en": "Per Aptus, N-Booster is only an optional fix for nitrogen deficiency, not a standard weekly product — so it is not in the fixed plan here.",
+          "it": "Secondo Aptus N-Booster è solo una correzione facoltativa per la carenza di azoto, non un prodotto settimanale standard — per questo qui non è nel piano fisso.",
+          "fr": "Selon Aptus, N-Booster n’est qu’une correction facultative en cas de carence en azote, pas un produit hebdomadaire standard — il ne figure donc pas dans le plan fixe.",
+          "es": "Según Aptus, N-Booster es solo una corrección opcional ante carencia de nitrógeno, no un producto semanal estándar; por eso no está en el plan fijo.",
+          "pt": "Segundo a Aptus, o N-Booster é só uma correção opcional para a carência de azoto, não um produto semanal padrão — por isso não está no plano fixo."
+        }
       },
       {
         "icon": "🐞",
-        "text": "All-In-One stand versehentlich zweimal in den Daten und wurde doppelt dosiert. Seit 17.9.2026 behoben."
+        "text": {
+          "de": "All-In-One stand versehentlich zweimal in den Daten und wurde doppelt dosiert. Seit 17.9.2026 behoben.",
+          "en": "All-In-One was listed twice in the data by mistake and dosed twice. Fixed since 17 Sep 2026.",
+          "it": "All-In-One era per errore due volte nei dati e veniva dosato il doppio. Corretto dal 17/9/2026.",
+          "fr": "All-In-One figurait deux fois dans les données par erreur et était dosé en double. Corrigé depuis le 17/09/2026.",
+          "es": "All-In-One aparecía dos veces en los datos por error y se dosificaba el doble. Corregido desde el 17/9/2026.",
+          "pt": "O All-In-One estava por engano duas vezes nos dados e era doseado a dobrar. Corrigido desde 17/9/2026."
+        }
       }
     ],
     "quelle": "library",
@@ -3497,7 +4305,14 @@ const MARKEN = {
       "aquaA": {
         "name": "Aqua Flakes A",
         "type": "base",
-        "note": "DWC-spezifisch Basis A",
+        "note": {
+          "de": "DWC-spezifisch Basis A",
+          "en": "DWC-specific base A",
+          "it": "Base A specifica per DWC",
+          "fr": "Base A spéciale DWC",
+          "es": "Base A específica para DWC",
+          "pt": "Base A específica para DWC"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3511,7 +4326,14 @@ const MARKEN = {
       "aquaB": {
         "name": "Aqua Flakes B",
         "type": "base",
-        "note": "DWC-spezifisch Basis B",
+        "note": {
+          "de": "DWC-spezifisch Basis B",
+          "en": "DWC-specific base B",
+          "it": "Base B specifica per DWC",
+          "fr": "Base B spéciale DWC",
+          "es": "Base B específica para DWC",
+          "pt": "Base B específica para DWC"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3525,7 +4347,14 @@ const MARKEN = {
       "roots": {
         "name": "Roots Excelurator",
         "type": "root",
-        "note": "Premium Wurzelbooster, Grow Wk 1–4",
+        "note": {
+          "de": "Premium Wurzelbooster, Grow Wk 1–4",
+          "en": "Premium root booster, grow wk 1–4",
+          "it": "Booster radicale premium, crescita sett. 1–4",
+          "fr": "Booster racinaire premium, croissance sem. 1–4",
+          "es": "Potenciador de raíces premium, crecimiento sem. 1–4",
+          "pt": "Estimulante de raízes premium, crescimento sem. 1–4"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3539,7 +4368,14 @@ const MARKEN = {
       "algen": {
         "name": "Algen Extract",
         "type": "vitamin",
-        "note": "Kelp — Wachstum + Immunsystem",
+        "note": {
+          "de": "Kelp — Wachstum + Immunsystem",
+          "en": "Kelp — growth + immune system",
+          "it": "Kelp — crescita + sistema immunitario",
+          "fr": "Kelp — croissance + système immunitaire",
+          "es": "Kelp — crecimiento + sistema inmune",
+          "pt": "Kelp — crescimento + sistema imunitário"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3553,7 +4389,14 @@ const MARKEN = {
       "amino": {
         "name": "Amino Treatment",
         "type": "vitamin",
-        "note": "Aminosäuren, Bloom",
+        "note": {
+          "de": "Aminosäuren, Bloom",
+          "en": "Amino acids, bloom",
+          "it": "Aminoacidi, fioritura",
+          "fr": "Acides aminés, floraison",
+          "es": "Aminoácidos, floración",
+          "pt": "Aminoácidos, floração"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3567,7 +4410,14 @@ const MARKEN = {
       "multizyme": {
         "name": "Multi Zen",
         "type": "enzyme",
-        "note": "Enzyme, ganzer Run",
+        "note": {
+          "de": "Enzyme, ganzer Run",
+          "en": "Enzymes, whole run",
+          "it": "Enzimi, tutto il ciclo",
+          "fr": "Enzymes, tout le cycle",
+          "es": "Enzimas, todo el ciclo",
+          "pt": "Enzimas, todo o ciclo"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3582,7 +4432,14 @@ const MARKEN = {
       "topBooster": {
         "name": "Top Booster",
         "type": "pk",
-        "note": "PK-Booster, Bloom Wk 3–6",
+        "note": {
+          "de": "PK-Booster, Bloom Wk 3–6",
+          "en": "PK booster, bloom wk 3–6",
+          "it": "Booster PK, fioritura sett. 3–6",
+          "fr": "Booster PK, floraison sem. 3–6",
+          "es": "Potenciador PK, floración sem. 3–6",
+          "pt": "Estimulante PK, floração sem. 3–6"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3596,7 +4453,14 @@ const MARKEN = {
       "budXL": {
         "name": "Bud-XL",
         "type": "bloom",
-        "note": "Zuckerextraktion aus Blättern, Bloom",
+        "note": {
+          "de": "Zuckerextraktion aus Blättern, Bloom",
+          "en": "Sugar extraction from leaves, bloom",
+          "it": "Estrazione di zuccheri dalle foglie, fioritura",
+          "fr": "Extraction des sucres des feuilles, floraison",
+          "es": "Extracción de azúcares de las hojas, floración",
+          "pt": "Extração de açúcares das folhas, floração"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3610,7 +4474,14 @@ const MARKEN = {
       "shooting": {
         "name": "Shooting Powder",
         "type": "bloom",
-        "note": "Explosiver Finisher, Bloom Wk 5–6",
+        "note": {
+          "de": "Explosiver Finisher, Bloom Wk 5–6",
+          "en": "Explosive finisher, bloom wk 5–6",
+          "it": "Finisher esplosivo, fioritura sett. 5–6",
+          "fr": "Finisher explosif, floraison sem. 5–6",
+          "es": "Finalizador explosivo, floración sem. 5–6",
+          "pt": "Finalizador explosivo, floração sem. 5–6"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -3624,7 +4495,14 @@ const MARKEN = {
       "dripClean": {
         "name": "Drip Clean",
         "type": "flush",
-        "note": "Salzvorbeugung, 0.4 ml/10L ganzer Run",
+        "note": {
+          "de": "Salzvorbeugung, 0.4 ml/10L ganzer Run",
+          "en": "Prevents salt build-up, 0.4 ml/10 L whole run",
+          "it": "Previene l’accumulo di sali, 0,4 ml/10 L tutto il ciclo",
+          "fr": "Prévient l’accumulation de sels, 0,4 ml/10 L tout le cycle",
+          "es": "Previene la acumulación de sales, 0,4 ml/10 L todo el ciclo",
+          "pt": "Previne a acumulação de sais, 0,4 ml/10 L todo o ciclo"
+        },
         "color": "#8b949e",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3638,7 +4516,14 @@ const MARKEN = {
       "phStabiliser": {
         "name": "PH Stabiliser",
         "type": "enzyme",
-        "note": "pH-Puffer für RO-/weiches Wasser, ganzer Run vor Basis-Dünger",
+        "note": {
+          "de": "pH-Puffer für RO-/weiches Wasser, ganzer Run vor Basis-Dünger",
+          "en": "pH buffer for RO/soft water, whole run, before the base nutrients",
+          "it": "Tampone pH per acqua osmotica/dolce, tutto il ciclo, prima dei fertilizzanti di base",
+          "fr": "Tampon pH pour eau osmosée/douce, tout le cycle, avant les engrais de base",
+          "es": "Tampón de pH para agua de ósmosis/blanda, todo el ciclo, antes de los abonos base",
+          "pt": "Tampão de pH para água de osmose/macia, todo o ciclo, antes dos adubos base"
+        },
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3650,7 +4535,14 @@ const MARKEN = {
       "topShooter": {
         "name": "Top Shooter",
         "type": "pk",
-        "note": "ALTERNATIVE zu Top Booster + Shooting Powder — nicht kombinieren!",
+        "note": {
+          "de": "ALTERNATIVE zu Top Booster + Shooting Powder — nicht kombinieren!",
+          "en": "ALTERNATIVE to Top Booster + Shooting Powder — don’t combine!",
+          "it": "ALTERNATIVA a Top Booster + Shooting Powder — non combinare!",
+          "fr": "ALTERNATIVE à Top Booster + Shooting Powder — ne pas combiner !",
+          "es": "ALTERNATIVA a Top Booster + Shooting Powder: ¡no combinar!",
+          "pt": "ALTERNATIVA ao Top Booster + Shooting Powder — não combinar!"
+        },
         "quelle": {
           "geprueft": "2026-09-24",
           "status": "belegt",
@@ -3663,7 +4555,14 @@ const MARKEN = {
       "nitrogenBoost": {
         "name": "Nitrogen Boost",
         "type": "vitamin",
-        "note": "Stickstoff-Ergänzung, Wuchs und Blütewoche 1-4",
+        "note": {
+          "de": "Stickstoff-Ergänzung, Wuchs und Blütewoche 1-4",
+          "en": "Nitrogen supplement, veg and bloom weeks 1–4",
+          "it": "Integrazione di azoto, crescita e settimane di fioritura 1–4",
+          "fr": "Complément d’azote, croissance et semaines de floraison 1–4",
+          "es": "Suplemento de nitrógeno, crecimiento y semanas 1–4 de floración",
+          "pt": "Suplemento de azoto, crescimento e semanas 1–4 de floração"
+        },
         "color": "#4ade80",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3866,31 +4765,69 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📐",
-        "text": "Seit 24.9.2026 nach dem DWC-Schema von House & Garden: 4 Wuchs-, 8 Blütewochen, Aqua Flakes A und B jeweils in der angegebenen Menge. House & Garden nennt dafür keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+        "text": {
+          "de": "Seit 24.9.2026 nach dem DWC-Schema von House & Garden: 4 Wuchs-, 8 Blütewochen, Aqua Flakes A und B jeweils in der angegebenen Menge. House & Garden nennt dafür keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben.",
+          "en": "Since 24 Sep 2026 following the House & Garden DWC schedule: 4 veg and 8 bloom weeks, Aqua Flakes A and B each in the stated amount. House & Garden gives no EC target for it. Before, the amounts were about a third of that. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change.",
+          "it": "Dal 24/9/2026 secondo lo schema DWC di House & Garden: 4 settimane di crescita e 8 di fioritura, Aqua Flakes A e B ciascuno nella quantità indicata. House & Garden non indica un obiettivo EC. Prima le quantità erano circa un terzo. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+          "fr": "Depuis le 24/09/2026, selon le schéma DWC de House & Garden : 4 semaines de croissance et 8 de floraison, Aqua Flakes A et B chacun à la dose indiquée. House & Garden n'indique pas d'objectif EC. Auparavant, les doses étaient d'environ un tiers. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau.",
+          "es": "Desde el 24/9/2026 según el esquema DWC de House & Garden: 4 semanas de crecimiento y 8 de floración, Aqua Flakes A y B cada uno en la cantidad indicada. House & Garden no indica un objetivo de EC. Antes, las cantidades eran aproximadamente un tercio. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua.",
+          "pt": "Desde 24/9/2026 segundo o esquema DWC da House & Garden: 4 semanas de crescimento e 8 de floração, Aqua Flakes A e B cada um na quantidade indicada. A House & Garden não indica um objetivo de EC. Antes, as quantidades eram cerca de um terço. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água."
+        }
       },
       {
         "icon": "🏆",
-        "text": "Roots Excelurator: laut Community der stärkste Wurzelbooster — sehr wenig reicht!"
+        "text": {
+          "de": "Roots Excelurator: laut Community der stärkste Wurzelbooster — sehr wenig reicht!",
+          "en": "Roots Excelurator: according to the community the strongest root booster — very little is enough!",
+          "it": "Roots Excelurator: secondo la community il booster radicale più forte — ne basta pochissimo!",
+          "fr": "Roots Excelurator : selon la communauté, le booster racinaire le plus puissant — très peu suffit !",
+          "es": "Roots Excelurator: según la comunidad, el potenciador de raíces más fuerte; ¡basta muy poco!",
+          "pt": "Roots Excelurator: segundo a comunidade, o estimulante de raízes mais forte — basta muito pouco!"
+        }
       },
       {
         "icon": "💣",
-        "text": "Shooting Powder: als Pulver separat in warmem Wasser auflösen vor Zugabe. Korrigiert nach offizieller Dosierung (65g/100L letzte 3 Wochen, 130g/100L letzte 1-2 Wochen) — war zuvor 6-13x unterdosiert."
+        "text": {
+          "de": "Shooting Powder: als Pulver separat in warmem Wasser auflösen vor Zugabe. Korrigiert nach offizieller Dosierung (65g/100L letzte 3 Wochen, 130g/100L letzte 1-2 Wochen) — war zuvor 6-13x unterdosiert.",
+          "en": "Shooting Powder: dissolve the powder separately in warm water before adding. Corrected to the official dosage (65 g/100 L in the last 3 weeks, 130 g/100 L in the last 1–2 weeks) — it was underdosed 6–13× before.",
+          "it": "Shooting Powder: sciogliere la polvere a parte in acqua tiepida prima di aggiungerla. Corretto secondo il dosaggio ufficiale (65 g/100 L nelle ultime 3 settimane, 130 g/100 L nelle ultime 1–2) — prima era sottodosato di 6–13 volte.",
+          "fr": "Shooting Powder : dissoudre la poudre à part dans de l’eau tiède avant de l’ajouter. Corrigé d’après le dosage officiel (65 g/100 L les 3 dernières semaines, 130 g/100 L les 1 à 2 dernières) — il était auparavant sous-dosé de 6 à 13 fois.",
+          "es": "Shooting Powder: disolver el polvo aparte en agua tibia antes de añadirlo. Corregido según la dosis oficial (65 g/100 L las últimas 3 semanas, 130 g/100 L las últimas 1–2): antes estaba infradosificado 6–13 veces.",
+          "pt": "Shooting Powder: dissolver o pó à parte em água morna antes de adicionar. Corrigido segundo a dosagem oficial (65 g/100 L nas últimas 3 semanas, 130 g/100 L nas últimas 1–2) — estava antes subdoseado 6–13 vezes."
+        }
       },
       {
         "icon": "💧",
-        "text": "PH Stabiliser neu ergänzt: puffert RO-/weiches Wasser VOR der Basis-Düngung, 1 ml/L, ganzer Run."
+        "text": {
+          "de": "PH Stabiliser neu ergänzt: puffert RO-/weiches Wasser VOR der Basis-Düngung, 1 ml/L, ganzer Run.",
+          "en": "PH Stabiliser newly added: buffers RO/soft water BEFORE the base feeding, 1 ml/L, whole run.",
+          "it": "Aggiunto PH Stabiliser: tampona l’acqua osmotica/dolce PRIMA della concimazione di base, 1 ml/L, tutto il ciclo.",
+          "fr": "PH Stabiliser ajouté : tamponne l’eau osmosée/douce AVANT la fertilisation de base, 1 ml/L, tout le cycle.",
+          "es": "Añadido PH Stabiliser: amortigua el agua de ósmosis/blanda ANTES del abonado base, 1 ml/L, todo el ciclo.",
+          "pt": "Acrescentado PH Stabiliser: tampona a água de osmose/macia ANTES da adubação base, 1 ml/L, todo o ciclo."
+        }
       },
       {
         "icon": "🎯",
-        "text": "Top Shooter: dritter PK-/Finisher-Booster von House & Garden — laut Hersteller eine ALTERNATIVE zu Top Booster + Shooting Powder, nicht zusätzlich kombinieren. Hier deshalb nicht ins Standard-Schema aufgenommen."
+        "text": {
+          "de": "Top Shooter: dritter PK-/Finisher-Booster von House & Garden — laut Hersteller eine ALTERNATIVE zu Top Booster + Shooting Powder, nicht zusätzlich kombinieren. Hier deshalb nicht ins Standard-Schema aufgenommen.",
+          "en": "Top Shooter: House & Garden’s third PK/finisher booster — per the manufacturer an ALTERNATIVE to Top Booster + Shooting Powder, not to be combined on top. So it is not in the standard plan here.",
+          "it": "Top Shooter: terzo booster PK/finisher di House & Garden — secondo il produttore un’ALTERNATIVA a Top Booster + Shooting Powder, da non combinare in aggiunta. Per questo qui non è nel piano standard.",
+          "fr": "Top Shooter : troisième booster PK/finisher de House & Garden — selon le fabricant une ALTERNATIVE à Top Booster + Shooting Powder, à ne pas combiner en plus. Il ne figure donc pas dans le plan standard.",
+          "es": "Top Shooter: tercer potenciador PK/finalizador de House & Garden; según el fabricante, una ALTERNATIVA a Top Booster + Shooting Powder, no para combinar además. Por eso no está en el plan estándar.",
+          "pt": "Top Shooter: terceiro estimulante PK/finalizador da House & Garden — segundo o fabricante uma ALTERNATIVA ao Top Booster + Shooting Powder, não para combinar além deles. Por isso não está no plano padrão."
+        }
       },
       {
         "icon": "🧂",
-        "text": "Drip Clean: ganzen Run hindurch — verhindert Salzakkumulation an Wurzeln"
-      },
-      {
-        "icon": "🔍",
-        "text": "Das offizielle House-&-Garden-DWC-Schema weicht ab (8 Blütewochen, deutlich höhere Zusätze). Vor Nutzung dieser Marke die Werte gegen das Herstellerchart abgleichen."
+        "text": {
+          "de": "Drip Clean: ganzen Run hindurch — verhindert Salzakkumulation an Wurzeln",
+          "en": "Drip Clean: throughout the whole run — prevents salt build-up on the roots",
+          "it": "Drip Clean: per tutto il ciclo — evita l’accumulo di sali sulle radici",
+          "fr": "Drip Clean : pendant tout le cycle — évite l’accumulation de sels sur les racines",
+          "es": "Drip Clean: durante todo el ciclo; evita la acumulación de sales en las raíces",
+          "pt": "Drip Clean: durante todo o ciclo — evita a acumulação de sais nas raízes"
+        }
       }
     ],
     "quelle": "library",
@@ -3939,7 +4876,14 @@ const MARKEN = {
       "hydroA": {
         "name": "B'cuzz Hydro A",
         "type": "base",
-        "note": "Basis DWC/Hydro A — immer 1:1 mit B",
+        "note": {
+          "de": "Basis DWC/Hydro A — immer 1:1 mit B",
+          "en": "Base DWC/hydro A — always 1:1 with B",
+          "it": "Base DWC/idro A — sempre 1:1 con B",
+          "fr": "Base DWC/hydro A — toujours 1:1 avec B",
+          "es": "Base DWC/hidro A — siempre 1:1 con B",
+          "pt": "Base DWC/hidro A — sempre 1:1 com B"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -3951,7 +4895,14 @@ const MARKEN = {
       "hydroB": {
         "name": "B'cuzz Hydro B",
         "type": "base",
-        "note": "Basis DWC/Hydro B — immer 1:1 mit A",
+        "note": {
+          "de": "Basis DWC/Hydro B — immer 1:1 mit A",
+          "en": "Base DWC/hydro B — always 1:1 with A",
+          "it": "Base DWC/idro B — sempre 1:1 con A",
+          "fr": "Base DWC/hydro B — toujours 1:1 avec A",
+          "es": "Base DWC/hidro B — siempre 1:1 con A",
+          "pt": "Base DWC/hidro B — sempre 1:1 com A"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -3963,7 +4914,14 @@ const MARKEN = {
       "rootStim": {
         "name": "Root Stimulator",
         "type": "root",
-        "note": "Wurzelstimulator, Grow Wk 1–4",
+        "note": {
+          "de": "Wurzelstimulator, Grow Wk 1–4",
+          "en": "Root stimulator, grow wk 1–4",
+          "it": "Stimolatore radicale, crescita sett. 1–4",
+          "fr": "Stimulateur racinaire, croissance sem. 1–4",
+          "es": "Estimulador de raíces, crecimiento sem. 1–4",
+          "pt": "Estimulador de raízes, crescimento sem. 1–4"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -3975,7 +4933,14 @@ const MARKEN = {
       "ataraxia": {
         "name": "Atazyme",
         "type": "enzyme",
-        "note": "Enzyme – ab Wuchswoche 2 bis zur Reife",
+        "note": {
+          "de": "Enzyme – ab Wuchswoche 2 bis zur Reife",
+          "en": "Enzymes – from veg week 2 to ripening",
+          "it": "Enzimi – dalla settimana di crescita 2 fino alla maturazione",
+          "fr": "Enzymes – de la semaine de croissance 2 jusqu’à la maturation",
+          "es": "Enzimas – desde la semana 2 de crecimiento hasta la maduración",
+          "pt": "Enzimas – da semana 2 de crescimento até à maturação"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -3989,7 +4954,14 @@ const MARKEN = {
       "boosting": {
         "name": "B’cuzz Bloom Stimulator",
         "type": "bloom",
-        "note": "Blütestimulator, ganze Blüte",
+        "note": {
+          "de": "Blütestimulator, ganze Blüte",
+          "en": "Bloom stimulator, whole bloom",
+          "it": "Stimolatore di fioritura, tutta la fioritura",
+          "fr": "Stimulateur de floraison, toute la floraison",
+          "es": "Estimulador de floración, toda la floración",
+          "pt": "Estimulador de floração, toda a floração"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4003,7 +4975,14 @@ const MARKEN = {
       "bloombastic": {
         "name": "Bloombastic",
         "type": "pk",
-        "note": "PK + Carbs Finisher, Bloom Wk 4–6",
+        "note": {
+          "de": "PK + Carbs Finisher, Bloom Wk 4–6",
+          "en": "PK + carbs finisher, bloom wk 4–6",
+          "it": "Finisher PK + carboidrati, fioritura sett. 4–6",
+          "fr": "Finisher PK + glucides, floraison sem. 4–6",
+          "es": "Finalizador PK + carbohidratos, floración sem. 4–6",
+          "pt": "Finalizador PK + hidratos de carbono, floração sem. 4–6"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4015,7 +4994,14 @@ const MARKEN = {
       "calmag": {
         "name": "CalMag",
         "type": "calmag",
-        "note": "Ca/Mg — bei weichem Wasser",
+        "note": {
+          "de": "Ca/Mg — bei weichem Wasser",
+          "en": "Ca/Mg — with soft water",
+          "it": "Ca/Mg — con acqua dolce",
+          "fr": "Ca/Mg — avec une eau douce",
+          "es": "Ca/Mg — con agua blanda",
+          "pt": "Ca/Mg — com água macia"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -4147,15 +5133,25 @@ const MARKEN = {
     "tips": [
       {
         "icon": "🌊",
-        "text": "B'cuzz Hydro A+B: 1:1 Verhältnis — niemals separat überdosieren"
+        "text": {
+          "de": "B'cuzz Hydro A+B: 1:1 Verhältnis — niemals separat überdosieren",
+          "en": "B’cuzz Hydro A+B: 1:1 ratio — never overdose one of them",
+          "it": "B’cuzz Hydro A+B: rapporto 1:1 — mai sovradosarne uno",
+          "fr": "B’cuzz Hydro A+B : rapport 1:1 — ne jamais surdoser l’un des deux",
+          "es": "B’cuzz Hydro A+B: proporción 1:1; nunca sobredosificar uno por separado",
+          "pt": "B’cuzz Hydro A+B: proporção 1:1 — nunca sobredosear um deles"
+        }
       },
       {
         "icon": "💥",
-        "text": "Bloombastic: sehr konzentriert — max 8 ml/10L, nicht übersteigern"
-      },
-      {
-        "icon": "🧬",
-        "text": "Ataraxia: Enzyme + Amino — schützt vor Salzstress und fördert Aufnahme"
+        "text": {
+          "de": "Bloombastic: sehr konzentriert — max 8 ml/10L, nicht übersteigern",
+          "en": "Bloombastic: very concentrated — max 8 ml/10 L, don’t go higher",
+          "it": "Bloombastic: molto concentrato — max 8 ml/10 L, non superare",
+          "fr": "Bloombastic : très concentré — 8 ml/10 L max., ne pas dépasser",
+          "es": "Bloombastic: muy concentrado; máx. 8 ml/10 L, no pasarse",
+          "pt": "Bloombastic: muito concentrado — máx. 8 ml/10 L, não ultrapassar"
+        }
       }
     ],
     "quelle": "library"
@@ -4182,7 +5178,14 @@ const MARKEN = {
       "basisA": {
         "name": "Basis A",
         "type": "base",
-        "note": "Basis-Dünger A",
+        "note": {
+          "de": "Basis-Dünger A",
+          "en": "Base nutrient A",
+          "it": "Fertilizzante di base A",
+          "fr": "Engrais de base A",
+          "es": "Abono base A",
+          "pt": "Adubo base A"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4196,7 +5199,14 @@ const MARKEN = {
       "basisB": {
         "name": "Basis B",
         "type": "base",
-        "note": "Basis-Dünger B",
+        "note": {
+          "de": "Basis-Dünger B",
+          "en": "Base nutrient B",
+          "it": "Fertilizzante di base B",
+          "fr": "Engrais de base B",
+          "es": "Abono base B",
+          "pt": "Adubo base B"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4210,7 +5220,14 @@ const MARKEN = {
       "startR": {
         "name": "Start-R",
         "type": "root",
-        "note": "Keimung + Wurzeln, Grow Wk 1–3 + Blüte-Übergang Wk 1–2",
+        "note": {
+          "de": "Keimung + Wurzeln, Grow Wk 1–3 + Blüte-Übergang Wk 1–2",
+          "en": "Germination + roots, grow wk 1–3 + bloom transition wk 1–2",
+          "it": "Germinazione + radici, crescita sett. 1–3 + passaggio alla fioritura sett. 1–2",
+          "fr": "Germination + racines, croissance sem. 1–3 + transition vers la floraison sem. 1–2",
+          "es": "Germinación + raíces, crecimiento sem. 1–3 + transición a floración sem. 1–2",
+          "pt": "Germinação + raízes, crescimento sem. 1–3 + transição para a floração sem. 1–2"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4224,7 +5241,14 @@ const MARKEN = {
       "vitalize": {
         "name": "Vitalize",
         "type": "silica",
-        "note": "Silika — Stressresistenz + Struktur",
+        "note": {
+          "de": "Silika — Stressresistenz + Struktur",
+          "en": "Silica — stress resistance + structure",
+          "it": "Silicio — resistenza allo stress + struttura",
+          "fr": "Silice — résistance au stress + structure",
+          "es": "Sílice — resistencia al estrés + estructura",
+          "pt": "Sílica — resistência ao stress + estrutura"
+        },
         "color": "#8b949e",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4238,7 +5262,14 @@ const MARKEN = {
       "c4": {
         "name": "C4",
         "type": "carbs",
-        "note": "Carbs + Amino, NUR Blüte ab Wk 2",
+        "note": {
+          "de": "Carbs + Amino, NUR Blüte ab Wk 2",
+          "en": "Carbs + amino, bloom ONLY, from wk 2",
+          "it": "Carboidrati + aminoacidi, SOLO in fioritura dalla sett. 2",
+          "fr": "Glucides + acides aminés, floraison UNIQUEMENT, à partir de la sem. 2",
+          "es": "Carbohidratos + aminoácidos, SOLO floración desde la sem. 2",
+          "pt": "Hidratos de carbono + aminoácidos, SÓ na floração a partir da sem. 2"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4252,7 +5283,14 @@ const MARKEN = {
       "ultimatePK": {
         "name": "Ultimate PK",
         "type": "pk",
-        "note": "PK-Booster, ab Blüte Wk 4 langsam steigern",
+        "note": {
+          "de": "PK-Booster, ab Blüte Wk 4 langsam steigern",
+          "en": "PK booster, raise slowly from bloom wk 4",
+          "it": "Booster PK, aumentare lentamente dalla fioritura sett. 4",
+          "fr": "Booster PK, augmenter progressivement à partir de la floraison sem. 4",
+          "es": "Potenciador PK, subir poco a poco desde la floración sem. 4",
+          "pt": "Estimulante PK, aumentar devagar a partir da floração sem. 4"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4374,23 +5412,58 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📐",
-        "text": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Für die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+        "text": {
+          "de": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Für die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben.",
+          "en": "Since 24 Sep 2026 following the Mills schedule for the HC line (High Concentrated), tap water with EC 0.7: 2 veg and 9 bloom weeks. For the Regular line use about 2.3 times as much with the same EC targets – if you don't know which line you have, mix by this plan and top up by EC. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change.",
+          "it": "Dal 24/9/2026 secondo lo schema Mills della linea HC (High Concentrated), acqua di rubinetto con EC 0,7: 2 settimane di crescita e 9 di fioritura. Per la linea Regular vale circa 2,3 volte tanto con gli stessi obiettivi EC – chi non conosce la linea miscela secondo questo piano e corregge in base all'EC. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+          "fr": "Depuis le 24/09/2026, selon le schéma Mills de la gamme HC (High Concentrated), eau du robinet à EC 0,7 : 2 semaines de croissance et 9 de floraison. Pour la gamme Regular, compter environ 2,3 fois plus pour les mêmes objectifs EC – si vous ne connaissez pas la gamme, mélangez selon ce plan et complétez selon l'EC. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau.",
+          "es": "Desde el 24/9/2026 según el esquema de Mills para la línea HC (High Concentrated), agua del grifo con EC 0,7: 2 semanas de crecimiento y 9 de floración. Para la línea Regular vale unas 2,3 veces más con los mismos objetivos de EC; quien no conozca la línea mezcla según este plan y corrige según la EC. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua.",
+          "pt": "Desde 24/9/2026 segundo o esquema da Mills para a linha HC (High Concentrated), água da torneira com EC 0,7: 2 semanas de crescimento e 9 de floração. Para a linha Regular vale cerca de 2,3 vezes mais com os mesmos objetivos de EC – quem não conhece a linha mistura segundo este plano e corrige pelo EC. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água."
+        }
       },
       {
         "icon": "⚫",
-        "text": "Mills: schlanke Linie — wenige Produkte, aber sehr effektiv und vollständig"
+        "text": {
+          "de": "Mills: schlanke Linie — wenige Produkte, aber sehr effektiv und vollständig",
+          "en": "Mills: a lean line — few products, but very effective and complete",
+          "it": "Mills: linea snella — pochi prodotti, ma molto efficaci e completi",
+          "fr": "Mills : gamme épurée — peu de produits, mais très efficaces et complets",
+          "es": "Mills: línea reducida; pocos productos, pero muy eficaces y completos",
+          "pt": "Mills: linha enxuta — poucos produtos, mas muito eficazes e completos"
+        }
       },
       {
         "icon": "🪨",
-        "text": "Vitalize (Silica): immer vor Basis A+B zugeben, pH steigt danach"
+        "text": {
+          "de": "Vitalize (Silica): immer vor Basis A+B zugeben, pH steigt danach",
+          "en": "Vitalize (silica): always add before Basis A+B, the pH rises afterwards",
+          "it": "Vitalize (silicio): aggiungere sempre prima di Basis A+B, poi il pH sale",
+          "fr": "Vitalize (silice) : toujours ajouter avant Basis A+B, le pH monte ensuite",
+          "es": "Vitalize (sílice): añadir siempre antes de Basis A+B; después el pH sube",
+          "pt": "Vitalize (sílica): adicionar sempre antes de Basis A+B, o pH sobe depois"
+        }
       },
       {
         "icon": "📈",
-        "text": "Ultimate PK: langsam steigern ab Blüte Wk 4 — offizieller Mills-Chart setzt PK deutlich später und höher an als zuvor hier hinterlegt (Wk 5-9 statt Wk 2-6); die genaue Konzentration hängt davon ab, welche Mills-Produktlinie (Regular/High-Concentrate) du hast — bei Unsicherheit über EC vorsichtig herantasten statt Herstellerwert blind übernehmen."
+        "text": {
+          "de": "Ultimate PK laut Mills-Chart in Blütewoche 5–9 (früher stand es hier in Woche 2–6). Die Menge hängt von der Mills-Linie ab (Regular oder HC) – im Zweifel über die EC herantasten.",
+          "en": "Ultimate PK per the Mills chart in bloom weeks 5–9 (this used to say weeks 2–6). The amount depends on the Mills line (Regular or HC) – if unsure, work up to it by EC.",
+          "it": "Ultimate PK secondo la tabella Mills nelle settimane di fioritura 5–9 (prima qui c’erano le settimane 2–6). La quantità dipende dalla linea Mills (Regular o HC) – nel dubbio avvicinarsi gradualmente in base all’EC.",
+          "fr": "Ultimate PK selon le tableau Mills en semaines de floraison 5–9 (il était indiqué ici semaines 2–6). La dose dépend de la gamme Mills (Regular ou HC) – en cas de doute, s’en approcher progressivement via l’EC.",
+          "es": "Ultimate PK según la tabla de Mills en las semanas 5–9 de floración (antes aquí ponía semanas 2–6). La cantidad depende de la línea Mills (Regular o HC); ante la duda, acercarse poco a poco según la EC.",
+          "pt": "Ultimate PK segundo a tabela da Mills nas semanas 5–9 de floração (antes aqui dizia semanas 2–6). A quantidade depende da linha Mills (Regular ou HC) – na dúvida, aproximar-se gradualmente pelo EC."
+        }
       },
       {
         "icon": "🔄",
-        "text": "C4 ist laut offiziellem Feedchart NUR ein Blüte-Additiv (ab Wk 2) — nicht mehr durchgängig im Grow, wie zuvor hier hinterlegt."
+        "text": {
+          "de": "C4 ist laut offiziellem Feedchart NUR ein Blüte-Additiv (ab Wk 2) — nicht mehr durchgängig im Grow, wie zuvor hier hinterlegt.",
+          "en": "Per the official feed chart, C4 is a bloom-ONLY additive (from wk 2) — no longer given throughout veg as it used to be here.",
+          "it": "Secondo la tabella ufficiale, C4 è un additivo SOLO per la fioritura (dalla sett. 2) — non più per tutta la crescita come era indicato qui prima.",
+          "fr": "Selon le tableau officiel, C4 est un additif de floraison UNIQUEMENT (à partir de la sem. 2) — plus en continu pendant la croissance comme indiqué ici auparavant.",
+          "es": "Según la tabla oficial, C4 es un aditivo SOLO de floración (desde la sem. 2); ya no se da durante todo el crecimiento como figuraba aquí antes.",
+          "pt": "Segundo a tabela oficial, o C4 é um aditivo SÓ de floração (a partir da sem. 2) — já não se dá durante todo o crescimento, como estava aqui antes."
+        }
       }
     ],
     "quelle": "library",
@@ -4431,7 +5504,14 @@ const MARKEN = {
       "proCore": {
         "name": "Athena Core",
         "type": "base",
-        "note": "Basis — immer mit Grow (Wuchs) oder Bloom (Blüte) kombinieren, Pulver in Gramm",
+        "note": {
+          "de": "Basis — immer mit Grow (Wuchs) oder Bloom (Blüte) kombinieren, Pulver in Gramm",
+          "en": "Base — always combine with Grow (veg) or Bloom (flower), powder in grams",
+          "it": "Base — sempre in combinazione con Grow (crescita) o Bloom (fioritura), polvere in grammi",
+          "fr": "Base — toujours avec Grow (croissance) ou Bloom (floraison), poudre en grammes",
+          "es": "Base — combinar siempre con Grow (crecimiento) o Bloom (floración), polvo en gramos",
+          "pt": "Base — combinar sempre com Grow (crescimento) ou Bloom (floração), pó em gramas"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4445,7 +5525,14 @@ const MARKEN = {
       "proGrow": {
         "name": "Athena Grow",
         "type": "base",
-        "note": "Basis Grow, Pulver in Gramm",
+        "note": {
+          "de": "Basis Grow, Pulver in Gramm",
+          "en": "Base Grow, powder in grams",
+          "it": "Base Grow, polvere in grammi",
+          "fr": "Base Grow, poudre en grammes",
+          "es": "Base Grow, polvo en gramos",
+          "pt": "Base Grow, pó em gramas"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4458,7 +5545,14 @@ const MARKEN = {
       "proBloom": {
         "name": "Athena Bloom",
         "type": "base",
-        "note": "Basis Bloom, Pulver in Gramm",
+        "note": {
+          "de": "Basis Bloom, Pulver in Gramm",
+          "en": "Base Bloom, powder in grams",
+          "it": "Base Bloom, polvere in grammi",
+          "fr": "Base Bloom, poudre en grammes",
+          "es": "Base Bloom, polvo en gramos",
+          "pt": "Base Bloom, pó em gramas"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4471,7 +5565,14 @@ const MARKEN = {
       "camg": {
         "name": "Athena CaMg",
         "type": "calmag",
-        "note": "Optional bei RO-/Umkehrosmosewasser",
+        "note": {
+          "de": "Optional bei RO-/Umkehrosmosewasser",
+          "en": "Optional with RO (reverse-osmosis) water",
+          "it": "Facoltativo con acqua osmotica",
+          "fr": "Facultatif avec de l’eau osmosée",
+          "es": "Opcional con agua de ósmosis inversa",
+          "pt": "Opcional com água de osmose inversa"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -4484,7 +5585,14 @@ const MARKEN = {
       "cleanse": {
         "name": "Athena Cleanse",
         "type": "enzyme",
-        "note": "Reservoir-/Wurzelpflege, ganzer Run",
+        "note": {
+          "de": "Reservoir-/Wurzelpflege, ganzer Run",
+          "en": "Reservoir/root care, whole run",
+          "it": "Cura del serbatoio/delle radici, tutto il ciclo",
+          "fr": "Entretien du réservoir/des racines, tout le cycle",
+          "es": "Cuidado del depósito/raíces, todo el ciclo",
+          "pt": "Cuidado do reservatório/raízes, todo o ciclo"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4496,7 +5604,14 @@ const MARKEN = {
       "pk": {
         "name": "Athena PK",
         "type": "pk",
-        "note": "Phosphor-Kalium Bloom-Booster, ab Wk 3",
+        "note": {
+          "de": "Phosphor-Kalium Bloom-Booster, ab Wk 3",
+          "en": "Phosphorus-potassium bloom booster, from wk 3",
+          "it": "Booster di fioritura fosforo-potassio, dalla sett. 3",
+          "fr": "Booster de floraison phosphore-potassium, à partir de la sem. 3",
+          "es": "Potenciador de floración fósforo-potasio, desde la sem. 3",
+          "pt": "Estimulante de floração fósforo-potássio, a partir da sem. 3"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -4509,7 +5624,14 @@ const MARKEN = {
       "fade": {
         "name": "Athena Fade",
         "type": "flush",
-        "note": "Optionaler Finisher, letzte 2 Wochen",
+        "note": {
+          "de": "Optionaler Finisher, letzte 2 Wochen",
+          "en": "Optional finisher, last 2 weeks",
+          "it": "Finisher facoltativo, ultime 2 settimane",
+          "fr": "Finisher facultatif, 2 dernières semaines",
+          "es": "Finalizador opcional, últimas 2 semanas",
+          "pt": "Finalizador opcional, últimas 2 semanas"
+        },
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4614,35 +5736,91 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📋",
-        "text": "Offizieller Athena Pro Feedchart (Normal/Metric): Vegetation 4 Wochen fix, danach Wk4-Rate halten. Blüte offiziell 8 Wochen + Flush."
+        "text": {
+          "de": "Offizieller Athena Pro Feedchart (Normal/Metric): Vegetation 4 Wochen fix, danach Wk4-Rate halten. Blüte offiziell 8 Wochen + Flush.",
+          "en": "Official Athena Pro feed chart (Normal/metric): veg 4 weeks fixed, after that hold the week-4 rate. Bloom officially 8 weeks + flush.",
+          "it": "Tabella ufficiale Athena Pro (Normal/metrica): crescita 4 settimane fisse, poi mantenere la dose della sett. 4. Fioritura ufficialmente 8 settimane + lavaggio.",
+          "fr": "Tableau officiel Athena Pro (Normal/métrique) : croissance 4 semaines fixes, ensuite garder la dose de la sem. 4. Floraison officiellement 8 semaines + rinçage.",
+          "es": "Tabla oficial Athena Pro (Normal/métrica): crecimiento 4 semanas fijas, después mantener la dosis de la sem. 4. Floración oficialmente 8 semanas + lavado.",
+          "pt": "Tabela oficial Athena Pro (Normal/métrica): crescimento 4 semanas fixas, depois manter a dose da sem. 4. Floração oficialmente 8 semanas + lavagem."
+        }
       },
       {
         "icon": "🧪",
-        "text": "Balance (pH-Up, Kaliumsilikat): kein festes ml-Schema — tropfenweise bis Ziel-pH 5.4–6.0 zugeben. Athena empfiehlt Balance als allerersten Schritt vor allen anderen Produkten."
+        "text": {
+          "de": "Balance (pH-Up, Kaliumsilikat): kein festes ml-Schema — tropfenweise bis Ziel-pH 5.4–6.0 zugeben. Athena empfiehlt Balance als allerersten Schritt vor allen anderen Produkten.",
+          "en": "Balance (pH up, potassium silicate): no fixed ml plan — add drop by drop up to the target pH of 5.4–6.0. Athena recommends Balance as the very first step, before all other products.",
+          "it": "Balance (pH+, silicato di potassio): nessuno schema fisso in ml — aggiungere goccia a goccia fino al pH obiettivo 5,4–6,0. Athena consiglia Balance come primissimo passo, prima di tutti gli altri prodotti.",
+          "fr": "Balance (pH+, silicate de potassium) : pas de schéma fixe en ml — ajouter goutte à goutte jusqu’au pH cible de 5,4–6,0. Athena recommande Balance comme toute première étape, avant tous les autres produits.",
+          "es": "Balance (pH+, silicato de potasio): sin esquema fijo en ml; añadir gota a gota hasta el pH objetivo de 5,4–6,0. Athena recomienda Balance como primer paso, antes de todos los demás productos.",
+          "pt": "Balance (pH+, silicato de potássio): sem esquema fixo em ml — adicionar gota a gota até ao pH alvo de 5,4–6,0. A Athena recomenda o Balance como primeiríssimo passo, antes de todos os outros produtos."
+        }
       },
       {
         "icon": "🩵",
-        "text": "Core: nie pur verwenden — immer zusammen mit Grow (Wuchs) oder Bloom (Blüte) dosieren."
+        "text": {
+          "de": "Core: nie pur verwenden — immer zusammen mit Grow (Wuchs) oder Bloom (Blüte) dosieren.",
+          "en": "Core: never use on its own — always dose together with Grow (veg) or Bloom (flower).",
+          "it": "Core: mai da solo — dosare sempre insieme a Grow (crescita) o Bloom (fioritura).",
+          "fr": "Core : jamais seul — toujours doser avec Grow (croissance) ou Bloom (floraison).",
+          "es": "Core: nunca solo; dosificar siempre junto con Grow (crecimiento) o Bloom (floración).",
+          "pt": "Core: nunca sozinho — dosear sempre junto com Grow (crescimento) ou Bloom (floração)."
+        }
       },
       {
         "icon": "🩵",
-        "text": "CaMg und PK gehören nicht zum Pro-Programm: sie stehen in keinem Athena-Pro-Schema (2020, 2022, 2024). Die Pro-Linie besteht aus Pro Core, Pro Grow bzw. Pro Bloom, Cleanse und Balance, optional Fade."
+        "text": {
+          "de": "CaMg und PK gehören nicht zum Pro-Programm: sie stehen in keinem Athena-Pro-Schema (2020, 2022, 2024). Die Pro-Linie besteht aus Pro Core, Pro Grow bzw. Pro Bloom, Cleanse und Balance, optional Fade.",
+          "en": "CaMg and PK are not part of the Pro program: they appear in no Athena Pro schedule (2020, 2022, 2024). The Pro line consists of Pro Core, Pro Grow or Pro Bloom, Cleanse and Balance, optionally Fade.",
+          "it": "CaMg e PK non fanno parte del programma Pro: non compaiono in nessuno schema Athena Pro (2020, 2022, 2024). La linea Pro è composta da Pro Core, Pro Grow o Pro Bloom, Cleanse e Balance, facoltativamente Fade.",
+          "fr": "CaMg et PK ne font pas partie du programme Pro : ils ne figurent dans aucun schéma Athena Pro (2020, 2022, 2024). La gamme Pro se compose de Pro Core, Pro Grow ou Pro Bloom, Cleanse et Balance, en option Fade.",
+          "es": "CaMg y PK no forman parte del programa Pro: no figuran en ningún esquema de Athena Pro (2020, 2022, 2024). La línea Pro consta de Pro Core, Pro Grow o Pro Bloom, Cleanse y Balance, opcionalmente Fade.",
+          "pt": "CaMg e PK não fazem parte do programa Pro: não constam de nenhum esquema Athena Pro (2020, 2022, 2024). A linha Pro é composta por Pro Core, Pro Grow ou Pro Bloom, Cleanse e Balance, opcionalmente Fade."
+        }
       },
       {
         "icon": "🧊",
-        "text": "Fade ersetzt/ergänzt Core in den letzten 2 Wochen laut Hersteller — optionaler Finisher, ca. 12 ml/gal (≈32 ml/10L)."
+        "text": {
+          "de": "Fade ersetzt Core laut Hersteller in den letzten 2 Blütewochen – hier 32 ml pro 10 L.",
+          "en": "Per the manufacturer, Fade replaces Core in the last 2 bloom weeks – here 32 ml per 10 L.",
+          "it": "Secondo il produttore Fade sostituisce Core nelle ultime 2 settimane di fioritura – qui 32 ml ogni 10 L.",
+          "fr": "Selon le fabricant, Fade remplace Core les 2 dernières semaines de floraison – ici 32 ml pour 10 L.",
+          "es": "Según el fabricante, Fade sustituye a Core en las 2 últimas semanas de floración; aquí 32 ml por 10 L.",
+          "pt": "Segundo o fabricante, o Fade substitui o Core nas 2 últimas semanas de floração – aqui 32 ml por 10 L."
+        }
       },
       {
         "icon": "🍃",
-        "text": "Stack ist ein reines Blattspray (kein Reservoir-Additiv!): 7 ml/gal (≈18 ml/10L), 2x wöchentlich, Veg ab Wk 2 bis Blüte Wk 3, Licht/Lüfter vorher aus."
+        "text": {
+          "de": "Stack ist ein reines Blattspray (kein Reservoir-Additiv!): 7 ml/gal (≈18 ml/10L), 2x wöchentlich, Veg ab Wk 2 bis Blüte Wk 3, Licht/Lüfter vorher aus.",
+          "en": "Stack is a foliar spray only (not a reservoir additive!): 7 ml/gal (≈18 ml/10 L), twice a week, veg from wk 2 to bloom wk 3, lights/fans off first.",
+          "it": "Stack è solo uno spray fogliare (non un additivo per il serbatoio!): 7 ml/gal (≈18 ml/10 L), 2 volte a settimana, dalla crescita sett. 2 alla fioritura sett. 3, prima spegnere luci/ventilatori.",
+          "fr": "Stack est uniquement un spray foliaire (pas un additif de réservoir !) : 7 ml/gal (≈18 ml/10 L), 2 fois par semaine, de la croissance sem. 2 à la floraison sem. 3, éteindre lumière/ventilateurs avant.",
+          "es": "Stack es solo una pulverización foliar (¡no un aditivo del depósito!): 7 ml/gal (≈18 ml/10 L), 2 veces por semana, del crecimiento sem. 2 a la floración sem. 3, apagar antes luces/ventiladores.",
+          "pt": "Stack é só um spray foliar (não é aditivo do reservatório!): 7 ml/gal (≈18 ml/10 L), 2 vezes por semana, do crescimento sem. 2 à floração sem. 3, desligar antes luzes/ventiladores."
+        }
       },
       {
         "icon": "💧",
-        "text": "Cleanse: normal 5 ml/10L jede Bewässerung, in der finalen Flush-Woche auf 26 ml/10L erhöhen."
+        "text": {
+          "de": "Cleanse: normal 5 ml/10L jede Bewässerung, in der finalen Flush-Woche auf 26 ml/10L erhöhen.",
+          "en": "Cleanse: normally 5 ml/10 L with every watering, raise to 26 ml/10 L in the final flush week.",
+          "it": "Cleanse: normalmente 5 ml/10 L a ogni irrigazione, nella settimana finale di lavaggio aumentare a 26 ml/10 L.",
+          "fr": "Cleanse : normalement 5 ml/10 L à chaque arrosage, passer à 26 ml/10 L la dernière semaine de rinçage.",
+          "es": "Cleanse: normalmente 5 ml/10 L en cada riego; en la semana final de lavado, subir a 26 ml/10 L.",
+          "pt": "Cleanse: normalmente 5 ml/10 L em cada rega, na semana final de lavagem subir para 26 ml/10 L."
+        }
       },
       {
         "icon": "⚖️",
-        "text": "Athena Pro ist ein Pulver: die Zahlen sind Gramm pro Liter, nicht Milliliter. Der Rechner beschriftet sie trotzdem als ml."
+        "text": {
+          "de": "Athena Pro ist ein Pulver: die Zahlen sind Gramm pro Liter, nicht Milliliter.",
+          "en": "Athena Pro is a powder: the numbers are grams per litre, not millilitres.",
+          "it": "Athena Pro è una polvere: i numeri sono grammi per litro, non millilitri.",
+          "fr": "Athena Pro est une poudre : les chiffres sont en grammes par litre, pas en millilitres.",
+          "es": "Athena Pro es un polvo: las cifras son gramos por litro, no mililitros.",
+          "pt": "Athena Pro é um pó: os números são gramas por litro, não mililitros."
+        }
       }
     ],
     "quelle": "library",
@@ -4677,7 +5855,14 @@ const MARKEN = {
       "growA": {
         "name": "Athena Grow A",
         "type": "base",
-        "note": "Basis Grow A — 2-Teil-System",
+        "note": {
+          "de": "Basis Grow A — 2-Teil-System",
+          "en": "Base Grow A — two-part system",
+          "it": "Base Grow A — sistema in due parti",
+          "fr": "Base Grow A — système en deux parties",
+          "es": "Base Grow A — sistema de dos partes",
+          "pt": "Base Grow A — sistema de duas partes"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4689,7 +5874,14 @@ const MARKEN = {
       "growB": {
         "name": "Athena Grow B",
         "type": "base",
-        "note": "Basis Grow B — 2-Teil-System",
+        "note": {
+          "de": "Basis Grow B — 2-Teil-System",
+          "en": "Base Grow B — two-part system",
+          "it": "Base Grow B — sistema in due parti",
+          "fr": "Base Grow B — système en deux parties",
+          "es": "Base Grow B — sistema de dos partes",
+          "pt": "Base Grow B — sistema de duas partes"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4701,7 +5893,14 @@ const MARKEN = {
       "bloomA": {
         "name": "Athena Bloom A",
         "type": "base",
-        "note": "Basis Bloom A — 2-Teil-System",
+        "note": {
+          "de": "Basis Bloom A — 2-Teil-System",
+          "en": "Base Bloom A — two-part system",
+          "it": "Base Bloom A — sistema in due parti",
+          "fr": "Base Bloom A — système en deux parties",
+          "es": "Base Bloom A — sistema de dos partes",
+          "pt": "Base Bloom A — sistema de duas partes"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4713,7 +5912,14 @@ const MARKEN = {
       "bloomB": {
         "name": "Athena Bloom B",
         "type": "base",
-        "note": "Basis Bloom B — 2-Teil-System",
+        "note": {
+          "de": "Basis Bloom B — 2-Teil-System",
+          "en": "Base Bloom B — two-part system",
+          "it": "Base Bloom B — sistema in due parti",
+          "fr": "Base Bloom B — système en deux parties",
+          "es": "Base Bloom B — sistema de dos partes",
+          "pt": "Base Bloom B — sistema de duas partes"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4725,7 +5931,14 @@ const MARKEN = {
       "camg": {
         "name": "Athena CaMg",
         "type": "calmag",
-        "note": "Calcium-Magnesium-Supplement",
+        "note": {
+          "de": "Calcium-Magnesium-Supplement",
+          "en": "Calcium-magnesium supplement",
+          "it": "Integratore di calcio e magnesio",
+          "fr": "Complément calcium-magnésium",
+          "es": "Suplemento de calcio y magnesio",
+          "pt": "Suplemento de cálcio e magnésio"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -4738,7 +5951,14 @@ const MARKEN = {
       "cleanse": {
         "name": "Athena Cleanse",
         "type": "enzyme",
-        "note": "Reservoir-/Wurzelpflege, ganzer Run",
+        "note": {
+          "de": "Reservoir-/Wurzelpflege, ganzer Run",
+          "en": "Reservoir/root care, whole run",
+          "it": "Cura del serbatoio/delle radici, tutto il ciclo",
+          "fr": "Entretien du réservoir/des racines, tout le cycle",
+          "es": "Cuidado del depósito/raíces, todo el ciclo",
+          "pt": "Cuidado do reservatório/raízes, todo o ciclo"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4750,7 +5970,14 @@ const MARKEN = {
       "pk": {
         "name": "Athena PK",
         "type": "pk",
-        "note": "Phosphor-Kalium Bloom-Booster, ab Wk 3",
+        "note": {
+          "de": "Phosphor-Kalium Bloom-Booster, ab Wk 3",
+          "en": "Phosphorus-potassium bloom booster, from wk 3",
+          "it": "Booster di fioritura fosforo-potassio, dalla sett. 3",
+          "fr": "Booster de floraison phosphore-potassium, à partir de la sem. 3",
+          "es": "Potenciador de floración fósforo-potasio, desde la sem. 3",
+          "pt": "Estimulante de floração fósforo-potássio, a partir da sem. 3"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -4762,7 +5989,14 @@ const MARKEN = {
       "fade": {
         "name": "Athena Fade",
         "type": "flush",
-        "note": "Finisher, letzte 2 Wochen (optional)",
+        "note": {
+          "de": "Finisher, letzte 2 Wochen (optional)",
+          "en": "Finisher, last 2 weeks (optional)",
+          "it": "Finisher, ultime 2 settimane (facoltativo)",
+          "fr": "Finisher, 2 dernières semaines (facultatif)",
+          "es": "Finalizador, últimas 2 semanas (opcional)",
+          "pt": "Finalizador, últimas 2 semanas (opcional)"
+        },
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4891,31 +6125,80 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📋",
-        "text": "Offizieller Athena Blended Feedchart (Normal/Metric): Vegetation 4 Wochen fix, danach Wk4-Rate halten. Blüte offiziell 8 Wochen + Flush."
+        "text": {
+          "de": "Offizieller Athena Blended Feedchart (Normal/Metric): Vegetation 4 Wochen fix, danach Wk4-Rate halten. Blüte offiziell 8 Wochen + Flush.",
+          "en": "Official Athena Blended feed chart (Normal/metric): veg 4 weeks fixed, after that hold the week-4 rate. Bloom officially 8 weeks + flush.",
+          "it": "Tabella ufficiale Athena Blended (Normal/metrica): crescita 4 settimane fisse, poi mantenere la dose della sett. 4. Fioritura ufficialmente 8 settimane + lavaggio.",
+          "fr": "Tableau officiel Athena Blended (Normal/métrique) : croissance 4 semaines fixes, ensuite garder la dose de la sem. 4. Floraison officiellement 8 semaines + rinçage.",
+          "es": "Tabla oficial Athena Blended (Normal/métrica): crecimiento 4 semanas fijas, después mantener la dosis de la sem. 4. Floración oficialmente 8 semanas + lavado.",
+          "pt": "Tabela oficial Athena Blended (Normal/métrica): crescimento 4 semanas fixas, depois manter a dose da sem. 4. Floração oficialmente 8 semanas + lavagem."
+        }
       },
       {
         "icon": "🧪",
-        "text": "Balance (pH-Up): kein festes ml-Schema — tropfenweise bis Ziel-pH 5.4–6.0 zugeben. Athena empfiehlt Balance als allerersten Schritt vor allen anderen Produkten."
+        "text": {
+          "de": "Balance (pH-Up): kein festes ml-Schema — tropfenweise bis Ziel-pH 5.4–6.0 zugeben. Athena empfiehlt Balance als allerersten Schritt vor allen anderen Produkten.",
+          "en": "Balance (pH up): no fixed ml plan — add drop by drop up to the target pH of 5.4–6.0. Athena recommends Balance as the very first step, before all other products.",
+          "it": "Balance (pH+): nessuno schema fisso in ml — aggiungere goccia a goccia fino al pH obiettivo 5,4–6,0. Athena consiglia Balance come primissimo passo, prima di tutti gli altri prodotti.",
+          "fr": "Balance (pH+) : pas de schéma fixe en ml — ajouter goutte à goutte jusqu’au pH cible de 5,4–6,0. Athena recommande Balance comme toute première étape, avant tous les autres produits.",
+          "es": "Balance (pH+): sin esquema fijo en ml; añadir gota a gota hasta el pH objetivo de 5,4–6,0. Athena recomienda Balance como primer paso, antes de todos los demás productos.",
+          "pt": "Balance (pH+): sem esquema fixo em ml — adicionar gota a gota até ao pH alvo de 5,4–6,0. A Athena recomenda o Balance como primeiríssimo passo, antes de todos os outros produtos."
+        }
       },
       {
         "icon": "🌸",
-        "text": "PK erst ab Blüte Wk 3 zugeben, danach bis Wk 7 steigern, Wk 8 leicht reduzieren."
+        "text": {
+          "de": "PK erst ab Blüte Wk 3 zugeben, danach bis Wk 7 steigern, Wk 8 leicht reduzieren.",
+          "en": "Add PK only from bloom wk 3, then raise until wk 7, reduce slightly in wk 8.",
+          "it": "Aggiungere il PK solo dalla fioritura sett. 3, poi aumentare fino alla sett. 7, ridurre leggermente nella sett. 8.",
+          "fr": "Ajouter le PK seulement à partir de la floraison sem. 3, puis augmenter jusqu’à la sem. 7, réduire légèrement en sem. 8.",
+          "es": "Añadir PK solo desde la floración sem. 3, luego subir hasta la sem. 7 y reducir ligeramente en la sem. 8.",
+          "pt": "Adicionar PK só a partir da floração sem. 3, depois aumentar até à sem. 7, reduzir ligeiramente na sem. 8."
+        }
       },
       {
         "icon": "🧊",
-        "text": "Fade ist im offiziellen Blended-Feedchart nicht enthalten — optionaler Finisher für die letzten 2 Wochen, ca. 12 ml/gal (≈32 ml/10L), ersetzt keine andere Dosierung."
+        "text": {
+          "de": "Fade ersetzt in den letzten zwei Blütewochen Bloom A und B – 32 ml pro 10 L („Blended Program with Fade“ von Athena).",
+          "en": "In the last two bloom weeks, Fade replaces Bloom A and B – 32 ml per 10 L (Athena’s “Blended Program with Fade”).",
+          "it": "Nelle ultime due settimane di fioritura Fade sostituisce Bloom A e B – 32 ml ogni 10 L («Blended Program with Fade» di Athena).",
+          "fr": "Les deux dernières semaines de floraison, Fade remplace Bloom A et B – 32 ml pour 10 L (« Blended Program with Fade » d’Athena).",
+          "es": "En las dos últimas semanas de floración, Fade sustituye a Bloom A y B: 32 ml por 10 L («Blended Program with Fade» de Athena).",
+          "pt": "Nas duas últimas semanas de floração, o Fade substitui o Bloom A e B – 32 ml por 10 L («Blended Program with Fade» da Athena)."
+        }
       },
       {
         "icon": "🧼",
-        "text": "IPW (Integrated Plant Wash): reines Blattspray zur Schädlingsbekämpfung/Blattreinigung — NICHT ins Reservoir geben! Vorbeugend 60-90 ml/gal, bei Befall 90-120 ml/gal."
+        "text": {
+          "de": "IPW (Integrated Plant Wash): reines Blattspray zur Schädlingsbekämpfung/Blattreinigung — NICHT ins Reservoir geben! Vorbeugend 60-90 ml/gal, bei Befall 90-120 ml/gal.",
+          "en": "IPW (Integrated Plant Wash): a foliar spray only, for pest control/leaf cleaning — do NOT put it in the reservoir! Preventive 60–90 ml/gal, with an infestation 90–120 ml/gal.",
+          "it": "IPW (Integrated Plant Wash): solo spray fogliare contro i parassiti/per pulire le foglie — NON metterlo nel serbatoio! Preventivo 60–90 ml/gal, in caso di infestazione 90–120 ml/gal.",
+          "fr": "IPW (Integrated Plant Wash) : uniquement en spray foliaire contre les ravageurs/pour nettoyer les feuilles — NE PAS le mettre dans le réservoir ! En prévention 60–90 ml/gal, en cas d’infestation 90–120 ml/gal.",
+          "es": "IPW (Integrated Plant Wash): solo pulverización foliar contra plagas/para limpiar hojas; ¡NO añadir al depósito! Preventivo 60–90 ml/gal, con plaga 90–120 ml/gal.",
+          "pt": "IPW (Integrated Plant Wash): só spray foliar contra pragas/para limpar as folhas — NÃO pôr no reservatório! Preventivo 60–90 ml/gal, com infestação 90–120 ml/gal."
+        }
       },
       {
         "icon": "💧",
-        "text": "Cleanse: normal 5 ml/10L jede Bewässerung, in der finalen Flush-Woche auf 26 ml/10L erhöhen."
+        "text": {
+          "de": "Cleanse: normal 5 ml/10L jede Bewässerung, in der finalen Flush-Woche auf 26 ml/10L erhöhen.",
+          "en": "Cleanse: normally 5 ml/10 L with every watering, raise to 26 ml/10 L in the final flush week.",
+          "it": "Cleanse: normalmente 5 ml/10 L a ogni irrigazione, nella settimana finale di lavaggio aumentare a 26 ml/10 L.",
+          "fr": "Cleanse : normalement 5 ml/10 L à chaque arrosage, passer à 26 ml/10 L la dernière semaine de rinçage.",
+          "es": "Cleanse: normalmente 5 ml/10 L en cada riego; en la semana final de lavado, subir a 26 ml/10 L.",
+          "pt": "Cleanse: normalmente 5 ml/10 L em cada rega, na semana final de lavagem subir para 26 ml/10 L."
+        }
       },
       {
         "icon": "✅",
-        "text": "Gegen den offiziellen Athena Feed Schedule geprüft (17.9.2026) - Grow 1,59 und Bloom 2,38 ml/L stimmen auf die Stelle."
+        "text": {
+          "de": "Gegen den offiziellen Athena Feed Schedule geprüft (17.9.2026) - Grow 1,59 und Bloom 2,38 ml/L stimmen auf die Stelle.",
+          "en": "Checked against the official Athena Feed Schedule (17 Sep 2026) – Grow 1.59 and Bloom 2.38 ml/L match exactly.",
+          "it": "Verificato con l’Athena Feed Schedule ufficiale (17/9/2026) – Grow 1,59 e Bloom 2,38 ml/L corrispondono esattamente.",
+          "fr": "Vérifié par rapport à l’Athena Feed Schedule officiel (17/09/2026) – Grow 1,59 et Bloom 2,38 ml/L correspondent exactement.",
+          "es": "Comprobado con el Athena Feed Schedule oficial (17/9/2026): Grow 1,59 y Bloom 2,38 ml/L coinciden exactamente.",
+          "pt": "Verificado com o Athena Feed Schedule oficial (17/9/2026) – Grow 1,59 e Bloom 2,38 ml/L batem certo."
+        }
       }
     ],
     "quelle": "library",
@@ -4941,7 +6224,14 @@ const MARKEN = {
       "rGrow": {
         "name": "Remo Grow",
         "type": "base",
-        "note": "Basis Grow",
+        "note": {
+          "de": "Basis Grow",
+          "en": "Base Grow",
+          "it": "Base Grow",
+          "fr": "Base Grow",
+          "es": "Base Grow",
+          "pt": "Base Grow"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4955,7 +6245,14 @@ const MARKEN = {
       "rMicro": {
         "name": "Remo Micro",
         "type": "base",
-        "note": "Mikronährstoffe — immer zuerst!",
+        "note": {
+          "de": "Mikronährstoffe — immer zuerst!",
+          "en": "Micronutrients — always first!",
+          "it": "Micronutrienti — sempre per primi!",
+          "fr": "Oligo-éléments — toujours en premier !",
+          "es": "Micronutrientes: ¡siempre primero!",
+          "pt": "Micronutrientes — sempre primeiro!"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4969,7 +6266,14 @@ const MARKEN = {
       "rBloom": {
         "name": "Remo Bloom",
         "type": "base",
-        "note": "Basis Bloom",
+        "note": {
+          "de": "Basis Bloom",
+          "en": "Base Bloom",
+          "it": "Base Bloom",
+          "fr": "Base Bloom",
+          "es": "Base Bloom",
+          "pt": "Base Bloom"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4983,7 +6287,14 @@ const MARKEN = {
       "veloKelp": {
         "name": "VeloKelp",
         "type": "vitamin",
-        "note": "Kelp-Extrakt — Wachstum + Immunsystem",
+        "note": {
+          "de": "Kelp-Extrakt — Wachstum + Immunsystem",
+          "en": "Kelp extract — growth + immune system",
+          "it": "Estratto di kelp — crescita + sistema immunitario",
+          "fr": "Extrait de kelp — croissance + système immunitaire",
+          "es": "Extracto de kelp — crecimiento + sistema inmune",
+          "pt": "Extrato de kelp — crescimento + sistema imunitário"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -4997,7 +6308,14 @@ const MARKEN = {
       "magnifical": {
         "name": "Magnifical",
         "type": "calmag",
-        "note": "Ca/Mg + Fe Supplement",
+        "note": {
+          "de": "Ca/Mg + Fe Supplement",
+          "en": "Ca/Mg + Fe supplement",
+          "it": "Integratore Ca/Mg + Fe",
+          "fr": "Complément Ca/Mg + Fe",
+          "es": "Suplemento Ca/Mg + Fe",
+          "pt": "Suplemento Ca/Mg + Fe"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-25",
@@ -5010,7 +6328,14 @@ const MARKEN = {
       "candy": {
         "name": "Nature's Candy",
         "type": "carbs",
-        "note": "Kohlenhydrate + Terpene, nur Blüte",
+        "note": {
+          "de": "Kohlenhydrate + Terpene, nur Blüte",
+          "en": "Carbohydrates + terpenes, bloom only",
+          "it": "Carboidrati + terpeni, solo fioritura",
+          "fr": "Glucides + terpènes, floraison uniquement",
+          "es": "Carbohidratos + terpenos, solo floración",
+          "pt": "Hidratos de carbono + terpenos, só floração"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5024,7 +6349,14 @@ const MARKEN = {
       "astro": {
         "name": "AstroFlower",
         "type": "bloom",
-        "note": "Bloom-Booster, Bloom Wk 1–5",
+        "note": {
+          "de": "Bloom-Booster, Bloom Wk 1–5",
+          "en": "Bloom booster, bloom wk 1–5",
+          "it": "Booster di fioritura, fioritura sett. 1–5",
+          "fr": "Booster de floraison, floraison sem. 1–5",
+          "es": "Potenciador de floración, floración sem. 1–5",
+          "pt": "Estimulante de floração, floração sem. 1–5"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5130,19 +6462,36 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📐",
-        "text": "Seit 24.9.2026 nach dem Remo-Schema: 4 Wuchs-, 7 Blütewochen, Woche 8 nur Wasser; Micro, Grow bzw. Bloom in gleichen Teilen. Remo nennt keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Zehntel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben. Nature's Candy belastet das stehende Reservoir: ORP und Wurzeln beobachten."
+        "text": {
+          "de": "Seit 24.9.2026 nach dem Remo-Schema: 4 Wuchs-, 7 Blütewochen, Woche 8 nur Wasser; Micro, Grow bzw. Bloom in gleichen Teilen. Remo nennt keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Zehntel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben. Nature's Candy belastet das stehende Reservoir: ORP und Wurzeln beobachten.",
+          "en": "Since 24 Sep 2026 following the Remo schedule: 4 veg and 7 bloom weeks, week 8 plain water only; Micro and Grow or Bloom in equal parts. Remo gives no EC target. Before, the amounts were about a tenth of that. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change. Nature's Candy puts a load on a standing reservoir: watch the ORP and the roots.",
+          "it": "Dal 24/9/2026 secondo lo schema Remo: 4 settimane di crescita e 7 di fioritura, settimana 8 solo acqua; Micro e Grow o Bloom in parti uguali. Remo non indica un obiettivo EC. Prima le quantità erano circa un decimo. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua. Nature's Candy appesantisce il serbatoio fermo: tieni d'occhio ORP e radici.",
+          "fr": "Depuis le 24/09/2026, selon le schéma Remo : 4 semaines de croissance et 7 de floraison, semaine 8 eau claire uniquement ; Micro et Grow ou Bloom à parts égales. Remo n'indique pas d'objectif EC. Auparavant, les doses étaient d'environ un dixième. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau. Nature's Candy charge un réservoir stagnant : surveillez l'ORP et les racines.",
+          "es": "Desde el 24/9/2026 según el esquema de Remo: 4 semanas de crecimiento y 7 de floración, semana 8 solo agua; Micro y Grow o Bloom a partes iguales. Remo no indica un objetivo de EC. Antes, las cantidades eran aproximadamente una décima parte. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua. Nature's Candy carga el depósito estancado: vigila el ORP y las raíces.",
+          "pt": "Desde 24/9/2026 segundo o esquema da Remo: 4 semanas de crescimento e 7 de floração, semana 8 só água; Micro e Grow ou Bloom em partes iguais. A Remo não indica um objetivo de EC. Antes, as quantidades eram cerca de um décimo. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água. O Nature's Candy sobrecarrega o reservatório parado: vigie o ORP e as raízes."
+        }
       },
       {
         "icon": "🟠",
-        "text": "Remo Micro: immer als erster Nährstoff ins Wasser — Reaktionen vermeiden"
+        "text": {
+          "de": "Remo Micro: immer als erster Nährstoff ins Wasser — Reaktionen vermeiden",
+          "en": "Remo Micro: always the first nutrient into the water — avoids reactions",
+          "it": "Remo Micro: sempre il primo nutriente nell’acqua — evita reazioni",
+          "fr": "Remo Micro : toujours le premier nutriment dans l’eau — évite les réactions",
+          "es": "Remo Micro: siempre el primer nutriente en el agua; evita reacciones",
+          "pt": "Remo Micro: sempre o primeiro nutriente na água — evita reações"
+        }
       },
       {
         "icon": "🍊",
-        "text": "Remo: kanadische Craft-Linie — sehr beliebt für terpenreiche Blüten"
-      },
-      {
-        "icon": "🍯",
-        "text": "Honey Chrome: Finisher für mehr Harzproduktion in den letzten 2 Wochen"
+        "text": {
+          "de": "Remo: kanadische Craft-Linie — sehr beliebt für terpenreiche Blüten",
+          "en": "Remo: Canadian craft line — very popular for terpene-rich buds",
+          "it": "Remo: linea artigianale canadese — molto apprezzata per fiori ricchi di terpeni",
+          "fr": "Remo : gamme artisanale canadienne — très appréciée pour des fleurs riches en terpènes",
+          "es": "Remo: línea artesanal canadiense, muy popular para cogollos ricos en terpenos",
+          "pt": "Remo: linha artesanal canadiana — muito popular para flores ricas em terpenos"
+        }
       }
     ],
     "quelle": "library",
@@ -5191,7 +6540,14 @@ const MARKEN = {
       "cycoGrowA": {
         "name": "Cyco Grow A",
         "type": "base",
-        "note": "Basis Grow A",
+        "note": {
+          "de": "Basis Grow A",
+          "en": "Base Grow A",
+          "it": "Base Grow A",
+          "fr": "Base Grow A",
+          "es": "Base Grow A",
+          "pt": "Base Grow A"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5205,7 +6561,14 @@ const MARKEN = {
       "cycoGrowB": {
         "name": "Cyco Grow B",
         "type": "base",
-        "note": "Basis Grow B",
+        "note": {
+          "de": "Basis Grow B",
+          "en": "Base Grow B",
+          "it": "Base Grow B",
+          "fr": "Base Grow B",
+          "es": "Base Grow B",
+          "pt": "Base Grow B"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5219,7 +6582,14 @@ const MARKEN = {
       "cycoBloomA": {
         "name": "Cyco Bloom A",
         "type": "base",
-        "note": "Basis Bloom A",
+        "note": {
+          "de": "Basis Bloom A",
+          "en": "Base Bloom A",
+          "it": "Base Bloom A",
+          "fr": "Base Bloom A",
+          "es": "Base Bloom A",
+          "pt": "Base Bloom A"
+        },
         "color": "#00d4ff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5233,7 +6603,14 @@ const MARKEN = {
       "cycoBloomB": {
         "name": "Cyco Bloom B",
         "type": "base",
-        "note": "Basis Bloom B",
+        "note": {
+          "de": "Basis Bloom B",
+          "en": "Base Bloom B",
+          "it": "Base Bloom B",
+          "fr": "Base Bloom B",
+          "es": "Base Bloom B",
+          "pt": "Base Bloom B"
+        },
         "color": "#38bdf8",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5247,7 +6624,14 @@ const MARKEN = {
       "uptake": {
         "name": "Uptake",
         "type": "silica",
-        "note": "Aufnahmehilfe für Mikronährstoffe – nicht im DWC-Schema von Cyco",
+        "note": {
+          "de": "Aufnahmehilfe für Mikronährstoffe – nicht im DWC-Schema von Cyco",
+          "en": "Helps micronutrient uptake – not in Cyco’s DWC schedule",
+          "it": "Favorisce l’assorbimento dei micronutrienti – non nello schema DWC di Cyco",
+          "fr": "Aide à l’absorption des oligo-éléments – absent du schéma DWC de Cyco",
+          "es": "Ayuda a absorber micronutrientes; no figura en el esquema DWC de Cyco",
+          "pt": "Ajuda a absorver micronutrientes – não consta do esquema DWC da Cyco"
+        },
         "color": "#8b949e",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5260,7 +6644,14 @@ const MARKEN = {
       "b1Boost": {
         "name": "B1 Boost",
         "type": "vitamin",
-        "note": "Thiamin B1 — Stressvorbeugung",
+        "note": {
+          "de": "Thiamin B1 — Stressvorbeugung",
+          "en": "Thiamine B1 — stress prevention",
+          "it": "Tiamina B1 — prevenzione dello stress",
+          "fr": "Thiamine B1 — prévention du stress",
+          "es": "Tiamina B1 — prevención del estrés",
+          "pt": "Tiamina B1 — prevenção do stress"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5274,7 +6665,14 @@ const MARKEN = {
       "potash": {
         "name": "Potash Plus",
         "type": "pk",
-        "note": "PK-Booster, Bloom Wk 3–6",
+        "note": {
+          "de": "PK-Booster, Bloom Wk 3–6",
+          "en": "PK booster, bloom wk 3–6",
+          "it": "Booster PK, fioritura sett. 3–6",
+          "fr": "Booster PK, floraison sem. 3–6",
+          "es": "Potenciador PK, floración sem. 3–6",
+          "pt": "Estimulante PK, floração sem. 3–6"
+        },
         "color": "#f97316",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5288,7 +6686,14 @@ const MARKEN = {
       "xl": {
         "name": "XL",
         "type": "bloom",
-        "note": "Wachstumsstimulator – nicht im DWC-Schema von Cyco",
+        "note": {
+          "de": "Wachstumsstimulator – nicht im DWC-Schema von Cyco",
+          "en": "Growth stimulator – not in Cyco’s DWC schedule",
+          "it": "Stimolatore di crescita – non nello schema DWC di Cyco",
+          "fr": "Stimulateur de croissance – absent du schéma DWC de Cyco",
+          "es": "Estimulador de crecimiento; no figura en el esquema DWC de Cyco",
+          "pt": "Estimulador de crescimento – não consta do esquema DWC da Cyco"
+        },
         "color": "#f472b6",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5301,7 +6706,14 @@ const MARKEN = {
       "supaStiky": {
         "name": "Supa Stiky",
         "type": "bloom",
-        "note": "Harz-Finisher, Bloom Wk 5–6",
+        "note": {
+          "de": "Harz-Finisher, Bloom Wk 5–6",
+          "en": "Resin finisher, bloom wk 5–6",
+          "it": "Finisher per la resina, fioritura sett. 5–6",
+          "fr": "Finisher résine, floraison sem. 5–6",
+          "es": "Finalizador de resina, floración sem. 5–6",
+          "pt": "Finalizador de resina, floração sem. 5–6"
+        },
         "color": "#bc8cff",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5315,7 +6727,14 @@ const MARKEN = {
       "ryzofuel": {
         "name": "Ryzofuel",
         "type": "root",
-        "note": "Kelp-Wurzelstimulator, ganzer Run",
+        "note": {
+          "de": "Kelp-Wurzelstimulator, ganzer Run",
+          "en": "Kelp root stimulator, whole run",
+          "it": "Stimolatore radicale al kelp, tutto il ciclo",
+          "fr": "Stimulateur racinaire au kelp, tout le cycle",
+          "es": "Estimulador de raíces de kelp, todo el ciclo",
+          "pt": "Estimulador de raízes de kelp, todo o ciclo"
+        },
         "color": "#a78bfa",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5329,7 +6748,14 @@ const MARKEN = {
       "cycoZyme": {
         "name": "Cyco Zyme",
         "type": "enzyme",
-        "note": "Enzymkomplex, ganzer Run",
+        "note": {
+          "de": "Enzymkomplex, ganzer Run",
+          "en": "Enzyme complex, whole run",
+          "it": "Complesso enzimatico, tutto il ciclo",
+          "fr": "Complexe enzymatique, tout le cycle",
+          "es": "Complejo enzimático, todo el ciclo",
+          "pt": "Complexo enzimático, todo o ciclo"
+        },
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5343,7 +6769,14 @@ const MARKEN = {
       "swell": {
         "name": "Swell",
         "type": "pk",
-        "note": "P/K/Mg Bulking-Additiv, späte Blüte Wk 4–6",
+        "note": {
+          "de": "P/K/Mg Bulking-Additiv, späte Blüte Wk 4–6",
+          "en": "P/K/Mg bulking additive, late bloom wk 4–6",
+          "it": "Additivo di ingrossamento P/K/Mg, fine fioritura sett. 4–6",
+          "fr": "Additif de grossissement P/K/Mg, fin de floraison sem. 4–6",
+          "es": "Aditivo de engorde P/K/Mg, floración tardía sem. 4–6",
+          "pt": "Aditivo de engorda P/K/Mg, floração tardia sem. 4–6"
+        },
         "color": "#00ff88",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5357,7 +6790,14 @@ const MARKEN = {
       "sugaRush": {
         "name": "Suga Rush",
         "type": "bloom",
-        "note": "Flavor-Finisher, Bloom Wk 5–6",
+        "note": {
+          "de": "Flavor-Finisher, Bloom Wk 5–6",
+          "en": "Flavour finisher, bloom wk 5–6",
+          "it": "Finisher per l’aroma, fioritura sett. 5–6",
+          "fr": "Finisher arôme, floraison sem. 5–6",
+          "es": "Finalizador de sabor, floración sem. 5–6",
+          "pt": "Finalizador de sabor, floração sem. 5–6"
+        },
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5371,7 +6811,14 @@ const MARKEN = {
       "drRepair": {
         "name": "Dr Repair",
         "type": "vitamin",
-        "note": "Eisenmangel-Korrektur — nur bei Bedarf, kein Wochenprodukt",
+        "note": {
+          "de": "Eisenmangel-Korrektur — nur bei Bedarf, kein Wochenprodukt",
+          "en": "Iron-deficiency fix — only when needed, not a weekly product",
+          "it": "Correzione della carenza di ferro — solo al bisogno, non è un prodotto settimanale",
+          "fr": "Correction de carence en fer — uniquement si besoin, pas un produit hebdomadaire",
+          "es": "Corrección de carencia de hierro: solo si hace falta, no es un producto semanal",
+          "pt": "Correção de carência de ferro — só quando necessário, não é um produto semanal"
+        },
         "quelle": {
           "geprueft": "2026-09-24",
           "status": "belegt",
@@ -5384,7 +6831,14 @@ const MARKEN = {
       "kleanse": {
         "name": "Kleanse",
         "type": "flush",
-        "note": "Zum Spülen – laut Schema zwischen den Wasserwechseln und vor der Ernte",
+        "note": {
+          "de": "Zum Spülen – laut Schema zwischen den Wasserwechseln und vor der Ernte",
+          "en": "For flushing – per the schedule between reservoir changes and before harvest",
+          "it": "Per il lavaggio – secondo lo schema tra un cambio d’acqua e l’altro e prima del raccolto",
+          "fr": "Pour le rinçage – selon le schéma entre les changements d’eau et avant la récolte",
+          "es": "Para el lavado: según el esquema, entre cambios de agua y antes de la cosecha",
+          "pt": "Para a lavagem – segundo o esquema, entre trocas de água e antes da colheita"
+        },
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
@@ -5396,7 +6850,14 @@ const MARKEN = {
       "silica": {
         "name": "Silica",
         "type": "silica",
-        "note": "Kaliumsilikat, Blütewoche 5-8 – zuerst ins Wasser, pH danach",
+        "note": {
+          "de": "Kaliumsilikat, Blütewoche 5-8 – zuerst ins Wasser, pH danach",
+          "en": "Potassium silicate, bloom weeks 5–8 – into the water first, pH afterwards",
+          "it": "Silicato di potassio, settimane di fioritura 5–8 – per primo nell’acqua, poi il pH",
+          "fr": "Silicate de potassium, semaines de floraison 5–8 – en premier dans l’eau, le pH ensuite",
+          "es": "Silicato de potasio, semanas 5–8 de floración: primero en el agua, el pH después",
+          "pt": "Silicato de potássio, semanas 5–8 de floração – primeiro na água, o pH depois"
+        },
         "color": "#8b949e",
         "quelle": {
           "geprueft": "2026-09-24",
@@ -5584,35 +7045,69 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📐",
-        "text": "Seit 24.9.2026 nach dem offiziellen DWC-Schema von Cyco: 6 Wuchs-, 8 Blütewochen, gerechnet für Osmosewasser. Vorher lagen die Basismengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+        "text": {
+          "de": "Seit 24.9.2026 nach dem offiziellen DWC-Schema von Cyco: 6 Wuchs-, 8 Blütewochen, gerechnet für Osmosewasser. Vorher lagen die Basismengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben.",
+          "en": "Since 24 Sep 2026 following Cyco's official DWC schedule: 6 veg and 8 bloom weeks, calculated for reverse-osmosis water. Before, the base amounts were about a third of that. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change.",
+          "it": "Dal 24/9/2026 secondo lo schema DWC ufficiale di Cyco: 6 settimane di crescita e 8 di fioritura, calcolato per acqua osmotica. Prima le quantità di base erano circa un terzo. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+          "fr": "Depuis le 24/09/2026, selon le schéma DWC officiel de Cyco : 6 semaines de croissance et 8 de floraison, calculé pour de l'eau osmosée. Auparavant, les doses de base étaient d'environ un tiers. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau.",
+          "es": "Desde el 24/9/2026 según el esquema DWC oficial de Cyco: 6 semanas de crecimiento y 8 de floración, calculado para agua de ósmosis. Antes, las cantidades base eran aproximadamente un tercio. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua.",
+          "pt": "Desde 24/9/2026 segundo o esquema DWC oficial da Cyco: 6 semanas de crescimento e 8 de floração, calculado para água de osmose. Antes, as quantidades base eram cerca de um terço. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água."
+        }
       },
       {
         "icon": "🟣",
-        "text": "Cyco: australische Premium-Linie — bekannt für sehr saubere Formeln"
-      },
-      {
-        "icon": "🪨",
-        "text": "Uptake (Silica): immer vor Basis A+B — stabilisiert pH-Wert"
+        "text": {
+          "de": "Cyco: australische Premium-Linie — bekannt für sehr saubere Formeln",
+          "en": "Cyco: Australian premium line — known for very clean formulas",
+          "it": "Cyco: linea premium australiana — nota per formule molto pulite",
+          "fr": "Cyco : gamme premium australienne — connue pour ses formules très propres",
+          "es": "Cyco: línea premium australiana, conocida por fórmulas muy limpias",
+          "pt": "Cyco: linha premium australiana — conhecida por fórmulas muito limpas"
+        }
       },
       {
         "icon": "📋",
-        "text": "Ryzofuel, Cyco Zyme, Swell, Suga Rush neu ergänzt — echte, aktuelle Cyco-Produkte, vorher hier gefehlt."
+        "text": {
+          "de": "Ryzofuel, Cyco Zyme, Swell, Suga Rush neu ergänzt — echte, aktuelle Cyco-Produkte, vorher hier gefehlt.",
+          "en": "Ryzofuel, Cyco Zyme, Swell and Suga Rush newly added — real, current Cyco products that were missing here.",
+          "it": "Aggiunti Ryzofuel, Cyco Zyme, Swell e Suga Rush — prodotti Cyco reali e attuali che qui mancavano.",
+          "fr": "Ryzofuel, Cyco Zyme, Swell et Suga Rush ajoutés — de vrais produits Cyco actuels qui manquaient ici.",
+          "es": "Añadidos Ryzofuel, Cyco Zyme, Swell y Suga Rush: productos reales y actuales de Cyco que faltaban aquí.",
+          "pt": "Acrescentados Ryzofuel, Cyco Zyme, Swell e Suga Rush — produtos Cyco reais e atuais que faltavam aqui."
+        }
       },
       {
         "icon": "🩹",
-        "text": "Dr Repair: nur bei sichtbarem Eisenmangel (Chlorose) zugeben, 5 ml/L — kein Standard-Wochenprodukt."
+        "text": {
+          "de": "Dr Repair: nur bei sichtbarem Eisenmangel (Chlorose) zugeben, 5 ml/L — kein Standard-Wochenprodukt.",
+          "en": "Dr Repair: only with visible iron deficiency (chlorosis), 5 ml/L — not a standard weekly product.",
+          "it": "Dr Repair: solo in caso di carenza di ferro visibile (clorosi), 5 ml/L — non è un prodotto settimanale standard.",
+          "fr": "Dr Repair : uniquement en cas de carence en fer visible (chlorose), 5 ml/L — pas un produit hebdomadaire standard.",
+          "es": "Dr Repair: solo ante carencia de hierro visible (clorosis), 5 ml/L; no es un producto semanal estándar.",
+          "pt": "Dr Repair: só com carência de ferro visível (clorose), 5 ml/L — não é um produto semanal padrão."
+        }
       },
       {
         "icon": "🧽",
-        "text": "Kleanse: wöchentliches Wurzel-/Salz-Flush-Additiv, Hersteller veröffentlicht keine feste ml-Dosis auf der Produktseite."
+        "text": {
+          "de": "Kleanse: wöchentliches Wurzel-/Salz-Flush-Additiv, Hersteller veröffentlicht keine feste ml-Dosis auf der Produktseite.",
+          "en": "Kleanse: weekly root/salt flush additive; the manufacturer publishes no fixed ml dose on the product page.",
+          "it": "Kleanse: additivo settimanale per il lavaggio di radici/sali; il produttore non pubblica una dose fissa in ml sulla pagina del prodotto.",
+          "fr": "Kleanse : additif hebdomadaire de rinçage des racines/sels ; le fabricant ne publie pas de dose fixe en ml sur la page produit.",
+          "es": "Kleanse: aditivo semanal de lavado de raíces/sales; el fabricante no publica una dosis fija en ml en la página del producto.",
+          "pt": "Kleanse: aditivo semanal de lavagem de raízes/sais; o fabricante não publica uma dose fixa em ml na página do produto."
+        }
       },
       {
         "icon": "💊",
-        "text": "B1 Boost: besonders wichtig bei Stressperioden (Training, Transplant)"
-      },
-      {
-        "icon": "🌊",
-        "text": "Cyco hat einen eigenen DWC-Feedchart (metric-dwc-feedchart.pdf) - genau für dieses System. Er liegt bei Basis und B1 Boost deutlich über den Werten hier."
+        "text": {
+          "de": "B1 Boost: besonders wichtig bei Stressperioden (Training, Transplant)",
+          "en": "B1 Boost: especially important in times of stress (training, transplanting)",
+          "it": "B1 Boost: particolarmente importante nei periodi di stress (training, trapianto)",
+          "fr": "B1 Boost : particulièrement important en période de stress (palissage, transplantation)",
+          "es": "B1 Boost: especialmente importante en periodos de estrés (entrenamiento, trasplante)",
+          "pt": "B1 Boost: especialmente importante em períodos de stress (treino, transplante)"
+        }
       }
     ],
     "quelle": "library",
