@@ -167,6 +167,16 @@
 // gehoeren zu PREMIUM und sind jetzt ungeeignet. Neu: Breakout Powder (g),
 // RO Water Conditioner (nur Osmosewasser) und System-Clean (optional) - die
 // beiden letzten ohne feste Wochengabe. Fasilitor heisst jetzt Regulator.
+//
+// ── GHE nach GH-Wochenschema vom 25.9.2026 ───────────────────────────
+// Bis dahin war GHE nur ueber Bereiche belegt (0,5-2 ml/L je nach Phase),
+// nicht Woche fuer Woche. Jetzt 1:1 das 10-teilige FloraSeries Professional
+// Weekly Custom Feedchart: 4 Wuchs + 8 Bluete (8 = Reife mit Ripen) + Spuelen
+// mit FloraKleen, EC aus dem Schema (Untergrenze je Woche). GH hat drei
+// Staerken und nennt DWC nirgends; gewaehlt ist LIGHT (Staerke nach GHs
+// eigener Logik: mehr Bewaesserung -> schwaecher; DWC = staendig nass).
+// Das ist unsere Auslegung und steht so im planHinweis. FloraBlend und Dry
+// KoolBloom stehen in keinem GH-Wochenschema und haben keine Wochengabe mehr.
 const MARKEN = {
   "hesi": {
     "name": "Hesi",
@@ -1051,12 +1061,12 @@ const MARKEN = {
     "color": "#39d353",
     "ecRange": {
       "wuchs": [
-        0.8,
+        0.4,
         1.8
       ],
       "bluete": [
-        1.2,
-        2.2
+        0.9,
+        1.9
       ]
     },
     "refillProduct": {
@@ -1067,105 +1077,108 @@ const MARKEN = {
       "floraMicro": {
         "name": "FloraMicro",
         "type": "base",
-        "note": "Basis — immer ZUERST ins Wasser!",
+        "note": "Basis – als erster der drei Grunddünger ins Wasser",
         "color": "#00d4ff",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "0,5-2,0 ml/L je nach Phase (Terra Aquatica TriPart)",
-          "beleg": "Terra Aquatica / GHE TriPart Dosierangaben"
+          "herstellerAngabe": "Light: Wuchs 1,7/2,8/3,8/4,7, Bluete 3,8/3,8, dann 2,7 ml pro Gallone",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: wuchs {\"1\":0.5,\"2\":0.75,\"3\":1,\"4\":1,\"5\":1,\"6\":1,\"7\":1,\"8\":1}, bluete {\"1\":1,\"2\":1,\"3\":1,\"4\":1,\"5\":0.75,\"6\":0.75}."
         }
       },
       "floraGro": {
         "name": "FloraGro",
         "type": "base",
-        "note": "Stickstoff-Schwerpunkt, Grow",
+        "note": "Stickstoff-Schwerpunkt, im Wuchs am höchsten",
         "color": "#00ff88",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "0,5-2,0 ml/L je nach Phase",
-          "beleg": "Terra Aquatica / GHE TriPart Dosierangaben"
+          "herstellerAngabe": "Light: Wuchs 1,7/3,8/5,7/5,7, Bluete 3,8/3,8/4,0/4,0/4,0/2,0/2,3/1,3 ml pro Gallone",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: wuchs {\"1\":1.25,\"2\":1.5,\"3\":1.25,\"4\":1.25,\"5\":1.25,\"6\":1.25,\"7\":1.25,\"8\":1.25}, bluete {\"1\":0.5,\"2\":0.5}."
         }
       },
       "floraBloom": {
         "name": "FloraBloom",
         "type": "base",
-        "note": "PK-Schwerpunkt, Bloom",
+        "note": "PK-Schwerpunkt, in der Blüte am höchsten",
         "color": "#f472b6",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "0,5-2,4 ml/L je nach Phase",
-          "beleg": "Terra Aquatica / GHE TriPart Dosierangaben"
+          "herstellerAngabe": "Light: Wuchs 1,7/1,9/2,8/3,8, Bluete 5,7/5,7/5,3/5,3/5,3/2,7/2,7/2,0 ml pro Gallone",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: wuchs {\"1\":0.5,\"2\":0.5,\"3\":1,\"4\":1,\"5\":1.25,\"6\":1.25,\"7\":1.25,\"8\":1.25}, bluete {\"1\":1.5,\"2\":1.5,\"3\":1.5,\"4\":1.5,\"5\":1.5,\"6\":1.25}."
         }
       },
       "rapidStart": {
         "name": "Rapid Start",
         "type": "root",
-        "note": "Wurzelstimulator, Wk 1–3",
+        "note": "Wurzelstimulator, Wuchs bis Blüte Wk 2",
         "color": "#00ff88",
         "quelle": {
-          "geprueft": "2026-09-24",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "1 ml pro Gallone = 0,26 ml/L, von der Anzucht bis in den fruehen Wuchs",
-          "beleg": "General Hydroponics FloraSeries Feed Chart (ml pro Gallone); generalhydroponics.com/products/rapidstart (abgerufen 24.9.2026)",
-          "hinweis": "Angeglichen am 24.9.2026, vorher: wuchs {\"1\":0.15,\"2\":0.15}.",
+          "herstellerAngabe": "Light: 1,0 ml pro Gallone (0,26 ml/L) in Wuchs 1-4 und Bluete 1-2",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: wuchs {\"1\":0.26,\"2\":0.26}.",
           "hoechstwert": 0.26
         }
       },
       "armorSi": {
         "name": "Armor Si",
         "type": "silica",
-        "note": "Silikat – IMMER ZUERST ins Wasser, pH danach",
+        "note": "Silikat – vor allen anderen ins Wasser, pH erst danach",
         "color": "#8b949e",
         "quelle": {
-          "geprueft": "2026-09-24",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "2,5 ml pro Gallone = 0,66 ml/L; als Erstes ins Wasser, pH erst danach einstellen",
-          "beleg": "General Hydroponics FloraSeries Feed Chart (ml pro Gallone), Stand 17.9.2026 - die Produktseite ist inzwischen offline",
-          "hinweis": "Silikat hebt den pH deutlich: zuerst Armor Si, dann die Basis, pH am Schluss. Angeglichen am 24.9.2026, vorher: wuchs {\"1\":0.05,\"2\":0.05,\"3\":0.05,\"4\":0.05,\"5\":0.05}, bluete {\"1\":0.05,\"2\":0.05,\"3\":0.05,\"4\":0.05}.",
+          "herstellerAngabe": "Light: 2,5 ml pro Gallone (0,66 ml/L) in Wuchs 2-4 und Bluete 1-7",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: wuchs {\"1\":0.66,\"2\":0.66,\"3\":0.66,\"4\":0.66,\"5\":0.66}, bluete {\"1\":0.66,\"2\":0.66,\"3\":0.66,\"4\":0.66}.",
           "hoechstwert": 0.66
         }
       },
       "calimagic": {
         "name": "CALiMAGic",
         "type": "calmag",
-        "note": "Ca/Mg — bei weichem Wasser",
+        "note": "Ca/Mg – laut GH nach Bedarf, bei hartem Wasser weniger",
         "color": "#fbbf24",
         "quelle": {
-          "geprueft": "2026-09-24",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "Herstellerangabe: nach Wasserhaerte bzw. Mangelbild dosieren. GH nennt 5 ml pro Gallone (1,32 ml/L), bei starkem Bedarf bis 10 (2,64 ml/L)",
-          "beleg": "generalhydroponics.com/products/gh-calimagic",
+          "herstellerAngabe": "Light: 1,8 ml pro Gallone (0,48 ml/L) in Wuchs 2-4 und Bluete 1-5, 1,0 (0,26) in Bluete 6-7; laut GH \"adjust as needed\"",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
           "hoechstwert": 2.64,
-          "hinweis": "Wie die CalMag-Produkte der anderen Marken: bei Osmose- oder sehr weichem Wasser noetig, bei hartem Leitungswasser oft gar nicht. Der Plan setzt einen niedrigen Startwert; ein Fixwert von 1,32 ml/L auf hartes Wasser braechte viel Calcium und EC."
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: wuchs {\"1\":0.375,\"2\":0.375,\"3\":0.375}."
         }
       },
       "koolbloom": {
         "name": "Liquid KoolBloom",
         "type": "pk",
-        "note": "PK-Booster, Bloom Wk 3–6",
+        "note": "PK-Booster, Blüte Wk 1–6",
         "color": "#f97316",
         "quelle": {
-          "geprueft": "2026-09-24",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "Feed Chart: 1,0-1,8 ml pro Gallone = 0,26-0,48 ml/L",
-          "beleg": "generalhydroponics.com/products/liquid-koolbloom/",
-          "hinweis": "Stand vorher mit 0,5-0,75 ml/L UEBER der Herstellerangabe - auf den Hoechstwert gesenkt. Angeglichen am 24.9.2026, vorher: bluete {\"3\":0.5,\"4\":0.5,\"5\":0.75,\"6\":0.5}.",
+          "herstellerAngabe": "Light: 1,0 ml pro Gallone (0,26 ml/L) in Bluete 1-5, 1,8 (0,48) in Bluete 6",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: bluete {\"3\":0.48,\"4\":0.48,\"5\":0.48,\"6\":0.48}.",
           "hoechstwert": 0.48
         }
       },
       "koolbloomD": {
         "name": "Dry KoolBloom",
         "type": "pk",
-        "note": "Finisher g/10L, Bloom Wk 5–6",
+        "note": "Nicht im GH-Wochenschema – nur optional nach Produktangabe",
         "quelle": {
           "geprueft": "2026-09-24",
           "status": "belegt",
           "herstellerAngabe": "1,5 g pro Gallone = 0,40 g/L (Pulver, in den letzten Bluetewochen)",
           "beleg": "generalhydroponics.com/products/koolbloom-dry",
-          "hinweis": "Angeglichen am 24.9.2026, vorher: bluete {\"5\":0.14,\"6\":0.14}.",
+          "hinweis": "Seit 25.9.2026 ohne feste Wochengabe: steht in keinem der drei FloraSeries-Wochenschemata. Vorher: bluete {\"5\":0.4,\"6\":0.4}.",
           "hoechstwert": 0.4
         },
         "einheit": "g"
@@ -1173,27 +1186,28 @@ const MARKEN = {
       "floralicious": {
         "name": "Floralicious+",
         "type": "vitamin",
-        "note": "Enzyme + Vitamine + Amino",
+        "note": "Enzyme, Vitamine, Aminosäuren – Wuchs Wk 2 bis Blüte Wk 7",
         "color": "#a78bfa",
         "quelle": {
-          "geprueft": "2026-09-24",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "1 ml pro Gallone = 0,26 ml/L, aggressiv bis 2 ml = 0,53 ml/L",
-          "beleg": "generalhydroponics.com/products/floralicious-plus",
-          "hinweis": "Angeglichen am 24.9.2026, vorher: wuchs {\"5\":0.125}, bluete {\"1\":0.125,\"2\":0.125}.",
+          "herstellerAngabe": "Light: 1,0 ml pro Gallone (0,26 ml/L) in Wuchs 2-4 und Bluete 1-7",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das GH-Wochenschema (Stufe Light), vorher: wuchs {\"5\":0.26}, bluete {\"1\":0.26,\"2\":0.26}.",
           "hoechstwert": 0.53
         }
       },
       "floraBlend": {
         "name": "FloraBlend",
         "type": "vitamin",
-        "note": "Kelp/Amino/Vitamin-Blend, ganzer Run",
+        "note": "Nicht im GH-Wochenschema – nur optional nach Produktangabe",
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-17",
           "status": "belegt",
           "herstellerAngabe": "5 ml/Gallone = 1,32 ml/L, aggressiv bis 10 = 2,64 ml/L - die 1,5 hier liegen im Bereich",
-          "beleg": "generalhydroponics.com/products/gh-florablend"
+          "beleg": "generalhydroponics.com/products/gh-florablend",
+          "hinweis": "Seit 25.9.2026 ohne feste Wochengabe: steht in keinem der drei FloraSeries-Wochenschemata. Vorher: wuchs {\"1\":1.5,\"2\":1.5,\"3\":1.5,\"4\":1.5,\"5\":1.5,\"6\":1.5,\"7\":1.5,\"8\":1.5}, bluete {\"1\":1.5,\"2\":1.5,\"3\":1.5,\"4\":1.5,\"5\":1.5,\"6\":1.5}."
         }
       },
       "floraKleen": {
@@ -1205,141 +1219,157 @@ const MARKEN = {
           "status": "belegt",
           "herstellerAngabe": "5 ml/L, bei starker Salzlast bis 10 ml/L",
           "beleg": "generalhydroponics.com/products/gh-florakleen",
-          "hinweis": "Der Hinweistext nannte 5 ml/10 L - ein Zehntel der Herstellerangabe. Korrigiert."
+          "hinweis": "Der Hinweistext nannte 5 ml/10 L - ein Zehntel der Herstellerangabe. Korrigiert. Im GH-Wochenschema: 10 ml pro Gallone (2,64 ml/L) in der Spuelwoche."
+        }
+      },
+      "ripen": {
+        "name": "Ripen",
+        "type": "bloom",
+        "color": "#ef4444",
+        "note": "Reifedünger, Blüte Wk 7–8 – ergänzt die reduzierten Grunddünger, ersetzt sie nicht",
+        "quelle": {
+          "geprueft": "2026-09-25",
+          "status": "belegt",
+          "herstellerAngabe": "Light: 4,0 ml pro Gallone (1,06 ml/L) in Bluete 7, 5,0 (1,32) in Bluete 8 (Reife) - ergaenzt die reduzierten Grundduenger",
+          "beleg": "General Hydroponics FloraSeries Professional 10-Part Weekly Custom Feedchart (GH_FloraSeries_FeedCharts_WeeklyCustom_USD_200801), Stufe LIGHT, generalhydroponics.com/cdn/shop/files/FloraSeries-Professional-Feed-Charts.pdf, ml pro Gallone, umgerechnet mit 3,785 (abgerufen 25.9.2026)",
+          "hinweis": "Neu am 25.9.2026 (steht im GH-Wochenschema)."
         }
       }
     },
     "dosis": {
       "wuchs": {
-        "armorSi": {
-          "1": 0.66,
-          "2": 0.66,
-          "3": 0.66,
-          "4": 0.66,
-          "5": 0.66
-        },
         "floraMicro": {
-          "1": 0.5,
-          "2": 0.75,
+          "1": 0.45,
+          "2": 0.74,
           "3": 1,
-          "4": 1,
-          "5": 1,
-          "6": 1,
-          "7": 1,
-          "8": 1
+          "4": 1.24
         },
         "floraGro": {
-          "1": 1.25,
-          "2": 1.5,
-          "3": 1.25,
-          "4": 1.25,
-          "5": 1.25,
-          "6": 1.25,
-          "7": 1.25,
-          "8": 1.25
+          "1": 0.45,
+          "2": 1,
+          "3": 1.51,
+          "4": 1.51
         },
         "floraBloom": {
-          "1": 0.5,
+          "1": 0.45,
           "2": 0.5,
-          "3": 1,
-          "4": 1,
-          "5": 1.25,
-          "6": 1.25,
-          "7": 1.25,
-          "8": 1.25
+          "3": 0.74,
+          "4": 1
+        },
+        "calimagic": {
+          "2": 0.48,
+          "3": 0.48,
+          "4": 0.48
+        },
+        "floralicious": {
+          "2": 0.26,
+          "3": 0.26,
+          "4": 0.26
+        },
+        "rapidStart": {
+          "1": 0.26,
+          "2": 0.26,
+          "3": 0.26,
+          "4": 0.26
+        },
+        "armorSi": {
+          "2": 0.66,
+          "3": 0.66,
+          "4": 0.66
+        }
+      },
+      "bluete": {
+        "floraMicro": {
+          "1": 1,
+          "2": 1,
+          "3": 0.71,
+          "4": 0.71,
+          "5": 0.71,
+          "6": 0.71,
+          "7": 0.71,
+          "8": 0.71
+        },
+        "floraGro": {
+          "1": 1,
+          "2": 1,
+          "3": 1.06,
+          "4": 1.06,
+          "5": 1.06,
+          "6": 0.53,
+          "7": 0.61,
+          "8": 0.34
+        },
+        "floraBloom": {
+          "1": 1.51,
+          "2": 1.51,
+          "3": 1.4,
+          "4": 1.4,
+          "5": 1.4,
+          "6": 0.71,
+          "7": 0.71,
+          "8": 0.53
+        },
+        "calimagic": {
+          "1": 0.48,
+          "2": 0.48,
+          "3": 0.48,
+          "4": 0.48,
+          "5": 0.48,
+          "6": 0.26,
+          "7": 0.26
+        },
+        "floralicious": {
+          "1": 0.26,
+          "2": 0.26,
+          "3": 0.26,
+          "4": 0.26,
+          "5": 0.26,
+          "6": 0.26,
+          "7": 0.26
+        },
+        "koolbloom": {
+          "1": 0.26,
+          "2": 0.26,
+          "3": 0.26,
+          "4": 0.26,
+          "5": 0.26,
+          "6": 0.48
         },
         "rapidStart": {
           "1": 0.26,
           "2": 0.26
         },
-        "calimagic": {
-          "1": 0.375,
-          "2": 0.375,
-          "3": 0.375
-        },
-        "floraBlend": {
-          "1": 1.5,
-          "2": 1.5,
-          "3": 1.5,
-          "4": 1.5,
-          "5": 1.5,
-          "6": 1.5,
-          "7": 1.5,
-          "8": 1.5
-        },
-        "floralicious": {
-          "5": 0.26
-        }
-      },
-      "bluete": {
         "armorSi": {
           "1": 0.66,
           "2": 0.66,
           "3": 0.66,
-          "4": 0.66
+          "4": 0.66,
+          "5": 0.66,
+          "6": 0.66,
+          "7": 0.66
         },
-        "floraMicro": {
-          "1": 1,
-          "2": 1,
-          "3": 1,
-          "4": 1,
-          "5": 0.75,
-          "6": 0.75
-        },
-        "floraGro": {
-          "1": 0.5,
-          "2": 0.5
-        },
-        "floraBloom": {
-          "1": 1.5,
-          "2": 1.5,
-          "3": 1.5,
-          "4": 1.5,
-          "5": 1.5,
-          "6": 1.25
-        },
-        "floralicious": {
-          "1": 0.26,
-          "2": 0.26
-        },
-        "floraBlend": {
-          "1": 1.5,
-          "2": 1.5,
-          "3": 1.5,
-          "4": 1.5,
-          "5": 1.5,
-          "6": 1.5
-        },
-        "koolbloom": {
-          "3": 0.48,
-          "4": 0.48,
-          "5": 0.48,
-          "6": 0.48
-        },
-        "koolbloomD": {
-          "5": 0.4,
-          "6": 0.4
+        "ripen": {
+          "7": 1.06,
+          "8": 1.32
         }
       }
     },
     "ec": {
       "wuchs": {
-        "1": 1,
-        "2": 1.3,
-        "3": 1.6,
-        "4": 1.6,
-        "5": 1.8,
-        "6": 1.8,
-        "7": 1.8,
-        "8": 1.8
+        "1": 0.4,
+        "2": 1,
+        "3": 1.3,
+        "4": 1.5
       },
       "bluete": {
-        "1": 1.8,
-        "2": 1.8,
-        "3": 2,
-        "4": 2,
-        "5": 2.2,
-        "6": 2.2
+        "1": 1.5,
+        "2": 1.5,
+        "3": 1.4,
+        "4": 1.4,
+        "5": 1.4,
+        "6": 1.1,
+        "7": 1.1,
+        "8": 0.9
       }
     },
     "hinweis": {
@@ -1352,45 +1382,53 @@ const MARKEN = {
         "floraMicro",
         "floraGro",
         "floraBloom",
-        "rapidStart",
         "calimagic",
-        "floraBlend",
-        "floralicious"
+        "floralicious",
+        "rapidStart"
       ],
       "bloom": [
         "armorSi",
         "floraMicro",
         "floraGro",
         "floraBloom",
+        "calimagic",
+        "floralicious",
         "koolbloom",
-        "koolbloomD",
-        "floraBlend",
-        "floralicious"
+        "rapidStart",
+        "ripen"
       ]
     },
     "tips": [
       {
-        "icon": "⚠️",
-        "text": "FloraMicro IMMER als erstes Nährstoff ins Wasser — nie direkt mit Bloom mischen!"
+        "icon": "📋",
+        "text": "Seit 25.9.2026 nach dem 10-teiligen FloraSeries-Wochenschema von General Hydroponics, leichte Stufe („Light Feed“). GH nennt für DWC keine eigene Stufe – die leichte ist unsere Auslegung, weil die Wurzeln ständig in der Lösung stehen."
       },
       {
         "icon": "🪨",
-        "text": "Armor Si (Silica): vor allen anderen zugeben, pH steigt stark danach"
+        "text": "Armor Si vor allen anderen Produkten ins Wasser, pH erst danach einstellen."
       },
       {
-        "icon": "📐",
-        "text": "GH 3-Part Prinzip: FloraGro dominiert in Veg, FloraBloom dominiert in Blüte, FloraMicro bleibt relativ konstant — die genauen ml-Verhältnisse variieren je nach Wachstumsstufe, siehe Wochentabelle."
+        "icon": "⚠️",
+        "text": "FloraMicro als ersten der drei Grunddünger zugeben – nie unverdünnt mit FloraBloom mischen."
       },
       {
-        "icon": "🌿",
-        "text": "FloraBlend neu ergänzt — Kelp/Amino/Vitamin-Ergänzung, Teil von GHEs offiziellem 'Performance Pack', ganzer Run 12.5-25 ml/10L."
+        "icon": "💧",
+        "text": "CALiMAGic laut GH nach Bedarf: bei hartem Leitungswasser weniger, sonst landet die EC über dem Ziel. Ob GHs EC-Werte die Grund-EC des Wassers enthalten, sagt GH nicht."
       },
       {
-        "icon": "🔍",
-        "text": "Die Basis (FloraMicro/Gro/Bloom) liegt im Herstellerbereich. Die Zusätze Armor Si, Rapid Start, Floralicious+ und Dry KoolBloom stehen deutlich unter der Herstellerangabe - vor Nutzung nachschlagen."
+        "icon": "🍇",
+        "text": "Ripen ergänzt in Blütewoche 7–8 die reduzierten Grunddünger, es ersetzt sie nicht."
       }
     ],
-    "quelle": "library"
+    "quelle": "library",
+    "wochen": {
+      "bluete": {
+        "naehrstoff": 8,
+        "gesamt": 9,
+        "spuelen": "laut GH mit FloraKleen spülen, 10 ml pro Gallone (2,64 ml/L)"
+      }
+    },
+    "planHinweis": "Seit 25.9.2026 nach dem 10-teiligen Wochenschema von General Hydroponics (FloraSeries Professional), leichte Stufe: 4 Wuchs- und 8 Blütewochen (Woche 8 = Reife mit Ripen), Woche 9 Spülen mit FloraKleen. GH nennt für DWC keine eigene Stufe; die leichte ist unsere Auslegung, weil die Wurzeln im DWC ständig in der Lösung stehen. GH rät, mit einem passenden Ausgangswert zu beginnen und nach der Pflanze nachzusteuern – die nächste Stufe („Medium“) liegt rund 0,1–0,3 mS/cm höher. FloraBlend und Dry KoolBloom stehen in keinem GH-Wochenschema. Vorher lag der Grunddünger in Wuchswoche 1 höher und in Blütewoche 1–5 rund 15–40 % niedriger, die alten EC-Ziele (bis 2,2) stammten nicht von GH. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anpassen."
   },
   "advanced": {
     "name": "Advanced Nutrients",

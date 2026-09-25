@@ -109,7 +109,7 @@ for (const [mk, m] of Object.entries(MARKEN)) {
     }
 }
 
-// ── Stichwerte (24.9.2026, Aptus CLEAN seit 25.9.2026) ─────────────────
+// ── Stichwerte (24.9.2026, Aptus CLEAN und GHE seit 25.9.2026) ─────────
 // Faengt Umrechnungsfehler (Gallone/Liter, je Komponente/zusammen) und
 // versehentliches Zuruecksetzen. undefined = in dieser Woche NICHT dosiert.
 const GOLD = [
@@ -120,7 +120,9 @@ const GOLD = [
     ['remo',   'wuchs',  'rGrow',      4, 2.11], ['remo',  'bluete', 'rMicro',     5, 2.64],
     ['remo',   'bluete', 'candy',      8, undefined],
     ['mills',  'wuchs',  'startR',     2, 0.7],  ['mills', 'bluete', 'basisA',     4, 1.5],
-    ['ghe',    'bluete', 'koolbloom',  5, 0.48], ['aptus', 'bluete', 'pBoost',     1, undefined],
+    ['ghe',    'bluete', 'koolbloom',  5, 0.26], ['ghe',   'bluete', 'koolbloom',  6, 0.48],
+    ['ghe',    'wuchs',  'floraMicro', 4, 1.24], ['ghe',   'bluete', 'ripen',      8, 1.32],
+    ['ghe',    'bluete', 'floraBlend', 3, undefined], ['aptus', 'bluete', 'pBoost',     1, undefined],
     ['aptus',  'bluete', 'allInOne',   3, 2],    ['aptus', 'bluete', 'breakout',   5, 1],
     ['athena', 'bluete', 'fade',       7, 3.2],  ['athena','bluete', 'proCore',    7, undefined],
     ['athenaBlended', 'bluete', 'bloomA', 7, undefined],
