@@ -157,6 +157,16 @@
 //
 // Seit 24.9.2026 gibt es KEIN ungeprueftes Produkt mehr: tests/brands-belege.js
 // nagelt die Zahl auf 0, damit kein neues Produkt unbelegt hereinrutscht.
+//
+// ── Aptus auf CLEAN vom 25.9.2026 ────────────────────────────────────
+// Die Aptus-Werte vom 17. und 24.9. stammten aus dem PREMIUM-Programm
+// (organo-mineralisch). Auf demselben Aptus-Blatt steht: "Not for DWC, NFT,
+// or aeroponic systems - use our CLEAN programs instead." Aptus laeuft jetzt
+// 1:1 nach dem CLEAN Mineral Program 2025: 8 Bluetewochen + Spuelwoche, kein
+// EC vom Hersteller (ecRange null). P-Boost, Topbooster und CaMg-Boost
+// gehoeren zu PREMIUM und sind jetzt ungeeignet. Neu: Breakout Powder (g),
+// RO Water Conditioner (nur Osmosewasser) und System-Clean (optional) - die
+// beiden letzten ohne feste Wochengabe. Fasilitor heisst jetzt Regulator.
 const MARKEN = {
   "hesi": {
     "name": "Hesi",
@@ -450,7 +460,7 @@ const MARKEN = {
       },
       {
         "icon": "🧪",
-        "text": "PK 13/14 steigt laut Hesi-Schema an: 2,5 / 5,0 / 7,5 / 15 ml auf 10 L in Bluetewoche 4 bis 7. In Woche 8 nur noch mit Wasser spuelen."
+        "text": "PK 13/14 steigt laut Hesi-Schema an: 2,5 / 5,0 / 7,5 / 15 ml auf 10 L in Blütewoche 4 bis 7. In Woche 8 nur noch mit Wasser spülen."
       }
     ],
     "quelle": "dashboard (Hydro-Linie)"
@@ -744,7 +754,7 @@ const MARKEN = {
       },
       {
         "icon": "✅",
-        "text": "Gegen das offizielle CANNA-Aqua-Zuchtschema geprueft (17.9.2026) - Basis, Rhizotonic, CannaZym, Boost und PK stimmen."
+        "text": "Gegen das offizielle CANNA-Aqua-Zuchtschema geprüft (17.9.2026) - Basis, Rhizotonic, CannaZym, Boost und PK stimmen."
       }
     ],
     "quelle": "library"
@@ -832,7 +842,7 @@ const MARKEN = {
       "pk": {
         "name": "PK 13/14",
         "type": "pk",
-        "note": "ALTERNATIVE zu Green Sensation - nicht zusammen geben, beide liefern PK. Max 2 ml/L ab Bluetewoche 4.",
+        "note": "ALTERNATIVE zu Green Sensation - nicht zusammen geben, beide liefern PK. Max 2 ml/L ab Blütewoche 4.",
         "color": "#ef4444",
         "quelle": {
           "geprueft": "2026-09-17",
@@ -869,7 +879,7 @@ const MARKEN = {
       "glucose": {
         "name": "Sugar Royal",
         "type": "carbs",
-        "note": "NICHT fuer DWC/NFT/Aeroponik - Plagron schliesst hydroponische Verfahren ausdruecklich aus (biologischen Ursprungs). Nur Erde und Coco.",
+        "note": "NICHT für DWC/NFT/Aeroponik - Plagron schließt hydroponische Verfahren ausdrücklich aus (biologischen Ursprungs). Nur Erde und Coco.",
         "color": "#fbbf24",
         "quelle": {
           "status": "ungeeignet",
@@ -1030,7 +1040,7 @@ const MARKEN = {
       },
       {
         "icon": "🚫",
-        "text": "Sugar Royal und Pure Zym sind Erde-/Coco-Produkte. Plagron schliesst DWC ausdruecklich aus - sie stehen deshalb nicht im Schema."
+        "text": "Sugar Royal und Pure Zym sind Erde-/Coco-Produkte. Plagron schließt DWC ausdrücklich aus - sie stehen deshalb nicht im Schema."
       }
     ],
     "quelle": "library"
@@ -1377,7 +1387,7 @@ const MARKEN = {
       },
       {
         "icon": "🔍",
-        "text": "Die Basis (FloraMicro/Gro/Bloom) liegt im Herstellerbereich. Die Zusaetze Armor Si, Rapid Start, Floralicious+ und Dry KoolBloom stehen deutlich unter der Herstellerangabe - vor Nutzung nachschlagen."
+        "text": "Die Basis (FloraMicro/Gro/Bloom) liegt im Herstellerbereich. Die Zusätze Armor Si, Rapid Start, Floralicious+ und Dry KoolBloom stehen deutlich unter der Herstellerangabe - vor Nutzung nachschlagen."
       }
     ],
     "quelle": "library"
@@ -1826,7 +1836,7 @@ const MARKEN = {
       },
       {
         "icon": "✅",
-        "text": "Alle Zusaetze gegen die Herstellerseiten geprueft (17.9.2026): Advanced Nutrients dosiert praktisch alle Additive mit 2 ml/L. Die Werte hier stimmen."
+        "text": "Alle Zusätze gegen die Herstellerseiten geprüft (17.9.2026): Advanced Nutrients dosiert praktisch alle Additive mit 2 ml/L. Die Werte hier stimmen."
       }
     ],
     "quelle": "library"
@@ -2047,31 +2057,24 @@ const MARKEN = {
     "name": "Aptus",
     "emoji": "⚡",
     "color": "#f0a500",
-    "ecRange": {
-      "wuchs": [
-        0.8,
-        1.6
-      ],
-      "bluete": [
-        1.2,
-        2.2
-      ]
-    },
+    "ecRange": null,
     "refillProduct": {
       "wuchs": "All-In-One",
       "bluete": "All-In-One"
     },
     "produkte": {
       "fasilitor": {
-        "name": "Fasilitor",
+        "name": "Regulator",
         "type": "silica",
-        "note": "Silika + pH-Puffer (= Regulator) — immer ZUERST!",
+        "note": "Silikat + pH-Puffer, früher „Fasilitor“ – nach dem RO Water Conditioner als Erstes ins Wasser",
         "color": "#8b949e",
         "quelle": {
-          "geprueft": "2026-09-17",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "0,15 ml/L in Wuchs und Bluete",
-          "beleg": "aptusplanttech / Aptus Feeding Chart"
+          "umbenanntVon": "Fasilitor",
+          "herstellerAngabe": "0,15 ml/L in Wuchs und Bluete, Bluetewoche 1-3 bis 0,3 ml/L gegen zu starkes Strecken, auch in der Spuelwoche",
+          "beleg": "Aptus CLEAN Mineral Program 2025, aptus-holland.com/wp-content/uploads/2025/03/kweekschema-2025_clean-min-scaled.jpg, ml pro Liter; laut Aptus fuer DWC geeignet (\"will last 14 days in a reservoir or DWC system\") (abgerufen 24.9.2026)",
+          "hinweis": "Fasilitor ist der fruehere Name desselben Produkts. Menge unveraendert."
         }
       },
       "allInOne": {
@@ -2079,66 +2082,65 @@ const MARKEN = {
         "type": "base",
         "note": "Komplett-Dünger 1-Komponente",
         "quelle": {
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "1 ml/L Standard, unter guten Bedingungen bis 2 ml/L",
-          "beleg": "aptus-holland.com/products/all-in-one-liquid/",
-          "geprueft": "2026-09-17",
-          "hinweis": "Bis zum 17.9.2026 stand dieses Produkt ZWEIMAL in der Marke: als Schluessel \"allInOne\" und \"allinone\" - nur die Gross-/Kleinschreibung unterschied sie. Das Dashboard zeigte beide und dosierte damit doppelt (bei 37 L: 81,4 statt 40,7 ml). Dublette entfernt, Werte waren identisch: {\"1\":0.9,\"2\":1.1,\"3\":1.1,\"4\":1.1,\"5\":1.1,\"6\":1.1,\"7\":1.1,\"8\":1.1}"
+          "hoechstwert": 2,
+          "herstellerAngabe": "CLEAN: Wuchs 1,2 ml/L in Woche 1, danach 1,5; Bluete 1,5/1,8/2/2/2/2/1,8/1,5 ml/L",
+          "beleg": "Aptus CLEAN Mineral Program 2025, aptus-holland.com/wp-content/uploads/2025/03/kweekschema-2025_clean-min-scaled.jpg, ml pro Liter; laut Aptus fuer DWC geeignet (\"will last 14 days in a reservoir or DWC system\") (abgerufen 24.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das CLEAN-Programm, vorher (PREMIUM-Werte): wuchs {\"1\":0.9,\"2\":1.1,\"3\":1.1,\"4\":1.1,\"5\":1.1,\"6\":1.1,\"7\":1.1,\"8\":1.1}, bluete {\"1\":1.3,\"2\":1.3,\"3\":1.3,\"4\":1.6,\"5\":1.6,\"6\":1.6}."
         }
       },
       "pBoost": {
         "name": "P-Boost",
         "type": "pk",
-        "note": "Phosphor-Ergänzung, Bloom Wk 1–4",
+        "note": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
         "color": "#f472b6",
         "quelle": {
-          "geprueft": "2026-09-24",
-          "status": "belegt",
+          "geprueft": "2026-09-25",
+          "status": "ungeeignet",
           "herstellerAngabe": "3-5 ml pro 10 L (0,3-0,5 ml/L), von Bluetebeginn bis Bluetewoche 6",
-          "beleg": "aptus-holland.com/products/p-boost/ (abgerufen 24.9.2026)",
-          "hinweis": "An die Untergrenze des Herstellerbereichs angehoben. Angeglichen am 24.9.2026, vorher: bluete {\"1\":0.1,\"2\":0.2,\"3\":0.2,\"4\":0.1}.",
-          "hoechstwert": 0.5
+          "beleg": "Aptus PREMIUM Organo-Mineral Program 2025 (kweekschema-2025_prem-organo-scaled.jpg): \"Not for DWC, NFT, or aeroponic systems - use our CLEAN programs instead.\"; im CLEAN-Programm nicht enthalten (abgerufen 24.9.2026)",
+          "hinweis": "Bis 24.9.2026 im DWC-Plan (bluete {\"1\":0.3,\"2\":0.3,\"3\":0.3,\"4\":0.3}). Entfernt am 25.9.2026: Aptus sieht das Produkt fuer DWC nicht vor."
         }
       },
       "kBoost": {
         "name": "K-Boost",
         "type": "pk",
-        "note": "Kalium-Ergänzung, Bloom Wk 4–6",
+        "note": "Kalium-Ergänzung, Blüte Wk 6–8",
         "color": "#f97316",
         "quelle": {
-          "geprueft": "2026-09-24",
+          "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "3-5 ml pro 10 L (0,3-0,5 ml/L), Bluetewoche 5-7 oder in den letzten 4 Wochen",
-          "beleg": "aptus-holland.com/products/k-boost/ (abgerufen 24.9.2026)",
-          "hinweis": "Woche 4 an die Untergrenze angehoben; Woche 4-6 sind die letzten Wochen dieses 6-Wochen-Plans. Angeglichen am 24.9.2026, vorher: bluete {\"4\":0.2,\"5\":0.3,\"6\":0.3}.",
-          "hoechstwert": 0.5
+          "hoechstwert": 0.5,
+          "herstellerAngabe": "CLEAN: 0,5 ml/L in Bluetewoche 6-8",
+          "beleg": "Aptus CLEAN Mineral Program 2025, aptus-holland.com/wp-content/uploads/2025/03/kweekschema-2025_clean-min-scaled.jpg, ml pro Liter; laut Aptus fuer DWC geeignet (\"will last 14 days in a reservoir or DWC system\") (abgerufen 24.9.2026)",
+          "hinweis": "Angeglichen am 25.9.2026 auf das CLEAN-Programm, vorher: bluete {\"4\":0.3,\"5\":0.3,\"6\":0.3}."
         }
       },
       "camgBoost": {
         "name": "CaMg-Boost",
         "type": "calmag",
-        "note": "Calcium-Magnesium Ergänzung, ganzer Run",
+        "note": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
         "color": "#fbbf24",
         "quelle": {
-          "geprueft": "2026-09-24",
-          "status": "belegt",
+          "geprueft": "2026-09-25",
+          "status": "ungeeignet",
           "herstellerAngabe": "2,5-5 ml pro 10 L (0,25-0,5 ml/L); in Coco/Hydro bei jeder Gabe zusammen mit All-in-One Liquid",
-          "beleg": "aptus-holland.com/products/camg-boost/ (abgerufen 24.9.2026)",
-          "hoechstwert": 0.5
+          "beleg": "Aptus PREMIUM Organo-Mineral Program 2025 (kweekschema-2025_prem-organo-scaled.jpg): \"Not for DWC, NFT, or aeroponic systems - use our CLEAN programs instead.\"; im CLEAN-Programm nicht enthalten (abgerufen 24.9.2026)",
+          "hinweis": "Bis 24.9.2026 im DWC-Plan (wuchs {\"2\":0.25,\"3\":0.25,\"4\":0.25,\"5\":0.25,\"6\":0.25,\"7\":0.25,\"8\":0.25}, bluete {\"1\":0.5,\"2\":0.5,\"3\":0.5,\"4\":0.5,\"5\":0.5,\"6\":0.5}). Entfernt am 25.9.2026: Aptus sieht das Produkt fuer DWC nicht vor."
         }
       },
       "topBooster": {
         "name": "Top Booster",
         "type": "bloom",
-        "note": "Bloom-Finisher, Wk 2–6 steigernd",
+        "note": "Gehört zum PREMIUM-Programm – laut Aptus nicht für DWC",
         "color": "#bc8cff",
         "quelle": {
-          "geprueft": "2026-09-24",
-          "status": "belegt",
+          "geprueft": "2026-09-25",
+          "status": "ungeeignet",
           "herstellerAngabe": "2 ml pro 10 L (0,2 ml/L) ab Bluetewoche 2 bis zur letzten, steigerbar bis 4 ml pro 10 L (0,4 ml/L)",
-          "beleg": "aptus-holland.com/products/topbooster/ (abgerufen 24.9.2026)",
-          "hinweis": "Woche 6 stand auf 0,5 ml/L - ueber dem Hoechstwert des Herstellers. Auf 0,4 gesenkt.",
-          "hoechstwert": 0.4
+          "beleg": "Aptus PREMIUM Organo-Mineral Program 2025 (kweekschema-2025_prem-organo-scaled.jpg): \"Not for DWC, NFT, or aeroponic systems - use our CLEAN programs instead.\"; im CLEAN-Programm nicht enthalten (abgerufen 24.9.2026)",
+          "hinweis": "Bis 24.9.2026 im DWC-Plan (bluete {\"2\":0.2,\"3\":0.3,\"4\":0.3,\"5\":0.4,\"6\":0.4}). Entfernt am 25.9.2026: Aptus sieht das Produkt fuer DWC nicht vor."
         }
       },
       "mycorMix": {
@@ -2150,6 +2152,43 @@ const MARKEN = {
           "status": "belegt",
           "herstellerAngabe": "einmalig beim Pflanzen ins Substrat, kein Reservoir-Additiv",
           "beleg": "aptus-holland.com Manual"
+        }
+      },
+      "breakout": {
+        "name": "Breakout Powder",
+        "type": "bloom",
+        "einheit": "g",
+        "color": "#f472b6",
+        "note": "Pulver, gut einrühren – Menge laut Aptus je nach Sorte",
+        "quelle": {
+          "geprueft": "2026-09-25",
+          "status": "belegt",
+          "herstellerAngabe": "CLEAN: 0,5 g/L in Bluetewoche 3, 1 g/L in Woche 5, 1,5 g/L in Woche 7; Dosierung je nach Sorte",
+          "beleg": "Aptus CLEAN Mineral Program 2025, aptus-holland.com/wp-content/uploads/2025/03/kweekschema-2025_clean-min-scaled.jpg, ml pro Liter; laut Aptus fuer DWC geeignet (\"will last 14 days in a reservoir or DWC system\") (abgerufen 24.9.2026)"
+        }
+      },
+      "roConditioner": {
+        "name": "RO Water Conditioner",
+        "type": "calmag",
+        "color": "#fbbf24",
+        "note": "Nur bei Osmosewasser: zuerst ins Wasser, bis EC 0,3 – keine feste Wochengabe",
+        "quelle": {
+          "geprueft": "2026-09-25",
+          "status": "belegt",
+          "herstellerAngabe": "0,8 ml/L, nur wenn mit Osmosewasser gestartet wird: vor allen anderen Produkten bis EC 0,3",
+          "beleg": "Aptus CLEAN Mineral Program 2025, aptus-holland.com/wp-content/uploads/2025/03/kweekschema-2025_clean-min-scaled.jpg, ml pro Liter; laut Aptus fuer DWC geeignet (\"will last 14 days in a reservoir or DWC system\") (abgerufen 24.9.2026)"
+        }
+      },
+      "systemClean": {
+        "name": "System-Clean",
+        "type": "flush",
+        "color": "#8b949e",
+        "note": "Optional, 0,25 ml/L in Wuchs und Blüte – keine feste Wochengabe",
+        "quelle": {
+          "geprueft": "2026-09-25",
+          "status": "belegt",
+          "herstellerAngabe": "optional 0,25 ml/L in Wuchs und Bluete (\"Optional Tank\")",
+          "beleg": "Aptus CLEAN Mineral Program 2025, aptus-holland.com/wp-content/uploads/2025/03/kweekschema-2025_clean-min-scaled.jpg, ml pro Liter; laut Aptus fuer DWC geeignet (\"will last 14 days in a reservoir or DWC system\") (abgerufen 24.9.2026)"
         }
       }
     },
@@ -2166,23 +2205,14 @@ const MARKEN = {
           "8": 0.15
         },
         "allInOne": {
-          "1": 0.9,
-          "2": 1.1,
-          "3": 1.1,
-          "4": 1.1,
-          "5": 1.1,
-          "6": 1.1,
-          "7": 1.1,
-          "8": 1.1
-        },
-        "camgBoost": {
-          "2": 0.25,
-          "3": 0.25,
-          "4": 0.25,
-          "5": 0.25,
-          "6": 0.25,
-          "7": 0.25,
-          "8": 0.25
+          "1": 1.2,
+          "2": 1.5,
+          "3": 1.5,
+          "4": 1.5,
+          "5": 1.5,
+          "6": 1.5,
+          "7": 1.5,
+          "8": 1.5
         }
       },
       "bluete": {
@@ -2192,63 +2222,35 @@ const MARKEN = {
           "3": 0.15,
           "4": 0.15,
           "5": 0.15,
-          "6": 0.15
+          "6": 0.15,
+          "7": 0.15,
+          "8": 0.15
         },
         "allInOne": {
-          "1": 1.3,
-          "2": 1.3,
-          "3": 1.3,
-          "4": 1.6,
-          "5": 1.6,
-          "6": 1.6
+          "1": 1.5,
+          "2": 1.8,
+          "3": 2,
+          "4": 2,
+          "5": 2,
+          "6": 2,
+          "7": 1.8,
+          "8": 1.5
         },
-        "pBoost": {
-          "1": 0.3,
-          "2": 0.3,
-          "3": 0.3,
-          "4": 0.3
-        },
-        "camgBoost": {
-          "1": 0.5,
-          "2": 0.5,
+        "breakout": {
           "3": 0.5,
-          "4": 0.5,
-          "5": 0.5,
-          "6": 0.5
-        },
-        "topBooster": {
-          "2": 0.2,
-          "3": 0.3,
-          "4": 0.3,
-          "5": 0.4,
-          "6": 0.4
+          "5": 1,
+          "7": 1.5
         },
         "kBoost": {
-          "4": 0.3,
-          "5": 0.3,
-          "6": 0.3
+          "6": 0.5,
+          "7": 0.5,
+          "8": 0.5
         }
       }
     },
     "ec": {
-      "wuchs": {
-        "1": 1,
-        "2": 1.3,
-        "3": 1.5,
-        "4": 1.6,
-        "5": 1.6,
-        "6": 1.6,
-        "7": 1.6,
-        "8": 1.6
-      },
-      "bluete": {
-        "1": 1.8,
-        "2": 1.9,
-        "3": 2,
-        "4": 2.1,
-        "5": 2.2,
-        "6": 2.1
-      }
+      "wuchs": {},
+      "bluete": {}
     },
     "hinweis": {
       "wuchs": {},
@@ -2257,30 +2259,31 @@ const MARKEN = {
     "addOrder": {
       "grow": [
         "fasilitor",
-        "allInOne",
-        "camgBoost"
+        "allInOne"
       ],
       "bloom": [
         "fasilitor",
         "allInOne",
-        "pBoost",
-        "kBoost",
-        "topBooster",
-        "camgBoost"
+        "breakout",
+        "kBoost"
       ]
     },
     "tips": [
       {
         "icon": "📋",
-        "text": "Werte korrigiert nach offiziellem Aptus 2025 Premium Organo-Mineral Kweekschema (aptus-holland.com)."
+        "text": "Seit 25.9.2026 nach dem Aptus-Programm CLEAN Mineral 2025 – das Programm, das Aptus für DWC vorsieht. Das vorher verwendete PREMIUM-Programm ist laut Aptus nicht für DWC gedacht."
+      },
+      {
+        "icon": "⚡",
+        "text": "Regulator (früher Fasilitor) nach dem RO Water Conditioner als Erstes ins Wasser. In Blütewoche 1–3 bis 0,3 ml/L gegen zu starkes Strecken."
+      },
+      {
+        "icon": "💧",
+        "text": "Aptus sieht jede Woche frisches Wasser vor; die Mischung bleibt laut Aptus bis zu 14 Tage stabil."
       },
       {
         "icon": "🧬",
         "text": "'BioBoost' gibt es bei Aptus nicht (das ist ein CANNA-Produkt) — richtig heißt es Mycor Mix, wird EINMALIG beim Pflanzen/Umtopfen ins Substrat gegeben, nicht wöchentlich ins Reservoir."
-      },
-      {
-        "icon": "⚡",
-        "text": "Fasilitor = Regulator (regionale Namen für dasselbe Produkt): immer zuerst ins Wasser — Silika reagiert mit anderen Nährstoffen! Optional auf 3 ml/10L erhöhen in Blüte Wk 1-3 gegen zu starkes Strecken."
       },
       {
         "icon": "🔬",
@@ -2299,7 +2302,15 @@ const MARKEN = {
         "text": "All-In-One stand versehentlich zweimal in den Daten und wurde doppelt dosiert. Seit 17.9.2026 behoben."
       }
     ],
-    "quelle": "library"
+    "quelle": "library",
+    "wochen": {
+      "bluete": {
+        "naehrstoff": 8,
+        "gesamt": 9,
+        "spuelen": "laut Aptus frisches Wasser, nur 0,15 ml/L Regulator"
+      }
+    },
+    "planHinweis": "Seit 25.9.2026 nach dem Aptus-Programm CLEAN Mineral 2025, das Aptus ausdrücklich für DWC vorsieht: im Wuchs Woche 1 mit 1,2 ml/L All-in-One, danach 1,5; 8 Blütewochen, Woche 9 frisches Wasser nur mit Regulator. RO Water Conditioner (0,8 ml/L) nur bei Osmosewasser, System-Clean (0,25 ml/L) optional. Bis 24.9.2026 standen hier Werte aus dem PREMIUM-Programm, das laut Aptus nicht für DWC gedacht ist – P-Boost, Topbooster und CaMg-Boost gehören dazu und entfallen. Aptus nennt keinen EC-Zielwert. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anpassen."
   },
   "house": {
     "name": "House & Garden",
@@ -2693,7 +2704,7 @@ const MARKEN = {
       },
       {
         "icon": "🔍",
-        "text": "Das offizielle House-&-Garden-DWC-Schema weicht ab (8 Bluetewochen, deutlich hoehere Zusaetze). Vor Nutzung dieser Marke die Werte gegen das Herstellerchart abgleichen."
+        "text": "Das offizielle House-&-Garden-DWC-Schema weicht ab (8 Blütewochen, deutlich höhere Zusätze). Vor Nutzung dieser Marke die Werte gegen das Herstellerchart abgleichen."
       }
     ],
     "quelle": "library",
@@ -3163,7 +3174,7 @@ const MARKEN = {
     "tips": [
       {
         "icon": "📐",
-        "text": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Fuer die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+        "text": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Für die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
       },
       {
         "icon": "⚫",
@@ -3189,7 +3200,7 @@ const MARKEN = {
         "gesamt": 9
       }
     },
-    "planHinweis": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Fuer die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+    "planHinweis": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Für die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
   },
   "athena": {
     "name": "Athena Pro",
@@ -3714,7 +3725,7 @@ const MARKEN = {
       },
       {
         "icon": "✅",
-        "text": "Gegen den offiziellen Athena Feed Schedule geprueft (17.9.2026) - Grow 1,59 und Bloom 2,38 ml/L stimmen auf die Stelle."
+        "text": "Gegen den offiziellen Athena Feed Schedule geprüft (17.9.2026) - Grow 1,59 und Bloom 2,38 ml/L stimmen auf die Stelle."
       }
     ],
     "quelle": "library"
@@ -4400,7 +4411,7 @@ const MARKEN = {
       },
       {
         "icon": "🌊",
-        "text": "Cyco hat einen eigenen DWC-Feedchart (metric-dwc-feedchart.pdf) - genau fuer dieses System. Er liegt bei Basis und B1 Boost deutlich ueber den Werten hier."
+        "text": "Cyco hat einen eigenen DWC-Feedchart (metric-dwc-feedchart.pdf) - genau für dieses System. Er liegt bei Basis und B1 Boost deutlich über den Werten hier."
       }
     ],
     "quelle": "library",

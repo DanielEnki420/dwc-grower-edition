@@ -109,7 +109,7 @@ for (const [mk, m] of Object.entries(MARKEN)) {
     }
 }
 
-// ── Stichwerte (24.9.2026) ───────────────────────────────────────────────
+// ── Stichwerte (24.9.2026, Aptus CLEAN seit 25.9.2026) ─────────────────
 // Faengt Umrechnungsfehler (Gallone/Liter, je Komponente/zusammen) und
 // versehentliches Zuruecksetzen. undefined = in dieser Woche NICHT dosiert.
 const GOLD = [
@@ -120,10 +120,28 @@ const GOLD = [
     ['remo',   'wuchs',  'rGrow',      4, 2.11], ['remo',  'bluete', 'rMicro',     5, 2.64],
     ['remo',   'bluete', 'candy',      8, undefined],
     ['mills',  'wuchs',  'startR',     2, 0.7],  ['mills', 'bluete', 'basisA',     4, 1.5],
-    ['ghe',    'bluete', 'koolbloom',  5, 0.48], ['aptus', 'bluete', 'pBoost',     1, 0.3],
+    ['ghe',    'bluete', 'koolbloom',  5, 0.48], ['aptus', 'bluete', 'pBoost',     1, undefined],
+    ['aptus',  'bluete', 'allInOne',   3, 2],    ['aptus', 'bluete', 'breakout',   5, 1],
     ['athena', 'bluete', 'fade',       7, 3.2],  ['athena','bluete', 'proCore',    7, undefined],
     ['athenaBlended', 'bluete', 'bloomA', 7, undefined],
 ];
+// ── Sichtbare Texte ohne ae/oe/ue/ss-Ersatz (25.9.2026) ─────────────────
+// planHinweis, Tipps, Wochenhinweise, Spuelwoche und Produktnotizen erscheinen
+// so im Dashboard. Gefunden waren u. a. "Fuer", "Bluetewoche", "schliesst".
+const ERSATZ = /(?<![A-Za-zÄÖÜäöüß])(fuer|ueber|Bluete\w*|Duenger\w*|spuel\w*|Zusaetz\w*|ausdruecklich|geprueft|hoeher\w*|Staerke|haelt|naehr\w*|waehrend|koenn\w*|muess\w*|pruef\w*|Giess\w*|giess\w*|schliesst|heisst)(?![A-Za-zÄÖÜäöüß])/i;
+for (const [mk, m] of Object.entries(MARKEN)) {
+    const texte = [m.planHinweis, ...(m.tips || []).map(t => t.text)];
+    for (const ph of ['wuchs', 'bluete']) {
+        texte.push(...Object.values((m.hinweis || {})[ph] || {}));
+        const wb = (m.wochen || {})[ph]; if (wb) texte.push(wb.spuelen);
+    }
+    for (const p of Object.values(m.produkte)) texte.push(p.name, p.note);
+    for (const t of texte.filter(x => typeof x === 'string')) {
+        const x = ERSATZ.exec(t);
+        if (x) fehler.push(`${m.name}: sichtbarer Text mit "${x[0]}" statt Umlaut`);
+    }
+}
+
 for (const [mk, ph, pk, w, soll] of GOLD) {
     const ist = (((MARKEN[mk] || {}).dosis || {})[ph] || {})[pk];
     const v = ist ? ist[w] : undefined;
