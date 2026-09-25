@@ -128,18 +128,30 @@ const GOLD = [
     ['athenaBlended', 'bluete', 'bloomA', 7, undefined],
     ['hesi',   'bluete', 'boost',      2, undefined], ['hesi',  'bluete', 'boost',      4, 2],
     ['hesi',   'bluete', 'hydroblte',  8, undefined], ['hesi',  'bluete', 'wurzel',     2, undefined],
-    ['athenaBlended', 'bluete', 'camg', 7, 0.65],   ['athena', 'bluete', 'camg',      7, 0.65],
+    ['athenaBlended', 'bluete', 'camg', 7, 0.5],    ['athena', 'bluete', 'camg',      7, undefined],
+    ['athenaBlended', 'wuchs',  'camg', 1, 0.5],    ['athena', 'bluete', 'pk',        5, undefined],
+    ['athena',  'wuchs',  'camg',       1, undefined],
     ['canna',  'wuchs',  'calmag',     1, undefined], ['remo',  'wuchs',  'magnifical', 1, undefined],
 ];
 // ── Sichtbare Texte ohne ae/oe/ue/ss-Ersatz (25.9.2026) ─────────────────
 // planHinweis, Tipps, Wochenhinweise, Spuelwoche und Produktnotizen erscheinen
 // so im Dashboard. Gefunden waren u. a. "Fuer", "Bluetewoche", "schliesst".
 const ERSATZ = /(?<![A-Za-zÄÖÜäöüß])(fuer|ueber|Bluete\w*|Duenger\w*|spuel\w*|Zusaetz\w*|ausdruecklich|geprueft|hoeher\w*|Staerke|haelt|naehr\w*|waehrend|koenn\w*|muess\w*|pruef\w*|Giess\w*|giess\w*|schliesst|heisst)(?![A-Za-zÄÖÜäöüß])/i;
+// Plantexte sind seit 25.9.2026 Objekte {de, en, it, fr, es, pt}: vorher
+// erschienen sie nur auf Deutsch in allen sechs Sprachen. Die Umlautpruefung
+// gilt dem deutschen Text; jede Sprache muss vorhanden und nicht leer sein.
+const PLAN_SPRACHEN = ['de', 'en', 'it', 'fr', 'es', 'pt'];
+const deutsch = (x, wo) => {
+    if (x === undefined || x === null || x === '') return x;
+    if (typeof x === 'string') { fehler.push(`${wo}: nur deutsch, Uebersetzungen fehlen`); return x; }
+    for (const l of PLAN_SPRACHEN) if (typeof x[l] !== 'string' || !x[l].trim()) fehler.push(`${wo}: Sprache ${l} fehlt`);
+    return x.de;
+};
 for (const [mk, m] of Object.entries(MARKEN)) {
-    const texte = [m.planHinweis, ...(m.tips || []).map(t => t.text)];
+    const texte = [deutsch(m.planHinweis, `${mk} planHinweis`), ...(m.tips || []).map(t => t.text)];
     for (const ph of ['wuchs', 'bluete']) {
-        texte.push(...Object.values((m.hinweis || {})[ph] || {}));
-        const wb = (m.wochen || {})[ph]; if (wb) texte.push(wb.spuelen);
+        for (const [w, h] of Object.entries((m.hinweis || {})[ph] || {})) texte.push(deutsch(h, `${mk} Hinweis ${ph} ${w}`));
+        const wb = (m.wochen || {})[ph]; if (wb) texte.push(deutsch(wb.spuelen, `${mk} Spueltext`));
     }
     for (const p of Object.values(m.produkte)) texte.push(p.name, p.note);
     for (const t of texte.filter(x => typeof x === 'string')) {

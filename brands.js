@@ -185,6 +185,18 @@
 // Athena (beide Linien): CaMg laut Feed Schedule bis Bluete 7, nicht 6.
 // Canna CalMag Agent und Remo Magnifical ohne festen Wochenwert - wie Hesi,
 // Plagron und Atami: der Hersteller dosiert nach Wasserhaerte.
+//
+// ── Athena vom 25.9.2026 ──────────────────────────────────────────────
+// Athena Pro: CaMg und PK stehen in keinem Pro-Schema (Pro Dosage Guidelines,
+// Pro Program 2022, Pro Program with Fade 2024) - die Werte kamen aus dem
+// Blended-Schema. Beide jetzt "ungeeignet", ohne Wochengabe. Athena Blended:
+// CaMg 0,5 statt 0,65 ml/L, die untere Grenze von 5-8 ml pro 10 L.
+//
+// ── Plantexte mehrsprachig vom 25.9.2026 ───────────────────────────────
+// planHinweis, Spueltext und Wochenhinweise erschienen nur auf Deutsch - auch
+// in der englischen, italienischen, franzoesischen, spanischen und
+// portugiesischen Oberflaeche. Jetzt Objekte mit allen sechs Sprachen; die
+// Seiten zeigen sie ueber planText(x, currentLang).
 const MARKEN = {
   "hesi": {
     "name": "Hesi",
@@ -483,10 +495,24 @@ const MARKEN = {
       "bluete": {
         "naehrstoff": 7,
         "gesamt": 8,
-        "spuelen": "laut Hesi mit klarem Wasser spülen"
+        "spuelen": {
+          "de": "laut Hesi mit klarem Wasser spülen",
+          "en": "per Hesi, flush with plain water",
+          "it": "secondo Hesi, lavare con acqua pulita",
+          "fr": "selon Hesi, rincer à l'eau claire",
+          "es": "según Hesi, lavar con agua limpia",
+          "pt": "segundo a Hesi, lavar com água limpa"
+        }
       }
     },
-    "planHinweis": "Seit 25.9.2026 nach den Wochen des Hesi-Hydro-Zuchtschemas: Boost in Blütewoche 1 und 4–7, PK 13/14 in Woche 4–7, Woche 8 nur Wasser (spülen), Wurzel Complex als Starter vom Start bis Blütewoche 1 und bei Stress. Die Mengen selbst waren schon richtig; vorher lief Boost auch in Woche 2, 3 und 8, und Woche 8 wurde noch gedüngt."
+    "planHinweis": {
+      "de": "Seit 25.9.2026 nach den Wochen des Hesi-Hydro-Zuchtschemas: Boost in Blütewoche 1 und 4–7, PK 13/14 in Woche 4–7, Woche 8 nur Wasser (spülen), Wurzel Complex als Starter vom Start bis Blütewoche 1 und bei Stress. Die Mengen selbst waren schon richtig; vorher lief Boost auch in Woche 2, 3 und 8, und Woche 8 wurde noch gedüngt.",
+      "en": "Since 25 Sep 2026 following the weeks of the Hesi hydro grow schedule: Boost in bloom week 1 and 4–7, PK 13/14 in weeks 4–7, week 8 plain water only (flush), Root Complex as a starter from the start to bloom week 1 and in case of stress. The amounts themselves were already right; before, Boost also ran in weeks 2, 3 and 8, and week 8 was still fed.",
+      "it": "Dal 25/9/2026 secondo le settimane dello schema di coltivazione idroponica Hesi: Boost nella settimana di fioritura 1 e 4–7, PK 13/14 nelle settimane 4–7, settimana 8 solo acqua (lavaggio), Root Complex come starter dall'inizio fino alla settimana di fioritura 1 e in caso di stress. Le dosi erano già corrette; prima Boost veniva dato anche nelle settimane 2, 3 e 8, e nella settimana 8 si concimava ancora.",
+      "fr": "Depuis le 25/09/2026, selon les semaines du schéma de culture hydro Hesi : Boost en semaine de floraison 1 et 4–7, PK 13/14 en semaines 4–7, semaine 8 eau claire uniquement (rinçage), Root Complex comme starter du départ jusqu'à la semaine de floraison 1 et en cas de stress. Les doses étaient déjà justes ; avant, Boost tournait aussi en semaines 2, 3 et 8, et la semaine 8 était encore fertilisée.",
+      "es": "Desde el 25/9/2026 según las semanas del esquema de cultivo hidropónico de Hesi: Boost en la semana 1 y 4–7 de floración, PK 13/14 en las semanas 4–7, semana 8 solo agua (lavado), Root Complex como arranque desde el inicio hasta la semana 1 de floración y en caso de estrés. Las cantidades ya eran correctas; antes, Boost también se daba en las semanas 2, 3 y 8, y en la semana 8 aún se abonaba.",
+      "pt": "Desde 25/9/2026 segundo as semanas do esquema de cultivo hidropónico da Hesi: Boost na semana 1 e 4–7 de floração, PK 13/14 nas semanas 4–7, semana 8 só água (lavagem), Root Complex como arranque desde o início até à semana 1 de floração e em caso de stress. As quantidades já estavam certas; antes, o Boost também era dado nas semanas 2, 3 e 8, e a semana 8 ainda era adubada."
+    }
   },
   "canna": {
     "name": "Canna Aqua",
@@ -1426,10 +1452,24 @@ const MARKEN = {
       "bluete": {
         "naehrstoff": 8,
         "gesamt": 9,
-        "spuelen": "laut GH mit FloraKleen spülen, 10 ml pro Gallone (2,64 ml/L)"
+        "spuelen": {
+          "de": "laut GH mit FloraKleen spülen, 10 ml pro Gallone (2,64 ml/L)",
+          "en": "per GH, flush with FloraKleen, 10 ml per gallon (2.64 ml/L)",
+          "it": "secondo GH, lavare con FloraKleen, 10 ml per gallone (2,64 ml/L)",
+          "fr": "selon GH, rincer au FloraKleen, 10 ml par gallon (2,64 ml/L)",
+          "es": "según GH, lavar con FloraKleen, 10 ml por galón (2,64 ml/L)",
+          "pt": "segundo a GH, lavar com FloraKleen, 10 ml por galão (2,64 ml/L)"
+        }
       }
     },
-    "planHinweis": "Seit 25.9.2026 nach dem 10-teiligen Wochenschema von General Hydroponics (FloraSeries Professional), leichte Stufe: 4 Wuchs- und 8 Blütewochen (Woche 8 = Reife mit Ripen), Woche 9 Spülen mit FloraKleen. GH nennt für DWC keine eigene Stufe; die leichte ist unsere Auslegung, weil die Wurzeln im DWC ständig in der Lösung stehen. GH rät, mit einem passenden Ausgangswert zu beginnen und nach der Pflanze nachzusteuern – die nächste Stufe („Medium“) liegt rund 0,1–0,3 mS/cm höher. FloraBlend und Dry KoolBloom stehen in keinem GH-Wochenschema. Vorher lag der Grunddünger in Wuchswoche 1 höher und in Blütewoche 1–5 rund 15–40 % niedriger, die alten EC-Ziele (bis 2,2) stammten nicht von GH. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anpassen."
+    "planHinweis": {
+      "de": "Seit 25.9.2026 nach dem 10-teiligen Wochenschema von General Hydroponics (FloraSeries Professional), leichte Stufe: 4 Wuchs- und 8 Blütewochen (Woche 8 = Reife mit Ripen), Woche 9 Spülen mit FloraKleen. GH nennt für DWC keine eigene Stufe; die leichte ist unsere Auslegung, weil die Wurzeln im DWC ständig in der Lösung stehen. GH rät, mit einem passenden Ausgangswert zu beginnen und nach der Pflanze nachzusteuern – die nächste Stufe („Medium“) liegt rund 0,1–0,3 mS/cm höher. FloraBlend und Dry KoolBloom stehen in keinem GH-Wochenschema. Vorher lag der Grunddünger in Wuchswoche 1 höher und in Blütewoche 1–5 rund 15–40 % niedriger, die alten EC-Ziele (bis 2,2) stammten nicht von GH. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anpassen.",
+      "en": "Since 25 Sep 2026 following General Hydroponics' 10-part weekly chart (FloraSeries Professional), light feed: 4 veg and 8 bloom weeks (week 8 = ripening with Ripen), week 9 flush with FloraKleen. GH gives no strength of its own for DWC; the light one is our reading, because in DWC the roots sit in the solution all the time. GH advises starting from a suitable base value and adjusting to the plant – the next strength (“Medium”) is about 0.1–0.3 mS/cm higher. FloraBlend and Dry KoolBloom are not in any GH weekly chart. Before, the base nutrients were higher in veg week 1 and about 15–40 % lower in bloom weeks 1–5, and the old EC targets (up to 2.2) did not come from GH. If you are mid-grow, don't switch in one go: adjust the EC by at most 0.2 per reservoir change.",
+      "it": "Dal 25/9/2026 secondo la tabella settimanale in 10 parti di General Hydroponics (FloraSeries Professional), livello leggero: 4 settimane di crescita e 8 di fioritura (settimana 8 = maturazione con Ripen), settimana 9 lavaggio con FloraKleen. GH non indica un livello proprio per il DWC; quello leggero è una nostra interpretazione, perché nel DWC le radici stanno sempre nella soluzione. GH consiglia di partire da un valore di base adatto e di regolarsi sulla pianta – il livello successivo («Medium») è circa 0,1–0,3 mS/cm più alto. FloraBlend e Dry KoolBloom non compaiono in nessuna tabella settimanale GH. Prima il fertilizzante di base era più alto nella settimana di crescita 1 e circa il 15–40 % più basso nelle settimane di fioritura 1–5; i vecchi obiettivi EC (fino a 2,2) non venivano da GH. Durante una coltivazione in corso non cambiare tutto in una volta: adegua l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+      "fr": "Depuis le 25/09/2026, selon le tableau hebdomadaire en 10 parties de General Hydroponics (FloraSeries Professional), dosage léger : 4 semaines de croissance et 8 de floraison (semaine 8 = maturation avec Ripen), semaine 9 rinçage au FloraKleen. GH n'indique pas de niveau propre au DWC ; le léger est notre interprétation, car en DWC les racines baignent en permanence dans la solution. GH conseille de partir d'une valeur de départ adaptée et d'ajuster selon la plante – le niveau suivant (« Medium ») est environ 0,1–0,3 mS/cm plus élevé. FloraBlend et Dry KoolBloom ne figurent dans aucun tableau hebdomadaire GH. Auparavant, l'engrais de base était plus élevé en semaine de croissance 1 et environ 15–40 % plus bas en semaines de floraison 1–5 ; les anciens objectifs EC (jusqu'à 2,2) ne venaient pas de GH. En cours de culture, ne changez pas tout d'un coup : ajustez l'EC de 0,2 au maximum à chaque changement d'eau.",
+      "es": "Desde el 25/9/2026 según la tabla semanal en 10 partes de General Hydroponics (FloraSeries Professional), dosis ligera: 4 semanas de crecimiento y 8 de floración (semana 8 = maduración con Ripen), semana 9 lavado con FloraKleen. GH no indica un nivel propio para DWC; el ligero es nuestra interpretación, porque en DWC las raíces están siempre en la solución. GH aconseja empezar con un valor inicial adecuado y ajustar según la planta; el nivel siguiente («Medium») está unos 0,1–0,3 mS/cm más alto. FloraBlend y Dry KoolBloom no figuran en ninguna tabla semanal de GH. Antes, el abono base era más alto en la semana 1 de crecimiento y un 15–40 % más bajo en las semanas 1–5 de floración; los antiguos objetivos de EC (hasta 2,2) no venían de GH. Con un cultivo en marcha no cambies de golpe: ajusta la EC como máximo 0,2 por cambio de agua.",
+      "pt": "Desde 25/9/2026 segundo a tabela semanal em 10 partes da General Hydroponics (FloraSeries Professional), dosagem leve: 4 semanas de crescimento e 8 de floração (semana 8 = maturação com Ripen), semana 9 lavagem com FloraKleen. A GH não indica um nível próprio para DWC; o leve é a nossa interpretação, porque no DWC as raízes estão sempre na solução. A GH aconselha começar com um valor inicial adequado e ajustar conforme a planta – o nível seguinte («Medium») fica cerca de 0,1–0,3 mS/cm acima. FloraBlend e Dry KoolBloom não constam de nenhuma tabela semanal da GH. Antes, o adubo base era mais alto na semana 1 de crescimento e cerca de 15–40 % mais baixo nas semanas 1–5 de floração; os antigos objetivos de EC (até 2,2) não vinham da GH. Com um cultivo em andamento, não mude tudo de uma vez: ajuste o EC no máximo 0,2 por troca de água."
+    }
   },
   "advanced": {
     "name": "Advanced Nutrients",
@@ -2346,10 +2386,24 @@ const MARKEN = {
       "bluete": {
         "naehrstoff": 8,
         "gesamt": 9,
-        "spuelen": "laut Aptus frisches Wasser, nur 0,15 ml/L Regulator"
+        "spuelen": {
+          "de": "laut Aptus frisches Wasser, nur 0,15 ml/L Regulator",
+          "en": "per Aptus, fresh water with only 0.15 ml/L Regulator",
+          "it": "secondo Aptus, acqua fresca con solo 0,15 ml/L di Regulator",
+          "fr": "selon Aptus, eau fraîche avec seulement 0,15 ml/L de Regulator",
+          "es": "según Aptus, agua fresca solo con 0,15 ml/L de Regulator",
+          "pt": "segundo a Aptus, água fresca só com 0,15 ml/L de Regulator"
+        }
       }
     },
-    "planHinweis": "Seit 25.9.2026 nach dem Aptus-Programm CLEAN Mineral 2025, das Aptus ausdrücklich für DWC vorsieht: im Wuchs Woche 1 mit 1,2 ml/L All-in-One, danach 1,5; 8 Blütewochen, Woche 9 frisches Wasser nur mit Regulator. RO Water Conditioner (0,8 ml/L) nur bei Osmosewasser, System-Clean (0,25 ml/L) optional. Bis 24.9.2026 standen hier Werte aus dem PREMIUM-Programm, das laut Aptus nicht für DWC gedacht ist – P-Boost, Topbooster und CaMg-Boost gehören dazu und entfallen. Aptus nennt keinen EC-Zielwert. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anpassen."
+    "planHinweis": {
+      "de": "Seit 25.9.2026 nach dem Aptus-Programm CLEAN Mineral 2025, das Aptus ausdrücklich für DWC vorsieht: im Wuchs Woche 1 mit 1,2 ml/L All-in-One, danach 1,5; 8 Blütewochen, Woche 9 frisches Wasser nur mit Regulator. RO Water Conditioner (0,8 ml/L) nur bei Osmosewasser, System-Clean (0,25 ml/L) optional. Bis 24.9.2026 standen hier Werte aus dem PREMIUM-Programm, das laut Aptus nicht für DWC gedacht ist – P-Boost, Topbooster und CaMg-Boost gehören dazu und entfallen. Aptus nennt keinen EC-Zielwert. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anpassen.",
+      "en": "Since 25 Sep 2026 following the Aptus CLEAN Mineral 2025 program, which Aptus explicitly intends for DWC: veg week 1 with 1.2 ml/L All-in-One, then 1.5; 8 bloom weeks, week 9 fresh water with Regulator only. RO Water Conditioner (0.8 ml/L) only with reverse-osmosis water, System-Clean (0.25 ml/L) optional. Until 24 Sep 2026 this plan used values from the PREMIUM program, which Aptus says is not meant for DWC – P-Boost, Topbooster and CaMg-Boost belong to it and are dropped. Aptus gives no EC target. If you are mid-grow, don't switch in one go: adjust the EC by at most 0.2 per reservoir change.",
+      "it": "Dal 25/9/2026 secondo il programma Aptus CLEAN Mineral 2025, che Aptus prevede espressamente per il DWC: in crescita settimana 1 con 1,2 ml/L di All-in-One, poi 1,5; 8 settimane di fioritura, settimana 9 acqua fresca solo con Regulator. RO Water Conditioner (0,8 ml/L) solo con acqua osmotica, System-Clean (0,25 ml/L) facoltativo. Fino al 24/9/2026 qui c'erano valori del programma PREMIUM, che secondo Aptus non è pensato per il DWC – P-Boost, Topbooster e CaMg-Boost ne fanno parte e vengono eliminati. Aptus non indica un obiettivo EC. Durante una coltivazione in corso non cambiare tutto in una volta: adegua l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+      "fr": "Depuis le 25/09/2026, selon le programme Aptus CLEAN Mineral 2025, qu'Aptus prévoit expressément pour le DWC : en croissance, semaine 1 avec 1,2 ml/L d'All-in-One, puis 1,5 ; 8 semaines de floraison, semaine 9 eau fraîche avec Regulator uniquement. RO Water Conditioner (0,8 ml/L) uniquement avec de l'eau osmosée, System-Clean (0,25 ml/L) en option. Jusqu'au 24/09/2026, ce plan reprenait des valeurs du programme PREMIUM, qui selon Aptus n'est pas prévu pour le DWC – P-Boost, Topbooster et CaMg-Boost en font partie et disparaissent. Aptus n'indique pas d'objectif EC. En cours de culture, ne changez pas tout d'un coup : ajustez l'EC de 0,2 au maximum à chaque changement d'eau.",
+      "es": "Desde el 25/9/2026 según el programa Aptus CLEAN Mineral 2025, que Aptus prevé expresamente para DWC: en crecimiento, semana 1 con 1,2 ml/L de All-in-One y después 1,5; 8 semanas de floración, semana 9 agua fresca solo con Regulator. RO Water Conditioner (0,8 ml/L) solo con agua de ósmosis, System-Clean (0,25 ml/L) opcional. Hasta el 24/9/2026 aquí había valores del programa PREMIUM, que según Aptus no está pensado para DWC; P-Boost, Topbooster y CaMg-Boost forman parte de él y desaparecen. Aptus no indica un objetivo de EC. Con un cultivo en marcha no cambies de golpe: ajusta la EC como máximo 0,2 por cambio de agua.",
+      "pt": "Desde 25/9/2026 segundo o programa Aptus CLEAN Mineral 2025, que a Aptus prevê expressamente para DWC: no crescimento, semana 1 com 1,2 ml/L de All-in-One e depois 1,5; 8 semanas de floração, semana 9 água fresca só com Regulator. RO Water Conditioner (0,8 ml/L) só com água de osmose, System-Clean (0,25 ml/L) opcional. Até 24/9/2026 havia aqui valores do programa PREMIUM, que segundo a Aptus não se destina a DWC – P-Boost, Topbooster e CaMg-Boost fazem parte dele e saem. A Aptus não indica um objetivo de EC. Com um cultivo em andamento, não mude tudo de uma vez: ajuste o EC no máximo 0,2 por troca de água."
+    }
   },
   "house": {
     "name": "House & Garden",
@@ -2683,10 +2737,24 @@ const MARKEN = {
     },
     "hinweis": {
       "wuchs": {
-        "4": "Laut House & Garden dauert die Wuchsphase im DWC selten länger als 3 Wochen."
+        "4": {
+          "de": "Laut House & Garden dauert die Wuchsphase im DWC selten länger als 3 Wochen.",
+          "en": "According to House & Garden, the veg phase in DWC rarely lasts longer than 3 weeks.",
+          "it": "Secondo House & Garden, nel DWC la fase di crescita raramente dura più di 3 settimane.",
+          "fr": "Selon House & Garden, en DWC la phase de croissance dure rarement plus de 3 semaines.",
+          "es": "Según House & Garden, en DWC la fase de crecimiento rara vez dura más de 3 semanas.",
+          "pt": "Segundo a House & Garden, no DWC a fase de crescimento raramente dura mais de 3 semanas."
+        }
       },
       "bluete": {
-        "6": "Top Shooter ODER Shooting Powder – nie beides. Shooting Powder: 1 Beutel pro 50 Gallonen (189 L) in Woche 6, pro 25 Gallonen (95 L) in Woche 7-8."
+        "6": {
+          "de": "Top Shooter ODER Shooting Powder – nie beides. Shooting Powder: 1 Beutel pro 50 Gallonen (189 L) in Woche 6, pro 25 Gallonen (95 L) in Woche 7-8.",
+          "en": "Top Shooter OR Shooting Powder – never both. Shooting Powder: 1 sachet per 50 gallons (189 L) in week 6, per 25 gallons (95 L) in weeks 7–8.",
+          "it": "Top Shooter OPPURE Shooting Powder – mai entrambi. Shooting Powder: 1 bustina ogni 50 galloni (189 L) nella settimana 6, ogni 25 galloni (95 L) nelle settimane 7–8.",
+          "fr": "Top Shooter OU Shooting Powder – jamais les deux. Shooting Powder : 1 sachet pour 50 gallons (189 L) en semaine 6, pour 25 gallons (95 L) en semaines 7–8.",
+          "es": "Top Shooter O Shooting Powder, nunca los dos. Shooting Powder: 1 sobre por cada 50 galones (189 L) en la semana 6, por cada 25 galones (95 L) en las semanas 7–8.",
+          "pt": "Top Shooter OU Shooting Powder – nunca os dois. Shooting Powder: 1 saqueta por 50 galões (189 L) na semana 6, por 25 galões (95 L) nas semanas 7–8."
+        }
       }
     },
     "addOrder": {
@@ -2751,10 +2819,24 @@ const MARKEN = {
       "bluete": {
         "naehrstoff": 8,
         "gesamt": 9,
-        "spuelen": "laut House & Garden 2-5 Tage"
+        "spuelen": {
+          "de": "laut House & Garden 2-5 Tage",
+          "en": "per House & Garden, 2–5 days",
+          "it": "secondo House & Garden, 2–5 giorni",
+          "fr": "selon House & Garden, 2 à 5 jours",
+          "es": "según House & Garden, 2–5 días",
+          "pt": "segundo a House & Garden, 2–5 dias"
+        }
       }
     },
-    "planHinweis": "Seit 24.9.2026 nach dem DWC-Schema von House & Garden: 4 Wuchs-, 8 Blütewochen, Aqua Flakes A und B jeweils in der angegebenen Menge. House & Garden nennt dafür keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+    "planHinweis": {
+      "de": "Seit 24.9.2026 nach dem DWC-Schema von House & Garden: 4 Wuchs-, 8 Blütewochen, Aqua Flakes A und B jeweils in der angegebenen Menge. House & Garden nennt dafür keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben.",
+      "en": "Since 24 Sep 2026 following the House & Garden DWC schedule: 4 veg and 8 bloom weeks, Aqua Flakes A and B each in the stated amount. House & Garden gives no EC target for it. Before, the amounts were about a third of that. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change.",
+      "it": "Dal 24/9/2026 secondo lo schema DWC di House & Garden: 4 settimane di crescita e 8 di fioritura, Aqua Flakes A e B ciascuno nella quantità indicata. House & Garden non indica un obiettivo EC. Prima le quantità erano circa un terzo. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+      "fr": "Depuis le 24/09/2026, selon le schéma DWC de House & Garden : 4 semaines de croissance et 8 de floraison, Aqua Flakes A et B chacun à la dose indiquée. House & Garden n'indique pas d'objectif EC. Auparavant, les doses étaient d'environ un tiers. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau.",
+      "es": "Desde el 24/9/2026 según el esquema DWC de House & Garden: 4 semanas de crecimiento y 8 de floración, Aqua Flakes A y B cada uno en la cantidad indicada. House & Garden no indica un objetivo de EC. Antes, las cantidades eran aproximadamente un tercio. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua.",
+      "pt": "Desde 24/9/2026 segundo o esquema DWC da House & Garden: 4 semanas de crescimento e 8 de floração, Aqua Flakes A e B cada um na quantidade indicada. A House & Garden não indica um objetivo de EC. Antes, as quantidades eram cerca de um terço. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água."
+    }
   },
   "atami": {
     "name": "Atami B'cuzz",
@@ -3239,7 +3321,14 @@ const MARKEN = {
         "gesamt": 9
       }
     },
-    "planHinweis": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Für die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+    "planHinweis": {
+      "de": "Seit 24.9.2026 nach dem Mills-Schema der HC-Linie (High Concentrated), Leitungswasser mit EC 0,7: 2 Wuchs-, 9 Blütewochen. Für die Regular-Linie gilt etwa das 2,3-fache bei gleichen EC-Zielen – wer die Linie nicht kennt, mischt nach diesem Plan und dosiert nach EC nach. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben.",
+      "en": "Since 24 Sep 2026 following the Mills schedule for the HC line (High Concentrated), tap water with EC 0.7: 2 veg and 9 bloom weeks. For the Regular line use about 2.3 times as much with the same EC targets – if you don't know which line you have, mix by this plan and top up by EC. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change.",
+      "it": "Dal 24/9/2026 secondo lo schema Mills della linea HC (High Concentrated), acqua di rubinetto con EC 0,7: 2 settimane di crescita e 9 di fioritura. Per la linea Regular vale circa 2,3 volte tanto con gli stessi obiettivi EC – chi non conosce la linea miscela secondo questo piano e corregge in base all'EC. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+      "fr": "Depuis le 24/09/2026, selon le schéma Mills de la gamme HC (High Concentrated), eau du robinet à EC 0,7 : 2 semaines de croissance et 9 de floraison. Pour la gamme Regular, compter environ 2,3 fois plus pour les mêmes objectifs EC – si vous ne connaissez pas la gamme, mélangez selon ce plan et complétez selon l'EC. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau.",
+      "es": "Desde el 24/9/2026 según el esquema de Mills para la línea HC (High Concentrated), agua del grifo con EC 0,7: 2 semanas de crecimiento y 9 de floración. Para la línea Regular vale unas 2,3 veces más con los mismos objetivos de EC; quien no conozca la línea mezcla según este plan y corrige según la EC. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua.",
+      "pt": "Desde 24/9/2026 segundo o esquema da Mills para a linha HC (High Concentrated), água da torneira com EC 0,7: 2 semanas de crescimento e 9 de floração. Para a linha Regular vale cerca de 2,3 vezes mais com os mesmos objetivos de EC – quem não conhece a linha mistura segundo este plano e corrige pelo EC. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água."
+    }
   },
   "athena": {
     "name": "Athena Pro",
@@ -3307,10 +3396,10 @@ const MARKEN = {
         "color": "#fbbf24",
         "quelle": {
           "geprueft": "2026-09-25",
-          "status": "belegt",
-          "herstellerAngabe": "2-3 ml/Gallone = 0,53-0,79 ml/L",
-          "beleg": "Athena Feed Schedule (Normal), Athena-Feed-Schedule-English-All.pdf, ml pro Gallone",
-          "hinweis": "Seit 25.9.2026 auch in Bluetewoche 7: Athena Feed Schedule fuehrt CaMg ueber 4 Wuchs- und 7 Bluetewochen. Vorher: bluete {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65,\"5\":0.65,\"6\":0.65}."
+          "status": "ungeeignet",
+          "herstellerAngabe": "Nicht Teil des Athena-Pro-Programms - steht in keinem Pro-Schema",
+          "beleg": "Athena Pro Dosage Guidelines (metrisch), Pro Program Metric (2022) und Pro Program with Fade Metric (2024): die Pro-Linie besteht aus Pro Core, Pro Grow bzw. Pro Bloom, Cleanse und Balance, optional Fade",
+          "hinweis": "Seit 25.9.2026 ohne Wochengabe im Pro-Plan. Die Werte stammten aus dem Blended-Schema (Normal), das fuer die fluessige Blended-Linie gilt, nicht fuer Pro. Vorher: wuchs {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65}, bluete {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65,\"5\":0.65,\"6\":0.65,\"7\":0.65}."
         }
       },
       "cleanse": {
@@ -3331,10 +3420,11 @@ const MARKEN = {
         "note": "Phosphor-Kalium Bloom-Booster, ab Wk 3",
         "color": "#f97316",
         "quelle": {
-          "geprueft": "2026-09-17",
-          "status": "belegt",
-          "herstellerAngabe": "Normal-Chart: 4/5/9/10/12/10 ml/Gallone in Bluetewoche 3-8 = 1,06 bis 3,17 ml/L",
-          "beleg": "Athena Feed Schedule (Normal), Athena-Feed-Schedule-English-All.pdf, ml pro Gallone"
+          "geprueft": "2026-09-25",
+          "status": "ungeeignet",
+          "herstellerAngabe": "Nicht Teil des Athena-Pro-Programms - steht in keinem Pro-Schema",
+          "beleg": "Athena Pro Dosage Guidelines (metrisch), Pro Program Metric (2022) und Pro Program with Fade Metric (2024): die Pro-Linie besteht aus Pro Core, Pro Grow bzw. Pro Bloom, Cleanse und Balance, optional Fade",
+          "hinweis": "Seit 25.9.2026 ohne Wochengabe im Pro-Plan. Die Werte stammten aus dem Blended-Schema (Normal), das fuer die fluessige Blended-Linie gilt, nicht fuer Pro. Vorher: bluete {\"3\":1.1,\"4\":1.3,\"5\":2.4,\"6\":2.6,\"7\":3.2,\"8\":2.6}."
         }
       },
       "fade": {
@@ -3365,12 +3455,6 @@ const MARKEN = {
           "3": 0.92,
           "4": 0.92
         },
-        "camg": {
-          "1": 0.65,
-          "2": 0.65,
-          "3": 0.65,
-          "4": 0.65
-        },
         "cleanse": {
           "1": 0.5,
           "2": 0.5,
@@ -3397,15 +3481,6 @@ const MARKEN = {
           "7": 1.32,
           "8": 0.66
         },
-        "camg": {
-          "1": 0.65,
-          "2": 0.65,
-          "3": 0.65,
-          "4": 0.65,
-          "5": 0.65,
-          "6": 0.65,
-          "7": 0.65
-        },
         "cleanse": {
           "1": 0.5,
           "2": 0.5,
@@ -3415,14 +3490,6 @@ const MARKEN = {
           "6": 0.5,
           "7": 0.5,
           "8": 0.5
-        },
-        "pk": {
-          "3": 1.1,
-          "4": 1.3,
-          "5": 2.4,
-          "6": 2.6,
-          "7": 3.2,
-          "8": 2.6
         },
         "fade": {
           "7": 3.2,
@@ -3455,16 +3522,13 @@ const MARKEN = {
     "addOrder": {
       "grow": [
         "cleanse",
-        "camg",
         "proCore",
         "proGrow"
       ],
       "bloom": [
         "cleanse",
-        "camg",
         "proCore",
         "proBloom",
-        "pk",
         "fade"
       ]
     },
@@ -3482,12 +3546,8 @@ const MARKEN = {
         "text": "Core: nie pur verwenden — immer zusammen mit Grow (Wuchs) oder Bloom (Blüte) dosieren."
       },
       {
-        "icon": "💧",
-        "text": "CaMg ist optional — vor allem bei RO-/Umkehrosmosewasser oder in anspruchsvollen Umgebungen sinnvoll."
-      },
-      {
-        "icon": "🌸",
-        "text": "PK erst ab Blüte Wk 3 zugeben, danach bis Wk 7 steigern."
+        "icon": "🩵",
+        "text": "CaMg und PK gehören nicht zum Pro-Programm: sie stehen in keinem Athena-Pro-Schema (2020, 2022, 2024). Die Pro-Linie besteht aus Pro Core, Pro Grow bzw. Pro Bloom, Cleanse und Balance, optional Fade."
       },
       {
         "icon": "🧊",
@@ -3506,7 +3566,15 @@ const MARKEN = {
         "text": "Athena Pro ist ein Pulver: die Zahlen sind Gramm pro Liter, nicht Milliliter. Der Rechner beschriftet sie trotzdem als ml."
       }
     ],
-    "quelle": "library"
+    "quelle": "library",
+    "planHinweis": {
+      "de": "Seit 25.9.2026 ohne CaMg und PK: beide stehen in keinem Athena-Pro-Schema (Pro Dosage Guidelines, Pro Program 2022, Pro Program with Fade 2024). Die Pro-Linie besteht aus Pro Core, Pro Grow bzw. Pro Bloom und Cleanse, optional Fade. Vorher liefen CaMg (0,65 ml/L) und PK (1,1–3,2 ml/L ab Blütewoche 3) mit Werten aus dem Blended-Schema mit.",
+      "en": "Since 25 Sep 2026 without CaMg and PK: neither appears in any Athena Pro schedule (Pro Dosage Guidelines, Pro Program 2022, Pro Program with Fade 2024). The Pro line consists of Pro Core, Pro Grow or Pro Bloom and Cleanse, optionally Fade. Before, CaMg (0.65 ml/L) and PK (1.1–3.2 ml/L from bloom week 3) ran along with values from the Blended schedule.",
+      "it": "Dal 25/9/2026 senza CaMg e PK: nessuno dei due compare in uno schema Athena Pro (Pro Dosage Guidelines, Pro Program 2022, Pro Program with Fade 2024). La linea Pro è composta da Pro Core, Pro Grow o Pro Bloom e Cleanse, facoltativamente Fade. Prima CaMg (0,65 ml/L) e PK (1,1–3,2 ml/L dalla settimana di fioritura 3) venivano dati con valori dello schema Blended.",
+      "fr": "Depuis le 25/09/2026, sans CaMg ni PK : aucun des deux ne figure dans un schéma Athena Pro (Pro Dosage Guidelines, Pro Program 2022, Pro Program with Fade 2024). La gamme Pro se compose de Pro Core, Pro Grow ou Pro Bloom et Cleanse, en option Fade. Auparavant, CaMg (0,65 ml/L) et PK (1,1–3,2 ml/L à partir de la semaine de floraison 3) étaient ajoutés avec des valeurs du schéma Blended.",
+      "es": "Desde el 25/9/2026 sin CaMg ni PK: ninguno de los dos figura en un esquema de Athena Pro (Pro Dosage Guidelines, Pro Program 2022, Pro Program with Fade 2024). La línea Pro consta de Pro Core, Pro Grow o Pro Bloom y Cleanse, opcionalmente Fade. Antes, CaMg (0,65 ml/L) y PK (1,1–3,2 ml/L desde la semana 3 de floración) se daban con valores del esquema Blended.",
+      "pt": "Desde 25/9/2026 sem CaMg nem PK: nenhum dos dois consta de um esquema Athena Pro (Pro Dosage Guidelines, Pro Program 2022, Pro Program with Fade 2024). A linha Pro é composta por Pro Core, Pro Grow ou Pro Bloom e Cleanse, opcionalmente Fade. Antes, CaMg (0,65 ml/L) e PK (1,1–3,2 ml/L a partir da semana 3 de floração) eram dados com valores do esquema Blended."
+    }
   },
   "athenaBlended": {
     "name": "Athena Blended",
@@ -3583,9 +3651,9 @@ const MARKEN = {
         "quelle": {
           "geprueft": "2026-09-25",
           "status": "belegt",
-          "herstellerAngabe": "2-3 ml/Gallone = 0,53-0,79 ml/L",
-          "beleg": "Athena Feed Schedule (Normal), Athena-Feed-Schedule-English-All.pdf, ml pro Gallone",
-          "hinweis": "Seit 25.9.2026 auch in Bluetewoche 7: Athena Feed Schedule fuehrt CaMg ueber 4 Wuchs- und 7 Bluetewochen. Vorher: bluete {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65,\"5\":0.65,\"6\":0.65}."
+          "herstellerAngabe": "5-8 ml pro 10 L (metrisches Schema) bzw. 2-3 ml/Gallone - untere Grenze 0,5 ml/L",
+          "beleg": "Athena Feed Schedules Blended, Normal - metrisch (ml pro 10 L) und Athena-Feed-Schedule-English-All.pdf (ml pro Gallone)",
+          "hinweis": "Seit 25.9.2026 auch in Bluetewoche 7: Athena Feed Schedule fuehrt CaMg ueber 4 Wuchs- und 7 Bluetewochen. Vorher: bluete {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65,\"5\":0.65,\"6\":0.65}. Seit 25.9.2026 an der unteren Grenze der Spanne statt in der Mitte (Regel: bei Spannen gilt der untere Wert). Vorher: wuchs {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65}, bluete {\"1\":0.65,\"2\":0.65,\"3\":0.65,\"4\":0.65,\"5\":0.65,\"6\":0.65,\"7\":0.65}."
         }
       },
       "cleanse": {
@@ -3641,10 +3709,10 @@ const MARKEN = {
           "4": 1.6
         },
         "camg": {
-          "1": 0.65,
-          "2": 0.65,
-          "3": 0.65,
-          "4": 0.65
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5,
+          "4": 0.5
         },
         "cleanse": {
           "1": 0.5,
@@ -3671,13 +3739,13 @@ const MARKEN = {
           "6": 2.1
         },
         "camg": {
-          "1": 0.65,
-          "2": 0.65,
-          "3": 0.65,
-          "4": 0.65,
-          "5": 0.65,
-          "6": 0.65,
-          "7": 0.65
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5,
+          "4": 0.5,
+          "5": 0.5,
+          "6": 0.5,
+          "7": 0.5
         },
         "cleanse": {
           "1": 0.5,
@@ -3771,7 +3839,15 @@ const MARKEN = {
         "text": "Gegen den offiziellen Athena Feed Schedule geprüft (17.9.2026) - Grow 1,59 und Bloom 2,38 ml/L stimmen auf die Stelle."
       }
     ],
-    "quelle": "library"
+    "quelle": "library",
+    "planHinweis": {
+      "de": "Seit 25.9.2026 CaMg mit 0,5 ml/L, der unteren Grenze des Athena-Schemas (5–8 ml pro 10 L); vorher 0,65 ml/L, die Mitte der Spanne. Mehr als 0,8 ml/L sieht das Schema nicht vor.",
+      "en": "Since 25 Sep 2026 CaMg at 0.5 ml/L, the lower end of the Athena schedule (5–8 ml per 10 L); before 0.65 ml/L, the middle of the range. The schedule does not go above 0.8 ml/L.",
+      "it": "Dal 25/9/2026 CaMg a 0,5 ml/L, il limite inferiore dello schema Athena (5–8 ml ogni 10 L); prima 0,65 ml/L, il centro dell'intervallo. Lo schema non prevede più di 0,8 ml/L.",
+      "fr": "Depuis le 25/09/2026, CaMg à 0,5 ml/L, la limite basse du schéma Athena (5–8 ml pour 10 L) ; auparavant 0,65 ml/L, le milieu de la fourchette. Le schéma ne prévoit pas plus de 0,8 ml/L.",
+      "es": "Desde el 25/9/2026 CaMg con 0,5 ml/L, el límite inferior del esquema de Athena (5–8 ml por 10 L); antes 0,65 ml/L, el centro del rango. El esquema no prevé más de 0,8 ml/L.",
+      "pt": "Desde 25/9/2026 CaMg com 0,5 ml/L, o limite inferior do esquema da Athena (5–8 ml por 10 L); antes 0,65 ml/L, o meio do intervalo. O esquema não prevê mais de 0,8 ml/L."
+    }
   },
   "remo": {
     "name": "Remo Nutrients",
@@ -3995,10 +4071,24 @@ const MARKEN = {
       "bluete": {
         "naehrstoff": 7,
         "gesamt": 8,
-        "spuelen": "Woche 8 laut Remo nur Wasser"
+        "spuelen": {
+          "de": "Woche 8 laut Remo nur Wasser",
+          "en": "week 8 plain water only, per Remo",
+          "it": "settimana 8 solo acqua, secondo Remo",
+          "fr": "semaine 8 eau claire uniquement, selon Remo",
+          "es": "semana 8 solo agua, según Remo",
+          "pt": "semana 8 só água, segundo a Remo"
+        }
       }
     },
-    "planHinweis": "Seit 24.9.2026 nach dem Remo-Schema: 4 Wuchs-, 7 Blütewochen, Woche 8 nur Wasser; Micro, Grow bzw. Bloom in gleichen Teilen. Remo nennt keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Zehntel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben. Nature's Candy belastet das stehende Reservoir: ORP und Wurzeln beobachten."
+    "planHinweis": {
+      "de": "Seit 24.9.2026 nach dem Remo-Schema: 4 Wuchs-, 7 Blütewochen, Woche 8 nur Wasser; Micro, Grow bzw. Bloom in gleichen Teilen. Remo nennt keinen EC-Zielwert. Vorher lagen die Mengen bei rund einem Zehntel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben. Nature's Candy belastet das stehende Reservoir: ORP und Wurzeln beobachten.",
+      "en": "Since 24 Sep 2026 following the Remo schedule: 4 veg and 7 bloom weeks, week 8 plain water only; Micro and Grow or Bloom in equal parts. Remo gives no EC target. Before, the amounts were about a tenth of that. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change. Nature's Candy puts a load on a standing reservoir: watch the ORP and the roots.",
+      "it": "Dal 24/9/2026 secondo lo schema Remo: 4 settimane di crescita e 7 di fioritura, settimana 8 solo acqua; Micro e Grow o Bloom in parti uguali. Remo non indica un obiettivo EC. Prima le quantità erano circa un decimo. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua. Nature's Candy appesantisce il serbatoio fermo: tieni d'occhio ORP e radici.",
+      "fr": "Depuis le 24/09/2026, selon le schéma Remo : 4 semaines de croissance et 7 de floraison, semaine 8 eau claire uniquement ; Micro et Grow ou Bloom à parts égales. Remo n'indique pas d'objectif EC. Auparavant, les doses étaient d'environ un dixième. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau. Nature's Candy charge un réservoir stagnant : surveillez l'ORP et les racines.",
+      "es": "Desde el 24/9/2026 según el esquema de Remo: 4 semanas de crecimiento y 7 de floración, semana 8 solo agua; Micro y Grow o Bloom a partes iguales. Remo no indica un objetivo de EC. Antes, las cantidades eran aproximadamente una décima parte. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua. Nature's Candy carga el depósito estancado: vigila el ORP y las raíces.",
+      "pt": "Desde 24/9/2026 segundo o esquema da Remo: 4 semanas de crescimento e 7 de floração, semana 8 só água; Micro e Grow ou Bloom em partes iguais. A Remo não indica um objetivo de EC. Antes, as quantidades eram cerca de um décimo. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água. O Nature's Candy sobrecarrega o reservatório parado: vigie o ORP e as raízes."
+    }
   },
   "cyco": {
     "name": "Cyco Nutrients",
@@ -4451,14 +4541,44 @@ const MARKEN = {
       "bluete": {
         "naehrstoff": 8,
         "gesamt": 9,
-        "spuelen": "mit Kleanse, Dauer laut Cyco nicht festgelegt"
+        "spuelen": {
+          "de": "mit Kleanse, Dauer laut Cyco nicht festgelegt",
+          "en": "with Kleanse, duration not specified by Cyco",
+          "it": "con Kleanse, durata non indicata da Cyco",
+          "fr": "avec Kleanse, durée non précisée par Cyco",
+          "es": "con Kleanse, duración no fijada por Cyco",
+          "pt": "com Kleanse, duração não definida pela Cyco"
+        }
       }
     },
-    "planHinweis": "Seit 24.9.2026 nach dem offiziellen DWC-Schema von Cyco: 6 Wuchs-, 8 Blütewochen, gerechnet für Osmosewasser. Vorher lagen die Basismengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben."
+    "planHinweis": {
+      "de": "Seit 24.9.2026 nach dem offiziellen DWC-Schema von Cyco: 6 Wuchs-, 8 Blütewochen, gerechnet für Osmosewasser. Vorher lagen die Basismengen bei rund einem Drittel. Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anheben.",
+      "en": "Since 24 Sep 2026 following Cyco's official DWC schedule: 6 veg and 8 bloom weeks, calculated for reverse-osmosis water. Before, the base amounts were about a third of that. If you are mid-grow, don't switch in one go: raise the EC by at most 0.2 per reservoir change.",
+      "it": "Dal 24/9/2026 secondo lo schema DWC ufficiale di Cyco: 6 settimane di crescita e 8 di fioritura, calcolato per acqua osmotica. Prima le quantità di base erano circa un terzo. Durante una coltivazione in corso non cambiare tutto in una volta: aumenta l'EC al massimo di 0,2 a ogni cambio d'acqua.",
+      "fr": "Depuis le 24/09/2026, selon le schéma DWC officiel de Cyco : 6 semaines de croissance et 8 de floraison, calculé pour de l'eau osmosée. Auparavant, les doses de base étaient d'environ un tiers. En cours de culture, ne changez pas tout d'un coup : augmentez l'EC de 0,2 au maximum à chaque changement d'eau.",
+      "es": "Desde el 24/9/2026 según el esquema DWC oficial de Cyco: 6 semanas de crecimiento y 8 de floración, calculado para agua de ósmosis. Antes, las cantidades base eran aproximadamente un tercio. Con un cultivo en marcha no cambies de golpe: sube la EC como máximo 0,2 por cambio de agua.",
+      "pt": "Desde 24/9/2026 segundo o esquema DWC oficial da Cyco: 6 semanas de crescimento e 8 de floração, calculado para água de osmose. Antes, as quantidades base eram cerca de um terço. Com um cultivo em andamento, não mude tudo de uma vez: suba o EC no máximo 0,2 por troca de água."
+    }
   }
 };
 
 // ── Adapter: aus dem kanonischen Datensatz die zwei bisherigen Formen ───────
+// ── Mehrsprachige Plantexte (25.9.2026) ────────────────────────────────
+// planHinweis, Wochenhinweise und der Spueltext sind Objekte {de, en, it, fr,
+// es, pt}. Bis dahin standen sie nur auf Deutsch und erschienen in jeder der
+// sechs Sprachen. planText waehlt die aktuelle Sprache, sonst Deutsch; ein
+// einfacher String (aeltere Daten) geht unveraendert durch.
+const PLAN_SPRACHEN = ['de', 'en', 'it', 'fr', 'es', 'pt'];
+function planText(x, lang) {
+  if (!x) return '';
+  if (typeof x === 'string') return x;
+  return x[lang] || x.de || '';
+}
+const SPUELEN_NUR_WASSER = {
+  de: 'Spülen: nur Wasser', en: 'Flush: plain water only', it: 'Lavaggio: solo acqua',
+  fr: 'Rinçage : eau claire uniquement', es: 'Lavado: solo agua', pt: 'Lavagem: só água',
+};
+
 function alsDashboard(MARKEN) {
   const raus = {};
   for (const [k, m] of Object.entries(MARKEN)) {
@@ -4521,7 +4641,8 @@ function alsLibrary(MARKEN) {
         for (const [pk, d] of Object.entries(m.dosis[phD] || {})) if (d[w] !== undefined) doses[pk] = +(d[w] * 10).toFixed(3);
         const e = { week: w, doses, ec: (m.ec[phD] || {})[w] };
         const h = (m.hinweis[phD] || {})[w]; if (h) e.note = h;
-        if (plan && w > plan.naehrstoff && !e.note) e.note = 'Spülen: nur Wasser' + (plan.spuelen ? ' (' + plan.spuelen + ')' : '');
+        if (plan && w > plan.naehrstoff && !e.note) e.note = Object.fromEntries(PLAN_SPRACHEN.map(l =>
+          [l, SPUELEN_NUR_WASSER[l] + (plan.spuelen ? ' (' + planText(plan.spuelen, l) + ')' : '')]));
         return e;
       });
     }
