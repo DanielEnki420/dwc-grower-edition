@@ -6738,7 +6738,12 @@ function alsDashboard(MARKEN) {
         // dosiert der Adapter es stillschweigend bis zum Phasenende weiter.
         if (wk[wk.length - 1] < maxPhase) eintrag.weekMax = wk[wk.length - 1];
         if (wk[0] > 1) eintrag.weekMin = wk[0];
-        if (gleich) eintrag.mlL = werte[0];
+        // ⚠️ Luecken (11.10.2026): weekMin/weekMax beschreiben nur Anfang und
+        // Ende. Hesi Boost laeuft in Bluete 1 und 4-7 - als mlL kam es auch in
+        // Woche 2 und 3 heraus, Aptus Breakout (3/5/7) auch in 4 und 6. Mit
+        // Luecke deshalb immer weekMap; dashboardMenge() liest sie wochengenau.
+        const luecke = wk[wk.length - 1] - wk[0] + 1 !== wk.length;
+        if (gleich && !luecke) eintrag.mlL = werte[0];
         else { eintrag.weekMap = {}; for (const w of wk) eintrag.weekMap[w] = d[w]; }
         liste.push(eintrag);
       }
@@ -6781,6 +6786,30 @@ function alsLibrary(MARKEN) {
   return raus;
 }
 
+
+// Menge je Liter, die das Dashboard fuer ein Produkt in einer Woche zeigt -
+// oder null, wenn es in dieser Woche nicht dran ist. EINE Stelle fuer diese
+// Regel: das Dashboard rechnet damit, tests/brands-belege.js prueft damit
+// jede Marke und Woche gegen m.dosis. Vorher stand die Abfrage nur im
+// Dashboard und nahm bei weekMap den letzten Wert DARUNTER - eine Woche ohne
+// Gabe bekam so die Menge der Vorwoche (11.10.2026).
+// Tropfen-Produkte (drops) laufen ueber den ganzen Plan und gehen nicht hier durch.
+function dashboardMenge(p, woche) {
+  if (p.weekMin && woche < p.weekMin) return null;
+  if (p.weekMax && woche > p.weekMax) return null;
+  let v = p.mlL;
+  if (p.weekMap) {
+    // Innerhalb des Plans wochengenau (eine Luecke bleibt leer). Hinter der
+    // letzten Planwoche gilt weiter der letzte Wert - die Wochenauswahl geht
+    // bis 12, und wer laenger waechst als der Plan, soll nicht ploetzlich
+    // ohne Basisduenger dastehen (das war schon vorher so; weekMax beendet
+    // Produkte, die frueher aufhoeren).
+    const ws = Object.keys(p.weekMap).map(Number);
+    const letzte = Math.max(...ws);
+    v = woche > letzte ? p.weekMap[letzte] : p.weekMap[woche];
+  }
+  return typeof v === 'number' && v > 0 ? v : null;
+}
 
 // Die beiden bisherigen Formen - damit kein Renderer angefasst werden muss.
 const BRANDS_DATA = alsDashboard(MARKEN);   // Dashboard

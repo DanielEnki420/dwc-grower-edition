@@ -166,6 +166,38 @@ for (const [mk, ph, pk, w, soll] of GOLD) {
     if (v !== soll) fehler.push(`Stichwert ${mk}/${ph}/${pk} Woche ${w}: ${v}, erwartet ${soll}`);
 }
 
+// ── Dashboard zeigt wochengenau, was m.dosis sagt (11.10.2026) ───────────
+// Der Adapter alsDashboard() kannte nur Anfang und Ende eines Produkts. Hesi
+// Boost (Bluete 1 und 4-7) erschien deshalb auch in Woche 2 und 3, Aptus
+// Breakout (3/5/7) auch in 4 und 6. Geprueft wird ueber dieselbe Funktion,
+// mit der das Dashboard rechnet - jede Marke, jede Phase, jede Woche.
+{
+    const voll = new Function(src + '; return { alsDashboard, dashboardMenge };')();
+    const DASH = voll.alsDashboard(MARKEN);
+    for (const [mk, m] of Object.entries(MARKEN)) for (const ph of ['wuchs', 'bluete']) {
+        const plan = ph === 'bluete' && m.wochen && m.wochen.bluete;
+        const dosis = (m.dosis || {})[ph] || {};
+        // Bis zum Planende (inkl. Spuelwochen). Dahinter haelt das Dashboard
+        // absichtlich den letzten Wert - die Wochenauswahl geht bis 12.
+        const bis = Math.max(plan ? plan.gesamt : 0, ...Object.values(dosis).flatMap(o => Object.keys(o).map(Number)), 0);
+        for (const e of DASH[mk][ph] || []) {
+            if (e.drops) continue;
+            const pk = Object.keys(m.produkte).find(k => m.produkte[k].name === e.name);
+            for (let w = 1; w <= bis; w++) {
+                const soll = ((dosis[pk] || {})[w]) || null;
+                const ist = voll.dashboardMenge(e, w);
+                if (ist !== soll) fehler.push(`Dashboard ${m.name} / ${e.name} ${ph} Woche ${w}: zeigt ${ist}, Plan sagt ${soll}`);
+            }
+        }
+    }
+    for (const seite of ['index.html', 'dwc_grower_edition.html']) {
+        const html = fs.readFileSync(path.join(__dirname, '..', seite), 'utf8');
+        const ohneDaten = html.split('// ▼▼▼ brands.js')[0] + (html.split('// ▲▲▲ Ende brands.js ▲▲▲')[1] || '');
+        if (!ohneDaten.includes('dashboardMenge(p, week)') || /weekMap\[/.test(ohneDaten))
+            fehler.push(`${seite}: rechnet die Wochenmenge selbst statt ueber dashboardMenge()`);
+    }
+}
+
 // Grower Edition: Single-File-Seiten tragen brands.js eingebettet. Jede Seite
 // muss GENAU den Stand der Quelle enthalten (node tools/brands-einbetten.js).
 for (const seite of ['index.html', 'dwc_grower_edition.html', 'nutrients_library.html']) {

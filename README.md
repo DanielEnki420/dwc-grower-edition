@@ -1,9 +1,9 @@
-# 🌱 DWC Grower Edition — v1.6
+# 🌱 DWC Grower Edition — v1.7
 
 > **Multi-Language** · **Multi-Brand** · **100% Local** · **No Cloud** · **Nutrient Library**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.6-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.7-blue.svg)]()
 
 ![Preview](preview.png)
 
@@ -27,6 +27,7 @@
 - 🔎 **Jede Dosierung mit Herstellerquelle belegt** — nach den offiziellen DWC-/Hydro-Schemata (Stand 25.9.2026)
 - 📚 **Nährstoff-Bibliothek** — 14 Marken, vollständige Wochenpläne, Volumen-Kalkulator
 - 📊 Automatische Dosierung in ml — nach Phase & Woche
+- 📅 **Phase & Woche automatisch** — aus Systemstart und Blütestart, springt jede Woche weiter (abschaltbar)
 - ⚠️ pH / EC / Temp / ORP Warnsystem mit Empfehlungen
 - ⏳ Ernte-Countdown + Wechselwasser-Erinnerung
 - 📝 Grow Diary — lokal gespeichert im Browser
@@ -55,6 +56,7 @@ Alles läuft **100% lokal**. Kein Login, keine Cloud. Deine Grow-Daten verlassen
 - 🔎 **Every dose backed by a manufacturer source** — following the official DWC/hydro schedules (as of 25 Sep 2026)
 - 📚 **Nutrient Library** — 14 brands, full weekly schedules, volume calculator
 - 📊 Automatic dosing in ml — by phase & week
+- 📅 **Phase & week on autopilot** — from system start and start of flowering, moves on every week (can be switched off)
 - ⚠️ pH / EC / Temp / ORP warning system with recommendations
 - ⏳ Harvest countdown + water change reminder
 - 📝 Grow Diary — saved locally in browser
@@ -83,6 +85,7 @@ Everything runs **100% locally**. No login, no cloud. Your grow data never leave
 - 🔎 **Ogni dose con fonte del produttore** — secondo gli schemi ufficiali DWC/idro (al 25/09/2026)
 - 📚 **Libreria Nutrienti** — 14 marchi, piani settimanali completi, calcolatore di volume
 - 📊 Dosaggio automatico in ml — per fase e settimana
+- 📅 **Fase e settimana automatiche** — dall’inizio nel sistema e dall’inizio fioritura, avanzano ogni settimana (disattivabile)
 - ⚠️ Sistema di allerta pH / EC / Temp / ORP con raccomandazioni
 - ⏳ Conto alla rovescia del raccolto + promemoria cambio acqua
 - 📝 Diario di coltivazione — salvato localmente nel browser
@@ -111,6 +114,7 @@ Tutto funziona **100% localmente**. Nessun login, nessun cloud. I tuoi dati di c
 - 🔎 **Chaque dose appuyée par une source du fabricant** — selon les tableaux officiels DWC/hydro (au 25/09/2026)
 - 📚 **Bibliothèque de nutriments** — 14 marques, plans hebdomadaires complets, calculateur de volume
 - 📊 Dosage automatique en ml — par phase et semaine
+- 📅 **Phase et semaine automatiques** — à partir de la mise en système et du début de floraison, avancent chaque semaine (désactivable)
 - ⚠️ Système d'alerte pH / EC / Temp / ORP avec recommandations
 - ⏳ Compte à rebours de la récolte + rappel changement d'eau
 - 📝 Journal de culture — sauvegardé localement dans le navigateur
@@ -139,6 +143,7 @@ Tout fonctionne **100% localement**. Pas de connexion, pas de cloud. Vos donnée
 - 🔎 **Cada dosis respaldada por una fuente del fabricante** — según las tablas oficiales DWC/hidro (a 25/09/2026)
 - 📚 **Biblioteca de nutrientes** — 14 marcas, planes semanales completos, calculadora de volumen
 - 📊 Dosificación automática en ml — por fase y semana
+- 📅 **Fase y semana automáticas** — a partir del paso al sistema y del inicio de floración, avanzan cada semana (desactivable)
 - ⚠️ Sistema de alertas pH / EC / Temp / ORP con recomendaciones
 - ⏳ Cuenta regresiva de cosecha + recordatorio de cambio de agua
 - 📝 Diario de cultivo — guardado localmente en el navegador
@@ -167,6 +172,7 @@ Todo funciona **100% localmente**. Sin login, sin nube. Tus datos de cultivo nun
 - 🔎 **Cada dose com fonte do fabricante** — segundo as tabelas oficiais DWC/hidro (em 25/09/2026)
 - 📚 **Biblioteca de nutrientes** — 14 marcas, planos semanais completos, calculadora de volume
 - 📊 Dosagem automática em ml — por fase e semana
+- 📅 **Fase e semana automáticas** — a partir da entrada no sistema e do início da floração, avançam todas as semanas (desativável)
 - ⚠️ Sistema de alertas pH / EC / Temp / ORP com recomendações
 - ⏳ Contagem decrescente da colheita + lembrete de troca de água
 - 📝 Diário de cultivo — guardado localmente no navegador
@@ -189,7 +195,7 @@ Tudo funciona **100% localmente**. Sem login, sem cloud. Os teus dados de cultiv
 
 | | |
 |---|---|
-| **Version** | v1.6 |
+| **Version** | v1.7 |
 | **Stack** | Pure HTML + CSS + Vanilla JS |
 | **Dependencies** | None — zero frameworks |
 | **Storage** | `localStorage` only |

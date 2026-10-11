@@ -104,6 +104,23 @@
         }
         textarea:focus { box-shadow: 0 0 0 3px rgba(0,255,136,0.08); }
 
+        /* Phase/Woche Auto | Manuell (v1.7) */
+        .phase-kopf { display: flex; justify-content: flex-end; margin-bottom: 4px; }
+        .modus-schalter { display: inline-flex; border: 1px solid #334155; border-radius: 999px; overflow: hidden; }
+        .modus-schalter button {
+            width: auto; background: transparent; color: #94a3b8; border: 0; padding: 5px 14px;
+            font-size: 0.78em; cursor: pointer; min-height: 30px;
+        }
+        .modus-schalter button.aktiv { background: #00ff88; color: #0a0f1e; font-weight: bold; }
+        .grow-daten { display: flex; gap: 10px; }
+        .grow-daten > div { flex: 1; min-width: 0; }
+        .phase-auto-info { margin-top: 8px; font-size: 0.8em; color: #94a3b8; line-height: 1.5; }
+        .phase-auto-info:empty { display: none; }
+        select:disabled { opacity: 0.85; cursor: default; }
+        body.light-mode .modus-schalter { border-color: #cbd5e1; }
+        body.light-mode .modus-schalter button { color: #475569; }
+        body.light-mode .modus-schalter button.aktiv { color: #0a0f1e; }
+
         .sensor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
         .sensor-box {
             background: #1e293b;
@@ -364,7 +381,7 @@
 
     <h2><img src="caanna-logo.png" alt="Canna Community Germany" style="height:110px;width:auto;object-fit:contain;filter:drop-shadow(0 0 16px rgba(212,175,55,0.6)) brightness(1.05);vertical-align:middle;margin-right:10px;"> DWC Grower Edition
         <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-            <span class="version">v1.6</span>
+            <span class="version">v1.7</span>
             <span class="header-subtitle" data-i18n="subtitle">Universeller Hydroponik-Rechner</span>
         </span>
         <span class="header-btns">
@@ -443,6 +460,22 @@
         <div class="dash-col">
 
             <div class="card">
+                <div class="phase-kopf">
+                    <div class="modus-schalter" role="group" aria-label="Phase">
+                        <button type="button" id="phase-auto" class="aktiv" onclick="setzePhaseModus('auto')" data-i18n="modus_auto">Auto</button>
+                        <button type="button" id="phase-manuell" onclick="setzePhaseModus('manuell')" data-i18n="modus_manuell">Manuell</button>
+                    </div>
+                </div>
+                <div class="grow-daten" id="grow-daten">
+                    <div>
+                        <label for="grow-dwc" data-i18n="grow_dwc_label">Start im System</label>
+                        <input type="date" id="grow-dwc" onchange="saveGrowDates()">
+                    </div>
+                    <div>
+                        <label for="grow-bloom" data-i18n="grow_bloom_label">Blütestart</label>
+                        <input type="date" id="grow-bloom" onchange="saveGrowDates()">
+                    </div>
+                </div>
                 <div style="display:flex;gap:10px;">
                     <div style="flex:2;">
                         <label data-i18n="phase_label">Phase</label>
@@ -469,6 +502,7 @@
                         </select>
                     </div>
                 </div>
+                <div id="phase-auto-info" class="phase-auto-info"></div>
                 <div id="harvest-countdown"></div>
             </div>
 
@@ -565,10 +599,16 @@ const LANGS = {
         notes_empty: 'Noch keine Notizen',
         phase_label: 'Phase',
         week_label: 'Woche',
+        modus_auto: 'Auto',
+        modus_manuell: "Manuell",
+        grow_dwc_label: "Start im System",
+        grow_bloom_label: "Blütestart",
+        phase_auto: (was, datum, t, w) => `📅 Automatisch · ${was} ${datum} · Tag ${t} → Woche ${w}`,
+        phase_auto_keine: "📅 Trag ein, wann deine Pflanze ins System kam oder die Blüte begann – dann laufen Phase und Woche von selbst mit.",
         phase_veg: '🌱 Vegetativ (Wuchs)',
         phase_bloom: '🌸 Blütephase',
         dosierung_label: 'Dosierung',
-        neu: {"titel": "Neu in Version 1.6", "intro": "Zwei Korrekturen bei Athena, und die Plan-Hinweise sprechen jetzt deine Sprache:", "punkte": ["Athena Pro ohne CaMg und PK: Beide stehen in keinem Athena-Pro-Schema – die Werte kamen aus dem Blended-Schema. Die Pro-Linie besteht aus Pro Core, Pro Grow bzw. Pro Bloom und Cleanse, optional Fade.", "Athena Blended: CaMg jetzt 0,5 ml/L, die untere Grenze des Schemas (vorher 0,65).", "Die Hinweise zu jedem Dünger-Plan erscheinen jetzt in allen sechs Sprachen – bisher standen sie nur auf Deutsch da.", "Bei laufendem Grow nicht auf einen Schlag umstellen: EC in Schritten von höchstens 0,2 pro Wasserwechsel anpassen."], "ok": "Verstanden", "feedback": "💬 Feedback geben", "fbHinweis": "Feedback läuft über GitHub (Konto nötig).", "issueTitel": "Feedback zu v1.6", "issueBody": "**Version:** v1.6\n**Marke:** {marke}\n\n**Was funktioniert gut?**\n\n\n**Was sollte besser werden?**\n\n"},
+        neu: {"titel": "Neu in Version 1.7", "intro": "Phase und Woche laufen jetzt von selbst mit – und ein Fehler im Düngerplan ist behoben:", "punkte": ["Trag ein, wann deine Pflanze ins System kam und wann die Blüte begann. Phase und Woche stellen sich dann selbst ein und springen jede Woche weiter. Mit „Manuell“ wählst du sie wie bisher von Hand.", "Korrigiert: Produkte mit einer Pause im Plan wurden auch in den Wochen dazwischen angezeigt – Hesi Boost in Blütewoche 2 und 3, Aptus Breakout Powder in Woche 4 und 6. Jetzt stimmt jede Woche mit dem Herstellerschema überein."], "ok": "Verstanden", "feedback": "💬 Feedback geben", "fbHinweis": "Feedback läuft über GitHub (Konto nötig).", "issueTitel": "Feedback zu v1.7", "issueBody": "**Version:** v1.7\n**Marke:** {marke}\n\n**Was funktioniert gut?**\n\n\n**Was sollte besser werden?**\n\n"},
         nicht_fuer_dwc: 'nicht für DWC',
         spuelwoche: 'Spülwoche',
         nur_wasser: 'nur Wasser',
@@ -630,10 +670,16 @@ const LANGS = {
         notes_empty: 'No notes yet',
         phase_label: 'Phase',
         week_label: 'Week',
+        modus_auto: 'Auto',
+        modus_manuell: "Manual",
+        grow_dwc_label: "Into the system",
+        grow_bloom_label: "Start of flowering",
+        phase_auto: (was, datum, t, w) => `📅 Automatic · ${was} ${datum} · day ${t} → week ${w}`,
+        phase_auto_keine: "📅 Enter when your plant went into the system or flowering started – phase and week will then follow on their own.",
         phase_veg: '🌱 Vegetative',
         phase_bloom: '🌸 Bloom',
         dosierung_label: 'Dosing',
-        neu: {"titel": "New in version 1.6", "intro": "Two Athena fixes, and the plan notes now speak your language:", "punkte": ["Athena Pro without CaMg and PK: neither appears in any Athena Pro schedule – the values came from the Blended schedule. The Pro line is Pro Core, Pro Grow or Pro Bloom and Cleanse, optionally Fade.", "Athena Blended: CaMg now 0.5 ml/L, the lower end of the schedule (was 0.65).", "The notes for each nutrient plan now appear in all six languages – until now they were only in German.", "If you are mid-grow, don't switch in one go: adjust the EC by at most 0.2 per reservoir change."], "ok": "Got it", "feedback": "💬 Give feedback", "fbHinweis": "Feedback goes through GitHub (account required).", "issueTitel": "Feedback on v1.6", "issueBody": "**Version:** v1.6\n**Brand:** {marke}\n\n**What works well?**\n\n\n**What should be improved?**\n\n"},
+        neu: {"titel": "New in version 1.7", "intro": "Phase and week now follow along on their own – and a bug in the feeding plan is fixed:", "punkte": ["Enter when your plant went into the system and when flowering started. Phase and week then set themselves and move on every week. Switch to “Manual” to pick them yourself as before.", "Fixed: products with a break in their schedule were also shown in the weeks in between – Hesi Boost in flowering weeks 2 and 3, Aptus Breakout Powder in weeks 4 and 6. Every week now matches the manufacturer’s schedule."], "ok": "Got it", "feedback": "💬 Give feedback", "fbHinweis": "Feedback goes through GitHub (account required).", "issueTitel": "Feedback on v1.7", "issueBody": "**Version:** v1.7\n**Brand:** {marke}\n\n**What works well?**\n\n\n**What should be improved?**\n\n"},
         nicht_fuer_dwc: 'not for DWC',
         spuelwoche: 'Flush week',
         nur_wasser: 'water only',
@@ -695,10 +741,16 @@ const LANGS = {
         notes_empty: 'Nessuna nota ancora',
         phase_label: 'Fase',
         week_label: 'Settimana',
+        modus_auto: 'Auto',
+        modus_manuell: "Manuale",
+        grow_dwc_label: "Inizio nel sistema",
+        grow_bloom_label: "Inizio fioritura",
+        phase_auto: (was, datum, t, w) => `📅 Automatico · ${was} ${datum} · giorno ${t} → settimana ${w}`,
+        phase_auto_keine: "📅 Inserisci quando la pianta è entrata nel sistema o è iniziata la fioritura: fase e settimana si aggiorneranno da sole.",
         phase_veg: '🌱 Vegetativa',
         phase_bloom: '🌸 Fioritura',
         dosierung_label: 'Dosaggio',
-        neu: {"titel": "Novità nella versione 1.6", "intro": "Due correzioni per Athena, e le note dei piani ora parlano la tua lingua:", "punkte": ["Athena Pro senza CaMg e PK: nessuno dei due compare in uno schema Athena Pro – i valori venivano dallo schema Blended. La linea Pro è Pro Core, Pro Grow o Pro Bloom e Cleanse, facoltativamente Fade.", "Athena Blended: CaMg ora a 0,5 ml/L, il limite inferiore dello schema (prima 0,65).", "Le note di ogni piano di fertilizzazione compaiono ora in tutte e sei le lingue – finora erano solo in tedesco.", "Durante una coltivazione in corso non cambiare tutto in una volta: adegua l'EC al massimo di 0,2 a ogni cambio d'acqua."], "ok": "Capito", "feedback": "💬 Lascia un feedback", "fbHinweis": "Il feedback passa da GitHub (serve un account).", "issueTitel": "Feedback su v1.6", "issueBody": "**Versione:** v1.6\n**Marchio:** {marke}\n\n**Cosa funziona bene?**\n\n\n**Cosa andrebbe migliorato?**\n\n"},
+        neu: {"titel": "Novità nella versione 1.7", "intro": "Fase e settimana ora vanno avanti da sole – e un errore nel piano di fertilizzazione è corretto:", "punkte": ["Inserisci quando la pianta è entrata nel sistema e quando è iniziata la fioritura. Fase e settimana si impostano da sole e avanzano ogni settimana. Con «Manuale» le scegli a mano come prima.", "Corretto: i prodotti con una pausa nel piano comparivano anche nelle settimane intermedie – Hesi Boost nelle settimane di fioritura 2 e 3, Aptus Breakout Powder nelle settimane 4 e 6. Ora ogni settimana corrisponde allo schema del produttore."], "ok": "Capito", "feedback": "💬 Lascia un feedback", "fbHinweis": "Il feedback passa da GitHub (serve un account).", "issueTitel": "Feedback su v1.7", "issueBody": "**Versione:** v1.7\n**Marchio:** {marke}\n\n**Cosa funziona bene?**\n\n\n**Cosa andrebbe migliorato?**\n\n"},
         nicht_fuer_dwc: 'non per DWC',
         spuelwoche: 'Settimana di lavaggio',
         nur_wasser: 'solo acqua',
@@ -760,10 +812,16 @@ const LANGS = {
         notes_empty: 'Aucune note pour l\'instant',
         phase_label: 'Phase',
         week_label: 'Semaine',
+        modus_auto: 'Auto',
+        modus_manuell: "Manuel",
+        grow_dwc_label: "Mise en système",
+        grow_bloom_label: "Début de floraison",
+        phase_auto: (was, datum, t, w) => `📅 Automatique · ${was} ${datum} · jour ${t} → semaine ${w}`,
+        phase_auto_keine: "📅 Indiquez quand votre plante est entrée dans le système ou quand la floraison a commencé : la phase et la semaine suivront toutes seules.",
         phase_veg: '🌱 Végétatif',
         phase_bloom: '🌸 Floraison',
         dosierung_label: 'Dosage',
-        neu: {"titel": "Nouveautés de la version 1.6", "intro": "Deux corrections pour Athena, et les notes des plans parlent maintenant votre langue :", "punkte": ["Athena Pro sans CaMg ni PK : aucun des deux ne figure dans un schéma Athena Pro – les valeurs venaient du schéma Blended. La gamme Pro, c'est Pro Core, Pro Grow ou Pro Bloom et Cleanse, en option Fade.", "Athena Blended : CaMg désormais à 0,5 ml/L, la limite basse du schéma (avant 0,65).", "Les notes de chaque plan de nutriments s'affichent désormais dans les six langues – jusqu'ici elles n'étaient qu'en allemand.", "En cours de culture, ne changez pas tout d'un coup : ajustez l'EC de 0,2 au maximum à chaque changement d'eau."], "ok": "Compris", "feedback": "💬 Donner un avis", "fbHinweis": "Les avis passent par GitHub (compte nécessaire).", "issueTitel": "Avis sur la v1.6", "issueBody": "**Version :** v1.6\n**Marque :** {marke}\n\n**Qu'est-ce qui fonctionne bien ?**\n\n\n**Qu'est-ce qui devrait être amélioré ?**\n\n"},
+        neu: {"titel": "Nouveautés de la version 1.7", "intro": "La phase et la semaine avancent désormais toutes seules – et une erreur du plan de nutriments est corrigée :", "punkte": ["Indiquez quand votre plante est entrée dans le système et quand la floraison a commencé. La phase et la semaine se règlent alors toutes seules et avancent chaque semaine. Avec « Manuel », vous les choisissez vous-même comme avant.", "Corrigé : les produits avec une pause dans le plan s’affichaient aussi pendant les semaines intermédiaires – Hesi Boost en semaines de floraison 2 et 3, Aptus Breakout Powder en semaines 4 et 6. Chaque semaine correspond désormais au schéma du fabricant."], "ok": "Compris", "feedback": "💬 Donner un avis", "fbHinweis": "Les avis passent par GitHub (compte nécessaire).", "issueTitel": "Avis sur la v1.7", "issueBody": "**Version :** v1.7\n**Marque :** {marke}\n\n**Qu'est-ce qui fonctionne bien ?**\n\n\n**Qu'est-ce qui devrait être amélioré ?**\n\n"},
         nicht_fuer_dwc: 'pas pour DWC',
         spuelwoche: 'Semaine de rinçage',
         nur_wasser: 'eau uniquement',
@@ -825,10 +883,16 @@ const LANGS = {
         notes_empty: 'Sin notas aún',
         phase_label: 'Fase',
         week_label: 'Semana',
+        modus_auto: 'Auto',
+        modus_manuell: "Manual",
+        grow_dwc_label: "Paso al sistema",
+        grow_bloom_label: "Inicio de floración",
+        phase_auto: (was, datum, t, w) => `📅 Automático · ${was} ${datum} · día ${t} → semana ${w}`,
+        phase_auto_keine: "📅 Indica cuándo entró tu planta en el sistema o empezó la floración: la fase y la semana avanzarán solas.",
         phase_veg: '🌱 Vegetativo',
         phase_bloom: '🌸 Floración',
         dosierung_label: 'Dosificación',
-        neu: {"titel": "Novedades de la versión 1.6", "intro": "Dos correcciones en Athena, y las notas de los planes ahora hablan tu idioma:", "punkte": ["Athena Pro sin CaMg ni PK: ninguno de los dos figura en un esquema de Athena Pro; los valores venían del esquema Blended. La línea Pro es Pro Core, Pro Grow o Pro Bloom y Cleanse, opcionalmente Fade.", "Athena Blended: CaMg ahora con 0,5 ml/L, el límite inferior del esquema (antes 0,65).", "Las notas de cada plan de nutrientes aparecen ahora en los seis idiomas; hasta ahora solo estaban en alemán.", "Con un cultivo en marcha no cambies de golpe: ajusta la EC como máximo 0,2 por cambio de agua."], "ok": "Entendido", "feedback": "💬 Dar tu opinión", "fbHinweis": "La opinión se envía a través de GitHub (se necesita cuenta).", "issueTitel": "Opinión sobre la v1.6", "issueBody": "**Versión:** v1.6\n**Marca:** {marke}\n\n**¿Qué funciona bien?**\n\n\n**¿Qué se debería mejorar?**\n\n"},
+        neu: {"titel": "Novedades de la versión 1.7", "intro": "La fase y la semana avanzan ahora solas, y se ha corregido un error en el plan de nutrientes:", "punkte": ["Indica cuándo entró tu planta en el sistema y cuándo empezó la floración. La fase y la semana se ajustan solas y avanzan cada semana. Con «Manual» las eliges tú como antes.", "Corregido: los productos con una pausa en el plan aparecían también en las semanas intermedias: Hesi Boost en las semanas de floración 2 y 3, Aptus Breakout Powder en las semanas 4 y 6. Ahora cada semana coincide con el esquema del fabricante."], "ok": "Entendido", "feedback": "💬 Dar tu opinión", "fbHinweis": "La opinión se envía a través de GitHub (se necesita cuenta).", "issueTitel": "Opinión sobre la v1.7", "issueBody": "**Versión:** v1.7\n**Marca:** {marke}\n\n**¿Qué funciona bien?**\n\n\n**¿Qué se debería mejorar?**\n\n"},
         nicht_fuer_dwc: 'no apto para DWC',
         spuelwoche: 'Semana de lavado',
         nur_wasser: 'solo agua',
@@ -890,10 +954,16 @@ const LANGS = {
         notes_empty: 'Sem notas ainda',
         phase_label: 'Fase',
         week_label: 'Semana',
+        modus_auto: 'Auto',
+        modus_manuell: "Manual",
+        grow_dwc_label: "Entrada no sistema",
+        grow_bloom_label: "Início da floração",
+        phase_auto: (was, datum, t, w) => `📅 Automático · ${was} ${datum} · dia ${t} → semana ${w}`,
+        phase_auto_keine: "📅 Indique quando a planta entrou no sistema ou começou a floração: a fase e a semana passam a acompanhar sozinhas.",
         phase_veg: '🌱 Vegetativo',
         phase_bloom: '🌸 Floração',
         dosierung_label: 'Dosagem',
-        neu: {"titel": "Novidades da versão 1.6", "intro": "Duas correções na Athena, e as notas dos planos agora falam a sua língua:", "punkte": ["Athena Pro sem CaMg nem PK: nenhum dos dois consta de um esquema Athena Pro – os valores vinham do esquema Blended. A linha Pro é Pro Core, Pro Grow ou Pro Bloom e Cleanse, opcionalmente Fade.", "Athena Blended: CaMg agora com 0,5 ml/L, o limite inferior do esquema (antes 0,65).", "As notas de cada plano de nutrientes aparecem agora nas seis línguas – até agora estavam só em alemão.", "Com um cultivo em andamento, não mude tudo de uma vez: ajuste o EC no máximo 0,2 por troca de água."], "ok": "Entendi", "feedback": "💬 Dar feedback", "fbHinweis": "O feedback é feito pelo GitHub (é preciso conta).", "issueTitel": "Feedback sobre a v1.6", "issueBody": "**Versão:** v1.6\n**Marca:** {marke}\n\n**O que funciona bem?**\n\n\n**O que deveria melhorar?**\n\n"},
+        neu: {"titel": "Novidades da versão 1.7", "intro": "A fase e a semana agora avançam sozinhas – e um erro no plano de nutrientes foi corrigido:", "punkte": ["Indique quando a planta entrou no sistema e quando começou a floração. A fase e a semana ajustam-se sozinhas e avançam todas as semanas. Com «Manual» escolhe-as à mão, como antes.", "Corrigido: produtos com uma pausa no plano apareciam também nas semanas intermédias – Hesi Boost nas semanas de floração 2 e 3, Aptus Breakout Powder nas semanas 4 e 6. Agora cada semana corresponde ao esquema do fabricante."], "ok": "Entendi", "feedback": "💬 Dar feedback", "fbHinweis": "O feedback é feito pelo GitHub (é preciso conta).", "issueTitel": "Feedback sobre a v1.7", "issueBody": "**Versão:** v1.7\n**Marca:** {marke}\n\n**O que funciona bem?**\n\n\n**O que deveria melhorar?**\n\n"},
         nicht_fuer_dwc: 'não indicado para DWC',
         spuelwoche: 'Semana de lavagem',
         nur_wasser: 'só água',
@@ -1001,7 +1071,7 @@ function setLanguage(lang) {
 // Erscheint einmal je Browser und Version (localStorage), schliesst per
 // Knopf, Esc oder Klick daneben. Feedback: vorausgefuelltes GitHub-Issue -
 // kein Server, kein Tracking; die Seite schickt selbst nichts ab.
-const NEU_VERSION = '1.6';
+const NEU_VERSION = '1.7';
 const FEEDBACK_URL = 'https://github.com/DanielEnki420/dwc-grower-edition/issues/new';
 function neuGesehen() { try { return localStorage.getItem('dwc_neu_gesehen') === NEU_VERSION; } catch (e) { return false; } }
 function neuMerken() { try { localStorage.setItem('dwc_neu_gesehen', NEU_VERSION); } catch (e) {} }
@@ -7185,7 +7255,12 @@ function alsDashboard(MARKEN) {
         // dosiert der Adapter es stillschweigend bis zum Phasenende weiter.
         if (wk[wk.length - 1] < maxPhase) eintrag.weekMax = wk[wk.length - 1];
         if (wk[0] > 1) eintrag.weekMin = wk[0];
-        if (gleich) eintrag.mlL = werte[0];
+        // ⚠️ Luecken (11.10.2026): weekMin/weekMax beschreiben nur Anfang und
+        // Ende. Hesi Boost laeuft in Bluete 1 und 4-7 - als mlL kam es auch in
+        // Woche 2 und 3 heraus, Aptus Breakout (3/5/7) auch in 4 und 6. Mit
+        // Luecke deshalb immer weekMap; dashboardMenge() liest sie wochengenau.
+        const luecke = wk[wk.length - 1] - wk[0] + 1 !== wk.length;
+        if (gleich && !luecke) eintrag.mlL = werte[0];
         else { eintrag.weekMap = {}; for (const w of wk) eintrag.weekMap[w] = d[w]; }
         liste.push(eintrag);
       }
@@ -7229,6 +7304,30 @@ function alsLibrary(MARKEN) {
 }
 
 
+// Menge je Liter, die das Dashboard fuer ein Produkt in einer Woche zeigt -
+// oder null, wenn es in dieser Woche nicht dran ist. EINE Stelle fuer diese
+// Regel: das Dashboard rechnet damit, tests/brands-belege.js prueft damit
+// jede Marke und Woche gegen m.dosis. Vorher stand die Abfrage nur im
+// Dashboard und nahm bei weekMap den letzten Wert DARUNTER - eine Woche ohne
+// Gabe bekam so die Menge der Vorwoche (11.10.2026).
+// Tropfen-Produkte (drops) laufen ueber den ganzen Plan und gehen nicht hier durch.
+function dashboardMenge(p, woche) {
+  if (p.weekMin && woche < p.weekMin) return null;
+  if (p.weekMax && woche > p.weekMax) return null;
+  let v = p.mlL;
+  if (p.weekMap) {
+    // Innerhalb des Plans wochengenau (eine Luecke bleibt leer). Hinter der
+    // letzten Planwoche gilt weiter der letzte Wert - die Wochenauswahl geht
+    // bis 12, und wer laenger waechst als der Plan, soll nicht ploetzlich
+    // ohne Basisduenger dastehen (das war schon vorher so; weekMax beendet
+    // Produkte, die frueher aufhoeren).
+    const ws = Object.keys(p.weekMap).map(Number);
+    const letzte = Math.max(...ws);
+    v = woche > letzte ? p.weekMap[letzte] : p.weekMap[woche];
+  }
+  return typeof v === 'number' && v > 0 ? v : null;
+}
+
 // Die beiden bisherigen Formen - damit kein Renderer angefasst werden muss.
 const BRANDS_DATA = alsDashboard(MARKEN);   // Dashboard
 const BRANDS      = alsLibrary(MARKEN);     // Nutrient Library
@@ -7246,7 +7345,90 @@ function markeWaehlbar(m) {
 // ============================================================
 // HAUPTLOGIK / DOSIERUNG
 // ============================================================
+// ============================================================
+// PHASE/WOCHE AUTOMATISCH AUS DEN DATEN (v1.7)
+// ============================================================
+// Woche 1 = Tag 0-6 ab dem Startdatum. Bluete ab Bluetestart, davor Wuchs ab
+// dem Start im System (Woche 1 im Duengerschema). Hoechstens Woche 12, so
+// weit geht die Auswahl. Ein Datum in der Zukunft zaehlt noch nicht.
+// Ohne Datum bleibt alles wie vorher: Phase und Woche von Hand.
+function growTageSeit(datum) {
+    if (!datum) return null;
+    const a = new Date(datum + 'T00:00:00');
+    if (isNaN(a)) return null;
+    const h = new Date();
+    const vonTag = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    const bisTag = Date.UTC(h.getFullYear(), h.getMonth(), h.getDate());
+    return Math.round((bisTag - vonTag) / 86400000);
+}
+
+function phaseAusDaten(tKeimung, tSystem, tBluete) {
+    const woche = t => Math.min(12, Math.floor(t / 7) + 1);
+    const da = t => t !== null && t >= 0;
+    if (da(tBluete)) return { phase: 'bluete', week: woche(tBluete), quelle: 'bloom', tag: tBluete };
+    if (da(tSystem)) return { phase: 'wuchs', week: woche(tSystem), quelle: 'system', tag: tSystem };
+    if (da(tKeimung)) return { phase: 'wuchs', week: woche(tKeimung), quelle: 'keimung', tag: tKeimung };
+    return null;
+}
+
+function phaseModus() {
+    try { return localStorage.getItem('dwc_phase_auto') === '0' ? 'manuell' : 'auto'; }
+    catch (e) { return 'auto'; }
+}
+
+function setzePhaseModus(m) {
+    try { localStorage.setItem('dwc_phase_auto', m === 'manuell' ? '0' : '1'); } catch (e) {}
+    update();
+}
+
+function growDaten() {
+    try { return { system: localStorage.getItem('dwc_grow_system'), bloom: localStorage.getItem('dwc_grow_bloom') }; }
+    catch (e) { return { system: null, bloom: null }; }
+}
+
+function saveGrowDates() {
+    for (const [id, key] of [['grow-dwc', 'dwc_grow_system'], ['grow-bloom', 'dwc_grow_bloom']]) {
+        const v = document.getElementById(id).value;
+        try { if (v) localStorage.setItem(key, v); else localStorage.removeItem(key); } catch (e) {}
+    }
+    update();
+}
+
+function phaseAuto() {
+    const d = growDaten();
+    return phaseAusDaten(null, growTageSeit(d.system), growTageSeit(d.bloom));
+}
+
+// Setzt im Auto-Modus Phase und Woche aus den Daten und sperrt beide Felder.
+function phaseAutoAnwenden() {
+    const auto = phaseModus() === 'auto';
+    const phaseSel = document.getElementById('phase'), weekSel = document.getElementById('week');
+    const info = document.getElementById('phase-auto-info');
+    document.getElementById('phase-auto').classList.toggle('aktiv', auto);
+    document.getElementById('phase-manuell').classList.toggle('aktiv', !auto);
+    document.getElementById('phase-auto').setAttribute('aria-pressed', auto);
+    document.getElementById('phase-manuell').setAttribute('aria-pressed', !auto);
+    document.getElementById('grow-daten').style.display = auto ? '' : 'none';
+    const r = auto ? phaseAuto() : null;
+    phaseSel.disabled = weekSel.disabled = !!r;
+    if (!auto) { info.textContent = ''; return; }
+    if (!r) { info.textContent = T.phase_auto_keine; return; }
+    const d = growDaten();
+    const quelle = r.quelle === 'bloom' ? [T.grow_bloom_label, d.bloom] : [T.grow_dwc_label, d.system];
+    info.textContent = T.phase_auto(quelle[0], quelle[1].split('-').reverse().join('.'), r.tag, r.week);
+    phaseSel.value = r.phase;
+    weekSel.value = String(r.week);
+}
+
+// Um Mitternacht springt die Woche weiter, auch wenn die Seite offen bleibt.
+setInterval(() => {
+    if (phaseModus() !== 'auto') return;
+    const r = phaseAuto();
+    if (r && (document.getElementById('phase').value !== r.phase || document.getElementById('week').value !== String(r.week))) update();
+}, 5 * 60 * 1000);
+
 function update() {
+    phaseAutoAnwenden();
     const vol   = Math.max(0, parseFloat(document.getElementById('vol').value) || 0);
     const phase = document.getElementById('phase').value;
     const week  = parseInt(document.getElementById('week').value) || 1;
@@ -7272,19 +7454,16 @@ function update() {
     const plan = phase === 'bluete' && brand.bluetePlan;
     if (plan && week > plan.naehrstoff && week <= plan.gesamt) addResult('💧 ' + T.spuelwoche, T.nur_wasser, 'border-left-color:#38bdf8;');
     for (const p of products) {
-        if (p.weekMin && week < p.weekMin) continue;
-        if (p.weekMax && week > p.weekMax) continue;
         let valStr;
         const unit = p.unit || 'ml';
         if (p.drops) {
             valStr = Math.ceil(vol * p.dropsPerL) + ' ' + T.drops_unit;
-        } else if (p.weekMap) {
-            const mapWeeks = Object.keys(p.weekMap).map(Number).filter(w => w <= week);
-            if (!mapWeeks.length) continue;
-            const dose = p.weekMap[Math.max(...mapWeeks)];
-            valStr = (dose * vol).toFixed(1) + ' ' + unit;
         } else {
-            valStr = (p.mlL * vol).toFixed(1) + ' ' + unit;
+            // Wochenregel steht in brands.js (dashboardMenge), damit der Test
+            // genau das prueft, was hier angezeigt wird.
+            const dose = dashboardMenge(p, week);
+            if (dose === null) continue;
+            valStr = (dose * vol).toFixed(1) + ' ' + unit;
         }
         addResult(p.name, valStr, `border-left-color:${p.color};`);
     }
@@ -7699,6 +7878,9 @@ async function askGemini() {
     const week  = localStorage.getItem('dwc_week');
     const vol   = localStorage.getItem('dwc_vol');
     const brand = localStorage.getItem('dwc_brand');
+    const gd = growDaten();
+    document.getElementById('grow-dwc').value = gd.system || '';
+    document.getElementById('grow-bloom').value = gd.bloom || '';
     if (phase && ['wuchs','bluete'].includes(phase)) {
         document.getElementById('phase').value = phase;
     }
