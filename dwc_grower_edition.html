@@ -47,6 +47,15 @@
             h2 { font-size: 1.05em; padding: 10px 14px; }
         }
 
+        /* Kopfzeile am Handy (v1.7.1): Logo, Titel und die vier Knoepfe passten
+           nicht in eine Zeile - die Seite wurde 525 statt 375 px breit, wackelte
+           seitlich, und das Neuigkeiten-Fenster ragte ueber den Rand. */
+        @media (max-width: 640px) {
+            h2 { flex-wrap: wrap; gap: 8px; }
+            h2 img { height: 64px !important; margin-right: 6px !important; }
+            .header-btns { width: 100%; justify-content: flex-end; flex-wrap: wrap; }
+        }
+
         @media (max-width: 500px) {
             body { padding: 10px; }
             .sensor-grid { grid-template-columns: 1fr 1fr; }
@@ -364,7 +373,7 @@
 
     <h2>🌱 DWC Grower Edition
         <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-            <span class="version">v1.7</span>
+            <span class="version">v1.7.1</span>
             <span class="header-subtitle" data-i18n="subtitle">Universeller Hydroponik-Rechner</span>
         </span>
         <span class="header-btns">
@@ -555,6 +564,7 @@ const LANGS = {
         ec_kein_ziel: 'Der Hersteller nennt für diese Marke keinen EC-Zielwert – nach Dosis mischen und den EC messen.',
         liter: 'Liter',
         days_unit: 'Tage',
+        day_unit: 'Tag',
         water_btn: '✅ Wechsel jetzt durchgeführt',
         water_interval: 'Intervall:',
         water_no_change: 'Noch kein Wechsel eingetragen',
@@ -619,6 +629,7 @@ const LANGS = {
         ec_kein_ziel: 'The manufacturer gives no EC target for this brand – mix by dose and measure the EC.',
         liter: 'Liters',
         days_unit: 'days',
+        day_unit: 'day',
         water_btn: '✅ Water change done now',
         water_interval: 'Interval:',
         water_no_change: 'No water change recorded yet',
@@ -683,6 +694,7 @@ const LANGS = {
         ec_kein_ziel: "Il produttore non indica un EC obiettivo per questo marchio – dosare secondo tabella e misurare l'EC.",
         liter: 'Litri',
         days_unit: 'giorni',
+        day_unit: 'giorno',
         water_btn: '✅ Cambio acqua eseguito ora',
         water_interval: 'Intervallo:',
         water_no_change: 'Nessun cambio acqua registrato',
@@ -747,6 +759,7 @@ const LANGS = {
         ec_kein_ziel: "Le fabricant n'indique pas d'EC cible pour cette marque – doser selon le tableau et mesurer l'EC.",
         liter: 'Litres',
         days_unit: 'jours',
+        day_unit: 'jour',
         water_btn: '✅ Changement d\'eau effectué',
         water_interval: 'Intervalle :',
         water_no_change: 'Aucun changement enregistré',
@@ -811,6 +824,7 @@ const LANGS = {
         ec_kein_ziel: 'El fabricante no indica un EC objetivo para esta marca – dosificar según tabla y medir el EC.',
         liter: 'Litros',
         days_unit: 'días',
+        day_unit: 'día',
         water_btn: '✅ Cambio de agua realizado',
         water_interval: 'Intervalo:',
         water_no_change: 'Ningún cambio registrado aún',
@@ -875,6 +889,7 @@ const LANGS = {
         ec_kein_ziel: 'O fabricante não indica um EC alvo para esta marca – dosear pela tabela e medir o EC.',
         liter: 'Litros',
         days_unit: 'dias',
+        day_unit: 'dia',
         water_btn: '✅ Troca de água realizada agora',
         water_interval: 'Intervalo:',
         water_no_change: 'Nenhuma troca registada ainda',
@@ -7384,6 +7399,19 @@ function doWaterChange() {
     textarea.value = old;
 }
 
+// Kalendertage zwischen zwei Zeitpunkten (11.10.2026). Vorher zaehlte der
+// Zaehler 24-Stunden-Bloecke ab dem Klick auf "Wechsel durchgefuehrt": nach
+// einem Wechsel am 5.10. um 21:31 stand am 11.10. um 20:27 "noch 2 Tage" da,
+// darunter "Naechster: 12.10." - fast den ganzen Tag ein Tag zu viel.
+// "1 Tag" statt "1 Tage" (11.10.2026)
+function tageText(n) { return n + ' ' + (n === 1 ? T.day_unit : T.days_unit); }
+
+function kalenderTageZwischen(von, bis) {
+    const a = Date.UTC(von.getFullYear(), von.getMonth(), von.getDate());
+    const b = Date.UTC(bis.getFullYear(), bis.getMonth(), bis.getDate());
+    return Math.round((b - a) / 86400000);
+}
+
 function updateWaterDisplay() {
     const d = loadWaterData();
     const interval = d.interval || 10;
@@ -7399,16 +7427,16 @@ function updateWaterDisplay() {
 
     const last = new Date(d.lastChange);
     const now  = new Date();
-    const daysSince = Math.floor((now - last) / 86400000);
+    const daysSince = kalenderTageZwischen(last, now);
     const daysLeft  = interval - daysSince;
     const pct = Math.min(100, (daysSince / interval) * 100);
 
     let color = '#00ff88';
-    let statusText  = daysLeft + ' ' + T.days_unit;
+    let statusText  = tageText(daysLeft);
     let statusLabel = T.water_until;
     if (daysLeft <= 0) {
         color = '#ef4444';
-        statusText  = Math.abs(daysLeft) + ' ' + T.days_unit;
+        statusText  = tageText(Math.abs(daysLeft));
         statusLabel = T.water_overdue;
     } else if (daysLeft <= 2) {
         color = '#f59e0b';

@@ -1,9 +1,9 @@
-# 🌱 DWC Grower Edition — v1.7
+# 🌱 DWC Grower Edition — v1.7.1
 
 > **Multi-Language** · **Multi-Brand** · **100% Local** · **No Cloud** · **Nutrient Library**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.7-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.7.1-blue.svg)]()
 
 ![Preview](preview.png)
 
@@ -195,7 +195,7 @@ Tudo funciona **100% localmente**. Sem login, sem cloud. Os teus dados de cultiv
 
 | | |
 |---|---|
-| **Version** | v1.7 |
+| **Version** | v1.7.1 |
 | **Stack** | Pure HTML + CSS + Vanilla JS |
 | **Dependencies** | None — zero frameworks |
 | **Storage** | `localStorage` only |
