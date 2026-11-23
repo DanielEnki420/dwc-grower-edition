@@ -28,7 +28,7 @@ function mitHeute(tag) {
 
 const BLUETE = '2026-09-24';
 const FAELLE = [
-    ['2026-11-13', 'bluete', 8, 8, { bloom: BLUETE }, 6, 'Daniels Fall: Tag 50, Planende Tag 56 -> noch 6'],
+    ['2026-11-13', 'bluete', 8, 8, { bloom: BLUETE }, 6, 'Beispiel: Tag 50, Planende Tag 56 -> noch 6'],
     ['2026-11-13', 'bluete', 8, 8, { bloom: BLUETE, sorteTage: 63 }, 13, 'mit Sorte 63 Tage -> noch 13'],
     ['2026-11-19', 'bluete', 8, 8, { bloom: BLUETE }, 0, 'Tag 56: Planende erreicht'],
     ['2026-11-19', 'bluete', 8, 8, { bloom: BLUETE, sorteTage: 63 }, 7, 'Tag 56 mit Sorte: noch 7'],
