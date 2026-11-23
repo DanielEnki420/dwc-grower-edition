@@ -1,9 +1,9 @@
-# 🌱 DWC Grower Edition — v1.7.1
+# 🌱 DWC Grower Edition — v1.8
 
 > **Multi-Language** · **Multi-Brand** · **100% Local** · **No Cloud** · **Nutrient Library**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.7.1-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.8-blue.svg)]()
 
 ![Preview](preview.png)
 
@@ -58,7 +58,8 @@ Alles läuft **100% lokal**. Kein Login, keine Cloud. Deine Grow-Daten verlassen
 - 📊 Automatic dosing in ml — by phase & week
 - 📅 **Phase & week on autopilot** — from system start and start of flowering, moves on every week (can be switched off)
 - ⚠️ pH / EC / Temp / ORP warning system with recommendations
-- ⏳ Harvest countdown + water change reminder
+- ⏳ Harvest countdown to the day (with your strain's flowering days) + water change reminder
+- 🔁 Plan continues past the manufacturer's last week: enter your strain's flowering days and the calculator keeps feeding the last week's amounts (no increase), then shows the flush week before harvest — an extension, not a manufacturer figure
 - 📝 Grow Diary — saved locally in browser
 - 💧 EC refill calculator with brand-specific product suggestion
 - 🤖 Gemini AI Assistant — responds in your language (own API key required)
@@ -195,7 +196,7 @@ Tudo funciona **100% localmente**. Sem login, sem cloud. Os teus dados de cultiv
 
 | | |
 |---|---|
-| **Version** | v1.7.1 |
+| **Version** | v1.8 |
 | **Stack** | Pure HTML + CSS + Vanilla JS |
 | **Dependencies** | None — zero frameworks |
 | **Storage** | `localStorage` only |

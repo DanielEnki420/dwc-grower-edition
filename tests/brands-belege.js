@@ -193,9 +193,77 @@ for (const [mk, ph, pk, w, soll] of GOLD) {
     for (const seite of ['index.html', 'dwc_grower_edition.html']) {
         const html = fs.readFileSync(path.join(__dirname, '..', seite), 'utf8');
         const ohneDaten = html.split('// ▼▼▼ brands.js')[0] + (html.split('// ▲▲▲ Ende brands.js ▲▲▲')[1] || '');
-        if (!ohneDaten.includes('dashboardMenge(p, week)') || /weekMap\[/.test(ohneDaten))
+        const erwartet = seite === 'index.html' ? 'dashboardMenge(p, dosisWoche)' : 'dashboardMenge(p, week)';
+        if (!ohneDaten.includes(erwartet) || /weekMap\[/.test(ohneDaten))
             fehler.push(`${seite}: rechnet die Wochenmenge selbst statt ueber dashboardMenge()`);
     }
+}
+
+// ── Plan ueber das Herstellerende hinaus (22.11.2026) ─────────────────────
+// Hesis Schema endet nach Bluetewoche 8 (7 Duengen + 1 Spuelen). Die Pflanze
+// stand in Woche 9 und der Rechner zeigte NICHTS mehr, obwohl sie noch 2
+// Wochen brauchte. Jetzt: mit eingetragener "Bluetedauer Sorte" gilt ab
+// Woche N+1 die Menge der letzten Naehrstoffwoche weiter (nicht erhoeht),
+// gespuelt wird in der Woche, in der der Tag "Bluetedauer - 7 x Spuelwochen"
+// liegt. Ohne Eintrag bleibt alles wie beim Hersteller. Die Verlaengerung ist
+// KEINE Herstellerangabe und steht so auch im Text.
+{
+    const f = new Function(src + '; return { alsDashboard, dashboardMenge, bluetePhase };')();
+    const BD = f.alsDashboard(MARKEN);
+    const ph = (plan, s, w) => { const r = f.bluetePhase(plan, s, w); return r.modus + (r.quelle !== undefined ? ':' + r.quelle : ''); };
+    const HESI = MARKEN.hesi.wochen.bluete;           // 7 Duengen, 1 Spuelen
+    const F = [
+        [HESI, null, 5, 'duengen:5', 'ohne Sorte: Herstellerwoche'],
+        [HESI, null, 8, 'spuelen', 'ohne Sorte: Hersteller-Spuelwoche'],
+        [HESI, null, 9, 'planende', 'ohne Sorte: Plan zu Ende, wie bisher'],
+        [HESI, 20, 9, 'planende', 'Sorte 20 Tage (unter 35): wie leer'],
+        [HESI, 200, 9, 'planende', 'Sorte 200 Tage (ueber 120): wie leer'],
+        [HESI, 77, 3, 'duengen:3', 'Sorte 77: Woche 3 normal'],
+        [HESI, 77, 7, 'duengen:7', 'Sorte 77: Woche 7 normal'],
+        [HESI, 77, 8, 'halten:7', 'Sorte 77: Woche 8 gehalten'],
+        [HESI, 77, 10, 'halten:7', 'Sorte 77: Woche 10 gehalten'],
+        [HESI, 77, 11, 'spuelen', 'Sorte 77: Spuelwoche 11 (Tag 70-76 vor Ernte Tag 77)'],
+        [HESI, 84, 11, 'halten:7', 'Sorte 84: Woche 11 noch gehalten'],
+        [HESI, 84, 12, 'spuelen', 'Sorte 84: Spuelwoche 12'],
+        [HESI, 65, 8, 'halten:7', 'Sorte 65: Woche 8 gehalten'],
+        [HESI, 65, 9, 'spuelen', 'Sorte 65: Tag 58 liegt in Woche 9 - ab dort spuelen'],
+        [HESI, 56, 8, 'spuelen', 'Sorte 56 = Herstellerplan: Spuelen in Woche 8'],
+        [HESI, 40, 8, 'spuelen', 'kurze Sorte: Hersteller-Spuelwoche, nie davor'],
+        [HESI, 77, 12, 'spuelen', 'hinter der Spuelwoche bleibt es Spuelen'],
+        [{ naehrstoff: 9, gesamt: 9 }, 77, 10, 'duengen:10', 'ohne Spuelwoche im Plan: unveraendert'],
+        [null, 77, 10, 'duengen:10', 'Marke ohne Bluetenplan: unveraendert'],
+    ];
+    for (const [plan, s, w, soll, was] of F) {
+        const ist = ph(plan, s, w);
+        if (ist !== soll) fehler.push(`bluetePhase ${was}: ${ist}, erwartet ${soll}`);
+    }
+    // Hesi: Mengen in den Haltewochen = Woche 7, PK steigt NICHT weiter, Wurzel bleibt aus
+    const menge = (name, w) => { const e = BD.hesi.bluete.find(x => x.name.includes(name)); return e ? f.dashboardMenge(e, w) : 'fehlt'; };
+    if (menge('PK', 7) !== 1.5) fehler.push(`Hesi PK 13/14 Woche 7: ${menge('PK', 7)}, erwartet 1.5 (15 ml/10 L)`);
+    for (const name of ['Hydro', 'PowerZyme', 'Boost', 'PK', 'Hesilicio'])
+        if (menge(name, 7) === null || menge(name, 7) === 'fehlt') fehler.push(`Hesi ${name} Woche 7 nicht gefunden`);
+    const q = f.bluetePhase(HESI, 77, 9).quelle;
+    for (const name of ['Hydro', 'PowerZyme', 'Boost', 'PK', 'Hesilicio', 'Wurzel'])
+        if (menge(name, q) !== menge(name, 7)) fehler.push(`Hesi ${name}: Haltewoche ${q} gibt ${menge(name, q)}, Woche 7 gibt ${menge(name, 7)}`);
+    if (menge('Wurzel', q) !== null) fehler.push('Hesi Wurzel Complex darf in der Haltewoche nicht dosiert werden');
+    // alle Marken mit Spuelplan: Haltewoche = letzte Naehrstoffwoche
+    for (const [mk, m] of Object.entries(MARKEN)) {
+        const plan = m.wochen && m.wochen.bluete;
+        if (!plan || plan.gesamt <= plan.naehrstoff) continue;
+        const a = f.bluetePhase(plan, 120, plan.naehrstoff + 1);
+        if (a.modus !== 'halten' || a.quelle !== plan.naehrstoff) fehler.push(`${m.name}: Woche ${plan.naehrstoff + 1} bei Sorte 120 ist ${a.modus}, erwartet halten`);
+        const z = f.bluetePhase(plan, 120, 18);
+        if (z.modus !== 'spuelen') fehler.push(`${m.name}: Woche 18 bei Sorte 120 ist ${z.modus}, erwartet spuelen`);
+    }
+    // die Seite benutzt genau diese Regel, und die Texte gibt es in allen sechs Sprachen
+    const voll_ = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+    const seite = voll_.split('// ▼▼▼ brands.js')[0] + (voll_.split('// ▲▲▲ Ende brands.js ▲▲▲')[1] || '');
+    if (!seite.includes('bluetePhase(') || !seite.includes('dashboardMenge(p, dosisWoche)'))
+        fehler.push('index.html: rechnet den Bluetenplan nicht ueber bluetePhase()');
+    if (!/sorteW = phase === 'bluete' \? sorteTageGueltig\(/.test(seite))
+        fehler.push('index.html: Ernte-Countdown zeigt "Woche x/8" statt der Wochen der Sorte');
+    for (const k of ['halten_label', 'halten_wert', 'halten_hinweis', 'plan_ende_hinweis', 'grow_sorte_label', 'grow_sorte_ph'])
+        if ((seite.match(new RegExp('\\b' + k + ':', 'g')) || []).length !== 6) fehler.push(`index.html: ${k} nicht in allen 6 Sprachen`);
 }
 
 // Grower Edition: Single-File-Seiten tragen brands.js eingebettet. Jede Seite

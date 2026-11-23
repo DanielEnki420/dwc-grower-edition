@@ -6811,6 +6811,31 @@ function dashboardMenge(p, woche) {
   return typeof v === 'number' && v > 0 ? v : null;
 }
 
+// ── Bluetenplan ueber das Herstellerende hinaus (22.11.2026) ─────────────
+// Welche Phase des Plans gilt in einer Bluetewoche? EINE Stelle: das Dashboard
+// rechnet damit, tests/brands-belege.js prueft jede Regel damit.
+//   duengen   - Herstellerwoche, Menge der Woche selbst (quelle = woche)
+//   halten    - Verlaengerung: Menge der letzten Naehrstoffwoche (quelle),
+//               nicht erhoeht. KEINE Herstellerangabe.
+//   spuelen   - nur Wasser
+//   planende  - Plan zu Ende, keine Bluetedauer eingetragen (wie bisher)
+// Ohne gueltige "Bluetedauer Sorte" (35-120 Tage) bleibt alles beim
+// Herstellerplan. Mit ihr: gespuelt wird in der Woche, in der der Tag
+// (Bluetedauer - 7 x Spuelwochen) liegt, nie vor der Hersteller-Spuelwoche.
+// Marken ohne Spuelwoche im Plan bleiben unveraendert.
+function sorteTageGueltig(s) {
+  s = Number(s);
+  return Number.isFinite(s) && s >= 35 && s <= 120 ? Math.round(s) : null;
+}
+function bluetePhase(plan, sorteTage, woche) {
+  if (!plan || !(plan.gesamt > plan.naehrstoff) || woche <= plan.naehrstoff) return { modus: 'duengen', quelle: woche };
+  const s = sorteTageGueltig(sorteTage);
+  if (s === null) return woche <= plan.gesamt ? { modus: 'spuelen' } : { modus: 'planende' };
+  const spuelWochen = plan.gesamt - plan.naehrstoff;
+  const start = Math.max(plan.naehrstoff + 1, Math.floor((s - 7 * spuelWochen) / 7) + 1);
+  return woche >= start ? { modus: 'spuelen' } : { modus: 'halten', quelle: plan.naehrstoff };
+}
+
 // Die beiden bisherigen Formen - damit kein Renderer angefasst werden muss.
 const BRANDS_DATA = alsDashboard(MARKEN);   // Dashboard
 const BRANDS      = alsLibrary(MARKEN);     // Nutrient Library

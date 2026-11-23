@@ -121,8 +121,8 @@
             font-size: 0.78em; cursor: pointer; min-height: 30px;
         }
         .modus-schalter button.aktiv { background: #00ff88; color: #0a0f1e; font-weight: bold; }
-        .grow-daten { display: flex; gap: 10px; }
-        .grow-daten > div { flex: 1; min-width: 0; }
+        .grow-daten { display: flex; gap: 10px; flex-wrap: wrap; }
+        .grow-daten > div { flex: 1 1 140px; min-width: 0; }
         .phase-auto-info { margin-top: 8px; font-size: 0.8em; color: #94a3b8; line-height: 1.5; }
         .phase-auto-info:empty { display: none; }
         select:disabled { opacity: 0.85; cursor: default; }
@@ -484,6 +484,10 @@
                         <label for="grow-bloom" data-i18n="grow_bloom_label">Blütestart</label>
                         <input type="date" id="grow-bloom" onchange="saveGrowDates()">
                     </div>
+                    <div>
+                        <label for="grow-sorte" data-i18n="grow_sorte_label">Blütedauer Sorte</label>
+                        <input type="number" id="grow-sorte" min="35" max="120" step="1" inputmode="numeric" onchange="saveGrowDates()" data-i18n-placeholder="grow_sorte_ph" placeholder="z. B. 63">
+                    </div>
                 </div>
                 <div style="display:flex;gap:10px;">
                     <div style="flex:2;">
@@ -612,15 +616,21 @@ const LANGS = {
         modus_manuell: "Manuell",
         grow_dwc_label: "Start im System",
         grow_bloom_label: "Blütestart",
+        grow_sorte_label: "Blütedauer Sorte",
+        grow_sorte_ph: "z. B. 63",
         phase_auto: (was, datum, t, w) => `📅 Automatisch · ${was} ${datum} · Tag ${t} → Woche ${w}`,
         phase_auto_keine: "📅 Trag ein, wann deine Pflanze ins System kam oder die Blüte begann – dann laufen Phase und Woche von selbst mit.",
         phase_veg: '🌱 Vegetativ (Wuchs)',
         phase_bloom: '🌸 Blütephase',
         dosierung_label: 'Dosierung',
-        neu: {"titel": "Neu in Version 1.7", "intro": "Phase und Woche laufen jetzt von selbst mit – und ein Fehler im Düngerplan ist behoben:", "punkte": ["Trag ein, wann deine Pflanze ins System kam und wann die Blüte begann. Phase und Woche stellen sich dann selbst ein und springen jede Woche weiter. Mit „Manuell“ wählst du sie wie bisher von Hand.", "Korrigiert: Produkte mit einer Pause im Plan wurden auch in den Wochen dazwischen angezeigt – Hesi Boost in Blütewoche 2 und 3, Aptus Breakout Powder in Woche 4 und 6. Jetzt stimmt jede Woche mit dem Herstellerschema überein."], "ok": "Verstanden", "feedback": "💬 Feedback geben", "fbHinweis": "Feedback läuft über GitHub (Konto nötig).", "issueTitel": "Feedback zu v1.7", "issueBody": "**Version:** v1.7\n**Marke:** {marke}\n\n**Was funktioniert gut?**\n\n\n**Was sollte besser werden?**\n\n"},
+        neu: {"titel": "Neu in Version 1.8", "intro": "Der Düngeplan läuft jetzt über das Ende des Herstellerplans hinaus weiter:", "punkte": ["Trag bei „Blütedauer Sorte“ die Blütetage deiner Sorte ein (z. B. 70). Nach dem Ende des Herstellerplans düngt der Rechner dann mit der Menge der letzten Woche weiter – ohne Erhöhung – und zeigt in der letzten Woche vor der Ernte „Spülwoche, nur Wasser“. Diese verlängerten Mengen sind keine Herstellerangabe.", "Der Ernte-Countdown zählt jetzt tagesgenau bis zur Blütedauer deiner Sorte. Am Ziel heißt es „Reife prüfen“ – reif ist die Pflanze, wenn die Trichome es sagen."], "ok": "Verstanden", "feedback": "💬 Feedback geben", "fbHinweis": "Feedback läuft über GitHub (Konto nötig).", "issueTitel": "Feedback zu v1.8", "issueBody": "**Version:** v1.8\n**Marke:** {marke}\n\n**Was funktioniert gut?**\n\n\n**Was sollte besser werden?**\n\n"},
         nicht_fuer_dwc: 'nicht für DWC',
         spuelwoche: 'Spülwoche',
         nur_wasser: 'nur Wasser',
+        halten_label: (n) => `Menge wie Woche ${n}`,
+        halten_wert: "gehalten, nicht erhöhen",
+        halten_hinweis: "Verlängerung über den Herstellerplan hinaus – keine Herstellerangabe: Die Mengen der letzten Düngewoche bleiben gleich, ohne Erhöhung. In der Spätblüte nimmt die Pflanze weniger auf: EC messen und das Wasser regelmäßig wechseln, damit sich keine Salze anreichern.",
+        plan_ende_hinweis: "Der Herstellerplan ist zu Ende. Trag bei „Blütedauer Sorte“ die Blütetage deiner Sorte ein, dann führt der Rechner den Plan bis zur Spülwoche weiter.",
         ec_kein_ziel: 'Der Hersteller nennt für diese Marke keinen EC-Zielwert – nach Dosis mischen und den EC messen.',
         liter: 'Liter',
         days_unit: 'Tage',
@@ -662,7 +672,7 @@ const LANGS = {
         advice_orp_low: o  => `⚠️ ORP ZU NIEDRIG (${o} mV) → Anaerob / Wurzelfäule!`,
         advice_orp_high:o  => `⚠️ ORP ZU HOCH (${o} mV)`,
         advice_ok: (ph,ec,temp,orp) => `✅ Alle Werte im DWC-Idealbereich<br><small style="opacity:0.75;font-weight:normal">pH ${ph} | EC ${ec} mS | ${temp}°C${orp}</small>`,
-        harvest_now:  (w,t) => `🌿 <b>Erntezeit!</b> Woche ${w} / ${t}`,
+        harvest_now:  (w,t) => `🔍 <b>Reife prüfen</b> – Trichome unter der Lupe (Woche ${w}/${t})`,
         harvest_days: (d,w,t) => `⏳ Noch <b>${d} Tage</b> bis Ernte (Woche ${w}/${t})`,
         ec_refill_add:  (ml,prod,mn,ec,vol) => `💧 EC-Nachfüll-Rechner: <b>${ml} ml ${prod}</b> nachfüllen<br><span style="font-size:0.85em;opacity:0.8;">Ziel: ${mn} mS | Ist: ${ec} mS | Vol: ${vol} L</span>`,
         ec_refill_high: ec => `⚠️ EC zu hoch (${ec} mS) → Frischwasser nachfüllen`,
@@ -684,15 +694,21 @@ const LANGS = {
         modus_manuell: "Manual",
         grow_dwc_label: "Into the system",
         grow_bloom_label: "Start of flowering",
+        grow_sorte_label: "Strain flowering",
+        grow_sorte_ph: "e.g. 63",
         phase_auto: (was, datum, t, w) => `📅 Automatic · ${was} ${datum} · day ${t} → week ${w}`,
         phase_auto_keine: "📅 Enter when your plant went into the system or flowering started – phase and week will then follow on their own.",
         phase_veg: '🌱 Vegetative',
         phase_bloom: '🌸 Bloom',
         dosierung_label: 'Dosing',
-        neu: {"titel": "New in version 1.7", "intro": "Phase and week now follow along on their own – and a bug in the feeding plan is fixed:", "punkte": ["Enter when your plant went into the system and when flowering started. Phase and week then set themselves and move on every week. Switch to “Manual” to pick them yourself as before.", "Fixed: products with a break in their schedule were also shown in the weeks in between – Hesi Boost in flowering weeks 2 and 3, Aptus Breakout Powder in weeks 4 and 6. Every week now matches the manufacturer’s schedule."], "ok": "Got it", "feedback": "💬 Give feedback", "fbHinweis": "Feedback goes through GitHub (account required).", "issueTitel": "Feedback on v1.7", "issueBody": "**Version:** v1.7\n**Brand:** {marke}\n\n**What works well?**\n\n\n**What should be improved?**\n\n"},
+        neu: {"titel": "New in version 1.8", "intro": "The feeding plan now continues beyond the end of the manufacturer’s plan:", "punkte": ["Enter your strain’s flowering days under “Strain flowering” (e.g. 70). After the manufacturer’s plan ends, the calculator keeps feeding the amounts of the last week – without increasing – and shows “Flush week, plain water only” in the last week before harvest. These extended amounts are not a manufacturer figure.", "The harvest countdown now counts to your strain’s flowering days, to the day. At the target it says “Check ripeness” – the plant is ripe when the trichomes say so."], "ok": "Got it", "feedback": "💬 Give feedback", "fbHinweis": "Feedback goes through GitHub (account required).", "issueTitel": "Feedback on v1.8", "issueBody": "**Version:** v1.8\n**Brand:** {marke}\n\n**What works well?**\n\n\n**What should be improved?**\n\n"},
         nicht_fuer_dwc: 'not for DWC',
         spuelwoche: 'Flush week',
         nur_wasser: 'water only',
+        halten_label: (n) => `Amount as in week ${n}`,
+        halten_wert: "held, do not increase",
+        halten_hinweis: "Extension beyond the manufacturer plan – not a manufacturer figure: the amounts of the last feeding week stay the same, no increase. Late in flower the plant takes up less: measure EC and change the water regularly so salts do not build up.",
+        plan_ende_hinweis: "The manufacturer plan has ended. Enter your strain's flowering days under “Strain flowering” and the calculator carries the plan on to the flush week.",
         ec_kein_ziel: 'The manufacturer gives no EC target for this brand – mix by dose and measure the EC.',
         liter: 'Liters',
         days_unit: 'days',
@@ -734,7 +750,7 @@ const LANGS = {
         advice_orp_low: o  => `⚠️ ORP TOO LOW (${o} mV) → Anaerobic / root rot!`,
         advice_orp_high:o  => `⚠️ ORP TOO HIGH (${o} mV)`,
         advice_ok: (ph,ec,temp,orp) => `✅ All values in DWC ideal range<br><small style="opacity:0.75;font-weight:normal">pH ${ph} | EC ${ec} mS | ${temp}°C${orp}</small>`,
-        harvest_now:  (w,t) => `🌿 <b>Harvest time!</b> Week ${w} / ${t}`,
+        harvest_now:  (w,t) => `🔍 <b>Check ripeness</b> – trichomes under the loupe (Week ${w}/${t})`,
         harvest_days: (d,w,t) => `⏳ <b>${d} days</b> until harvest (Week ${w}/${t})`,
         ec_refill_add:  (ml,prod,mn,ec,vol) => `💧 EC Refill: Add <b>${ml} ml ${prod}</b><br><span style="font-size:0.85em;opacity:0.8;">Target: ${mn} mS | Current: ${ec} mS | Vol: ${vol} L</span>`,
         ec_refill_high: ec => `⚠️ EC too high (${ec} mS) → Add fresh water`,
@@ -756,15 +772,21 @@ const LANGS = {
         modus_manuell: "Manuale",
         grow_dwc_label: "Inizio nel sistema",
         grow_bloom_label: "Inizio fioritura",
+        grow_sorte_label: "Fioritura varietà",
+        grow_sorte_ph: "es. 63",
         phase_auto: (was, datum, t, w) => `📅 Automatico · ${was} ${datum} · giorno ${t} → settimana ${w}`,
         phase_auto_keine: "📅 Inserisci quando la pianta è entrata nel sistema o è iniziata la fioritura: fase e settimana si aggiorneranno da sole.",
         phase_veg: '🌱 Vegetativa',
         phase_bloom: '🌸 Fioritura',
         dosierung_label: 'Dosaggio',
-        neu: {"titel": "Novità nella versione 1.7", "intro": "Fase e settimana ora vanno avanti da sole – e un errore nel piano di fertilizzazione è corretto:", "punkte": ["Inserisci quando la pianta è entrata nel sistema e quando è iniziata la fioritura. Fase e settimana si impostano da sole e avanzano ogni settimana. Con «Manuale» le scegli a mano come prima.", "Corretto: i prodotti con una pausa nel piano comparivano anche nelle settimane intermedie – Hesi Boost nelle settimane di fioritura 2 e 3, Aptus Breakout Powder nelle settimane 4 e 6. Ora ogni settimana corrisponde allo schema del produttore."], "ok": "Capito", "feedback": "💬 Lascia un feedback", "fbHinweis": "Il feedback passa da GitHub (serve un account).", "issueTitel": "Feedback su v1.7", "issueBody": "**Versione:** v1.7\n**Marchio:** {marke}\n\n**Cosa funziona bene?**\n\n\n**Cosa andrebbe migliorato?**\n\n"},
+        neu: {"titel": "Novità nella versione 1.8", "intro": "Il piano di fertilizzazione ora prosegue oltre la fine del piano del produttore:", "punkte": ["Inserisci in «Fioritura varietà» i giorni di fioritura della tua varietà (es. 70). Dopo la fine del piano del produttore il calcolatore continua con le dosi dell’ultima settimana – senza aumentarle – e nell’ultima settimana prima del raccolto mostra «Settimana di lavaggio, solo acqua». Queste dosi prolungate non sono un dato del produttore.", "Il conto alla rovescia del raccolto ora arriva al giorno esatto dei giorni di fioritura della tua varietà. All’obiettivo compare «Controlla la maturazione» – la pianta è matura quando lo dicono i tricomi."], "ok": "Capito", "feedback": "💬 Lascia un feedback", "fbHinweis": "Il feedback passa da GitHub (serve un account).", "issueTitel": "Feedback su v1.8", "issueBody": "**Versione:** v1.8\n**Marchio:** {marke}\n\n**Cosa funziona bene?**\n\n\n**Cosa andrebbe migliorato?**\n\n"},
         nicht_fuer_dwc: 'non per DWC',
         spuelwoche: 'Settimana di lavaggio',
         nur_wasser: 'solo acqua',
+        halten_label: (n) => `Dose come settimana ${n}`,
+        halten_wert: "mantenuta, non aumentare",
+        halten_hinweis: "Prolungamento oltre il piano del produttore – non è un dato del produttore: le dosi dell'ultima settimana di concimazione restano uguali, senza aumento. A fine fioritura la pianta assorbe meno: misura l'EC e cambia l'acqua regolarmente, così i sali non si accumulano.",
+        plan_ende_hinweis: "Il piano del produttore è terminato. Inserisci in «Fioritura varietà» i giorni di fioritura della tua varietà: il calcolatore porta avanti il piano fino alla settimana di lavaggio.",
         ec_kein_ziel: "Il produttore non indica un EC obiettivo per questo marchio – dosare secondo tabella e misurare l'EC.",
         liter: 'Litri',
         days_unit: 'giorni',
@@ -806,7 +828,7 @@ const LANGS = {
         advice_orp_low: o  => `⚠️ ORP TROPPO BASSO (${o} mV) → Anaerobico / marciume!`,
         advice_orp_high:o  => `⚠️ ORP TROPPO ALTO (${o} mV)`,
         advice_ok: (ph,ec,temp,orp) => `✅ Tutti i valori nel range ideale DWC<br><small style="opacity:0.75;font-weight:normal">pH ${ph} | EC ${ec} mS | ${temp}°C${orp}</small>`,
-        harvest_now:  (w,t) => `🌿 <b>Tempo del raccolto!</b> Settimana ${w} / ${t}`,
+        harvest_now:  (w,t) => `🔍 <b>Controlla la maturazione</b> – tricomi con la lente (Settimana ${w}/${t})`,
         harvest_days: (d,w,t) => `⏳ <b>${d} giorni</b> al raccolto (Settimana ${w}/${t})`,
         ec_refill_add:  (ml,prod,mn,ec,vol) => `💧 Ricarica EC: Aggiungere <b>${ml} ml ${prod}</b><br><span style="font-size:0.85em;opacity:0.8;">Obiettivo: ${mn} mS | Attuale: ${ec} mS | Vol: ${vol} L</span>`,
         ec_refill_high: ec => `⚠️ EC troppo alta (${ec} mS) → Aggiungere acqua fresca`,
@@ -828,15 +850,21 @@ const LANGS = {
         modus_manuell: "Manuel",
         grow_dwc_label: "Mise en système",
         grow_bloom_label: "Début de floraison",
+        grow_sorte_label: "Floraison variété",
+        grow_sorte_ph: "ex. 63",
         phase_auto: (was, datum, t, w) => `📅 Automatique · ${was} ${datum} · jour ${t} → semaine ${w}`,
         phase_auto_keine: "📅 Indiquez quand votre plante est entrée dans le système ou quand la floraison a commencé : la phase et la semaine suivront toutes seules.",
         phase_veg: '🌱 Végétatif',
         phase_bloom: '🌸 Floraison',
         dosierung_label: 'Dosage',
-        neu: {"titel": "Nouveautés de la version 1.7", "intro": "La phase et la semaine avancent désormais toutes seules – et une erreur du plan de nutriments est corrigée :", "punkte": ["Indiquez quand votre plante est entrée dans le système et quand la floraison a commencé. La phase et la semaine se règlent alors toutes seules et avancent chaque semaine. Avec « Manuel », vous les choisissez vous-même comme avant.", "Corrigé : les produits avec une pause dans le plan s’affichaient aussi pendant les semaines intermédiaires – Hesi Boost en semaines de floraison 2 et 3, Aptus Breakout Powder en semaines 4 et 6. Chaque semaine correspond désormais au schéma du fabricant."], "ok": "Compris", "feedback": "💬 Donner un avis", "fbHinweis": "Les avis passent par GitHub (compte nécessaire).", "issueTitel": "Avis sur la v1.7", "issueBody": "**Version :** v1.7\n**Marque :** {marke}\n\n**Qu'est-ce qui fonctionne bien ?**\n\n\n**Qu'est-ce qui devrait être amélioré ?**\n\n"},
+        neu: {"titel": "Nouveautés de la version 1.8", "intro": "Le plan de nutriments se poursuit désormais au-delà de la fin du plan du fabricant :", "punkte": ["Indiquez dans « Floraison variété » les jours de floraison de votre variété (p. ex. 70). Après la fin du plan du fabricant, le calculateur continue avec les doses de la dernière semaine – sans les augmenter – et affiche « Semaine de rinçage, eau uniquement » pendant la dernière semaine avant la récolte. Ces doses prolongées ne sont pas une indication du fabricant.", "Le compte à rebours de la récolte compte désormais au jour près jusqu’à la durée de floraison de votre variété. À l’objectif, il indique « Vérifier la maturité » – la plante est mûre quand les trichomes le disent."], "ok": "Compris", "feedback": "💬 Donner un avis", "fbHinweis": "Les avis passent par GitHub (compte nécessaire).", "issueTitel": "Avis sur la v1.8", "issueBody": "**Version :** v1.8\n**Marque :** {marke}\n\n**Qu'est-ce qui fonctionne bien ?**\n\n\n**Qu'est-ce qui devrait être amélioré ?**\n\n"},
         nicht_fuer_dwc: 'pas pour DWC',
         spuelwoche: 'Semaine de rinçage',
         nur_wasser: 'eau uniquement',
+        halten_label: (n) => `Dose comme semaine ${n}`,
+        halten_wert: "maintenue, ne pas augmenter",
+        halten_hinweis: "Prolongation au-delà du plan du fabricant – ce n'est pas une indication du fabricant : les doses de la dernière semaine de fertilisation restent identiques, sans augmentation. En fin de floraison, la plante absorbe moins : mesure l'EC et change l'eau régulièrement pour éviter l'accumulation de sels.",
+        plan_ende_hinweis: "Le plan du fabricant est terminé. Saisis dans « Floraison variété » les jours de floraison de ta variété : le calculateur poursuit alors le plan jusqu'à la semaine de rinçage.",
         ec_kein_ziel: "Le fabricant n'indique pas d'EC cible pour cette marque – doser selon le tableau et mesurer l'EC.",
         liter: 'Litres',
         days_unit: 'jours',
@@ -878,7 +906,7 @@ const LANGS = {
         advice_orp_low: o  => `⚠️ ORP TROP BAS (${o} mV) → Anaérobie / pourriture !`,
         advice_orp_high:o  => `⚠️ ORP TROP ÉLEVÉ (${o} mV)`,
         advice_ok: (ph,ec,temp,orp) => `✅ Toutes les valeurs dans la plage idéale DWC<br><small style="opacity:0.75;font-weight:normal">pH ${ph} | EC ${ec} mS | ${temp}°C${orp}</small>`,
-        harvest_now:  (w,t) => `🌿 <b>Temps de récolte !</b> Semaine ${w} / ${t}`,
+        harvest_now:  (w,t) => `🔍 <b>Vérifier la maturité</b> – trichomes à la loupe (Semaine ${w}/${t})`,
         harvest_days: (d,w,t) => `⏳ <b>${d} jours</b> avant récolte (Semaine ${w}/${t})`,
         ec_refill_add:  (ml,prod,mn,ec,vol) => `💧 Recharge EC : Ajouter <b>${ml} ml ${prod}</b><br><span style="font-size:0.85em;opacity:0.8;">Cible : ${mn} mS | Actuel : ${ec} mS | Vol : ${vol} L</span>`,
         ec_refill_high: ec => `⚠️ EC trop élevé (${ec} mS) → Ajouter de l'eau fraîche`,
@@ -900,15 +928,21 @@ const LANGS = {
         modus_manuell: "Manual",
         grow_dwc_label: "Paso al sistema",
         grow_bloom_label: "Inicio de floración",
+        grow_sorte_label: "Floración variedad",
+        grow_sorte_ph: "p. ej. 63",
         phase_auto: (was, datum, t, w) => `📅 Automático · ${was} ${datum} · día ${t} → semana ${w}`,
         phase_auto_keine: "📅 Indica cuándo entró tu planta en el sistema o empezó la floración: la fase y la semana avanzarán solas.",
         phase_veg: '🌱 Vegetativo',
         phase_bloom: '🌸 Floración',
         dosierung_label: 'Dosificación',
-        neu: {"titel": "Novedades de la versión 1.7", "intro": "La fase y la semana avanzan ahora solas, y se ha corregido un error en el plan de nutrientes:", "punkte": ["Indica cuándo entró tu planta en el sistema y cuándo empezó la floración. La fase y la semana se ajustan solas y avanzan cada semana. Con «Manual» las eliges tú como antes.", "Corregido: los productos con una pausa en el plan aparecían también en las semanas intermedias: Hesi Boost en las semanas de floración 2 y 3, Aptus Breakout Powder en las semanas 4 y 6. Ahora cada semana coincide con el esquema del fabricante."], "ok": "Entendido", "feedback": "💬 Dar tu opinión", "fbHinweis": "La opinión se envía a través de GitHub (se necesita cuenta).", "issueTitel": "Opinión sobre la v1.7", "issueBody": "**Versión:** v1.7\n**Marca:** {marke}\n\n**¿Qué funciona bien?**\n\n\n**¿Qué se debería mejorar?**\n\n"},
+        neu: {"titel": "Novedades de la versión 1.8", "intro": "El plan de nutrientes ahora continúa más allá del final del plan del fabricante:", "punkte": ["Indica en «Floración variedad» los días de floración de tu variedad (p. ej. 70). Cuando termina el plan del fabricante, la calculadora sigue con las dosis de la última semana –sin aumentarlas– y en la última semana antes de la cosecha muestra «Semana de lavado, solo agua». Estas dosis prolongadas no son un dato del fabricante.", "La cuenta atrás de la cosecha ahora cuenta al día hasta la duración de floración de tu variedad. Al llegar dice «Comprobar la madurez»: la planta está madura cuando lo dicen los tricomas."], "ok": "Entendido", "feedback": "💬 Dar tu opinión", "fbHinweis": "La opinión se envía a través de GitHub (se necesita cuenta).", "issueTitel": "Opinión sobre la v1.8", "issueBody": "**Versión:** v1.8\n**Marca:** {marke}\n\n**¿Qué funciona bien?**\n\n\n**¿Qué se debería mejorar?**\n\n"},
         nicht_fuer_dwc: 'no apto para DWC',
         spuelwoche: 'Semana de lavado',
         nur_wasser: 'solo agua',
+        halten_label: (n) => `Dosis como semana ${n}`,
+        halten_wert: "mantenida, no aumentar",
+        halten_hinweis: "Prolongación más allá del plan del fabricante – no es un dato del fabricante: las dosis de la última semana de abono se mantienen, sin aumento. Al final de la floración la planta absorbe menos: mide la EC y cambia el agua con regularidad para que no se acumulen sales.",
+        plan_ende_hinweis: "El plan del fabricante ha terminado. Introduce en «Floración variedad» los días de floración de tu variedad y la calculadora continuará el plan hasta la semana de lavado.",
         ec_kein_ziel: 'El fabricante no indica un EC objetivo para esta marca – dosificar según tabla y medir el EC.',
         liter: 'Litros',
         days_unit: 'días',
@@ -950,7 +984,7 @@ const LANGS = {
         advice_orp_low: o  => `⚠️ ORP DEMASIADO BAJO (${o} mV) → ¡Anaeróbico / pudrición!`,
         advice_orp_high:o  => `⚠️ ORP DEMASIADO ALTO (${o} mV)`,
         advice_ok: (ph,ec,temp,orp) => `✅ Todos los valores en rango ideal DWC<br><small style="opacity:0.75;font-weight:normal">pH ${ph} | EC ${ec} mS | ${temp}°C${orp}</small>`,
-        harvest_now:  (w,t) => `🌿 <b>¡Tiempo de cosecha!</b> Semana ${w} / ${t}`,
+        harvest_now:  (w,t) => `🔍 <b>Comprobar la madurez</b> – tricomas con la lupa (Semana ${w}/${t})`,
         harvest_days: (d,w,t) => `⏳ <b>${d} días</b> para la cosecha (Semana ${w}/${t})`,
         ec_refill_add:  (ml,prod,mn,ec,vol) => `💧 Recarga EC: Agregar <b>${ml} ml ${prod}</b><br><span style="font-size:0.85em;opacity:0.8;">Objetivo: ${mn} mS | Actual: ${ec} mS | Vol: ${vol} L</span>`,
         ec_refill_high: ec => `⚠️ EC demasiado alto (${ec} mS) → Agregar agua fresca`,
@@ -972,15 +1006,21 @@ const LANGS = {
         modus_manuell: "Manual",
         grow_dwc_label: "Entrada no sistema",
         grow_bloom_label: "Início da floração",
+        grow_sorte_label: "Floração variedade",
+        grow_sorte_ph: "ex. 63",
         phase_auto: (was, datum, t, w) => `📅 Automático · ${was} ${datum} · dia ${t} → semana ${w}`,
         phase_auto_keine: "📅 Indique quando a planta entrou no sistema ou começou a floração: a fase e a semana passam a acompanhar sozinhas.",
         phase_veg: '🌱 Vegetativo',
         phase_bloom: '🌸 Floração',
         dosierung_label: 'Dosagem',
-        neu: {"titel": "Novidades da versão 1.7", "intro": "A fase e a semana agora avançam sozinhas – e um erro no plano de nutrientes foi corrigido:", "punkte": ["Indique quando a planta entrou no sistema e quando começou a floração. A fase e a semana ajustam-se sozinhas e avançam todas as semanas. Com «Manual» escolhe-as à mão, como antes.", "Corrigido: produtos com uma pausa no plano apareciam também nas semanas intermédias – Hesi Boost nas semanas de floração 2 e 3, Aptus Breakout Powder nas semanas 4 e 6. Agora cada semana corresponde ao esquema do fabricante."], "ok": "Entendi", "feedback": "💬 Dar feedback", "fbHinweis": "O feedback é feito pelo GitHub (é preciso conta).", "issueTitel": "Feedback sobre a v1.7", "issueBody": "**Versão:** v1.7\n**Marca:** {marke}\n\n**O que funciona bem?**\n\n\n**O que deveria melhorar?**\n\n"},
+        neu: {"titel": "Novidades da versão 1.8", "intro": "O plano de nutrientes agora continua além do fim do plano do fabricante:", "punkte": ["Indique em «Floração variedade» os dias de floração da sua variedade (ex. 70). Quando o plano do fabricante termina, a calculadora continua com as doses da última semana – sem aumentar – e na última semana antes da colheita mostra «Semana de lavagem, só água». Estas doses prolongadas não são uma indicação do fabricante.", "A contagem decrescente da colheita agora conta ao dia até à duração de floração da sua variedade. No objetivo diz «Verificar a maturação» – a planta está madura quando os tricomas o dizem."], "ok": "Entendi", "feedback": "💬 Dar feedback", "fbHinweis": "O feedback é feito pelo GitHub (é preciso conta).", "issueTitel": "Feedback sobre a v1.8", "issueBody": "**Versão:** v1.8\n**Marca:** {marke}\n\n**O que funciona bem?**\n\n\n**O que deveria melhorar?**\n\n"},
         nicht_fuer_dwc: 'não indicado para DWC',
         spuelwoche: 'Semana de lavagem',
         nur_wasser: 'só água',
+        halten_label: (n) => `Dose como semana ${n}`,
+        halten_wert: "mantida, não aumentar",
+        halten_hinweis: "Prolongamento além do plano do fabricante – não é uma indicação do fabricante: as doses da última semana de adubação mantêm-se, sem aumento. No fim da floração a planta absorve menos: mede a EC e muda a água regularmente para os sais não se acumularem.",
+        plan_ende_hinweis: "O plano do fabricante terminou. Introduz em «Floração variedade» os dias de floração da tua variedade e a calculadora continua o plano até à semana de lavagem.",
         ec_kein_ziel: 'O fabricante não indica um EC alvo para esta marca – dosear pela tabela e medir o EC.',
         liter: 'Litros',
         days_unit: 'dias',
@@ -1022,7 +1062,7 @@ const LANGS = {
         advice_orp_low: o  => `⚠️ ORP MUITO BAIXO (${o} mV) → Anaeróbico / podridão!`,
         advice_orp_high:o  => `⚠️ ORP MUITO ALTO (${o} mV)`,
         advice_ok: (ph,ec,temp,orp) => `✅ Todos os valores no intervalo ideal DWC<br><small style="opacity:0.75;font-weight:normal">pH ${ph} | EC ${ec} mS | ${temp}°C${orp}</small>`,
-        harvest_now:  (w,t) => `🌿 <b>Tempo de colheita!</b> Semana ${w} / ${t}`,
+        harvest_now:  (w,t) => `🔍 <b>Verificar a maturação</b> – tricomas à lupa (Semana ${w}/${t})`,
         harvest_days: (d,w,t) => `⏳ <b>${d} dias</b> até à colheita (Semana ${w}/${t})`,
         ec_refill_add:  (ml,prod,mn,ec,vol) => `💧 Recarga EC: Adicionar <b>${ml} ml ${prod}</b><br><span style="font-size:0.85em;opacity:0.8;">Alvo: ${mn} mS | Atual: ${ec} mS | Vol: ${vol} L</span>`,
         ec_refill_high: ec => `⚠️ EC muito alto (${ec} mS) → Adicionar água fresca`,
@@ -1086,7 +1126,7 @@ function setLanguage(lang) {
 // Erscheint einmal je Browser und Version (localStorage), schliesst per
 // Knopf, Esc oder Klick daneben. Feedback: vorausgefuelltes GitHub-Issue -
 // kein Server, kein Tracking; die Seite schickt selbst nichts ab.
-const NEU_VERSION = '1.7';
+const NEU_VERSION = '1.8';
 const FEEDBACK_URL = 'https://github.com/DanielEnki420/dwc-grower-edition/issues/new';
 function neuGesehen() { try { return localStorage.getItem('dwc_neu_gesehen') === NEU_VERSION; } catch (e) { return false; } }
 function neuMerken() { try { localStorage.setItem('dwc_neu_gesehen', NEU_VERSION); } catch (e) {} }
@@ -7343,6 +7383,31 @@ function dashboardMenge(p, woche) {
   return typeof v === 'number' && v > 0 ? v : null;
 }
 
+// ── Bluetenplan ueber das Herstellerende hinaus (22.11.2026) ─────────────
+// Welche Phase des Plans gilt in einer Bluetewoche? EINE Stelle: das Dashboard
+// rechnet damit, tests/brands-belege.js prueft jede Regel damit.
+//   duengen   - Herstellerwoche, Menge der Woche selbst (quelle = woche)
+//   halten    - Verlaengerung: Menge der letzten Naehrstoffwoche (quelle),
+//               nicht erhoeht. KEINE Herstellerangabe.
+//   spuelen   - nur Wasser
+//   planende  - Plan zu Ende, keine Bluetedauer eingetragen (wie bisher)
+// Ohne gueltige "Bluetedauer Sorte" (35-120 Tage) bleibt alles beim
+// Herstellerplan. Mit ihr: gespuelt wird in der Woche, in der der Tag
+// (Bluetedauer - 7 x Spuelwochen) liegt, nie vor der Hersteller-Spuelwoche.
+// Marken ohne Spuelwoche im Plan bleiben unveraendert.
+function sorteTageGueltig(s) {
+  s = Number(s);
+  return Number.isFinite(s) && s >= 35 && s <= 120 ? Math.round(s) : null;
+}
+function bluetePhase(plan, sorteTage, woche) {
+  if (!plan || !(plan.gesamt > plan.naehrstoff) || woche <= plan.naehrstoff) return { modus: 'duengen', quelle: woche };
+  const s = sorteTageGueltig(sorteTage);
+  if (s === null) return woche <= plan.gesamt ? { modus: 'spuelen' } : { modus: 'planende' };
+  const spuelWochen = plan.gesamt - plan.naehrstoff;
+  const start = Math.max(plan.naehrstoff + 1, Math.floor((s - 7 * spuelWochen) / 7) + 1);
+  return woche >= start ? { modus: 'spuelen' } : { modus: 'halten', quelle: plan.naehrstoff };
+}
+
 // Die beiden bisherigen Formen - damit kein Renderer angefasst werden muss.
 const BRANDS_DATA = alsDashboard(MARKEN);   // Dashboard
 const BRANDS      = alsLibrary(MARKEN);     // Nutrient Library
@@ -7397,13 +7462,19 @@ function setzePhaseModus(m) {
 }
 
 function growDaten() {
-    try { return { system: localStorage.getItem('dwc_grow_system'), bloom: localStorage.getItem('dwc_grow_bloom') }; }
-    catch (e) { return { system: null, bloom: null }; }
+    try {
+        const s = parseInt(localStorage.getItem('dwc_grow_sorte'), 10);
+        return { system: localStorage.getItem('dwc_grow_system'), bloom: localStorage.getItem('dwc_grow_bloom'),
+                 sorteTage: (s >= 35 && s <= 120) ? s : null };
+    }
+    catch (e) { return { system: null, bloom: null, sorteTage: null }; }
 }
 
 function saveGrowDates() {
-    for (const [id, key] of [['grow-dwc', 'dwc_grow_system'], ['grow-bloom', 'dwc_grow_bloom']]) {
-        const v = document.getElementById(id).value;
+    for (const [id, key] of [['grow-dwc', 'dwc_grow_system'], ['grow-bloom', 'dwc_grow_bloom'], ['grow-sorte', 'dwc_grow_sorte']]) {
+        let v = document.getElementById(id).value;
+        // Bluetedauer der Sorte: nur 35-120 Tage, sonst gilt der Herstellerplan
+        if (id === 'grow-sorte') { const s = parseInt(v, 10); v = (s >= 35 && s <= 120) ? String(s) : ''; }
         try { if (v) localStorage.setItem(key, v); else localStorage.removeItem(key); } catch (e) {}
     }
     update();
@@ -7467,7 +7538,12 @@ function update() {
     const products = brand[phase] || [];
     // Spuelwoche: nach der letzten Naehrstoffwoche des Herstellerplans
     const plan = phase === 'bluete' && brand.bluetePlan;
-    if (plan && week > plan.naehrstoff && week <= plan.gesamt) addResult('💧 ' + T.spuelwoche, T.nur_wasser, 'border-left-color:#38bdf8;');
+    // Welche Phase des Plans? Regel in brands.js (bluetePhase): Hersteller,
+    // gehaltene Verlaengerung, Spuelen oder Planende.
+    const bp = phase === 'bluete' ? bluetePhase(plan, growDaten().sorteTage, week) : { modus: 'duengen', quelle: week };
+    const dosisWoche = bp.modus === 'halten' ? bp.quelle : week;
+    if (bp.modus === 'spuelen') addResult('💧 ' + T.spuelwoche, T.nur_wasser, 'border-left-color:#38bdf8;');
+    if (bp.modus === 'halten') addResult('🔁 ' + T.halten_label(bp.quelle), T.halten_wert, 'border-left-color:#f59e0b;');
     for (const p of products) {
         let valStr;
         const unit = p.unit || 'ml';
@@ -7476,7 +7552,7 @@ function update() {
         } else {
             // Wochenregel steht in brands.js (dashboardMenge), damit der Test
             // genau das prueft, was hier angezeigt wird.
-            const dose = dashboardMenge(p, week);
+            const dose = dashboardMenge(p, dosisWoche);
             if (dose === null) continue;
             valStr = (dose * vol).toFixed(1) + ' ' + unit;
         }
@@ -7530,7 +7606,10 @@ function update() {
     updateHarvestCountdown(phase, week, brandKey);
     updateEcRefill(phase, vol, ec, ecMin, ecMax, brand);
     const ph_ = document.getElementById('plan-hinweis');
-    if (ph_) { const phT = planText(brand.planHinweis, currentLang); ph_.textContent = phT; ph_.style.display = phT ? 'block' : 'none'; }
+    if (ph_) { let phT = planText(brand.planHinweis, currentLang);
+        if (bp.modus === 'halten') phT += ' ' + T.halten_hinweis;
+        if (bp.modus === 'planende') phT += ' ' + T.plan_ende_hinweis;
+        ph_.textContent = phT; ph_.style.display = phT ? 'block' : 'none'; }
 }
 
 function addResult(name, val, style = '') {
@@ -7570,14 +7649,35 @@ function updateEcRefill(phase, vol, ec, ecMin, ecMax, brand) {
 // ============================================================
 // ERNTE-COUNTDOWN
 // ============================================================
+// Ernte-Countdown (13.11.2026 umgebaut). Vorher zwei Fehler:
+// - Er rechnete in ganzen Wochen: (Planwochen - Woche) * 7. Am ersten Tag der
+//   letzten Planwoche meldete er schon die Ernte.
+// - Er kannte nur das Ende des Duengeplans (Hesi: 7 Wochen + 1 Woche Spuelen),
+//   nicht die Sorte. Manche Sorten brauchen 8-10 Wochen.
+// Jetzt: mit Bluetestart tagesgenau, Ziel = Bluetedauer der Sorte (falls
+// eingetragen), sonst Planende. Am Ziel heisst es "Reife pruefen", nicht
+// "Erntezeit" - reif ist die Pflanze, wenn die Trichome es sagen.
+function ernteRest(phase, week, totalWeeks, grow) {
+    const bluete = phase === 'bluete' && grow ? growTageSeit(grow.bloom) : null;
+    if (bluete !== null && bluete >= 0) {
+        const ziel = (grow.sorteTage >= 35 && grow.sorteTage <= 120) ? grow.sorteTage : totalWeeks * 7;
+        return ziel - bluete;
+    }
+    return (totalWeeks - week) * 7;   // ohne Bluetestart: grob nach Wochen wie bisher
+}
+
 function updateHarvestCountdown(phase, week, brandKey) {
     const box = document.getElementById('harvest-countdown');
     if (!box) return;
     // Bloom: 6 weeks nutrient schedule + 2 weeks flush = 8 total for most brands
     const bloomWeeks = { biobizz: 7 }; // Biobizz: organic = 5 wk nutrients + 2 flush
     const plan = (BRANDS_DATA[brandKey] || {}).bluetePlan;
-    const totalWeeks = phase === 'wuchs' ? 8 : ((plan && plan.gesamt) || bloomWeeks[brandKey] || 8);
-    const daysLeft = (totalWeeks - week) * 7;
+    let totalWeeks = phase === 'wuchs' ? 8 : ((plan && plan.gesamt) || bloomWeeks[brandKey] || 8);
+    // Mit eingetragener Bluetedauer zaehlt die Sorte (Anzeige "Woche 9/11"),
+    // nicht das Ende des Herstellerplans ("Woche 9/8").
+    const sorteW = phase === 'bluete' ? sorteTageGueltig(growDaten().sorteTage) : null;
+    if (sorteW) totalWeeks = Math.ceil(sorteW / 7);
+    const daysLeft = ernteRest(phase, week, totalWeeks, growDaten());
     let bg, color, border;
     if (daysLeft > 28)      { bg = '#052e16'; color = '#86efac'; border = '#14532d'; }
     else if (daysLeft > 14) { bg = '#1c1a05'; color = '#fde68a'; border = '#713f12'; }
@@ -7909,6 +8009,7 @@ async function askGemini() {
     const gd = growDaten();
     document.getElementById('grow-dwc').value = gd.system || '';
     document.getElementById('grow-bloom').value = gd.bloom || '';
+    document.getElementById('grow-sorte').value = gd.sorteTage || '';
     if (phase && ['wuchs','bluete'].includes(phase)) {
         document.getElementById('phase').value = phase;
     }
